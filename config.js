@@ -1,10 +1,10 @@
 module.exports = {
-    siteTitle: "John Doe's Portfolio",
+    siteTitle: "Deniz Portfolio",
     siteDescription: "Explore the portfolio of John Doe, an experienced UI/UX designer specializing in creating compelling visual narratives and user-centered design solutions.",
     siteUrl: "https://www.johndoedesign.com",
-    authorName: "John Doe",
-    authorEmail: "hello@example.com",
-    authorJobTitle: "UI/UX Designer",
+    authorName: "Koreli Deniz",
+    authorEmail: "koreli_deniz@naver.com",
+    authorJobTitle: "Brand Designer",
     authorImage: "https://placehold.co/1080x1080",
     socialLinks: {
         linkedin: "https://www.linkedin.com/in/johndoe",
