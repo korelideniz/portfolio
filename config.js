@@ -27,8 +27,7 @@ module.exports = {
         primary: "#3B82F6",
         text: "#FFFFFF",
         textSecondary: "rgba(255, 255, 255, 0.7)"
-    }
-},
+    }, // <-- 여기는 colorScheme만 닫는 쉼표여야 합니다.
     projects: [
         {
             title: "나의 프로젝트",
@@ -37,4 +36,4 @@ module.exports = {
             link: "/project1"
         }
     ]
-};
+}; // <-- 전체 파일은 여기서 딱 한 번만 닫혀야 합니다.
