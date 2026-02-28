@@ -4,19 +4,24 @@
     <title>프로젝트 상세페이지</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        body { margin: 0; text-align: center; font-family: sans-serif; }
-        img { width: 100%; max-width: 1200px; height: auto; }
-        .content { padding: 50px; }
+        body { margin: 0; text-align: center; font-family: sans-serif; background-color: #f8f8f8; }
+        /* 이미지가 너무 붙지 않게 아래 간격을 줍니다 */
+        img { width: 100%; max-width: 1000px; height: auto; margin-bottom: 30px; display: block; margin-left: auto; margin-right: auto; }
+        .content { padding: 50px 20px; }
+        h1 { margin-bottom: 10px; }
+        p { margin-bottom: 40px; color: #666; }
+        .back-link { display: inline-block; margin-top: 50px; padding: 10px 20px; text-decoration: none; color: #3B82F6; border: 1px solid #3B82F6; border-radius: 5px; }
     </style>
 </head>
 <body>
     <div class="content">
         <h1>찬양 버스킹 프로젝트</h1>
-        <p>FTNER 찬양 버스킹 프로젝트에 디자인으로 참여했습니다..</p>
-        <img src="detail1.png"> 
-        <img src="designs/detail1.png">
-        <img src="designs/detail2.png">
+        <p>FTNER 찬양 버스킹 프로젝트에 디자인으로 참여했습니다.</p>
+        
+        <img src="/designs/detail1.png" alt="상세이미지 1">
+        <img src="/designs/detail2.png" alt="상세이미지 2">
     </div>
-    <a href="/">메인으로 돌아가기</a>
+    
+    <a href="/" class="back-link">← 메인으로 돌아가기</a>
 </body>
 </html>
