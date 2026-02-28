@@ -16,6 +16,10 @@
             "dest": "server.js"
         },
         {
+            "src": "/project1",
+            "dest": "server.js"
+        },
+        {
             "src": "/(.*)",
             "dest": "server.js"
         }
