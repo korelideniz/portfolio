@@ -30,10 +30,10 @@ module.exports = {
     }, // <-- 여기는 colorScheme만 닫는 쉼표여야 합니다.
     projects: [
         {
-            title: "나의 프로젝트",
-            image: "designs/main.png",
-            description: "상세 페이지로 이동합니다.",
-            link: "/project1"
+            title: "찬양 버스킹 프로젝트",
+            image: "designs/main.png", // 메인화면에 보일 대표 이미지
+            description: "클릭하면 상세 페이지로 이동합니다.",
+            link: "/project1" // 클릭 시 이동할 주소
         }
     ]
 }; // <-- 전체 파일은 여기서 딱 한 번만 닫혀야 합니다.
