@@ -28,4 +28,13 @@ module.exports = {
         text: "#FFFFFF",
         textSecondary: "rgba(255, 255, 255, 0.7)"
     }
+},
+    projects: [
+        {
+            title: "나의 프로젝트",
+            image: "designs/main.png",
+            description: "상세 페이지로 이동합니다.",
+            link: "/project1"
+        }
+    ]
 };
