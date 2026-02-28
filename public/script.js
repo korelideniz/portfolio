@@ -1,56 +1,61 @@
-document.addEventListener('DOMContentLoaded', async () => {
-    // 1. 상단 프로젝트 카드 및 설정 로드
-    try {
-        const configResponse = await fetch('/api/config');
-        const config = await configResponse.json();
-        
-        document.getElementById('site-title').textContent = config.title;
-        document.getElementById('site-description').textContent = config.description;
-        
-        const projectGrid = document.getElementById('project-grid');
-        if (projectGrid) {
-            config.projects.forEach(project => {
-                const projectCard = document.createElement('div');
-                projectCard.className = 'project-card';
-                projectCard.innerHTML = `
-                    <img src="${project.image}" alt="${project.title}">
-                    <div class="project-info">
-                        <h3>${project.title}</h3>
-                        <p>${project.description}</p>
-                        <a href="${project.link}" class="btn">View Project</a>
-                    </div>
-                `;
-                projectGrid.appendChild(projectCard);
-            });
+Vue.component('image-grid', {
+    props: ['images'],
+    template: `
+        <div class="row">
+            <div class="column" v-for="(image, index) in images" :key="index">
+                <div class="image-container">
+                    <img :src="image.src" :alt="image.alt">
+                </div>
+            </div>
+        </div>
+    `
+});
+
+new Vue({
+    el: '#app',
+    data: {
+        config: {},
+        images: [],
+        currentText: '',
+        currentYear: new Date().getFullYear()
+    },
+    mounted() {
+        this.fetchConfig();
+        this.fetchImages();
+    },
+    methods: {
+        fetchConfig() {
+            fetch('/api/config')
+                .then(response => response.json())
+                .then(config => {
+                    this.config = config;
+                    this.startTextAnimation();
+                    document.title = config.siteTitle;
+                    document.querySelector('meta[name="description"]').setAttribute('content', config.siteDescription);
+                    document.querySelector('meta[name="author"]').setAttribute('content', config.authorName);
+                })
+                .catch(error => {
+                    console.error('Error fetching config:', error);
+                });
+        },
+        fetchImages() {
+            fetch('/api/images')
+                .then(response => response.json())
+                .then(images => {
+                    this.images = images;
+                })
+                .catch(error => {
+                    console.error('Error fetching images:', error);
+                });
+        },
+        startTextAnimation() {
+            let index = 0;
+            this.currentText = this.config.heroTexts[0];
+
+            setInterval(() => {
+                index = (index + 1) % this.config.heroTexts.length;
+                this.currentText = this.config.heroTexts[index];
+            }, 3000);
         }
-    } catch (error) {
-        console.error('Config Error:', error);
-    }
-
-    // 2. 하단 디자인 갤러리 로드 (이동 기능 포함)
-    try {
-        const imagesResponse = await fetch('/api/images');
-        const images = await imagesResponse.json();
-        const gallery = document.getElementById('image-gallery');
-
-        if (gallery) {
-            images.forEach(image => {
-                const imgElement = document.createElement('img');
-                imgElement.src = image.src;
-                imgElement.alt = image.alt;
-                
-                // 클릭 가능하게 설정
-                imgElement.style.cursor = 'pointer';
-
-                // ✨ 어떤 이미지든 클릭하면 무조건 이동!
-                imgElement.onclick = () => {
-                    window.location.href = '/project1';
-                };
-
-                gallery.appendChild(imgElement);
-            });
-        }
-    } catch (error) {
-        console.error('Gallery Error:', error);
     }
 });
