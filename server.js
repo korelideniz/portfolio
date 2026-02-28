@@ -42,7 +42,9 @@ app.get('/api/images', async (req, res) => {
         res.status(500).json({ error: 'Failed to read images directory' });
     }
 });
-
+app.get('/project1', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'project1.html'));
+});
 // Serve index.html for all other routes
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
