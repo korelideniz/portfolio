@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    // 1. 기본 설정 및 프로젝트 카드 로드
+    // 1. 상단 프로젝트 카드 및 설정 로드
     try {
         const configResponse = await fetch('/api/config');
         const config = await configResponse.json();
@@ -8,46 +8,49 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('site-description').textContent = config.description;
         
         const projectGrid = document.getElementById('project-grid');
-        config.projects.forEach(project => {
-            const projectCard = document.createElement('div');
-            projectCard.className = 'project-card';
-            projectCard.innerHTML = `
-                <img src="${project.image}" alt="${project.title}">
-                <div class="project-info">
-                    <h3>${project.title}</h3>
-                    <p>${project.description}</p>
-                    <a href="${project.link}" class="btn">View Project</a>
-                </div>
-            `;
-            projectGrid.appendChild(projectCard);
-        });
+        if (projectGrid) {
+            config.projects.forEach(project => {
+                const projectCard = document.createElement('div');
+                projectCard.className = 'project-card';
+                projectCard.innerHTML = `
+                    <img src="${project.image}" alt="${project.title}">
+                    <div class="project-info">
+                        <h3>${project.title}</h3>
+                        <p>${project.description}</p>
+                        <a href="${project.link}" class="btn">View Project</a>
+                    </div>
+                `;
+                projectGrid.appendChild(projectCard);
+            });
+        }
     } catch (error) {
-        console.error('Error loading config:', error);
+        console.error('Config Error:', error);
     }
 
-    // 2. 하단 갤러리 이미지 로드 (이 부분이 핵심!)
+    // 2. 하단 디자인 갤러리 로드 (이동 기능 포함)
     try {
         const imagesResponse = await fetch('/api/images');
         const images = await imagesResponse.json();
         const gallery = document.getElementById('image-gallery');
 
-        images.forEach(image => {
-            const imgElement = document.createElement('img');
-            imgElement.src = image.src;
-            imgElement.alt = image.alt;
-            
-            // 이미지 클릭 시 이동 기능 추가
-            imgElement.style.cursor = 'pointer';
-            imgElement.onclick = () => {
-                // 파일명에 detail1이 포함되어 있으면 project1 페이지로 이동
-                if (image.src.toLowerCase().includes('detail1')) {
-                    window.location.href = '/project1';
-                }
-            };
+        if (gallery) {
+            images.forEach(image => {
+                const imgElement = document.createElement('img');
+                imgElement.src = image.src;
+                imgElement.alt = image.alt;
+                
+                // 클릭 가능하게 설정
+                imgElement.style.cursor = 'pointer';
 
-            gallery.appendChild(imgElement);
-        });
+                // ✨ 어떤 이미지든 클릭하면 무조건 이동!
+                imgElement.onclick = () => {
+                    window.location.href = '/project1';
+                };
+
+                gallery.appendChild(imgElement);
+            });
+        }
     } catch (error) {
-        console.error('Error loading images:', error);
+        console.error('Gallery Error:', error);
     }
 });
