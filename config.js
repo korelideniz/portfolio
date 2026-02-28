@@ -33,7 +33,7 @@ module.exports = {
             title: "찬양 버스킹 프로젝트",
             image: "designs/main.png", // 메인화면에 보일 대표 이미지
             description: "클릭하면 상세 페이지로 이동합니다.",
-            link: "/project1" // 클릭 시 이동할 주소
+            link: "/project1.html" // 클릭 시 이동할 주소
         }
     ]
 }; // <-- 전체 파일은 여기서 딱 한 번만 닫혀야 합니다.
