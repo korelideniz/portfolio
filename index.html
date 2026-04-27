@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Koreli Deniz</title>
+  <!-- Pretendard — 한글 서체 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <style>
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    /*
+      폰트 우선순위:
+      - 영문: Helvetica Neue (시스템 폰트, 한글 글리프 없으므로 자동으로 다음 폰트로 넘어감)
+      - 한글: Pretendard (fallback)
+    */
+    body {
+      font-family: 'Helvetica Neue', 'Pretendard', -apple-system, Helvetica, Arial, sans-serif;
+      background: #fff;
+      color: #111;
+    }
+    a { color: inherit; text-decoration: none; cursor: pointer; }
+    img { display: block; max-width: 100%; }
+    button { background: none; border: none; cursor: pointer; font-family: inherit; }
+
+    /* ══════════════════════════════
+       HEADER — 항상 투명
+    ══════════════════════════════ */
+    #header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 28px;
+      background: transparent;
+      transition: background 0.3s;
+    }
+    /* 홈에서 히어로 지나면 흰 배경 */
+    #header.solid {
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+    }
+    .logo-link { display: flex; align-items: center; }
+    /* 로고 크기 키우기 — 색 반전 없음 */
+    .logo-img { height: 52px; width: auto; object-fit: contain; }
+
+    nav { display: flex; gap: 36px; align-items: center; }
+    .nav-link {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: #fff;
+      transition: opacity 0.2s, color 0.3s;
+    }
+    .nav-link:hover { opacity: 0.5; }
+    .nav-link.dark-text { color: #111; }
+    .nav-link.active { border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+
+    @media (max-width: 768px) {
+      #header { padding: 16px 18px; }
+      .logo-img { height: 44px; }
+      nav { gap: 22px; }
+      .nav-link { font-size: 13px; letter-spacing: 0.08em; }
+    }
+    @media (max-width: 400px) {
+      nav { gap: 16px; }
+      .nav-link { font-size: 11px; }
+    }
+
+    /* ── Pages ── */
+    .page { display: none; min-height: 100vh; }
+    .page.active { display: block; }
+
+    /* ══════════════════════════════
+       HOME
+    ══════════════════════════════ */
+    #page-home { background: #fff; }
+    .hero { width: 100%; height: 100vh; overflow: hidden; }
+    .hero img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+
+    .home-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3px; padding: 3px;
+    }
+    .home-grid-item {
+      aspect-ratio: 1 / 1;
+      overflow: hidden; cursor: pointer; position: relative;
+      background: #eee;
+    }
+    .home-grid-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.5s ease, opacity 0.3s;
+    }
+    .home-grid-item:hover img { transform: scale(1.04); opacity: 0.85; }
+    .home-grid-item .item-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.62) 0%, transparent 55%);
+      opacity: 0; transition: opacity 0.3s;
+      display: flex; flex-direction: column; justify-content: flex-end; padding: 14px;
+    }
+    .home-grid-item:hover .item-overlay { opacity: 1; }
+    .item-overlay h3 { font-size: 13px; font-weight: 600; color: #fff; }
+    .item-overlay p  { font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 3px; letter-spacing: 0.05em; text-transform: uppercase; }
+
+    @media (max-width: 900px) { .home-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 480px) {
+      .home-grid { grid-template-columns: repeat(3, 1fr); gap: 2px; padding: 2px; }
+      .item-overlay h3 { font-size: 10px; }
+      .item-overlay { padding: 8px; }
+    }
+
+    /* ══════════════════════════════
+       WORKS
+    ══════════════════════════════ */
+    #page-works { background: #000; color: #fff; padding-top: 76px; }
+
+    .works-filters {
+      display: flex; flex-wrap: wrap; gap: 0;
+      padding: 24px 28px 20px;
+      border-bottom: 1px solid #222;
+    }
+    .filter-btn {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 14px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #555; padding: 8px 20px;
+      transition: color 0.2s;
+      border-right: 1px solid #2a2a2a;
+    }
+    .filter-btn:first-child { padding-left: 0; }
+    .filter-btn:last-child { border-right: none; }
+    .filter-btn:hover { color: #ccc; }
+    .filter-btn.active { color: #fff; }
+
+    .works-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 3px; padding: 3px;
+    }
+    .works-item {
+      aspect-ratio: 1 / 1; overflow: hidden; cursor: pointer; position: relative; background: #111;
+    }
+    .works-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.5s ease, opacity 0.3s;
+    }
+    .works-item:hover img { transform: scale(1.04); opacity: 0.7; }
+    .works-item .w-overlay {
+      position: absolute; inset: 0; display: flex; flex-direction: column;
+      justify-content: flex-end; padding: 14px;
+      opacity: 0; transition: opacity 0.3s;
+      background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 60%);
+    }
+    .works-item:hover .w-overlay { opacity: 1; }
+    .w-overlay h3 { font-size: 12px; font-weight: 600; color: #fff; }
+    .w-overlay p  { font-size: 10px; color: rgba(255,255,255,0.55); margin-top: 2px; letter-spacing: 0.07em; text-transform: uppercase; }
+
+    @media (max-width: 900px) { .works-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 768px) {
+      .filter-btn { font-size: 12px; padding: 8px 16px; }
+    }
+    @media (max-width: 480px) {
+      .works-filters { padding: 14px 12px; overflow-x: auto; flex-wrap: nowrap; }
+      .filter-btn { font-size: 11px; padding: 7px 14px; white-space: nowrap; }
+      .works-grid { grid-template-columns: repeat(3, 1fr); gap: 2px; padding: 2px; }
+    }
+
+    /* ══════════════════════════════
+       INFO
+    ══════════════════════════════ */
+    #page-info { background: #D93939; color: #fff; padding-top: 76px; min-height: 100vh; }
+    .info-inner {
+      max-width: 960px; margin: 0 auto;
+      padding: 60px 32px 80px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: start;
+    }
+    .info-photo { width: 100%; object-fit: cover; }
+    .info-bio { display: flex; flex-direction: column; gap: 28px; margin-top: 20px; }
+    .info-bio p {
+      font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif;
+      font-size: 16px; line-height: 1.9; color: rgba(255,255,255,0.92);
+    }
+    .lang-label {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 8px;
+    }
+    @media (max-width: 768px) {
+      .info-inner { grid-template-columns: 1fr; gap: 32px; padding: 40px 20px 60px; }
+      .info-bio p { font-size: 15px; }
+    }
+
+    /* ══════════════════════════════
+       CONTACT
+    ══════════════════════════════ */
+    #page-contact { background: #D93939; color: #fff; padding-top: 76px; min-height: 100vh; }
+
+    .contact-inner {
+      max-width: 680px; margin: 0 auto;
+      padding: 60px 32px 80px;
+    }
+
+    /* 상단 텍스트 */
+    .contact-heading {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: rgba(255,255,255,0.55);
+      margin-bottom: 20px;
+    }
+    .contact-title {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 36px; font-weight: 700; letter-spacing: 0.01em;
+      margin-bottom: 28px; color: #fff;
+    }
+    .contact-desc {
+      font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif;
+      font-size: 15px; line-height: 1.85; color: rgba(255,255,255,0.85);
+      margin-bottom: 10px;
+    }
+    .contact-email {
+      display: inline-block;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 17px; font-weight: 500; letter-spacing: 0.04em;
+      color: #fff; border-bottom: 1px solid rgba(255,255,255,0.4);
+      padding-bottom: 2px; margin-bottom: 52px;
+      transition: opacity 0.2s;
+    }
+    .contact-email:hover { opacity: 0.6; }
+
+    /* 폼 */
+    .contact-form { display: flex; flex-direction: column; gap: 0; }
+    .form-group { display: flex; flex-direction: column; margin-bottom: 24px; }
+    .form-label {
+      font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.6); margin-bottom: 10px;
+    }
+    .form-input, .form-textarea {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 0;
+      padding: 15px 16px;
+      font-size: 15px;
+      color: #fff;
+      font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      width: 100%;
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,0.35); }
+    .form-input:focus, .form-textarea:focus {
+      border-color: rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.18);
+    }
+    .form-textarea { resize: vertical; min-height: 150px; }
+
+    .form-submit {
+      margin-top: 12px;
+      padding: 18px 0;
+      width: 100%;
+      background: #fff;
+      color: #D93939;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.2s;
+    }
+    .form-submit:hover { opacity: 0.85; }
+
+    /* 하단 이미지 */
+    .contact-bottom-img { margin-top: 80px; width: 100%; }
+
+    @media (max-width: 768px) {
+      .contact-inner { padding: 40px 20px 60px; }
+      .contact-title { font-size: 28px; }
+      .contact-desc  { font-size: 14px; }
+      .contact-email { font-size: 15px; }
+      .form-label    { font-size: 11px; }
+      .form-input, .form-textarea { font-size: 16px; } /* iOS zoom 방지 */
+    }
+
+    /* ══════════════════════════════
+       PROJECT DETAIL — 블랙 배경, 넓은 이미지
+    ══════════════════════════════ */
+    #page-project { background: #000; color: #fff; padding-top: 76px; min-height: 100vh; }
+    .project-detail-inner { max-width: 1200px; margin: 0 auto; padding: 28px 16px 60px; }
+    .project-back {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600;
+      color: #555; margin-bottom: 28px; transition: color 0.2s;
+    }
+    .project-back:hover { color: #fff; }
+    .project-title {
+      font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif;
+      font-size: 26px; font-weight: 700; letter-spacing: 0.01em; margin-bottom: 6px; color: #fff;
+    }
+    .project-meta {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #555; margin-bottom: 32px;
+    }
+    .project-images { display: flex; flex-direction: column; gap: 3px; }
+    .project-images img { width: 100%; height: auto; display: block; }
+    .project-desc {
+      font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif;
+      margin-top: 32px; font-size: 15px; line-height: 1.8; color: #888; max-width: 720px; padding: 0 0 40px;
+    }
+
+    /* ── Footer ── */
+    .site-footer {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      text-align: center; padding: 28px;
+      font-size: 12px; letter-spacing: 0.08em; color: #aaa; text-transform: uppercase;
+    }
+    .site-footer.dark { background: #000; color: #333; }
+    .site-footer.red  { background: #D93939; color: rgba(255,255,255,0.4); }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════ HEADER ══════════ -->
+  <header id="header">
+    <a class="logo-link" onclick="navigate('home')">
+      <img class="logo-img" id="logo-img"
+        src="https://github.com/korelideniz/portfolio/blob/main/main/deniz_symbol.png?raw=true"
+        alt="Koreli Deniz" />
+    </a>
+    <nav>
+      <a class="nav-link" id="nav-works"   onclick="navigate('works')">Works</a>
+      <a class="nav-link" id="nav-contact" onclick="navigate('contact')">Contact</a>
+      <a class="nav-link" id="nav-info"    onclick="navigate('info')">Info</a>
+      <a class="nav-link" href="https://store.btcmap.kr/stores/koreli_deniz/" target="_blank" rel="noopener">Shop</a>
+    </nav>
+  </header>
+
+  <!-- ══════════ HOME ══════════ -->
+  <div id="page-home" class="page active">
+    <section class="hero">
+      <img src="https://github.com/korelideniz/portfolio/blob/main/main/deniz_main.png?raw=true" alt="Koreli Deniz" />
+    </section>
+    <section>
+      <div class="home-grid" id="home-grid"></div>
+    </section>
+    <footer class="site-footer">© 2025 Koreli Deniz. All rights reserved.</footer>
+  </div>
+
+  <!-- ══════════ WORKS ══════════ -->
+  <div id="page-works" class="page">
+    <div class="works-filters">
+      <button class="filter-btn active" data-filter="ALL">All</button>
+      <button class="filter-btn" data-filter="IDENTITY">Identity</button>
+      <button class="filter-btn" data-filter="CHARACTER">Character</button>
+      <button class="filter-btn" data-filter="ILLUSTRATION">Illustration</button>
+      <button class="filter-btn" data-filter="PRINT">Print</button>
+      <button class="filter-btn" data-filter="TYPOGRAPHY">Typography</button>
+    </div>
+    <div class="works-grid" id="works-grid"></div>
+    <footer class="site-footer dark">© 2025 Koreli Deniz. All rights reserved.</footer>
+  </div>
+
+  <!-- ══════════ INFO ══════════ -->
+  <div id="page-info" class="page">
+    <div class="info-inner">
+      <div>
+        <img class="info-photo"
+          src="https://github.com/korelideniz/portfolio/blob/main/info/deniz.png?raw=true"
+          alt="Deniz Koreli" />
+      </div>
+      <div>
+        <div class="info-bio">
+          <div>
+            <div class="lang-label">KR</div>
+            <p>대한민국에 거주하며 서울, 이스탄불에 기반을 둔 BX 디자이너 데니즈입니다. 캐릭터 브랜딩과 브랜드 비주얼 시스템, 다양한 온•오프라인 미디어를 넘나드는 디자인에 집중하고 있습니다.</p>
+          </div>
+          <div>
+            <div class="lang-label">EN</div>
+            <p>I am Deniz, a BX designer based in Seoul and Istanbul. My work focuses on character branding and brand visual systems, seamlessly navigating across various online and offline media.</p>
+          </div>
+          <div>
+            <div class="lang-label">TR</div>
+            <p>Seul ve İstanbul merkezli BX tasarımcısı Koreli Deniz. Karakter markalama ve marka görsel sistemleri uzmanıyım; online ve offline mecralarda yaratıcı tasarım çözümleri sunuyorum.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ CONTACT ══════════ -->
+  <div id="page-contact" class="page">
+    <div class="contact-inner">
+
+      <p class="contact-heading">Contact</p>
+      <h2 class="contact-title">Project Inquiries</h2>
+      <p class="contact-desc">프로젝트 의뢰는 이메일로 받고 있습니다. 아래의 메일 주소로 프로젝트 내용, 일정 등 정보를 알려주시기 바랍니다. 검토 후 회신 드리겠습니다.</p>
+      <p class="contact-desc" style="margin-bottom:20px;">We accept project requests via email. Please send the project details and timeline to the email address below. We will review them and get back to you.</p>
+      <a class="contact-email" href="mailto:koreli_deniz@naver.com">koreli_deniz@naver.com</a>
+
+      <!-- 문의 폼 -->
+      <!--
+        [배포 후 설정] Formspree를 사용하면 실제 이메일로 전송됩니다:
+        1. https://formspree.io 가입
+        2. New Form 생성 후 받은 엔드포인트(예: https://formspree.io/f/xxxxxx)를
+           아래 form의 action 속성에 넣으세요.
+        3. 그 전까지는 JavaScript로 mailto 처리됩니다.
+      -->
+      <form class="contact-form" id="contact-form">
+        <div class="form-group">
+          <label class="form-label">성함 / 회사명 &nbsp; Name / Company *</label>
+          <input class="form-input" type="text" name="name" placeholder="Your Name..." required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">이메일 &nbsp; Email *</label>
+          <input class="form-input" type="email" name="email" placeholder="Your Email Address..." required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">연락처 &nbsp; Phone</label>
+          <input class="form-input" type="tel" name="phone" placeholder="Your Phone Number..." />
+        </div>
+        <div class="form-group">
+          <label class="form-label">프로젝트 상세 &nbsp; Project Details *</label>
+          <textarea class="form-textarea" name="details" placeholder="프로젝트 내용, 일정 등을 알려주세요..." required></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">예상 예산 &nbsp; Budget Range</label>
+          <input class="form-input" type="text" name="budget" placeholder="예: 300만원 이상 / e.g. 3,000,000 KRW+" />
+        </div>
+        <button class="form-submit" type="submit">Submit</button>
+      </form>
+
+      <!-- 하단 이미지 -->
+      <img class="contact-bottom-img"
+        src="https://github.com/korelideniz/portfolio/blob/main/info/%E1%84%85%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%90%E1%85%B3%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%89%E1%85%A6%E1%84%85%E1%85%A9%E1%84%92%E1%85%A7%E1%86%BC.png?raw=true"
+        alt="Koreli Deniz" />
+    </div>
+    <footer class="site-footer red">© 2025 Koreli Deniz. All rights reserved.</footer>
+  </div>
+
+  <!-- ══════════ PROJECT DETAIL ══════════ -->
+  <div id="page-project" class="page">
+    <div class="project-detail-inner">
+      <a class="project-back" onclick="goBack()">← Back</a>
+      <h1 class="project-title" id="project-title"></h1>
+      <p class="project-meta"  id="project-meta"></p>
+      <div class="project-images" id="project-images"></div>
+      <p class="project-desc"  id="project-desc"></p>
+    </div>
+    <footer class="site-footer dark">© 2025 Koreli Deniz. All rights reserved.</footer>
+  </div>
+
+  <script>
+    /* ═══════════════════════════════════════════════
+       PROJECT DATA  —  아래 배열에 프로젝트를 추가/수정하세요
+    ═══════════════════════════════════════════════ */
+    const projects = [
+      {
+        id: 'proj-01', title: 'Project 01', categories: ['IDENTITY'],
+        thumb: 'https://picsum.photos/seed/p01/600/600',
+        images: ['https://picsum.photos/seed/p01d/1200/1600'],
+        desc: '프로젝트 설명을 여기에 작성하세요.', year: '2024',
+      },
+      {
+        id: 'proj-02', title: 'Project 02', categories: ['CHARACTER'],
+        thumb: 'https://picsum.photos/seed/p02/600/600',
+        images: ['https://picsum.photos/seed/p02d/1200/1600'],
+        desc: '프로젝트 설명을 여기에 작성하세요.', year: '2024',
+      },
+      {
+        id: 'proj-03', title: 'Project 03', categories: ['ILLUSTRATION', 'PRINT'],
+        thumb: 'https://picsum.photos/seed/p03/600/600',
+        images: ['https://picsum.photos/seed/p03d/1200/1600'],
+        desc: '프로젝트 설명을 여기에 작성하세요.', year: '2024',
+      },
+      {
+        id: 'proj-04', title: 'Project 04', categories: ['TYPOGRAPHY'],
+        thumb: 'https://picsum.photos/seed/p04/600/600',
+        images: ['https://picsum.photos/seed/p04d/1200/1600'],
+        desc: '프로젝트 설명을 여기에 작성하세요.', year: '2025',
+      },
+      {
+        id: 'proj-05', title: 'Project 05', categories: ['IDENTITY', 'CHARACTER'],
+        thumb: 'https://picsum.photos/seed/p05/600/600',
+        images: ['https://picsum.photos/seed/p05d/1200/1600'],
+        desc: '프로젝트 설명을 여기에 작성하세요.', year: '2025',
+      },
+      {
+        id: 'proj-06', title: 'Project 06', categories: ['PRINT'],
+        thumb: 'https://picsum.photos/seed/p06/600/600',
+        images: ['https://picsum.photos/seed/p06d/1200/1600'],
+        desc: '프로젝트 설명을 여기에 작성하세요.', year: '2025',
+      },
+      {
+        id: 'proj-07', title: 'Project 07', categories: ['ILLUSTRATION'],
+        thumb: 'https://picsum.photos/seed/p07/600/600',
+        images: ['https://picsum.photos/seed/p07d/1200/1600'],
+        desc: '프로젝트 설명을 여기에 작성하세요.', year: '2024',
+      },
+      {
+        id: 'proj-08', title: 'Project 08', categories: ['CHARACTER'],
+        thumb: 'https://picsum.photos/seed/p08/600/600',
+        images: ['https://picsum.photos/seed/p08d/1200/1600'],
+        desc: '프로젝트 설명을 여기에 작성하세요.', year: '2024',
+      },
+      {
+        id: 'proj-09', title: 'Project 09', categories: ['TYPOGRAPHY', 'PRINT'],
+        thumb: 'https://picsum.photos/seed/p09/600/600',
+        images: ['https://picsum.photos/seed/p09d/1200/1600'],
+        desc: '프로젝트 설명을 여기에 작성하세요.', year: '2025',
+      },
+    ];
+
+    /* ── State ── */
+    let currentPage  = 'home';
+    let previousPage = 'home';
+    let currentFilter = 'ALL';
+
+    /* ── Render Grids ── */
+    function renderHomeGrid() {
+      const grid = document.getElementById('home-grid');
+      grid.innerHTML = '';
+      projects.forEach(p => {
+        const el = document.createElement('div');
+        el.className = 'home-grid-item';
+        el.innerHTML = `
+          <img src="${p.thumb}" alt="${p.title}" loading="lazy" />
+          <div class="item-overlay">
+            <h3>${p.title}</h3>
+            <p>${p.categories[0]}</p>
+          </div>`;
+        el.addEventListener('click', () => openProject(p.id));
+        grid.appendChild(el);
+      });
+    }
+
+    function renderWorksGrid(filter) {
+      const grid = document.getElementById('works-grid');
+      grid.innerHTML = '';
+      const list = filter === 'ALL' ? projects : projects.filter(p => p.categories.includes(filter));
+      list.forEach(p => {
+        const el = document.createElement('div');
+        el.className = 'works-item';
+        el.innerHTML = `
+          <img src="${p.thumb}" alt="${p.title}" loading="lazy" />
+          <div class="w-overlay">
+            <h3>${p.title}</h3>
+            <p>${p.year} · ${p.categories.join(', ')}</p>
+          </div>`;
+        el.addEventListener('click', () => openProject(p.id));
+        grid.appendChild(el);
+      });
+    }
+
+    /* ── Navigation ── */
+    function navigate(page) {
+      previousPage = currentPage;
+      currentPage  = page;
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('page-' + page).classList.add('active');
+      window.scrollTo(0, 0);
+      updateHeader(page);
+      document.querySelectorAll('.nav-link[id^="nav-"]').forEach(a => a.classList.remove('active'));
+      const an = document.getElementById('nav-' + page);
+      if (an) an.classList.add('active');
+      if (page === 'works') renderWorksGrid(currentFilter);
+    }
+
+    function openProject(id) {
+      const p = projects.find(x => x.id === id);
+      if (!p) return;
+      document.getElementById('project-title').textContent = p.title;
+      document.getElementById('project-meta').textContent  = p.year + ' · ' + p.categories.join(', ');
+      document.getElementById('project-desc').textContent  = p.desc;
+      const imgC = document.getElementById('project-images');
+      imgC.innerHTML = '';
+      p.images.forEach(src => {
+        const img = document.createElement('img');
+        img.src = src; img.alt = p.title;
+        imgC.appendChild(img);
+      });
+      navigate('project');
+    }
+
+    function goBack() {
+      navigate(previousPage === 'project' ? 'home' : previousPage);
+    }
+
+    /* ── Header — 투명, 색 반전 없음 ── */
+    function updateHeader(page) {
+      const header   = document.getElementById('header');
+      const navLinks = document.querySelectorAll('.nav-link');
+      header.classList.remove('solid');
+
+      if (page === 'home') {
+        updateHeaderOnScroll();
+      } else if (page === 'works' || page === 'project') {
+        // 블랙 배경 → 네비 흰색
+        navLinks.forEach(l => l.classList.remove('dark-text'));
+      } else {
+        // contact(red), info(red) → 네비 흰색
+        navLinks.forEach(l => l.classList.remove('dark-text'));
+      }
+    }
+
+    function updateHeaderOnScroll() {
+      if (currentPage !== 'home') return;
+      const header   = document.getElementById('header');
+      const navLinks = document.querySelectorAll('.nav-link');
+      const heroH    = document.querySelector('.hero')?.offsetHeight || window.innerHeight;
+
+      if (window.scrollY < heroH - 80) {
+        header.classList.remove('solid');
+        navLinks.forEach(l => l.classList.remove('dark-text'));  // 흰색 텍스트
+      } else {
+        header.classList.add('solid');
+        navLinks.forEach(l => l.classList.add('dark-text'));     // 어두운 텍스트
+      }
+    }
+
+    window.addEventListener('scroll', updateHeaderOnScroll, { passive: true });
+
+    /* ── Works Filter ── */
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        currentFilter = this.dataset.filter;
+        renderWorksGrid(currentFilter);
+      });
+    });
+
+    /* ── Contact Form — mailto 폴백 ── */
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name    = this.name.value;
+      const email   = this.email.value;
+      const phone   = this.phone.value;
+      const details = this.details.value;
+      const budget  = this.budget.value;
+
+      const body = encodeURIComponent(
+        `이름 / Name: ${name}\n` +
+        `이메일 / Email: ${email}\n` +
+        `연락처 / Phone: ${phone}\n\n` +
+        `프로젝트 상세 / Project Details:\n${details}\n\n` +
+        `예상 예산 / Budget: ${budget}`
+      );
+      const subject = encodeURIComponent(`[포트폴리오 문의] ${name}`);
+      window.location.href = `mailto:koreli_deniz@naver.com?subject=${subject}&body=${body}`;
+    });
+
+    /* ── Init ── */
+    renderHomeGrid();
+    updateHeaderOnScroll();
+  </script>
+</body>
+</html>
