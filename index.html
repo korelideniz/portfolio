@@ -45,7 +45,7 @@
     }
     .logo-link { display: flex; align-items: center; }
     /* 로고 크기 키우기 — 색 반전 없음 */
-    .logo-img { height: 52px; width: auto; object-fit: contain; }
+    .logo-img { height: 76px; width: auto; object-fit: contain; }
 
     nav { display: flex; gap: 36px; align-items: center; }
     .nav-link {
@@ -63,7 +63,7 @@
 
     @media (max-width: 768px) {
       #header { padding: 16px 18px; }
-      .logo-img { height: 44px; }
+      .logo-img { height: 60px; }
       nav { gap: 22px; }
       .nav-link { font-size: 13px; letter-spacing: 0.08em; }
     }
@@ -77,21 +77,23 @@
     .page.active { display: block; }
 
     /* ══════════════════════════════
-       HOME
+       HOME — 메인 배너는 풀스크린(100vh)
     ══════════════════════════════ */
-    #page-home { background: #fff; }
+    #page-home { background: #000; }
     .hero { width: 100%; height: 100vh; overflow: hidden; }
     .hero img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
 
     .home-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 3px; padding: 3px;
+      gap: 4px; padding: 4px;
+      background: #000;
     }
     .home-grid-item {
       aspect-ratio: 1 / 1;
       overflow: hidden; cursor: pointer; position: relative;
-      background: #eee;
+      background: #111;
+      border-radius: 10px;
     }
     .home-grid-item img {
       width: 100%; height: 100%; object-fit: cover;
@@ -110,39 +112,51 @@
 
     @media (max-width: 900px) { .home-grid { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 480px) {
-      .home-grid { grid-template-columns: repeat(3, 1fr); gap: 2px; padding: 2px; }
+      .home-grid { grid-template-columns: repeat(3, 1fr); gap: 3px; padding: 3px; }
       .item-overlay h3 { font-size: 10px; }
       .item-overlay { padding: 8px; }
     }
 
     /* ══════════════════════════════
-       WORKS
+       WORKS — 필터 디자인 (Cargo 스타일)
     ══════════════════════════════ */
-    #page-works { background: #000; color: #fff; padding-top: 76px; }
+    #page-works { background: #000; color: #fff; padding-top: 116px; }
 
     .works-filters {
-      display: flex; flex-wrap: wrap; gap: 0;
-      padding: 24px 28px 20px;
-      border-bottom: 1px solid #222;
+      display: flex; flex-wrap: wrap; align-items: center;
+      gap: 4px;
+      padding: 14px 28px 16px;
+      border-bottom: 1px solid #1f1f1f;
+    }
+    .filter-label {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 14px; color: #888; margin-right: 8px;
+      letter-spacing: 0;
     }
     .filter-btn {
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      font-size: 14px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
-      color: #555; padding: 8px 20px;
-      transition: color 0.2s;
-      border-right: 1px solid #2a2a2a;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: none;
+      color: #aaa;
+      padding: 5px 11px;
+      border-radius: 4px;
+      transition: color 0.15s, background 0.15s;
     }
-    .filter-btn:first-child { padding-left: 0; }
-    .filter-btn:last-child { border-right: none; }
-    .filter-btn:hover { color: #ccc; }
-    .filter-btn.active { color: #fff; }
+    .filter-btn:hover { color: #fff; }
+    .filter-btn.active {
+      color: #fff;
+      background: #2a2a2a;
+    }
 
     .works-grid {
       display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 3px; padding: 3px;
+      gap: 4px; padding: 4px;
     }
     .works-item {
       aspect-ratio: 1 / 1; overflow: hidden; cursor: pointer; position: relative; background: #111;
+      border-radius: 10px;
     }
     .works-item img {
       width: 100%; height: 100%; object-fit: cover;
@@ -161,18 +175,20 @@
 
     @media (max-width: 900px) { .works-grid { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 768px) {
-      .filter-btn { font-size: 12px; padding: 8px 16px; }
+      #page-works { padding-top: 92px; }
+      .filter-btn, .filter-label { font-size: 13px; }
+      .filter-btn { padding: 4px 9px; }
     }
     @media (max-width: 480px) {
-      .works-filters { padding: 14px 12px; overflow-x: auto; flex-wrap: nowrap; }
-      .filter-btn { font-size: 11px; padding: 7px 14px; white-space: nowrap; }
-      .works-grid { grid-template-columns: repeat(3, 1fr); gap: 2px; padding: 2px; }
+      .works-filters { padding: 12px 14px; overflow-x: auto; flex-wrap: nowrap; }
+      .filter-btn { font-size: 12px; padding: 4px 9px; white-space: nowrap; }
+      .works-grid { grid-template-columns: repeat(3, 1fr); gap: 3px; padding: 3px; }
     }
 
     /* ══════════════════════════════
        INFO
     ══════════════════════════════ */
-    #page-info { background: #D93939; color: #fff; padding-top: 76px; min-height: 100vh; }
+    #page-info { background: #D93939; color: #fff; padding-top: 116px; min-height: 100vh; }
     .info-inner {
       max-width: 960px; margin: 0 auto;
       padding: 60px 32px 80px;
@@ -190,6 +206,7 @@
       font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 8px;
     }
     @media (max-width: 768px) {
+      #page-info { padding-top: 92px; }
       .info-inner { grid-template-columns: 1fr; gap: 32px; padding: 40px 20px 60px; }
       .info-bio p { font-size: 15px; }
     }
@@ -197,7 +214,7 @@
     /* ══════════════════════════════
        CONTACT
     ══════════════════════════════ */
-    #page-contact { background: #D93939; color: #fff; padding-top: 76px; min-height: 100vh; }
+    #page-contact { background: #D93939; color: #fff; padding-top: 116px; min-height: 100vh; }
 
     .contact-inner {
       max-width: 680px; margin: 0 auto;
@@ -279,6 +296,7 @@
     .contact-bottom-img { margin-top: 80px; width: 100%; }
 
     @media (max-width: 768px) {
+      #page-contact { padding-top: 92px; }
       .contact-inner { padding: 40px 20px 60px; }
       .contact-title { font-size: 28px; }
       .contact-desc  { font-size: 14px; }
@@ -288,30 +306,65 @@
     }
 
     /* ══════════════════════════════
-       PROJECT DETAIL — 블랙 배경, 넓은 이미지
+       PROJECT MODAL — 오버레이로 표시
     ══════════════════════════════ */
-    #page-project { background: #000; color: #fff; padding-top: 76px; min-height: 100vh; }
-    .project-detail-inner { max-width: 1200px; margin: 0 auto; padding: 28px 16px 60px; }
-    .project-back {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600;
-      color: #555; margin-bottom: 28px; transition: color 0.2s;
+    .project-modal-backdrop {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.78);
+      z-index: 1500;
+      display: none;
+      overflow-y: auto;
+      padding: 60px 20px;
+      -webkit-overflow-scrolling: touch;
     }
-    .project-back:hover { color: #fff; }
-    .project-title {
+    .project-modal-backdrop.active { display: block; }
+    body.modal-open { overflow: hidden; }
+
+    .project-modal {
+      max-width: 880px;
+      margin: 0 auto;
+      background: #0a0a0a;
+      border: 1px solid #1f1f1f;
+      border-radius: 8px;
+      color: #fff;
+      position: relative;
+      padding: 28px 32px 40px;
+    }
+    .project-modal-close {
+      position: absolute;
+      top: 18px; right: 18px;
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; font-weight: 300;
+      color: #fff;
+      border-radius: 50%;
+      transition: background 0.2s;
+      z-index: 2;
+    }
+    .project-modal-close:hover { background: rgba(255,255,255,0.1); }
+
+    .project-modal .project-title {
       font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif;
-      font-size: 26px; font-weight: 700; letter-spacing: 0.01em; margin-bottom: 6px; color: #fff;
+      font-size: 20px; font-weight: 600; letter-spacing: 0.01em;
+      margin-bottom: 4px; color: #fff; padding-right: 48px;
     }
-    .project-meta {
+    .project-modal .project-meta {
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #555; margin-bottom: 32px;
+      font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: #777; margin-bottom: 24px;
     }
-    .project-images { display: flex; flex-direction: column; gap: 3px; }
-    .project-images img { width: 100%; height: auto; display: block; }
-    .project-desc {
+    .project-modal .project-images { display: flex; flex-direction: column; gap: 6px; }
+    .project-modal .project-images img { width: 100%; height: auto; display: block; border-radius: 2px; }
+    .project-modal .project-desc {
       font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif;
-      margin-top: 32px; font-size: 15px; line-height: 1.8; color: #888; max-width: 720px; padding: 0 0 40px;
+      margin-top: 24px; font-size: 14px; line-height: 1.8;
+      color: rgba(255,255,255,0.78);
+    }
+
+    @media (max-width: 768px) {
+      .project-modal-backdrop { padding: 30px 12px; }
+      .project-modal { padding: 22px 18px 32px; border-radius: 6px; }
+      .project-modal .project-title { font-size: 17px; }
     }
 
     /* ── Footer ── */
@@ -349,12 +402,13 @@
     <section>
       <div class="home-grid" id="home-grid"></div>
     </section>
-    <footer class="site-footer">© 2025 Koreli Deniz. All rights reserved.</footer>
+    <footer class="site-footer dark">© 2025 Koreli Deniz. All rights reserved.</footer>
   </div>
 
   <!-- ══════════ WORKS ══════════ -->
   <div id="page-works" class="page">
     <div class="works-filters">
+      <span class="filter-label">Filter:</span>
       <button class="filter-btn active" data-filter="ALL">All</button>
       <button class="filter-btn" data-filter="IDENTITY">Identity</button>
       <button class="filter-btn" data-filter="CHARACTER">Character</button>
@@ -443,16 +497,15 @@
     <footer class="site-footer red">© 2025 Koreli Deniz. All rights reserved.</footer>
   </div>
 
-  <!-- ══════════ PROJECT DETAIL ══════════ -->
-  <div id="page-project" class="page">
-    <div class="project-detail-inner">
-      <a class="project-back" onclick="goBack()">← Back</a>
+  <!-- ══════════ PROJECT MODAL ══════════ -->
+  <div id="project-modal-backdrop" class="project-modal-backdrop" onclick="closeProject(event)">
+    <div class="project-modal" onclick="event.stopPropagation()">
+      <button class="project-modal-close" onclick="closeProject()" aria-label="Close">&times;</button>
       <h1 class="project-title" id="project-title"></h1>
       <p class="project-meta"  id="project-meta"></p>
       <div class="project-images" id="project-images"></div>
       <p class="project-desc"  id="project-desc"></p>
     </div>
-    <footer class="site-footer dark">© 2025 Koreli Deniz. All rights reserved.</footer>
   </div>
 
   <script>
@@ -518,7 +571,6 @@
 
     /* ── State ── */
     let currentPage  = 'home';
-    let previousPage = 'home';
     let currentFilter = 'ALL';
 
     /* ── Render Grids ── */
@@ -559,8 +611,9 @@
 
     /* ── Navigation ── */
     function navigate(page) {
-      previousPage = currentPage;
-      currentPage  = page;
+      // 모달이 열려 있으면 먼저 닫기
+      closeProject();
+      currentPage = page;
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       document.getElementById('page-' + page).classList.add('active');
       window.scrollTo(0, 0);
@@ -571,6 +624,7 @@
       if (page === 'works') renderWorksGrid(currentFilter);
     }
 
+    /* ── Project Modal — 오버레이로 열기/닫기 ── */
     function openProject(id) {
       const p = projects.find(x => x.id === id);
       if (!p) return;
@@ -584,12 +638,24 @@
         img.src = src; img.alt = p.title;
         imgC.appendChild(img);
       });
-      navigate('project');
+      const backdrop = document.getElementById('project-modal-backdrop');
+      backdrop.classList.add('active');
+      backdrop.scrollTop = 0;
+      document.body.classList.add('modal-open');
     }
 
-    function goBack() {
-      navigate(previousPage === 'project' ? 'home' : previousPage);
+    function closeProject(e) {
+      // backdrop 클릭 이벤트일 때만 e가 들어오는데, 이 함수 자체는 그냥 닫기 처리
+      const backdrop = document.getElementById('project-modal-backdrop');
+      if (!backdrop.classList.contains('active')) return;
+      backdrop.classList.remove('active');
+      document.body.classList.remove('modal-open');
     }
+
+    // ESC 키로도 닫기
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeProject();
+    });
 
     /* ── Header — 투명, 색 반전 없음 ── */
     function updateHeader(page) {
@@ -598,32 +664,13 @@
       header.classList.remove('solid');
 
       if (page === 'home') {
-        updateHeaderOnScroll();
-      } else if (page === 'works' || page === 'project') {
-        // 블랙 배경 → 네비 흰색
+        // 홈은 블랙 배경 → 네비 흰색 유지
         navLinks.forEach(l => l.classList.remove('dark-text'));
       } else {
-        // contact(red), info(red) → 네비 흰색
+        // works/info/contact 모두 어두운/컬러 배경 → 네비 흰색
         navLinks.forEach(l => l.classList.remove('dark-text'));
       }
     }
-
-    function updateHeaderOnScroll() {
-      if (currentPage !== 'home') return;
-      const header   = document.getElementById('header');
-      const navLinks = document.querySelectorAll('.nav-link');
-      const heroH    = document.querySelector('.hero')?.offsetHeight || window.innerHeight;
-
-      if (window.scrollY < heroH - 80) {
-        header.classList.remove('solid');
-        navLinks.forEach(l => l.classList.remove('dark-text'));  // 흰색 텍스트
-      } else {
-        header.classList.add('solid');
-        navLinks.forEach(l => l.classList.add('dark-text'));     // 어두운 텍스트
-      }
-    }
-
-    window.addEventListener('scroll', updateHeaderOnScroll, { passive: true });
 
     /* ── Works Filter ── */
     document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -657,7 +704,7 @@
 
     /* ── Init ── */
     renderHomeGrid();
-    updateHeaderOnScroll();
+    updateHeader('home');
   </script>
 </body>
 </html>
