@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Koreli Deniz</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="https://raw.githubusercontent.com/korelideniz/portfolio/main/images/favicon.jpg" />
+  <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/korelideniz/portfolio/main/images/favicon.jpg" />
   <!-- Pretendard — 한글 서체 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <style>
@@ -100,6 +103,14 @@
       overflow: hidden; cursor: pointer; position: relative;
       background: #111;
       border-radius: 10px;
+      /* 스크롤 리빌 — 기본 상태 */
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .home-grid-item.in-view {
+      opacity: 1;
+      transform: translateY(0);
     }
     .home-grid-item img {
       width: 100%; height: 100%; object-fit: cover;
@@ -163,6 +174,14 @@
     .works-item {
       aspect-ratio: 1 / 1; overflow: hidden; cursor: pointer; position: relative; background: #111;
       border-radius: 10px;
+      /* 스크롤 리빌 — 기본 상태 */
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .works-item.in-view {
+      opacity: 1;
+      transform: translateY(0);
     }
     .works-item img {
       width: 100%; height: 100%; object-fit: cover;
@@ -396,7 +415,7 @@
       <a class="nav-link" id="nav-works"   onclick="navigate('works')">Works</a>
       <a class="nav-link" id="nav-contact" onclick="navigate('contact')">Contact</a>
       <a class="nav-link" id="nav-info"    onclick="navigate('info')">Info</a>
-      <a class="nav-link" href="https://store.btcmap.kr/stores/koreli_deniz/" target="_blank" rel="noopener">Shop</a>
+      <a class="nav-link" href="https://www.satoshop.org/stores/8b9b6354-c89a-5446-ba21-ca8303b1a078" target="_blank" rel="noopener">Shop</a>
     </nav>
   </header>
 
@@ -520,10 +539,15 @@
     ═══════════════════════════════════════════════ */
     const projects = [
       {
-        id: 'proj-01', title: '말랑말랑마음 동화책', categories: ['ILLUSTRATION','PRINT'],
-        thumb: 'https://github.com/korelideniz/portfolio/blob/main/images/mallang/1.jpg?raw=true',
-        images: ['https://github.com/korelideniz/portfolio/blob/main/images/mallang/1.jpg?raw=true','https://github.com/korelideniz/portfolio/blob/main/images/mallang/2.jpg?raw=true','https://github.com/korelideniz/portfolio/blob/main/images/mallang/3.jpg?raw=true'],
-        desc: '내가 그들에게 한 마음을 주고 그 속에 새 영을 주며 그 몸에서 돌 같은 마음을 제거하고 살처럼 부드러운 마음을 주어 [에스겔 11:19].', year: '2019',
+        id: 'proj-01', title: '말랑말랑마음 동화책', categories: ['ILLUSTRATION', 'PRINT'],
+        thumb: 'https://raw.githubusercontent.com/korelideniz/portfolio/main/images/mallang/1.jpg',
+        images: [
+          'https://raw.githubusercontent.com/korelideniz/portfolio/main/images/mallang/1.jpg',
+          'https://raw.githubusercontent.com/korelideniz/portfolio/main/images/mallang/2.jpg',
+          'https://raw.githubusercontent.com/korelideniz/portfolio/main/images/mallang/3.jpg',
+        ],
+        desc: '내가 그들에게 한 마음을 주고 그 속에 새 영을 주며 그 몸에서 돌 같은 마음을 제거하고 살처럼 부드러운 마음을 주어 [에스겔 11:19].',
+        year: '2019',
       },
       {
         id: 'proj-02', title: 'Project 02', categories: ['CHARACTER'],
@@ -579,13 +603,27 @@
     let currentPage  = 'home';
     let currentFilter = 'ALL';
 
+    /* ── Scroll Reveal Observer (그리드 아이템 페이드인) ── */
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          // 한 번에 보이는 묶음에 약간의 시차를 줘서 자연스럽게
+          const idx = entry.target.dataset.idx ? parseInt(entry.target.dataset.idx) % 8 : i;
+          entry.target.style.transitionDelay = (idx * 60) + 'ms';
+          entry.target.classList.add('in-view');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
     /* ── Render Grids ── */
     function renderHomeGrid() {
       const grid = document.getElementById('home-grid');
       grid.innerHTML = '';
-      projects.forEach(p => {
+      projects.forEach((p, i) => {
         const el = document.createElement('div');
         el.className = 'home-grid-item';
+        el.dataset.idx = i;
         el.innerHTML = `
           <img src="${p.thumb}" alt="${p.title}" loading="lazy" />
           <div class="item-overlay">
@@ -594,6 +632,7 @@
           </div>`;
         el.addEventListener('click', () => openProject(p.id));
         grid.appendChild(el);
+        revealObserver.observe(el);
       });
     }
 
@@ -601,9 +640,10 @@
       const grid = document.getElementById('works-grid');
       grid.innerHTML = '';
       const list = filter === 'ALL' ? projects : projects.filter(p => p.categories.includes(filter));
-      list.forEach(p => {
+      list.forEach((p, i) => {
         const el = document.createElement('div');
         el.className = 'works-item';
+        el.dataset.idx = i;
         el.innerHTML = `
           <img src="${p.thumb}" alt="${p.title}" loading="lazy" />
           <div class="w-overlay">
@@ -612,6 +652,7 @@
           </div>`;
         el.addEventListener('click', () => openProject(p.id));
         grid.appendChild(el);
+        revealObserver.observe(el);
       });
     }
 
