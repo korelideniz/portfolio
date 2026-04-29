@@ -5,8 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Koreli Deniz</title>
   <!-- Favicon -->
-  <link rel="icon" type="image/jpeg" href="https://raw.githubusercontent.com/korelideniz/portfolio/main/images/favicon.jpg" />
-  <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/korelideniz/portfolio/main/images/favicon.jpg" />
+  <link rel="icon" type="image/jpeg" href="https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/images/favicon.jpg" />
+  <link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/images/favicon.jpg" />
+  <!-- 히어로 이미지 사전 로드 (모바일 속도 개선) -->
+  <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/main/deniz_main.png" fetchpriority="high" />
+  <!-- DNS 사전 연결 (속도 개선) -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
   <!-- Pretendard — 한글 서체 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <style>
@@ -320,6 +325,85 @@
     /* 하단 이미지 */
     .contact-bottom-img { margin-top: 80px; width: 100%; }
 
+    /* Lightning 후원 섹션 */
+    .support-section {
+      margin-top: 40px;
+      text-align: center;
+      padding-bottom: 8px;
+    }
+    .support-label {
+      font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 18px;
+    }
+    .support-address {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: #fff;
+      border-bottom: 1px solid rgba(255,255,255,0.4);
+      padding-bottom: 4px;
+      cursor: pointer;
+      background: none;
+      border-top: none; border-left: none; border-right: none;
+      transition: opacity 0.2s;
+    }
+    .support-address:hover { opacity: 0.7; }
+    .support-bolt {
+      width: 20px; height: 20px;
+      flex-shrink: 0;
+      fill: #FFD400;
+    }
+
+    /* Copy 알림 토스트 */
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 40px;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(0,0,0,0.92);
+      color: #fff;
+      font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 12px 22px;
+      border-radius: 999px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.3);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 3000;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    .toast-check {
+      width: 14px; height: 14px;
+      fill: #4ade80;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 768px) {
+      .support-section { margin-top: 32px; }
+      .support-label { font-size: 14px; }
+      .support-address { font-size: 18px; }
+      .support-bolt { width: 16px; height: 16px; }
+      .toast { font-size: 13px; padding: 10px 18px; bottom: 28px; }
+    }
+
     @media (max-width: 768px) {
       #page-contact { padding-top: 92px; }
       .contact-inner { padding: 40px 20px 60px; }
@@ -408,7 +492,7 @@
   <header id="header">
     <a class="logo-link" onclick="navigate('home')">
       <img class="logo-img" id="logo-img"
-        src="https://raw.githubusercontent.com/korelideniz/portfolio/main/main/deniz_symbol.png"
+        src="https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/main/deniz_symbol.png"
         alt="Koreli Deniz" />
     </a>
     <nav>
@@ -422,7 +506,7 @@
   <!-- ══════════ HOME ══════════ -->
   <div id="page-home" class="page active">
     <section class="hero">
-      <img src="https://raw.githubusercontent.com/korelideniz/portfolio/main/main/deniz_main.png" alt="Koreli Deniz" loading="eager" fetchpriority="high" />
+      <img src="https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/main/deniz_main.png" alt="Koreli Deniz" loading="eager" fetchpriority="high" />
     </section>
     <section>
       <div class="home-grid" id="home-grid"></div>
@@ -450,7 +534,7 @@
     <div class="info-inner">
       <div>
         <img class="info-photo"
-          src="https://raw.githubusercontent.com/korelideniz/portfolio/main/info/deniz.png"
+          src="https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/info/deniz.png"
           alt="Deniz Koreli" />
       </div>
       <div>
@@ -516,9 +600,29 @@
 
       <!-- 하단 이미지 -->
       <img class="contact-bottom-img"
-        src="https://github.com/korelideniz/portfolio/blob/main/images/lightning-square.png?raw=true" />
+        src="https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/images/lightning-square.png"
+        alt="Lightning Network" loading="lazy" />
+
+      <!-- Lightning 후원 섹션 -->
+      <div class="support-section">
+        <p class="support-label">Support my work (Value For Value)</p>
+        <button type="button" class="support-address" onclick="copyLightningAddress()">
+          <svg class="support-bolt" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M13 2L3 14h7l-1 8 11-12h-7l1-8z"/>
+          </svg>
+          deniz@walletofsatoshi.com
+        </button>
+      </div>
     </div>
     <footer class="site-footer red">© 2025 Koreli Deniz. All rights reserved.</footer>
+  </div>
+
+  <!-- 토스트 알림 -->
+  <div id="toast" class="toast" role="status" aria-live="polite">
+    <svg class="toast-check" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+    </svg>
+    <span id="toast-text">Copied to clipboard</span>
   </div>
 
   <!-- ══════════ PROJECT MODAL ══════════ -->
@@ -539,20 +643,20 @@
     const projects = [
       {
         id: 'proj-01', title: '말랑말랑마음 동화책', categories: ['ILLUSTRATION', 'PRINT'],
-        thumb: 'https://github.com/korelideniz/portfolio/blob/main/images/mallang/1.jpg?raw=true',
+        thumb: 'https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/images/mallang/1.jpg',
         images: [
-          'https://github.com/korelideniz/portfolio/blob/main/images/mallang/1.jpg?raw=true',
-          'https://github.com/korelideniz/portfolio/blob/main/images/mallang/2.jpg?raw=true',
-          'https://github.com/korelideniz/portfolio/blob/main/images/mallang/3.jpg?raw=true',
+          'https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/images/mallang/1.jpg',
+          'https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/images/mallang/2.jpg',
+          'https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/images/mallang/3.jpg',
         ],
         desc: '내가 그들에게 한 마음을 주고 그 속에 새 영을 주며 그 몸에서 돌 같은 마음을 제거하고 살처럼 부드러운 마음을 주어 [에스겔 11:19].',
         year: '2019',
       },
       {
-        id: 'proj-02', title: 'ARISE, SHINE!', categories: ['IDENTITY','ILLUSTRATION'],
-        thumb: 'https://github.com/korelideniz/portfolio/blob/main/images/ariseshine/1.gif?raw=true',
-        images: ['https://github.com/korelideniz/portfolio/blob/main/images/ariseshine/1.jpg?raw=true','https://github.com/korelideniz/portfolio/blob/main/images/ariseshine/7.jpg?raw=true','https://github.com/korelideniz/portfolio/blob/main/images/ariseshine/2.jpg?raw=true','https://github.com/korelideniz/portfolio/blob/main/images/ariseshine/5.jpg?raw=true','https://github.com/korelideniz/portfolio/blob/main/images/ariseshine/6.jpg?raw=true'],
-        desc: '찬양 버스킹 프로젝트', year: '2024',
+        id: 'proj-02', title: 'Project 02', categories: ['CHARACTER'],
+        thumb: 'https://picsum.photos/seed/p02/600/600',
+        images: ['https://picsum.photos/seed/p02d/1200/1600'],
+        desc: '프로젝트 설명을 여기에 작성하세요.', year: '2024',
       },
       {
         id: 'proj-03', title: 'Project 03', categories: ['ILLUSTRATION', 'PRINT'],
@@ -592,12 +696,6 @@
       },
       {
         id: 'proj-09', title: 'Project 09', categories: ['TYPOGRAPHY', 'PRINT'],
-        thumb: 'https://picsum.photos/seed/p09/600/600',
-        images: ['https://picsum.photos/seed/p09d/1200/1600'],
-        desc: '프로젝트 설명을 여기에 작성하세요.', year: '2025',
-      },
-      {
-        id: 'proj-10', title: 'Project 10', categories: ['TYPOGRAPHY','CHARACTER'],
         thumb: 'https://picsum.photos/seed/p09/600/600',
         images: ['https://picsum.photos/seed/p09d/1200/1600'],
         desc: '프로젝트 설명을 여기에 작성하세요.', year: '2025',
@@ -753,6 +851,46 @@
       const subject = encodeURIComponent(`[포트폴리오 문의] ${name}`);
       window.location.href = `mailto:koreli_deniz@naver.com?subject=${subject}&body=${body}`;
     });
+
+    /* ── Lightning 주소 복사 + 토스트 ── */
+    let toastTimer = null;
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const text  = document.getElementById('toast-text');
+      if (message) text.textContent = message;
+      clearTimeout(toastTimer);
+      toast.classList.add('show');
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
+    }
+    function copyLightningAddress() {
+      const addr = 'deniz@walletofsatoshi.com';
+      // 1) 모던 브라우저 (HTTPS 필수)
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(addr).then(
+          () => showToast('주소가 복사되었습니다'),
+          () => fallbackCopy(addr)
+        );
+      } else {
+        fallbackCopy(addr);
+      }
+    }
+    function fallbackCopy(text) {
+      // 2) 구형 브라우저용 폴백
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand('copy');
+        showToast('주소가 복사되었습니다');
+      } catch (e) {
+        showToast('복사 실패: 직접 복사해 주세요');
+      }
+      document.body.removeChild(ta);
+    }
 
     /* ── Init ── */
     renderHomeGrid();
