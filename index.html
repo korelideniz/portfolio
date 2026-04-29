@@ -34,7 +34,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 20px 28px;
+      padding: 8px 28px;
       background: transparent;
       transition: background 0.3s;
     }
@@ -62,7 +62,7 @@
     .nav-link.active { border-bottom: 1px solid currentColor; padding-bottom: 2px; }
 
     @media (max-width: 768px) {
-      #header { padding: 16px 18px; }
+      #header { padding: 6px 18px; }
       .logo-img { height: 60px; }
       nav { gap: 22px; }
       .nav-link { font-size: 13px; letter-spacing: 0.08em; }
@@ -80,8 +80,14 @@
        HOME — 메인 배너는 풀스크린(100vh)
     ══════════════════════════════ */
     #page-home { background: #000; }
-    .hero { width: 100%; height: 100vh; overflow: hidden; }
-    .hero img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .hero {
+      width: 100%;
+      height: 100vh;
+      height: 100svh; /* 모바일 주소창 보정 (지원 브라우저 한정) */
+      min-height: 480px;
+      overflow: hidden;
+    }
+    .hero img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
 
     .home-grid {
       display: grid;
@@ -383,7 +389,7 @@
   <header id="header">
     <a class="logo-link" onclick="navigate('home')">
       <img class="logo-img" id="logo-img"
-        src="https://github.com/korelideniz/portfolio/blob/main/main/deniz_symbol.png?raw=true"
+        src="https://raw.githubusercontent.com/korelideniz/portfolio/main/main/deniz_symbol.png"
         alt="Koreli Deniz" />
     </a>
     <nav>
@@ -397,7 +403,7 @@
   <!-- ══════════ HOME ══════════ -->
   <div id="page-home" class="page active">
     <section class="hero">
-      <img src="https://github.com/korelideniz/portfolio/blob/main/main/deniz_main.png?raw=true" alt="Koreli Deniz" />
+      <img src="https://raw.githubusercontent.com/korelideniz/portfolio/main/main/deniz_main.png" alt="Koreli Deniz" loading="eager" fetchpriority="high" />
     </section>
     <section>
       <div class="home-grid" id="home-grid"></div>
@@ -425,7 +431,7 @@
     <div class="info-inner">
       <div>
         <img class="info-photo"
-          src="https://github.com/korelideniz/portfolio/blob/main/info/deniz.png?raw=true"
+          src="https://raw.githubusercontent.com/korelideniz/portfolio/main/info/deniz.png"
           alt="Deniz Koreli" />
       </div>
       <div>
@@ -491,7 +497,7 @@
 
       <!-- 하단 이미지 -->
       <img class="contact-bottom-img"
-        src="https://github.com/korelideniz/portfolio/blob/main/info/%E1%84%85%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%90%E1%85%B3%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%89%E1%85%A6%E1%84%85%E1%85%A9%E1%84%92%E1%85%A7%E1%86%BC.png?raw=true"
+        src="https://raw.githubusercontent.com/korelideniz/portfolio/main/info/%E1%84%85%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%90%E1%85%B3%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%89%E1%85%A6%E1%84%85%E1%85%A9%E1%84%92%E1%85%A7%E1%86%BC.png"
         alt="Koreli Deniz" />
     </div>
     <footer class="site-footer red">© 2025 Koreli Deniz. All rights reserved.</footer>
