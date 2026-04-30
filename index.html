@@ -55,7 +55,7 @@
     /* 로고 크기 키우기 — 색 반전 없음 */
     .logo-img { height: 76px; width: auto; object-fit: contain; }
 
-    nav { display: flex; gap: 36px; align-items: center; }
+    nav#main-nav { display: flex; gap: 36px; align-items: center; }
     .nav-link {
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: 15px;
@@ -69,15 +69,80 @@
     .nav-link.dark-text { color: #111; }
     .nav-link.active { border-bottom: 1px solid currentColor; padding-bottom: 2px; }
 
+    /* 햄버거 버튼 (모바일 전용) */
+    .hamburger {
+      display: none;
+      width: 36px; height: 36px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      padding: 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 2100;
+      position: relative;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: #fff;
+      transition: transform 0.3s ease, opacity 0.2s ease, background 0.3s;
+      transform-origin: center;
+    }
+    .hamburger.dark-icon span { background: #111; }
+    .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); background: #fff; }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); background: #fff; }
+
+    /* 모바일 메뉴 오버레이 */
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.96);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .mobile-menu.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .mobile-menu .nav-link {
+      font-size: 26px;
+      letter-spacing: 0.14em;
+      color: #fff !important;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .mobile-menu.open .nav-link {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .mobile-menu.open .nav-link:nth-child(1) { transition-delay: 0.05s; }
+    .mobile-menu.open .nav-link:nth-child(2) { transition-delay: 0.10s; }
+    .mobile-menu.open .nav-link:nth-child(3) { transition-delay: 0.15s; }
+    .mobile-menu.open .nav-link:nth-child(4) { transition-delay: 0.20s; }
+    .mobile-menu.open .nav-link:nth-child(5) { transition-delay: 0.25s; }
+    body.menu-open { overflow: hidden; }
+
     @media (max-width: 768px) {
       #header { padding: 6px 18px; }
       .logo-img { height: 60px; }
-      nav { gap: 22px; }
-      .nav-link { font-size: 13px; letter-spacing: 0.08em; }
+      nav#main-nav { display: none; }
+      .hamburger { display: flex; }
     }
-    @media (max-width: 400px) {
-      nav { gap: 16px; }
-      .nav-link { font-size: 11px; }
+    @media (min-width: 769px) {
+      .mobile-menu { display: none; }
     }
 
     /* ── Pages ── */
@@ -88,10 +153,10 @@
        HOME — 메인 배너는 풀스크린(100vh)
     ══════════════════════════════ */
     #page-home { background: #000; }
+    /* 히어로 — 스크롤 시 줌 방지: JS로 픽셀 높이를 한 번만 고정 */
     .hero {
       width: 100%;
-      height: 100vh;
-      height: 100svh; /* 모바일 주소창 보정 (지원 브라우저 한정) */
+      height: var(--hero-h, 100vh);
       min-height: 480px;
       overflow: hidden;
     }
@@ -235,10 +300,341 @@
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 8px;
     }
+    /* Info SNS 아이콘 */
+    .info-social {
+      display: flex;
+      gap: 18px;
+      margin-top: 36px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,0.18);
+    }
+    .info-social a {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .info-social a:hover {
+      background: rgba(255,255,255,0.18);
+      transform: translateY(-2px);
+    }
+    .info-social svg {
+      width: 20px; height: 20px;
+      fill: #fff;
+    }
+
     @media (max-width: 768px) {
       #page-info { padding-top: 92px; }
       .info-inner { grid-template-columns: 1fr; gap: 32px; padding: 40px 20px 60px; }
       .info-bio p { font-size: 15px; }
+      .info-social { justify-content: flex-start; }
+    }
+
+    /* ══════════════════════════════
+       BLOG — 아코디언 스타일
+    ══════════════════════════════ */
+    #page-blog { background: #fff; color: #111; padding-top: 116px; min-height: 100vh; }
+    .blog-inner {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 40px 32px 80px;
+    }
+    .blog-heading {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: #888;
+      margin-bottom: 12px;
+    }
+    .blog-title {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 36px; font-weight: 700; letter-spacing: 0.01em;
+      margin-bottom: 32px;
+    }
+
+    /* Blog 태그 필터 */
+    .blog-filters {
+      display: flex; flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 8px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid #eee;
+    }
+    .blog-filter-label {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 14px; color: #888; margin-right: 8px;
+      align-self: center;
+    }
+    .blog-filter-btn {
+      font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: #777;
+      padding: 5px 11px;
+      border-radius: 4px;
+      transition: color 0.15s, background 0.15s;
+    }
+    .blog-filter-btn:hover { color: #111; }
+    .blog-filter-btn.active {
+      color: #fff;
+      background: #111;
+    }
+
+    /* 아코디언 행 */
+    .blog-list { display: flex; flex-direction: column; }
+    .blog-row {
+      border-bottom: 1px solid #e6e6e6;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .blog-row.in-view { opacity: 1; transform: translateY(0); }
+
+    .blog-row-head {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px;
+      padding: 24px 4px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .blog-row-head:hover { background: rgba(0,0,0,0.02); }
+    .blog-row-title {
+      font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif;
+      font-size: 22px; font-weight: 500; color: #111;
+      flex: 1;
+      letter-spacing: -0.005em;
+    }
+    .blog-row-tags {
+      display: flex; gap: 6px;
+      flex-wrap: nowrap;
+    }
+    .blog-tag {
+      font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      color: #555;
+      background: #f1f1f1;
+      padding: 4px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.02em;
+    }
+    .blog-row-arrow {
+      width: 24px; height: 24px;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.35s ease;
+    }
+    .blog-row-arrow svg { width: 18px; height: 18px; fill: #111; }
+    .blog-row.open .blog-row-arrow { transform: rotate(180deg); }
+
+    .blog-row-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+    .blog-row-body-inner {
+      padding: 0 4px 32px;
+      font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.85;
+      color: #444;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.4s ease 0.05s, transform 0.4s ease 0.05s;
+    }
+    .blog-row.open .blog-row-body-inner {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .blog-row-date {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 12px; color: #999; letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 768px) {
+      #page-blog { padding-top: 92px; }
+      .blog-inner { padding: 30px 20px 60px; }
+      .blog-title { font-size: 28px; margin-bottom: 24px; }
+      .blog-row-head { padding: 20px 2px; gap: 10px; }
+      .blog-row-title { font-size: 17px; }
+      .blog-row-tags { display: none; }
+      .blog-row-body-inner { font-size: 15px; padding-bottom: 24px; }
+      .blog-row.open .blog-row-tags {
+        display: flex; flex-wrap: wrap;
+        padding: 0 4px 12px;
+      }
+    }
+
+    /* ══════════════════════════════
+       ASSETS — 무료 PDF / 디지털 상품
+    ══════════════════════════════ */
+    #page-assets { background: #fff; color: #111; padding-top: 116px; min-height: 100vh; }
+    .assets-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 28px 80px;
+    }
+    .assets-heading {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: #888;
+      margin-bottom: 12px;
+    }
+    .assets-title {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 36px; font-weight: 700; letter-spacing: 0.01em;
+      margin-bottom: 12px;
+    }
+    .assets-desc {
+      font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif;
+      font-size: 15px; line-height: 1.85; color: #555;
+      margin-bottom: 36px;
+      max-width: 680px;
+    }
+    .assets-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .assets-item {
+      display: flex; flex-direction: column;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .assets-item.in-view { opacity: 1; transform: translateY(0); }
+    .assets-thumb {
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      border-radius: 10px;
+      background: #f3f3f3;
+      position: relative;
+    }
+    .assets-thumb img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .assets-item:hover .assets-thumb img { transform: scale(1.04); }
+    .assets-info {
+      padding: 12px 4px 0;
+    }
+    .assets-name {
+      font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #111;
+      margin-bottom: 4px;
+    }
+    .assets-meta {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 11px;
+      color: #888;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Assets 상세 모달 */
+    .assets-modal-backdrop {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.85);
+      z-index: 1500;
+      display: none;
+      overflow-y: auto;
+      padding: 60px 20px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .assets-modal-backdrop.active { display: block; }
+    .assets-modal {
+      max-width: 880px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 8px;
+      color: #111;
+      position: relative;
+      padding: 40px 36px 48px;
+    }
+    .assets-modal-close {
+      position: absolute;
+      top: 18px; right: 18px;
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; font-weight: 300;
+      color: #111;
+      border-radius: 50%;
+      transition: background 0.2s;
+      z-index: 2;
+    }
+    .assets-modal-close:hover { background: rgba(0,0,0,0.06); }
+
+    .assets-modal-thumb {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      max-width: 480px;
+      margin: 0 auto 24px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #f3f3f3;
+    }
+    .assets-modal-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .assets-modal-name {
+      font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif;
+      font-size: 24px; font-weight: 600;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+    .assets-modal-meta {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: #888; text-align: center;
+      margin-bottom: 24px;
+    }
+    .download-btn {
+      display: block;
+      width: 100%;
+      padding: 22px 0;
+      background: #111;
+      color: #fff;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-align: center;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      margin-bottom: 36px;
+    }
+    .download-btn:hover { background: #000; transform: translateY(-1px); }
+
+    .assets-modal-detail-images {
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .assets-modal-detail-images img {
+      width: 100%; height: auto; border-radius: 4px; display: block;
+    }
+    .assets-modal-desc {
+      font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif;
+      font-size: 15px; line-height: 1.85;
+      color: #444;
+      margin-top: 24px;
+    }
+
+    @media (max-width: 900px) { .assets-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 768px) {
+      #page-assets { padding-top: 92px; }
+      .assets-inner { padding: 30px 16px 60px; }
+      .assets-title { font-size: 28px; }
+      .assets-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .assets-modal { padding: 30px 20px 36px; }
+      .assets-modal-name { font-size: 20px; }
+      .download-btn { font-size: 14px; padding: 18px 0; }
     }
 
     /* ══════════════════════════════
@@ -495,13 +891,28 @@
         src="https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/main/deniz_symbol.png"
         alt="Koreli Deniz" />
     </a>
-    <nav>
+    <nav id="main-nav">
       <a class="nav-link" id="nav-works"   onclick="navigate('works')">Works</a>
+      <a class="nav-link" id="nav-blog"    onclick="navigate('blog')">Blog</a>
+      <a class="nav-link" id="nav-assets"  onclick="navigate('assets')">Assets</a>
       <a class="nav-link" id="nav-contact" onclick="navigate('contact')">Contact</a>
       <a class="nav-link" id="nav-info"    onclick="navigate('info')">Info</a>
-      <a class="nav-link" href="https://www.satoshop.org/stores/8b9b6354-c89a-5446-ba21-ca8303b1a078" target="_blank" rel="noopener">Shop</a>
     </nav>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" onclick="toggleMobileMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </header>
+
+  <!-- 모바일 메뉴 오버레이 -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a class="nav-link" onclick="navigate('works'); closeMobileMenu();">Works</a>
+    <a class="nav-link" onclick="navigate('blog'); closeMobileMenu();">Blog</a>
+    <a class="nav-link" onclick="navigate('assets'); closeMobileMenu();">Assets</a>
+    <a class="nav-link" onclick="navigate('contact'); closeMobileMenu();">Contact</a>
+    <a class="nav-link" onclick="navigate('info'); closeMobileMenu();">Info</a>
+  </div>
 
   <!-- ══════════ HOME ══════════ -->
   <div id="page-home" class="page active">
@@ -551,8 +962,71 @@
             <div class="lang-label">TR</div>
             <p>Seul ve İstanbul merkezli BX tasarımcısı Koreli Deniz. Karakter markalama ve marka görsel sistemleri uzmanıyım; online ve offline mecralarda yaratıcı tasarım çözümleri sunuyorum.</p>
           </div>
+
+          <!-- SNS 아이콘 -->
+          <div class="info-social">
+            <a href="https://www.instagram.com/korelideniz.kr/" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.22.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.37 1.05.42 2.22.06 1.26.07 1.64.07 4.85s0 3.6-.07 4.85c-.05 1.17-.25 1.8-.42 2.22-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.05.37-2.22.42-1.26.06-1.64.07-4.85.07s-3.6 0-4.85-.07c-1.17-.05-1.8-.25-2.22-.42-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.17-.42-.37-1.05-.42-2.22C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.85c.05-1.17.25-1.8.42-2.22.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.05-.37 2.22-.42C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.15 0-3.5 0-4.74.07-1.07.05-1.65.23-2.04.38-.51.2-.88.44-1.26.82-.38.38-.62.75-.82 1.26-.15.39-.33.97-.38 2.04C2.7 8.5 2.7 8.85 2.7 12s0 3.5.07 4.74c.05 1.07.23 1.65.38 2.04.2.51.44.88.82 1.26.38.38.75.62 1.26.82.39.15.97.33 2.04.38 1.24.06 1.59.07 4.74.07s3.5 0 4.74-.07c1.07-.05 1.65-.23 2.04-.38.51-.2.88-.44 1.26-.82.38-.38.62-.75.82-1.26.15-.39.33-.97.38-2.04.06-1.24.07-1.59.07-4.74s0-3.5-.07-4.74c-.05-1.07-.23-1.65-.38-2.04-.2-.51-.44-.88-.82-1.26-.38-.38-.75-.62-1.26-.82-.39-.15-.97-.33-2.04-.38C15.5 4 15.15 4 12 4zm0 3.06A4.94 4.94 0 1 1 7.06 12 4.94 4.94 0 0 1 12 7.06zm0 8.14A3.2 3.2 0 1 0 8.8 12 3.2 3.2 0 0 0 12 15.2zm5.07-8.34a1.15 1.15 0 1 1-1.15-1.15 1.15 1.15 0 0 1 1.15 1.15z"/>
+              </svg>
+            </a>
+            <a href="https://www.youtube.com/@korelideniz" target="_blank" rel="noopener" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/>
+              </svg>
+            </a>
+            <a href="mailto:koreli_deniz@naver.com" aria-label="Email">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.24l-8 5-8-5V6l8 5 8-5v2.24z"/>
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- ══════════ BLOG ══════════ -->
+  <div id="page-blog" class="page">
+    <div class="blog-inner">
+      <p class="blog-heading">Blog</p>
+      <h2 class="blog-title">Notes & Thoughts</h2>
+
+      <div class="blog-filters">
+        <span class="blog-filter-label">Filter:</span>
+        <button class="blog-filter-btn active" data-blog-filter="ALL">All</button>
+        <button class="blog-filter-btn" data-blog-filter="디자인">디자인</button>
+        <button class="blog-filter-btn" data-blog-filter="비트코인">비트코인</button>
+        <button class="blog-filter-btn" data-blog-filter="라이프">라이프</button>
+        <button class="blog-filter-btn" data-blog-filter="생각">생각</button>
+      </div>
+
+      <div class="blog-list" id="blog-list"></div>
+    </div>
+    <footer class="site-footer dark" style="background:#fff;color:#aaa;border-top:1px solid #eee;">© 2025 Koreli Deniz. All rights reserved.</footer>
+  </div>
+
+  <!-- ══════════ ASSETS ══════════ -->
+  <div id="page-assets" class="page">
+    <div class="assets-inner">
+      <p class="assets-heading">Assets</p>
+      <h2 class="assets-title">Free Downloads</h2>
+      <p class="assets-desc">PDF, 디지털 자료, 그래픽 리소스 등 무료로 사용할 수 있는 자료를 공유합니다. 자유롭게 다운받아 사용해 주세요.</p>
+      <div class="assets-grid" id="assets-grid"></div>
+    </div>
+    <footer class="site-footer dark" style="background:#fff;color:#aaa;border-top:1px solid #eee;">© 2025 Koreli Deniz. All rights reserved.</footer>
+  </div>
+
+  <!-- Assets 모달 -->
+  <div id="assets-modal-backdrop" class="assets-modal-backdrop" onclick="closeAsset(event)">
+    <div class="assets-modal" onclick="event.stopPropagation()">
+      <button class="assets-modal-close" onclick="closeAsset()" aria-label="Close">&times;</button>
+      <div class="assets-modal-thumb"><img id="asset-thumb" src="" alt="" /></div>
+      <h2 class="assets-modal-name" id="asset-name"></h2>
+      <p class="assets-modal-meta" id="asset-meta"></p>
+      <a class="download-btn" id="asset-download" href="#" download>Download Now</a>
+      <div class="assets-modal-detail-images" id="asset-details"></div>
+      <p class="assets-modal-desc" id="asset-desc"></p>
     </div>
   </div>
 
@@ -702,9 +1176,109 @@
       },
     ];
 
+    /* ═══════════════════════════════════════════════
+       BLOG DATA — 게시물 추가/수정
+    ═══════════════════════════════════════════════ */
+    const blogPosts = [
+      {
+        id: 'blog-01',
+        title: '브랜드 비주얼 시스템을 만드는 7가지 원칙',
+        date: '2025.03.18',
+        tags: ['디자인'],
+        body: '브랜드의 인상은 한 장의 로고에서 끝나지 않습니다. 색, 타이포, 레이아웃, 톤앤매너가 일관된 흐름으로 연결될 때 비로소 시스템이 됩니다. 이 글에서는 작은 브랜드부터 큰 브랜드까지 적용 가능한 7가지 원칙을 정리합니다.',
+      },
+      {
+        id: 'blog-02',
+        title: '비트코인을 처음 만났을 때',
+        date: '2025.02.04',
+        tags: ['비트코인', '생각'],
+        body: '돈에 대한 인식이 어떻게 바뀌었는지에 대한 짧은 기록. 사트시 단위로 시간을 측정하는 새로운 시계.',
+      },
+      {
+        id: 'blog-03',
+        title: '서울과 이스탄불, 두 도시의 리듬',
+        date: '2025.01.22',
+        tags: ['라이프'],
+        body: '하루 8시간의 시차, 두 도시 사이를 오가며 느낀 작업의 속도와 온도. 이스탄불의 햇빛, 서울의 밤거리.',
+      },
+      {
+        id: 'blog-04',
+        title: '캐릭터 브랜딩 — 표정을 디자인하는 일',
+        date: '2024.12.10',
+        tags: ['디자인'],
+        body: '한 캐릭터가 가지는 표정의 폭은 브랜드의 여백이 됩니다. 단순화의 강도와 표현력의 균형에 대한 이야기.',
+      },
+      {
+        id: 'blog-05',
+        title: 'Value 4 Value — 새로운 후원의 형식',
+        date: '2024.10.30',
+        tags: ['비트코인', '생각'],
+        body: 'Lightning을 통해 작가에게 직접 가치를 전달하는 방법. 작은 후원이 의미하는 큰 차이.',
+      },
+      {
+        id: 'blog-06',
+        title: '느린 아침을 위한 작은 루틴',
+        date: '2024.09.04',
+        tags: ['라이프'],
+        body: '하루의 첫 30분, 노트와 커피와 한 페이지의 글. 작은 습관이 쌓여 만드는 평온.',
+      },
+    ];
+
+    /* ═══════════════════════════════════════════════
+       ASSETS DATA — 무료 자료 추가/수정
+    ═══════════════════════════════════════════════ */
+    const assets = [
+      {
+        id: 'asset-01',
+        name: 'Sample PDF Pack',
+        meta: 'PDF · Free',
+        thumb: 'https://picsum.photos/seed/asset01/600/600',
+        downloadUrl: '#',
+        detailImages: [
+          'https://picsum.photos/seed/asset01d1/1200/800',
+          'https://picsum.photos/seed/asset01d2/1200/800',
+        ],
+        desc: '디자인 작업에 활용할 수 있는 무료 PDF 자료입니다. 자유롭게 다운로드하여 사용해 주세요.',
+      },
+      {
+        id: 'asset-02',
+        name: 'Brand Color Sheet',
+        meta: 'PDF · Free',
+        thumb: 'https://picsum.photos/seed/asset02/600/600',
+        downloadUrl: '#',
+        detailImages: [
+          'https://picsum.photos/seed/asset02d1/1200/800',
+        ],
+        desc: '브랜드 컬러 가이드 시트. 인쇄와 디지털 환경에서 모두 활용할 수 있는 색상 코드 자료.',
+      },
+      {
+        id: 'asset-03',
+        name: 'Type Specimen Mini',
+        meta: 'PDF · Free',
+        thumb: 'https://picsum.photos/seed/asset03/600/600',
+        downloadUrl: '#',
+        detailImages: [
+          'https://picsum.photos/seed/asset03d1/1200/800',
+        ],
+        desc: '한 페이지로 정리한 타입 명세서. 본문/제목/캡션의 적정 사이즈를 한눈에.',
+      },
+      {
+        id: 'asset-04',
+        name: 'Wallpaper Set',
+        meta: 'JPG · Free',
+        thumb: 'https://picsum.photos/seed/asset04/600/600',
+        downloadUrl: '#',
+        detailImages: [
+          'https://picsum.photos/seed/asset04d1/1200/800',
+        ],
+        desc: '데스크톱 / 모바일용 벽지 모음. 일러스트 작업의 일부를 무료로 공유합니다.',
+      },
+    ];
+
     /* ── State ── */
     let currentPage  = 'home';
     let currentFilter = 'ALL';
+    let currentBlogFilter = 'ALL';
 
     /* ── Scroll Reveal Observer (그리드 아이템 페이드인) ── */
     const revealObserver = new IntersectionObserver((entries) => {
@@ -759,10 +1333,151 @@
       });
     }
 
+    /* ── Render Blog ── */
+    function renderBlog(filter) {
+      const list = document.getElementById('blog-list');
+      list.innerHTML = '';
+      const filtered = (filter === 'ALL') ? blogPosts : blogPosts.filter(p => p.tags.includes(filter));
+      filtered.forEach((post, i) => {
+        const row = document.createElement('div');
+        row.className = 'blog-row';
+        row.dataset.idx = i;
+        const tagsHTML = post.tags.map(t => `<span class="blog-tag">${t}</span>`).join('');
+        row.innerHTML = `
+          <div class="blog-row-head" onclick="toggleBlogRow(this)">
+            <div class="blog-row-title">${post.title}</div>
+            <div class="blog-row-tags">${tagsHTML}</div>
+            <div class="blog-row-arrow">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M7 10l5 5 5-5z"/>
+              </svg>
+            </div>
+          </div>
+          <div class="blog-row-body">
+            <div class="blog-row-body-inner">
+              <div class="blog-row-date">${post.date}</div>
+              ${post.body}
+            </div>
+          </div>
+        `;
+        list.appendChild(row);
+        revealObserver.observe(row);
+      });
+    }
+
+    function toggleBlogRow(headEl) {
+      const row = headEl.parentElement;
+      const body = row.querySelector('.blog-row-body');
+      const isOpen = row.classList.contains('open');
+      // 다른 행 닫기
+      document.querySelectorAll('.blog-row.open').forEach(r => {
+        if (r !== row) {
+          r.classList.remove('open');
+          r.querySelector('.blog-row-body').style.maxHeight = '0px';
+        }
+      });
+      if (isOpen) {
+        row.classList.remove('open');
+        body.style.maxHeight = '0px';
+      } else {
+        row.classList.add('open');
+        body.style.maxHeight = body.scrollHeight + 'px';
+      }
+    }
+
+    /* ── Render Assets ── */
+    function renderAssets() {
+      const grid = document.getElementById('assets-grid');
+      grid.innerHTML = '';
+      assets.forEach((a, i) => {
+        const el = document.createElement('div');
+        el.className = 'assets-item';
+        el.dataset.idx = i;
+        el.innerHTML = `
+          <div class="assets-thumb">
+            <img src="${a.thumb}" alt="${a.name}" loading="lazy" />
+          </div>
+          <div class="assets-info">
+            <div class="assets-name">${a.name}</div>
+            <div class="assets-meta">${a.meta}</div>
+          </div>
+        `;
+        el.addEventListener('click', () => openAsset(a.id));
+        grid.appendChild(el);
+        revealObserver.observe(el);
+      });
+    }
+
+    function openAsset(id) {
+      const a = assets.find(x => x.id === id);
+      if (!a) return;
+      document.getElementById('asset-thumb').src = a.thumb;
+      document.getElementById('asset-thumb').alt = a.name;
+      document.getElementById('asset-name').textContent = a.name;
+      document.getElementById('asset-meta').textContent = a.meta;
+      document.getElementById('asset-download').href = a.downloadUrl;
+      document.getElementById('asset-desc').textContent = a.desc || '';
+      const detail = document.getElementById('asset-details');
+      detail.innerHTML = '';
+      (a.detailImages || []).forEach(src => {
+        const img = document.createElement('img');
+        img.src = src; img.alt = a.name; img.loading = 'lazy';
+        detail.appendChild(img);
+      });
+      const backdrop = document.getElementById('assets-modal-backdrop');
+      backdrop.classList.add('active');
+      backdrop.scrollTop = 0;
+      document.body.classList.add('modal-open');
+    }
+    function closeAsset(e) {
+      const backdrop = document.getElementById('assets-modal-backdrop');
+      if (!backdrop.classList.contains('active')) return;
+      backdrop.classList.remove('active');
+      document.body.classList.remove('modal-open');
+    }
+
+    /* ── Mobile Menu ── */
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const btn  = document.getElementById('hamburger');
+      const isOpen = menu.classList.contains('open');
+      if (isOpen) {
+        closeMobileMenu();
+      } else {
+        menu.classList.add('open');
+        btn.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+        document.body.classList.add('menu-open');
+      }
+    }
+    function closeMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const btn  = document.getElementById('hamburger');
+      menu.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('menu-open');
+    }
+
+    /* ── Hero 높이 고정 — 스크롤 시 모바일 주소창 변동에 의한 줌/리사이즈 방지 ── */
+    function setHeroHeight() {
+      const hero = document.querySelector('.hero');
+      if (!hero) return;
+      // 한 번만 측정한 뒤 픽셀 단위로 고정 (스크롤 중 주소창 변화 무관)
+      const h = window.innerHeight;
+      document.documentElement.style.setProperty('--hero-h', h + 'px');
+    }
+    setHeroHeight();
+    // 회전(orientation change) 시에만 다시 계산
+    window.addEventListener('orientationchange', () => {
+      setTimeout(setHeroHeight, 200);
+    });
+
     /* ── Navigation ── */
     function navigate(page) {
       // 모달이 열려 있으면 먼저 닫기
       closeProject();
+      closeAsset();
       currentPage = page;
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       document.getElementById('page-' + page).classList.add('active');
@@ -771,7 +1486,9 @@
       document.querySelectorAll('.nav-link[id^="nav-"]').forEach(a => a.classList.remove('active'));
       const an = document.getElementById('nav-' + page);
       if (an) an.classList.add('active');
-      if (page === 'works') renderWorksGrid(currentFilter);
+      if (page === 'works')  renderWorksGrid(currentFilter);
+      if (page === 'blog')   renderBlog(currentBlogFilter);
+      if (page === 'assets') renderAssets();
     }
 
     /* ── Project Modal — 오버레이로 열기/닫기 ── */
