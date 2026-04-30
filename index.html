@@ -92,47 +92,63 @@
       transform-origin: center;
     }
     .hamburger.dark-icon span { background: #111; }
-    .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); background: #fff; }
+    /* 메뉴 열린 상태에서는 항상 흰색 X (메뉴 배경이 검정이므로) */
+    .hamburger.open span { background: #fff !important; }
+    .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); background: #fff; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-    /* 모바일 메뉴 오버레이 */
+    /* 모바일 메뉴 — 헤더 아래에서 드롭다운 (페이지 위에 떠있는 형태) */
     .mobile-menu {
       position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.96);
-      backdrop-filter: blur(8px);
-      z-index: 2000;
+      top: 0; left: 0; right: 0;
+      z-index: 1900;
+      background: rgba(0,0,0,0.95);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      padding: 84px 24px 24px;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 28px;
+      align-items: stretch;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+      transform: translateY(-100%);
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.3s ease;
+      transition: transform 0.35s ease, opacity 0.3s ease;
     }
     .mobile-menu.open {
+      transform: translateY(0);
       opacity: 1;
       pointer-events: auto;
     }
     .mobile-menu .nav-link {
-      font-size: 26px;
-      letter-spacing: 0.14em;
+      display: block;
+      width: 100%;
+      text-align: left;
+      font-size: 20px;
+      letter-spacing: 0.10em;
       color: #fff !important;
+      padding: 18px 4px;
+      border-bottom: 1px solid rgba(255,255,255,0.18);
       opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.4s ease, transform 0.4s ease;
+      transform: translateY(8px);
+      transition: opacity 0.4s ease, transform 0.4s ease, background 0.2s, padding-left 0.2s;
+    }
+    .mobile-menu .nav-link:last-child { border-bottom: none; }
+    .mobile-menu .nav-link:hover {
+      opacity: 0.9 !important;
+      padding-left: 10px;
+      background: rgba(255,255,255,0.04);
     }
     .mobile-menu.open .nav-link {
       opacity: 1;
       transform: translateY(0);
     }
-    .mobile-menu.open .nav-link:nth-child(1) { transition-delay: 0.05s; }
-    .mobile-menu.open .nav-link:nth-child(2) { transition-delay: 0.10s; }
-    .mobile-menu.open .nav-link:nth-child(3) { transition-delay: 0.15s; }
-    .mobile-menu.open .nav-link:nth-child(4) { transition-delay: 0.20s; }
-    .mobile-menu.open .nav-link:nth-child(5) { transition-delay: 0.25s; }
+    .mobile-menu.open .nav-link:nth-child(1) { transition-delay: 0.06s; }
+    .mobile-menu.open .nav-link:nth-child(2) { transition-delay: 0.11s; }
+    .mobile-menu.open .nav-link:nth-child(3) { transition-delay: 0.16s; }
+    .mobile-menu.open .nav-link:nth-child(4) { transition-delay: 0.21s; }
+    .mobile-menu.open .nav-link:nth-child(5) { transition-delay: 0.26s; }
     body.menu-open { overflow: hidden; }
 
     @media (max-width: 768px) {
@@ -149,11 +165,48 @@
     .page { display: none; min-height: 100vh; }
     .page.active { display: block; }
 
+    /* ── 공통 스크롤 리빌 모션 ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      will-change: opacity, transform;
+    }
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal.delay-1 { transition-delay: 0.08s; }
+    .reveal.delay-2 { transition-delay: 0.16s; }
+    .reveal.delay-3 { transition-delay: 0.24s; }
+    .reveal.delay-4 { transition-delay: 0.32s; }
+    .reveal.delay-5 { transition-delay: 0.40s; }
+    /* 좌→우 슬라이드 */
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-28px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal-left.in-view { opacity: 1; transform: translateX(0); }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(28px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal-right.in-view { opacity: 1; transform: translateX(0); }
+    /* 살짝 스케일업 */
+    .reveal-zoom {
+      opacity: 0;
+      transform: scale(0.96);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal-zoom.in-view { opacity: 1; transform: scale(1); }
+
     /* ══════════════════════════════
        HOME — 메인 배너는 풀스크린(100vh)
     ══════════════════════════════ */
     #page-home { background: #000; }
-    /* 히어로 — 스크롤 시 줌 방지: JS로 픽셀 높이를 한 번만 고정 */
+    /* 히어로 — 스크롤 시 줌 방지: JS로 픽셀 높이를 한 번만 고정 (데스크톱 풀스크린, 모바일 축소) */
     .hero {
       width: 100%;
       height: var(--hero-h, 100vh);
@@ -161,6 +214,12 @@
       overflow: hidden;
     }
     .hero img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+    @media (max-width: 768px) {
+      .hero {
+        height: var(--hero-h-mobile, 62vh);
+        min-height: 0;
+      }
+    }
 
     .home-grid {
       display: grid;
@@ -336,7 +395,7 @@
     /* ══════════════════════════════
        BLOG — 아코디언 스타일
     ══════════════════════════════ */
-    #page-blog { background: #EEEEEE; color: #111; padding-top: 116px; min-height: 100vh; }
+    #page-blog { background: #eeeeee; color: #111; padding-top: 116px; min-height: 100vh; }
     .blog-inner {
       max-width: 980px;
       margin: 0 auto;
@@ -360,7 +419,7 @@
       gap: 4px;
       margin-bottom: 8px;
       padding-bottom: 18px;
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid #b5b5b5;
     }
     .blog-filter-label {
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -385,7 +444,7 @@
     /* 아코디언 행 */
     .blog-list { display: flex; flex-direction: column; }
     .blog-row {
-      border-bottom: 1px solid #e6e6e6;
+      border-bottom: 1px solid #b5b5b5;
       opacity: 0;
       transform: translateY(16px);
       transition: opacity 0.6s ease, transform 0.6s ease;
@@ -415,7 +474,7 @@
       font-size: 12px;
       font-weight: 500;
       color: #555;
-      background: #f1f1f1;
+      background: #dcdcdc;
       padding: 4px 10px;
       border-radius: 999px;
       letter-spacing: 0.02em;
@@ -472,7 +531,7 @@
     /* ══════════════════════════════
        ASSETS — 무료 PDF / 디지털 상품
     ══════════════════════════════ */
-    #page-assets { background: #111111; color: #111; padding-top: 116px; min-height: 100vh; }
+    #page-assets { background: #111111; color: #fff; padding-top: 116px; min-height: 100vh; }
     .assets-inner {
       max-width: 1200px;
       margin: 0 auto;
@@ -481,17 +540,18 @@
     .assets-heading {
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: 12px; font-weight: 700; letter-spacing: 0.18em;
-      text-transform: uppercase; color: #888;
+      text-transform: uppercase; color: rgba(255,255,255,0.55);
       margin-bottom: 12px;
     }
     .assets-title {
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: 36px; font-weight: 700; letter-spacing: 0.01em;
       margin-bottom: 12px;
+      color: #fff;
     }
     .assets-desc {
       font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif;
-      font-size: 15px; line-height: 1.85; color: #555;
+      font-size: 15px; line-height: 1.85; color: rgba(255,255,255,0.7);
       margin-bottom: 36px;
       max-width: 680px;
     }
@@ -512,7 +572,7 @@
       aspect-ratio: 1 / 1;
       overflow: hidden;
       border-radius: 10px;
-      background: #f3f3f3;
+      background: #1a1a1a;
       position: relative;
     }
     .assets-thumb img {
@@ -527,13 +587,13 @@
       font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif;
       font-size: 15px;
       font-weight: 600;
-      color: #111;
+      color: #fff;
       margin-bottom: 4px;
     }
     .assets-meta {
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: 11px;
-      color: #888;
+      color: rgba(255,255,255,0.5);
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
@@ -859,7 +919,26 @@
       color: #777; margin-bottom: 24px;
     }
     .project-modal .project-images { display: flex; flex-direction: column; gap: 6px; }
-    .project-modal .project-images img { width: 100%; height: auto; display: block; border-radius: 2px; }
+    .project-modal .project-images img {
+      width: 100%; height: auto; display: block; border-radius: 2px;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .project-modal .project-images img.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Asset 모달 상세 이미지에도 동일한 리빌 효과 */
+    .assets-modal-detail-images img {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .assets-modal-detail-images img.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
     .project-modal .project-desc {
       font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif;
       margin-top: 24px; font-size: 14px; line-height: 1.8;
@@ -894,7 +973,7 @@
     <nav id="main-nav">
       <a class="nav-link" id="nav-works"   onclick="navigate('works')">Works</a>
       <a class="nav-link" id="nav-blog"    onclick="navigate('blog')">Blog</a>
-      <a class="nav-link" id="nav-assets"  onclick="navigate('assets')">Assets</a>
+      <a class="nav-link" id="nav-assets"  onclick="navigate('assets')">Archive</a>
       <a class="nav-link" id="nav-contact" onclick="navigate('contact')">Contact</a>
       <a class="nav-link" id="nav-info"    onclick="navigate('info')">Info</a>
     </nav>
@@ -909,7 +988,7 @@
   <div class="mobile-menu" id="mobile-menu">
     <a class="nav-link" onclick="navigate('works'); closeMobileMenu();">Works</a>
     <a class="nav-link" onclick="navigate('blog'); closeMobileMenu();">Blog</a>
-    <a class="nav-link" onclick="navigate('assets'); closeMobileMenu();">Assets</a>
+    <a class="nav-link" onclick="navigate('assets'); closeMobileMenu();">Archive</a>
     <a class="nav-link" onclick="navigate('contact'); closeMobileMenu();">Contact</a>
     <a class="nav-link" onclick="navigate('info'); closeMobileMenu();">Info</a>
   </div>
@@ -927,7 +1006,7 @@
 
   <!-- ══════════ WORKS ══════════ -->
   <div id="page-works" class="page">
-    <div class="works-filters">
+    <div class="works-filters reveal">
       <span class="filter-label">Filter:</span>
       <button class="filter-btn active" data-filter="ALL">All</button>
       <button class="filter-btn" data-filter="IDENTITY">Identity</button>
@@ -943,28 +1022,28 @@
   <!-- ══════════ INFO ══════════ -->
   <div id="page-info" class="page">
     <div class="info-inner">
-      <div>
+      <div class="reveal-left">
         <img class="info-photo"
           src="https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/info/deniz.png"
           alt="Deniz Koreli" />
       </div>
       <div>
         <div class="info-bio">
-          <div>
+          <div class="reveal delay-1">
             <div class="lang-label">KR</div>
             <p>대한민국에 거주하며 서울, 이스탄불에 기반을 둔 BX 디자이너 데니즈입니다. 캐릭터 브랜딩과 브랜드 비주얼 시스템, 다양한 온•오프라인 미디어를 넘나드는 디자인에 집중하고 있습니다.</p>
           </div>
-          <div>
+          <div class="reveal delay-2">
             <div class="lang-label">EN</div>
             <p>I am Deniz, a BX designer based in Seoul and Istanbul. My work focuses on character branding and brand visual systems, seamlessly navigating across various online and offline media.</p>
           </div>
-          <div>
+          <div class="reveal delay-3">
             <div class="lang-label">TR</div>
             <p>Seul ve İstanbul merkezli BX tasarımcısı Koreli Deniz. Karakter markalama ve marka görsel sistemleri uzmanıyım; online ve offline mecralarda yaratıcı tasarım çözümleri sunuyorum.</p>
           </div>
 
           <!-- SNS 아이콘 -->
-          <div class="info-social">
+          <div class="info-social reveal delay-4">
             <a href="https://www.instagram.com/korelideniz.kr/" target="_blank" rel="noopener" aria-label="Instagram">
               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.22.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.37 1.05.42 2.22.06 1.26.07 1.64.07 4.85s0 3.6-.07 4.85c-.05 1.17-.25 1.8-.42 2.22-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.05.37-2.22.42-1.26.06-1.64.07-4.85.07s-3.6 0-4.85-.07c-1.17-.05-1.8-.25-2.22-.42-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.17-.42-.37-1.05-.42-2.22C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.85c.05-1.17.25-1.8.42-2.22.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.05-.37 2.22-.42C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.15 0-3.5 0-4.74.07-1.07.05-1.65.23-2.04.38-.51.2-.88.44-1.26.82-.38.38-.62.75-.82 1.26-.15.39-.33.97-.38 2.04C2.7 8.5 2.7 8.85 2.7 12s0 3.5.07 4.74c.05 1.07.23 1.65.38 2.04.2.51.44.88.82 1.26.38.38.75.62 1.26.82.39.15.97.33 2.04.38 1.24.06 1.59.07 4.74.07s3.5 0 4.74-.07c1.07-.05 1.65-.23 2.04-.38.51-.2.88-.44 1.26-.82.38-.38.62-.75.82-1.26.15-.39.33-.97.38-2.04.06-1.24.07-1.59.07-4.74s0-3.5-.07-4.74c-.05-1.07-.23-1.65-.38-2.04-.2-.51-.44-.88-.82-1.26-.38-.38-.75-.62-1.26-.82-.39-.15-.97-.33-2.04-.38C15.5 4 15.15 4 12 4zm0 3.06A4.94 4.94 0 1 1 7.06 12 4.94 4.94 0 0 1 12 7.06zm0 8.14A3.2 3.2 0 1 0 8.8 12 3.2 3.2 0 0 0 12 15.2zm5.07-8.34a1.15 1.15 0 1 1-1.15-1.15 1.15 1.15 0 0 1 1.15 1.15z"/>
@@ -989,32 +1068,32 @@
   <!-- ══════════ BLOG ══════════ -->
   <div id="page-blog" class="page">
     <div class="blog-inner">
-      <p class="blog-heading">Blog</p>
-      <h2 class="blog-title">Notes & Thoughts</h2>
+      <p class="blog-heading reveal">Blog</p>
+      <h2 class="blog-title reveal delay-1">Notes & Thoughts</h2>
 
-      <div class="blog-filters">
+      <div class="blog-filters reveal delay-2">
         <span class="blog-filter-label">Filter:</span>
         <button class="blog-filter-btn active" data-blog-filter="ALL">All</button>
-        <button class="blog-filter-btn" data-blog-filter="디자인">디자인</button>
-        <button class="blog-filter-btn" data-blog-filter="비트코인">비트코인</button>
-        <button class="blog-filter-btn" data-blog-filter="라이프">라이프</button>
-        <button class="blog-filter-btn" data-blog-filter="생각">생각</button>
+        <button class="blog-filter-btn" data-blog-filter="Design">Design</button>
+        <button class="blog-filter-btn" data-blog-filter="Bitcoin">Bitcoin</button>
+        <button class="blog-filter-btn" data-blog-filter="Life">Life</button>
+        <button class="blog-filter-btn" data-blog-filter="Thoughts">Thoughts</button>
       </div>
 
       <div class="blog-list" id="blog-list"></div>
     </div>
-    <footer class="site-footer dark" style="background:#fff;color:#aaa;border-top:1px solid #eee;">© 2025 Koreli Deniz. All rights reserved.</footer>
+    <footer class="site-footer" style="background:#eeeeee;color:#888;border-top:1px solid #b5b5b5;">© 2025 Koreli Deniz. All rights reserved.</footer>
   </div>
 
   <!-- ══════════ ASSETS ══════════ -->
   <div id="page-assets" class="page">
     <div class="assets-inner">
-      <p class="assets-heading">Assets</p>
-      <h2 class="assets-title">Free Downloads</h2>
-      <p class="assets-desc">PDF, 디지털 자료, 그래픽 리소스 등 무료로 사용할 수 있는 자료를 공유합니다. 자유롭게 다운받아 사용해 주세요.</p>
+      <p class="assets-heading reveal">Archive</p>
+      <h2 class="assets-title reveal delay-1">Free Downloads</h2>
+      <p class="assets-desc reveal delay-2">PDF, 디지털 자료, 그래픽 리소스 등 무료로 사용할 수 있는 자료를 공유합니다. 자유롭게 다운받아 사용해 주세요.</p>
       <div class="assets-grid" id="assets-grid"></div>
     </div>
-    <footer class="site-footer dark" style="background:#fff;color:#aaa;border-top:1px solid #eee;">© 2025 Koreli Deniz. All rights reserved.</footer>
+    <footer class="site-footer" style="background:#111111;color:#555;border-top:1px solid #2a2a2a;">© 2025 Koreli Deniz. All rights reserved.</footer>
   </div>
 
   <!-- Assets 모달 -->
@@ -1034,11 +1113,11 @@
   <div id="page-contact" class="page">
     <div class="contact-inner">
 
-      <p class="contact-heading">Contact</p>
-      <h2 class="contact-title">Project Inquiries</h2>
-      <p class="contact-desc">프로젝트 의뢰는 이메일로 받고 있습니다. 아래의 메일 주소로 프로젝트 내용, 일정 등 정보를 알려주시기 바랍니다. 검토 후 회신 드리겠습니다.</p>
-      <p class="contact-desc" style="margin-bottom:20px;">We accept project requests via email. Please send the project details and timeline to the email address below. We will review them and get back to you.</p>
-      <a class="contact-email" href="mailto:koreli_deniz@naver.com">koreli_deniz@naver.com</a>
+      <p class="contact-heading reveal">Contact</p>
+      <h2 class="contact-title reveal delay-1">Project Inquiries</h2>
+      <p class="contact-desc reveal delay-2">프로젝트 의뢰는 이메일로 받고 있습니다. 아래의 메일 주소로 프로젝트 내용, 일정 등 정보를 알려주시기 바랍니다. 검토 후 회신 드리겠습니다.</p>
+      <p class="contact-desc reveal delay-3" style="margin-bottom:20px;">We accept project requests via email. Please send the project details and timeline to the email address below. We will review them and get back to you.</p>
+      <a class="contact-email reveal delay-4" href="mailto:koreli_deniz@naver.com">koreli_deniz@naver.com</a>
 
       <!-- 문의 폼 -->
       <!--
@@ -1048,7 +1127,7 @@
            아래 form의 action 속성에 넣으세요.
         3. 그 전까지는 JavaScript로 mailto 처리됩니다.
       -->
-      <form class="contact-form" id="contact-form">
+      <form class="contact-form reveal delay-5" id="contact-form">
         <div class="form-group">
           <label class="form-label">성함 / 회사명 &nbsp; Name / Company *</label>
           <input class="form-input" type="text" name="name" placeholder="Your Name..." required />
@@ -1073,12 +1152,12 @@
       </form>
 
       <!-- 하단 이미지 -->
-      <img class="contact-bottom-img"
+      <img class="contact-bottom-img reveal-zoom"
         src="https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/images/lightning-square.png"
         alt="Lightning Network" loading="lazy" />
 
       <!-- Lightning 후원 섹션 -->
-      <div class="support-section">
+      <div class="support-section reveal delay-1">
         <p class="support-label">Support my work (Value For Value)</p>
         <button type="button" class="support-address" onclick="copyLightningAddress()">
           <svg class="support-bolt" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -1184,42 +1263,42 @@
         id: 'blog-01',
         title: '브랜드 비주얼 시스템을 만드는 7가지 원칙',
         date: '2025.03.18',
-        tags: ['디자인'],
+        tags: ['Design'],
         body: '브랜드의 인상은 한 장의 로고에서 끝나지 않습니다. 색, 타이포, 레이아웃, 톤앤매너가 일관된 흐름으로 연결될 때 비로소 시스템이 됩니다. 이 글에서는 작은 브랜드부터 큰 브랜드까지 적용 가능한 7가지 원칙을 정리합니다.',
       },
       {
         id: 'blog-02',
         title: '비트코인을 처음 만났을 때',
         date: '2025.02.04',
-        tags: ['비트코인', '생각'],
+        tags: ['Bitcoin', 'Thoughts'],
         body: '돈에 대한 인식이 어떻게 바뀌었는지에 대한 짧은 기록. 사트시 단위로 시간을 측정하는 새로운 시계.',
       },
       {
         id: 'blog-03',
         title: '서울과 이스탄불, 두 도시의 리듬',
         date: '2025.01.22',
-        tags: ['라이프'],
+        tags: ['Life'],
         body: '하루 8시간의 시차, 두 도시 사이를 오가며 느낀 작업의 속도와 온도. 이스탄불의 햇빛, 서울의 밤거리.',
       },
       {
         id: 'blog-04',
         title: '캐릭터 브랜딩 — 표정을 디자인하는 일',
         date: '2024.12.10',
-        tags: ['디자인'],
+        tags: ['Design'],
         body: '한 캐릭터가 가지는 표정의 폭은 브랜드의 여백이 됩니다. 단순화의 강도와 표현력의 균형에 대한 이야기.',
       },
       {
         id: 'blog-05',
         title: 'Value 4 Value — 새로운 후원의 형식',
         date: '2024.10.30',
-        tags: ['비트코인', '생각'],
+        tags: ['Bitcoin', 'Thoughts'],
         body: 'Lightning을 통해 작가에게 직접 가치를 전달하는 방법. 작은 후원이 의미하는 큰 차이.',
       },
       {
         id: 'blog-06',
         title: '느린 아침을 위한 작은 루틴',
         date: '2024.09.04',
-        tags: ['라이프'],
+        tags: ['Life'],
         body: '하루의 첫 30분, 노트와 커피와 한 페이지의 글. 작은 습관이 쌓여 만드는 평온.',
       },
     ];
@@ -1280,18 +1359,55 @@
     let currentFilter = 'ALL';
     let currentBlogFilter = 'ALL';
 
-    /* ── Scroll Reveal Observer (그리드 아이템 페이드인) ── */
+    /* ── Scroll Reveal Observer (그리드 아이템 + 일반 콘텐츠) ── */
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
-          // 한 번에 보이는 묶음에 약간의 시차를 줘서 자연스럽게
-          const idx = entry.target.dataset.idx ? parseInt(entry.target.dataset.idx) % 8 : i;
-          entry.target.style.transitionDelay = (idx * 60) + 'ms';
+          // 그리드 아이템(.home-grid-item, .works-item, .assets-item, .blog-row)는 dataset.idx로 stagger
+          if (entry.target.dataset.idx !== undefined) {
+            const idx = parseInt(entry.target.dataset.idx) % 8;
+            entry.target.style.transitionDelay = (idx * 60) + 'ms';
+          }
           entry.target.classList.add('in-view');
           revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    /* 페이지 내 모든 reveal* 요소를 관찰 (페이지 이동 시 호출) */
+    function observeReveals(root) {
+      const scope = root || document;
+      const els = scope.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-zoom');
+      els.forEach(el => {
+        el.classList.remove('in-view');
+        revealObserver.observe(el);
+      });
+    }
+
+    /* 모달 내부 스크롤에 맞춘 별도 관찰자 (열릴 때마다 새로 생성) */
+    let modalImgObserver = null;
+    function observeModalImages(backdropEl, imgsSelector) {
+      if (modalImgObserver) modalImgObserver.disconnect();
+      modalImgObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            modalImgObserver.unobserve(entry.target);
+          }
+        });
+      }, { root: backdropEl, threshold: 0.05, rootMargin: '0px 0px -8% 0px' });
+
+      const imgs = backdropEl.querySelectorAll(imgsSelector);
+      imgs.forEach((img, i) => {
+        img.classList.remove('in-view');
+        // 첫 이미지는 즉시 보이도록 (모달 열자마자)
+        if (i === 0) {
+          requestAnimationFrame(() => img.classList.add('in-view'));
+        } else {
+          modalImgObserver.observe(img);
+        }
+      });
+    }
 
     /* ── Render Grids ── */
     function renderHomeGrid() {
@@ -1428,6 +1544,10 @@
       backdrop.classList.add('active');
       backdrop.scrollTop = 0;
       document.body.classList.add('modal-open');
+      // Asset 모달 상세 이미지 스크롤 리빌
+      requestAnimationFrame(() => {
+        observeModalImages(backdrop, '.assets-modal-detail-images img');
+      });
     }
     function closeAsset(e) {
       const backdrop = document.getElementById('assets-modal-backdrop');
@@ -1459,16 +1579,17 @@
       document.body.classList.remove('menu-open');
     }
 
-    /* ── Hero 높이 고정 — 스크롤 시 모바일 주소창 변동에 의한 줌/리사이즈 방지 ── */
+    /* ── Hero 높이 고정 — 데스크톱은 풀스크린, 모바일은 축소(약 62%) ── */
     function setHeroHeight() {
       const hero = document.querySelector('.hero');
       if (!hero) return;
-      // 한 번만 측정한 뒤 픽셀 단위로 고정 (스크롤 중 주소창 변화 무관)
       const h = window.innerHeight;
+      // 데스크톱: 전체 높이
       document.documentElement.style.setProperty('--hero-h', h + 'px');
+      // 모바일: 62% 축소
+      document.documentElement.style.setProperty('--hero-h-mobile', Math.round(h * 0.62) + 'px');
     }
     setHeroHeight();
-    // 회전(orientation change) 시에만 다시 계산
     window.addEventListener('orientationchange', () => {
       setTimeout(setHeroHeight, 200);
     });
@@ -1480,7 +1601,8 @@
       closeAsset();
       currentPage = page;
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      document.getElementById('page-' + page).classList.add('active');
+      const pageEl = document.getElementById('page-' + page);
+      pageEl.classList.add('active');
       window.scrollTo(0, 0);
       updateHeader(page);
       document.querySelectorAll('.nav-link[id^="nav-"]').forEach(a => a.classList.remove('active'));
@@ -1489,6 +1611,8 @@
       if (page === 'works')  renderWorksGrid(currentFilter);
       if (page === 'blog')   renderBlog(currentBlogFilter);
       if (page === 'assets') renderAssets();
+      // 페이지 활성화 직후 reveal 요소 관찰 시작
+      requestAnimationFrame(() => observeReveals(pageEl));
     }
 
     /* ── Project Modal — 오버레이로 열기/닫기 ── */
@@ -1509,6 +1633,10 @@
       backdrop.classList.add('active');
       backdrop.scrollTop = 0;
       document.body.classList.add('modal-open');
+      // 모달 이미지 스크롤 리빌
+      requestAnimationFrame(() => {
+        observeModalImages(backdrop, '.project-images img');
+      });
     }
 
     function closeProject(e) {
@@ -1524,18 +1652,22 @@
       if (e.key === 'Escape') closeProject();
     });
 
-    /* ── Header — 투명, 색 반전 없음 ── */
+    /* ── Header — 페이지 배경에 맞춰 색 반전 ── */
     function updateHeader(page) {
       const header   = document.getElementById('header');
-      const navLinks = document.querySelectorAll('.nav-link');
+      const navLinks = document.querySelectorAll('#main-nav .nav-link');
+      const hamburger = document.getElementById('hamburger');
       header.classList.remove('solid');
 
-      if (page === 'home') {
-        // 홈은 블랙 배경 → 네비 흰색 유지
-        navLinks.forEach(l => l.classList.remove('dark-text'));
+      // 라이트 배경 페이지 (네비/햄버거를 검정으로)
+      const lightPages = ['blog'];
+      if (lightPages.includes(page)) {
+        navLinks.forEach(l => l.classList.add('dark-text'));
+        hamburger.classList.add('dark-icon');
       } else {
-        // works/info/contact 모두 어두운/컬러 배경 → 네비 흰색
+        // home/works/info/contact/assets(archive) — 어두운/컬러 배경 → 흰색
         navLinks.forEach(l => l.classList.remove('dark-text'));
+        hamburger.classList.remove('dark-icon');
       }
     }
 
@@ -1546,6 +1678,16 @@
         this.classList.add('active');
         currentFilter = this.dataset.filter;
         renderWorksGrid(currentFilter);
+      });
+    });
+
+    /* ── Blog Filter ── */
+    document.querySelectorAll('.blog-filter-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.blog-filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        currentBlogFilter = this.dataset.blogFilter;
+        renderBlog(currentBlogFilter);
       });
     });
 
@@ -1612,6 +1754,7 @@
     /* ── Init ── */
     renderHomeGrid();
     updateHeader('home');
+    observeReveals(document.getElementById('page-home'));
   </script>
 </body>
 </html>
