@@ -38,11 +38,11 @@
     #header {
       position: fixed;
       top: 0; left: 0; right: 0;
-      z-index: 1000;
+      z-index: 2200; /* 모바일 메뉴(1900)보다 위 — 햄버거(X)가 항상 보이도록 */
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 8px 28px;
+      padding: 0 28px;
       background: transparent;
       transition: background 0.3s;
     }
@@ -152,7 +152,7 @@
     body.menu-open { overflow: hidden; }
 
     @media (max-width: 768px) {
-      #header { padding: 6px 18px; }
+      #header { padding: 0 18px; }
       .logo-img { height: 60px; }
       nav#main-nav { display: none; }
       .hamburger { display: flex; }
