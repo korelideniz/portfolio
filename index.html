@@ -697,6 +697,8 @@
       .assets-modal { padding: 30px 20px 36px; }
       .assets-modal-name { font-size: 20px; }
       .download-btn { font-size: 14px; padding: 18px 0; }
+      /* 모바일에서만 에셋 모달이 열렸을 때 플로팅 뒤로가기 버튼 표시 */
+      .assets-modal-backdrop.active .assets-modal-back-fab { display: flex; }
     }
 
     /* ══════════════════════════════
@@ -910,8 +912,9 @@
     }
     .project-modal-close:hover { background: rgba(255,255,255,0.1); }
 
-    /* 모바일 전용 — 프로젝트 모달 우측 하단 플로팅 뒤로가기 버튼 */
-    .project-modal-back-fab {
+    /* 모바일 전용 — 모달 우측 하단 플로팅 뒤로가기 버튼 (프로젝트/에셋 공용) */
+    .project-modal-back-fab,
+    .assets-modal-back-fab {
       display: none;
       position: fixed;
       bottom: 24px;
@@ -930,8 +933,10 @@
       border: 1px solid rgba(255,255,255,0.12);
       transition: transform 0.18s ease, background 0.2s ease;
     }
-    .project-modal-back-fab:active { transform: scale(0.94); }
-    .project-modal-back-fab svg { width: 22px; height: 22px; display: block; }
+    .project-modal-back-fab:active,
+    .assets-modal-back-fab:active { transform: scale(0.94); }
+    .project-modal-back-fab svg,
+    .assets-modal-back-fab svg { width: 22px; height: 22px; display: block; }
 
     .project-modal .project-title {
       font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif;
@@ -1135,6 +1140,13 @@
       <div class="assets-modal-detail-images" id="asset-details"></div>
       <p class="assets-modal-desc" id="asset-desc"></p>
     </div>
+    <!-- 모바일 전용 플로팅 뒤로가기 버튼 (우측 하단 고정) -->
+    <button class="assets-modal-back-fab" onclick="closeAsset()" aria-label="Back" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M19 12H5"></path>
+        <path d="M12 19l-7-7 7-7"></path>
+      </svg>
+    </button>
   </div>
 
   <!-- ══════════ CONTACT ══════════ -->
@@ -1318,7 +1330,8 @@
                  'https://github.com/korelideniz/portfolio/blob/main/images/yonggamhanddang/2.png?raw=true',
                  'https://github.com/korelideniz/portfolio/blob/main/images/yonggamhanddang/3.png?raw=true',
                  'https://github.com/korelideniz/portfolio/blob/main/images/yonggamhanddang/5.png?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/yonggamhanddang/10.png?raw=true',
+                 'https://github.com/korelideniz/portfolio/blob/main/images/yonggamhanddang/9.jpg?raw=true',
+                 'https://github.com/korelideniz/portfolio/blob/main/images/yonggamhanddang/10.jpg?raw=true',
                  'https://github.com/korelideniz/portfolio/blob/main/images/yonggamhanddang/11.jpg?raw=true',
                  'https://github.com/korelideniz/portfolio/blob/main/images/yonggamhanddang/12.jpg?raw=true',
                  'https://github.com/korelideniz/portfolio/blob/main/images/yonggamhanddang/16.png?raw=true',
