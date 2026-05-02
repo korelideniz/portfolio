@@ -1536,107 +1536,74 @@
     const assets = [
       {
         id: 'asset-01',
-        name: 'Sample PDF Pack',
+        name: '스토리보드 PDF / Storyboard',
         meta: 'PDF · Free',
-        thumb: 'https://picsum.photos/seed/asset01/600/600',
-        downloadUrl: '#',
-        detailImages: [
-          'https://picsum.photos/seed/asset01d1/1200/800',
-          'https://picsum.photos/seed/asset01d2/1200/800',
-        ],
-        desc: '디자인 작업에 활용할 수 있는 무료 PDF 자료입니다. 자유롭게 다운로드하여 사용해 주세요.',
-      },
-      {
-        id: 'asset-02',
-        name: 'Brand Color Sheet',
-        meta: 'PDF · Free',
-        thumb: 'https://picsum.photos/seed/asset02/600/600',
-        downloadUrl: '#',
-        detailImages: [
-          'https://picsum.photos/seed/asset02d1/1200/800',
-        ],
-        desc: '브랜드 컬러 가이드 시트. 인쇄와 디지털 환경에서 모두 활용할 수 있는 색상 코드 자료.',
-      },
-      {
-        id: 'asset-03',
-        name: 'Type Specimen Mini',
-        meta: 'PDF · Free',
-        thumb: 'https://picsum.photos/seed/asset03/600/600',
-        downloadUrl: '#',
-        detailImages: [
-          'https://picsum.photos/seed/asset03d1/1200/800',
-        ],
-        desc: '한 페이지로 정리한 타입 명세서. 본문/제목/캡션의 적정 사이즈를 한눈에.',
-      },
-      {
-        id: 'asset-04',
-        name: 'Wallpaper Set',
-        meta: 'JPG · Free',
-        thumb: 'https://picsum.photos/seed/asset04/600/600',
-        downloadUrl: '#',
-        detailImages: [
-          'https://picsum.photos/seed/asset04d1/1200/800',
-        ],
-        desc: '데스크톱 / 모바일용 벽지 모음. 일러스트 작업의 일부를 무료로 공유합니다.',
-      },
-      {
-        id: 'asset-05',
-        name: 'Prayer Journal',
-        meta: 'PDF · Free',
-        // ↓ 썸네일 — 추후 자신의 디자인 이미지로 교체하세요
-        thumb: 'https://picsum.photos/seed/prayerjournal/600/600',
-        downloadUrl: 'https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/archive/prayer-journal/prayer-journal.pdf',
-        // ↓ 모달 안의 미리보기 이미지 — PDF 페이지를 캡처해서 추가하면 좋아요
-        detailImages: [],
-        desc: '직접 만든 기도 노트(Prayer Journal) PDF. 자유롭게 다운로드하여 사용해 주세요.',
-      },
-      {
-        id: 'asset-06',
-        name: '30 Day Challenge',
-        meta: 'ZIP · Free',
-        // ↓ 썸네일 — 추후 자신의 디자인 이미지로 교체하세요
-        thumb: 'https://picsum.photos/seed/30daychallenge/600/600',
-        // ZIP 파일은 GitHub raw URL을 쓰면 다운로드가 가장 안정적이에요
-        downloadUrl: 'https://github.com/korelideniz/portfolio/raw/main/archive/30-day-challenge/30-day-challenge.zip',
-        // ↓ 모달 안의 미리보기 이미지 — ZIP 안 작업물 미리보기를 추가하면 좋아요
-        detailImages: [],
-        desc: '30일 챌린지 자료 모음 ZIP 파일입니다. 자유롭게 다운로드하여 사용해 주세요.',
-      },
-      {
-        id: 'asset-07',
-        name: 'QT Journal',
-        meta: 'PDF · Free',
-        // ↓ 썸네일 — 추후 자신의 디자인 이미지로 교체하세요
-        thumb: 'https://picsum.photos/seed/qtjournal/600/600',
-        // 파일명 대소문자 주의: 폴더는 qt-journal, 파일은 QT-Journal.pdf
-        downloadUrl: 'https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/archive/qt-journal/QT-Journal.pdf',
-        // ↓ 모달 안의 미리보기 이미지 — PDF 페이지를 캡처해서 추가하면 좋아요
-        detailImages: [],
-        desc: '직접 만든 QT 저널(말씀 묵상 노트) PDF. 자유롭게 다운로드하여 사용해 주세요.',
-      },
-      {
-        id: 'asset-08',
-        name: 'Storyboard',
-        meta: 'ZIP · Free',
-        // ↓ 썸네일 — 추후 자신의 디자인 이미지로 교체하세요
-        thumb: 'https://picsum.photos/seed/storyboard/600/600',
+        thumb: 'https://github.com/korelideniz/portfolio/blob/main/archive/storyboard/storyboard.jpg?raw=true',
         // ZIP 파일은 GitHub raw URL을 쓰면 다운로드가 가장 안정적이에요
         // 파일명 대소문자 주의: 폴더는 storyboard, 파일은 Storyboard_PDF.zip
         downloadUrl: 'https://github.com/korelideniz/portfolio/raw/main/archive/storyboard/Storyboard_PDF.zip',
-        // ↓ 모달 안의 미리보기 이미지 — 스토리보드 페이지를 캡처해서 추가하면 좋아요
-        detailImages: [],
-        desc: '스토리보드 PDF 자료 ZIP. 자유롭게 다운로드하여 사용해 주세요.',
+        detailImages: [
+          'https://github.com/korelideniz/portfolio/blob/main/archive/storyboard/2.png?raw=true',
+          'https://github.com/korelideniz/portfolio/blob/main/archive/storyboard/1.png?raw=true',
+        ],
+        desc: '스토리보드 (기본형) / 컷별 설명란 + 메모 공간 / 심플하고 깔끔한 디자인 (블루 / 블랙) / 이런 분께 추천드려요: 1) 영상/웹툰/광고 기획자 2) 유튜브나 인스타 릴스 등 숏폼 제작자 3) 시각적인 아이디어를 정리하고 싶은 분',
       },
       {
-        id: 'asset-09',
-        name: 'Mandala Plan Sheet',
+        id: 'asset-02',
+        name: '만다라트 계획표 PDF / Mandala Plan Sheet',
         meta: 'PDF · Free',
-        // ↓ 썸네일 — 추후 자신의 디자인 이미지로 교체하세요
-        thumb: 'https://picsum.photos/seed/mandalaplan/600/600',
+        thumb: 'https://github.com/korelideniz/portfolio/blob/main/archive/mandala-plan-sheet/mandala-plan-sheet.jpg?raw=true',
         downloadUrl: 'https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/archive/mandala-plan-sheet/mandala-plan-sheet.pdf',
-        // ↓ 모달 안의 미리보기 이미지 — PDF 페이지를 캡처해서 추가하면 좋아요
-        detailImages: [],
-        desc: '만다라 플랜 시트 PDF. 자유롭게 다운로드하여 사용해 주세요.',
+        detailImages: [
+          'https://github.com/korelideniz/portfolio/blob/main/archive/mandala-plan-sheet/mandala-plan-sheet.jpg?raw=true',
+          'https://github.com/korelideniz/portfolio/blob/main/archive/mandala-plan-sheet/1.jpg?raw=true',
+        ],
+        // ↓ 작은따옴표가 들어 있어 백틱(`)으로 감싸는 템플릿 리터럴 사용 — 따옴표 충돌 방지
+        desc: `'만다라트(Mandal-Art)'는 일본의 디자이너 '이마이 히로아키'가 만든 목표 달성 도구로, 중심에 핵심 목표를 두고 이를 이루기 위한 세부 목표와 실행 항목들을 시각적으로 구조화해 나가는 방식입니다. 오타니 쇼헤이가 이 방식으로 목표 설정을 했다는게 알려져 화제가 되기도 했습니다. 총 9칸으로 이루어진 큰 정사각형 안에 또 9칸씩 나뉜 구조로, 한눈에 나의 생각과 방향성을 정리할 수 있어 자기계발, 진로 설계, 프로젝트 계획 등 다양한 상황에 활용할 수 있습니다. 만다라트 계획표 양식도 함께 공유합니다. 양식을 다운받아 나만의 목표를 정리해보세요. 작은 실천들이 모여 큰 목표를 완성하는 과정이 기대가 됩니다.`,
+      },
+      {
+        id: 'asset-03',
+        name: '말씀묵상노트 PDF / QT Journal',
+        meta: 'PDF · Free',
+        thumb: 'https://github.com/korelideniz/portfolio/blob/main/archive/qt-journal/1.jpg?raw=true',
+        // 파일명 대소문자 주의: 폴더는 qt-journal, 파일은 QT-Journal.pdf
+        downloadUrl: 'https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/archive/qt-journal/QT-Journal.pdf',
+        detailImages: [
+          'https://github.com/korelideniz/portfolio/blob/main/archive/qt-journal/1.jpg?raw=true',
+          'https://github.com/korelideniz/portfolio/blob/main/archive/qt-journal/2.jpeg?raw=true',
+          'https://github.com/korelideniz/portfolio/blob/main/archive/qt-journal/3.jpg?raw=true',
+          'https://github.com/korelideniz/portfolio/blob/main/archive/qt-journal/4.jpg?raw=true',
+        ],
+        desc: '말씀묵상노트(QT Journal) PDF 공유합니다. 매일의 말씀 묵상을 기록할 수 있는 양식이에요. 자유롭게 다운받아 사용해 주세요.',
+      },
+      {
+        id: 'asset-04',
+        name: '30일 챌린지 PDF / 30-Day Challenge',
+        meta: 'PDF · Free',
+        thumb: 'https://github.com/korelideniz/portfolio/blob/main/archive/30-day-challenge/30-day-challenge.jpg?raw=true',
+        downloadUrl: 'https://github.com/korelideniz/portfolio/raw/main/archive/30-day-challenge/30-day-challenge.zip',
+        detailImages: [
+          'https://github.com/korelideniz/portfolio/blob/main/archive/30-day-challenge/30-day-challenge.jpg?raw=true',
+          'https://github.com/korelideniz/portfolio/blob/main/archive/30-day-challenge/1.png?raw=true',
+          'https://github.com/korelideniz/portfolio/blob/main/archive/30-day-challenge/2.png?raw=true',
+        ],
+        desc: '30일 챌린지 굿노트 속지 공유합니다. 첨부한 스티커 PNG를 다운받아 굿노트 스티커로 사용할 수 있습니다.',
+      },
+      {
+        id: 'asset-05',
+        name: '기도노트 PDF / Prayer Journal',
+        meta: 'PDF · Free',
+        thumb: 'https://github.com/korelideniz/portfolio/blob/main/archive/prayer-journal/prayer-journal.jpg?raw=true',
+        downloadUrl: 'https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/archive/prayer-journal/prayer-journal.pdf',
+        detailImages: [
+          'https://github.com/korelideniz/portfolio/blob/main/archive/prayer-journal/prayer-journal.jpg?raw=true',
+          'https://github.com/korelideniz/portfolio/blob/main/archive/prayer-journal/1.jpg?raw=true',
+          'https://github.com/korelideniz/portfolio/blob/main/archive/prayer-journal/2.jpg?raw=true',
+          'https://github.com/korelideniz/portfolio/blob/main/archive/prayer-journal/3.jpg?raw=true',
+          'https://github.com/korelideniz/portfolio/blob/main/archive/prayer-journal/4.jpg?raw=true',
+          'https://github.com/korelideniz/portfolio/blob/main/archive/prayer-journal/5.jpg?raw=true',
+        ],
+        desc: '기도노트 PDF 공유합니다. 기도일기, 중보기도 노트, 자유형식으로 구성되어 있습니다.',
       },
     ];
 
