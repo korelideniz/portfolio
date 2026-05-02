@@ -17,7 +17,8 @@
   <style>
     /* ── Reset ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    /* overflow-y: scroll —— 페이지 간 이동 시 스크롤바 유무 차이로 인한 메뉴 위치 흔들림 방지 */
+    html { scroll-behavior: smooth; overflow-y: scroll; }
     /*
       폰트 우선순위:
       - 영문: Helvetica Neue (시스템 폰트, 한글 글리프 없으므로 자동으로 다음 폰트로 넘어감)
@@ -908,6 +909,29 @@
     }
     .project-modal-close:hover { background: rgba(255,255,255,0.1); }
 
+    /* 모바일 전용 — 프로젝트 모달 우측 하단 플로팅 뒤로가기 버튼 */
+    .project-modal-back-fab {
+      display: none;
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.78);
+      color: #fff;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+      z-index: 1600;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.12);
+      transition: transform 0.18s ease, background 0.2s ease;
+    }
+    .project-modal-back-fab:active { transform: scale(0.94); }
+    .project-modal-back-fab svg { width: 22px; height: 22px; display: block; }
+
     .project-modal .project-title {
       font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif;
       font-size: 20px; font-weight: 600; letter-spacing: 0.01em;
@@ -949,6 +973,8 @@
       .project-modal-backdrop { padding: 30px 12px; }
       .project-modal { padding: 22px 18px 32px; border-radius: 6px; }
       .project-modal .project-title { font-size: 17px; }
+      /* 모바일에서만 모달이 열렸을 때 플로팅 뒤로가기 버튼 표시 */
+      .project-modal-backdrop.active .project-modal-back-fab { display: flex; }
     }
 
     /* ── Footer ── */
@@ -1009,12 +1035,11 @@
     <div class="works-filters reveal">
       <span class="filter-label">Filter:</span>
       <button class="filter-btn active" data-filter="ALL">All</button>
-      <button class="filter-btn" data-filter="BRANDING">Branding</button>
+      <button class="filter-btn" data-filter="IDENTITY">Identity</button>
       <button class="filter-btn" data-filter="CHARACTER">Character</button>
       <button class="filter-btn" data-filter="ILLUSTRATION">Illustration</button>
       <button class="filter-btn" data-filter="PRINT">Print</button>
       <button class="filter-btn" data-filter="TYPOGRAPHY">Typography</button>
-      <button class="filter-btn" data-filter="MOTION">Motion</button>
     </div>
     <div class="works-grid" id="works-grid"></div>
     <footer class="site-footer dark">© 2025 Koreli Deniz. All rights reserved.</footer>
@@ -1188,6 +1213,13 @@
       <div class="project-images" id="project-images"></div>
       <p class="project-desc"  id="project-desc"></p>
     </div>
+    <!-- 모바일 전용 플로팅 뒤로가기 버튼 (우측 하단 고정) -->
+    <button class="project-modal-back-fab" onclick="closeProject()" aria-label="Back" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M19 12H5"></path>
+        <path d="M12 19l-7-7 7-7"></path>
+      </svg>
+    </button>
   </div>
 
   <script>
@@ -1237,9 +1269,7 @@
       {
         id: 'proj-03', title: '고양국제꽃박람회 포스터', categories: ['ILLUSTRATION', 'PRINT'],
         thumb: 'https://github.com/korelideniz/portfolio/blob/main/images/goyang_poster/1.png?raw=true',
-        images: ['https://github.com/korelideniz/portfolio/blob/main/images/goyang_poster/1.png?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/goyang_poster/2.jpg?raw=true'
-                ],
+        images: ['https://github.com/korelideniz/portfolio/blob/main/images/goyang_poster/2.jpg?raw=true'],
         desc: '개인작업으로 고양국제꽃박람회 포스터 디자인을 했습니다.', year: '2024',
       },
       {
@@ -1248,191 +1278,49 @@
         images: [
           'https://github.com/korelideniz/portfolio/blob/main/images/seoul-nyamnyam/19.jpg?raw=true',
           'https://github.com/korelideniz/portfolio/blob/main/images/seoul-nyamnyam/23.jpg?raw=true',
-          'https://github.com/korelideniz/portfolio/blob/main/images/seoul-nyamnyam/28.jpg?raw=true',
-          'https://github.com/korelideniz/portfolio/blob/main/images/seoul-nyamnyam/33.jpg?raw=true',
-          'https://github.com/korelideniz/portfolio/blob/main/images/seoul-nyamnyam/37.jpg?raw=true',
-          'https://github.com/korelideniz/portfolio/blob/main/images/seoul-nyamnyam/20.jpg?raw=true',
-          'https://github.com/korelideniz/portfolio/blob/main/images/seoul-nyamnyam/13.jpg?raw=true',
-          'https://github.com/korelideniz/portfolio/blob/main/images/seoul-nyamnyam/26.jpg?raw=true',
-          'https://github.com/korelideniz/portfolio/blob/main/images/seoul-nyamnyam/27.jpg?raw=true',
-          'https://github.com/korelideniz/portfolio/blob/main/images/seoul-nyamnyam/18.jpg?raw=true',
-          'https://github.com/korelideniz/portfolio/blob/main/images/seoul-nyamnyam/14.jpg?raw=true',
-          'https://github.com/korelideniz/portfolio/blob/main/images/seoul-nyamnyam/16.jpg?raw=true',
-          'https://github.com/korelideniz/portfolio/blob/main/images/seoul-nyamnyam/22.jpg?raw=true',
-          'https://github.com/korelideniz/portfolio/blob/main/images/seoul-nyamnyam/25.jpg?raw=true',
-          'https://github.com/korelideniz/portfolio/blob/main/images/seoul-nyamnyam/15.jpg?raw=true',
-          'https://github.com/korelideniz/portfolio/blob/main/images/seoul-nyamnyam/2.jpg?raw=true',
-          'https://github.com/korelideniz/portfolio/blob/main/images/seoul-nyamnyam/3.jpg?raw=true',
-          'https://github.com/korelideniz/portfolio/blob/main/images/seoul-nyamnyam/9.jpg?raw=true',
-          'https://github.com/korelideniz/portfolio/blob/main/images/seoul-nyamnyam/12.jpg?raw=true',
-          'https://github.com/korelideniz/portfolio/blob/main/images/seoul-nyamnyam/10.jpg?raw=true',
-          'https://github.com/korelideniz/portfolio/blob/main/images/seoul-nyamnyam/11.jpg?raw=true',
-          'https://github.com/korelideniz/portfolio/blob/main/images/seoul-nyamnyam/4.jpg?raw=true',
-          'https://github.com/korelideniz/portfolio/blob/main/images/seoul-nyamnyam/1.jpg?raw=true',
-          'https://github.com/korelideniz/portfolio/blob/main/images/seoul-nyamnyam/6.jpg?raw=true',
-          'https://github.com/korelideniz/portfolio/blob/main/images/seoul-nyamnyam/24.jpg?raw=true',
         ],
-        desc: '서울냠냠은 먹깨비 민족 한국인들이 한국음식으로 냠냠! 세계 정복 프로젝트를 꾀하는 레트로 게임 컨셉으로, 외국 현지시장을 타깃으로 론칭한 한식당 브랜드입니다.', year: '2023',
+        desc: '프로젝트 설명을 여기에 작성하세요.', year: '2025',
       },
       {
-        id: 'proj-05', title: '용감한 땅 / 그래픽노블', categories: ['BRANDIN', 'ILLUSTRATION','PRINT'],
-        thumb: 'https://github.com/korelideniz/portfolio/blob/main/images/yonggamhanddang/1.webp?raw=true',
-        images: ['https://github.com/korelideniz/portfolio/blob/main/images/yonggamhanddang/14.jpg?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/yonggamhanddang/15.jpg?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/yonggamhanddang/8.png?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/yonggamhanddang/1.png?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/yonggamhanddang/2.png?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/yonggamhanddang/3.png?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/yonggamhanddang/5.png?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/yonggamhanddang/9.jpg?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/yonggamhanddang/10.jpg?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/yonggamhanddang/11.jpg?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/yonggamhanddang/12.jpg?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/yonggamhanddang/16.png?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/yonggamhanddang/17.png?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/yonggamhanddang/20.jpg?raw=true',
-                 ],
-        desc: '튀르키예에 여행을 떠나며 만났던 용감한 사람들에 관한 그래픽노블. A5 | 그래픽노블, 작업기간 | 2024.10-2024.11', year: '2024',
+        id: 'proj-05', title: 'Project 05', categories: ['BRANDIN', 'CHARACTER'],
+        thumb: 'https://picsum.photos/seed/p05/600/600',
+        images: ['https://picsum.photos/seed/p05d/1200/1600'],
+        desc: '프로젝트 설명을 여기에 작성하세요.', year: '2025',
       },
       {
-        id: 'proj-06', title: 'ARISE, SHINE!', categories: ['ILLUSTRATION', 'PRINT'],
-        thumb: 'https://github.com/korelideniz/portfolio/blob/main/images/ariseshine/1.jpg?raw=true',
-        images: ['https://github.com/korelideniz/portfolio/blob/main/images/ariseshine/5.jpg?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/ariseshine/1.jpg?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/ariseshine/7.jpg?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/ariseshine/2.jpg?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/ariseshine/3.jpg?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/ariseshine/4.jpg?raw=true',
-                 ],
-        desc: 'ARISE, SHINE! 찬양 버스킹 브랜딩', year: '2024',
+        id: 'proj-06', title: 'Project 06', categories: ['PRINT'],
+        thumb: 'https://picsum.photos/seed/p06/600/600',
+        images: ['https://picsum.photos/seed/p06d/1200/1600'],
+        desc: '프로젝트 설명을 여기에 작성하세요.', year: '2025',
       },
       {
-        id: 'proj-07', title: 'civic', categories: ['TYPOGRAPHY'],
-        thumb: 'https://github.com/korelideniz/portfolio/blob/main/images/civic_typo/civic.png?raw=true',
-        images: ['https://github.com/korelideniz/portfolio/blob/main/images/civic_typo/civic.png?raw=true'],
-        desc: 'civic 타이포그래피.', year: '2025',
+        id: 'proj-07', title: 'Project 07', categories: ['ILLUSTRATION'],
+        thumb: 'https://picsum.photos/seed/p07/600/600',
+        images: ['https://picsum.photos/seed/p07d/1200/1600'],
+        desc: '프로젝트 설명을 여기에 작성하세요.', year: '2024',
       },
       {
-        id: 'proj-08', title: '초한전', categories: ['PRINT'],
-        thumb: 'https://github.com/korelideniz/portfolio/blob/main/images/chohanjeon_poster/3.png?raw=true',
-        images: ['https://github.com/korelideniz/portfolio/blob/main/images/chohanjeon_poster/3.png?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/chohanjeon_poster/2.png?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/chohanjeon_poster/1.png?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/chohanjeon_poster/reels.gif?raw=true',
-                ],
-        desc: '초한전(超限戰) : 경계를 뛰어넘는 전쟁 / 초한전(超限戰)은 경계를 뛰어넘는 전쟁이라는 뜻으로, 1999년 중국인민해방군 공군의 차오량과 왕샹쑤이가 제시한 전쟁이론입니다. 초한전을 알리는 무빙포스터를 디자인하였습니다. 자료 | 미래밝은디자이너연합.', year: '2024',
+        id: 'proj-08', title: 'Project 08', categories: ['CHARACTER'],
+        thumb: 'https://picsum.photos/seed/p08/600/600',
+        images: ['https://picsum.photos/seed/p08d/1200/1600'],
+        desc: '프로젝트 설명을 여기에 작성하세요.', year: '2024',
       },
       {
-        id: 'proj-09', title: '하늘위에 타이포그래피', categories: ['TYPOGRAPHY'],
-        thumb: 'https://github.com/korelideniz/portfolio/blob/main/images/haneul-wie_typo/haneul.gif?raw=true',
-        images: ['https://github.com/korelideniz/portfolio/blob/main/images/haneul-wie_typo/haneul.gif?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/haneul-wie_typo/2.png?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/haneul-wie_typo/1.png?raw=true',
-                ],
-        desc: '<하늘위에> 타이포그래피 / 퇴근 후 30분 디자인 (2)', year: '2025',
+        id: 'proj-09', title: 'Project 09', categories: ['TYPOGRAPHY', 'PRINT'],
+        thumb: 'https://picsum.photos/seed/p09/600/600',
+        images: ['https://picsum.photos/seed/p09d/1200/1600'],
+        desc: '프로젝트 설명을 여기에 작성하세요.', year: '2025',
       },
       {
         id: 'proj-10', title: '말랑말랑마음 동화책', categories: ['ILLUSTRATION', 'PRINT'],
-        thumb: 'https://github.com/korelideniz/portfolio/blob/main/images/mallang/1.jpg?raw=true',
+        thumb: 'https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/images/mallang/1.jpg',
         images: [
-          'https://github.com/korelideniz/portfolio/blob/main/images/mallang/1.jpg?raw=true',
+          'https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/images/mallang/1.jpg',
           'https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/images/mallang/2.jpg',
           'https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/images/mallang/3.jpg',
         ],
         desc: '내가 그들에게 한 마음을 주고 그 속에 새 영을 주며 그 몸에서 돌 같은 마음을 제거하고 살처럼 부드러운 마음을 주어 [에스겔 11:19].',
         year: '2019',
-      },
-      {
-        id: 'proj-11', title: 'AI 길들이기 프로젝트', categories: ['TYPOGRAPHY', 'BRANDIN'],
-        thumb: 'https://github.com/korelideniz/portfolio/blob/main/images/ai/thub_ai.gif?raw=true',
-        images: ['https://github.com/korelideniz/portfolio/blob/main/images/ai/1.png?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/ai/3.png?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/ai/4.png?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/ai/5.png?raw=true',
-                ],
-        desc: 'AI 길들이기 프로젝트.', year: '2024',
-      },
-      {
-        id: 'proj-12', title: 'COGOGO!', categories: ['CHARACTER'],
-        thumb: 'https://github.com/korelideniz/portfolio/blob/main/images/cogogo/1.png?raw=true',
-        images: ['https://github.com/korelideniz/portfolio/blob/main/images/cogogo/1.png?raw=true',
-                'https://github.com/korelideniz/portfolio/blob/main/images/cogogo/2.png?raw=true',
-                'https://github.com/korelideniz/portfolio/blob/main/images/cogogo/3.png?raw=true',
-                'https://github.com/korelideniz/portfolio/blob/main/images/cogogo/4.png?raw=true',
-                ],
-        desc: 'COGOGO! 코알라 고등학교로 GO!', year: '2024',
-      },
-      {
-        id: 'proj-13', title: '불법의 불법의 불법 타이포그래피', categories: ['TYPOGRAPHY'],
-        thumb: 'https://github.com/korelideniz/portfolio/blob/main/images/bulbeob_typo/1.gif?raw=true',
-        images: ['https://github.com/korelideniz/portfolio/blob/main/images/bulbeob_typo/1.gif?raw=true',
-                'https://github.com/korelideniz/portfolio/blob/main/images/bulbeob_typo/2.webp?raw=true',
-                ],
-        desc: '불법의 불법의 불법 타이포그래피', year: '2025',
-      },
-      {
-        id: 'proj-14', title: '다시는 종에 멍에를 메지 않게 하소서', categories: ['TYPOGRAPHY'],
-        thumb: 'https://github.com/korelideniz/portfolio/blob/main/images/dasineun_typo/2.jpg?raw=true',
-        images: ['https://github.com/korelideniz/portfolio/blob/main/images/dasineun_typo/2.jpg?raw=true',
-                'https://github.com/korelideniz/portfolio/blob/main/images/dasineun_typo/3.png?raw=true',
-                'https://github.com/korelideniz/portfolio/blob/main/images/dasineun_typo/4.png?raw=true',
-                ],
-        desc: '다시는 종에 멍에를 메지 않게 하소서', year: '2025',
-      },
-      {
-        id: 'proj-15', title: 'FREE Hongkong', categories: ['TYPOGRAPHY'],
-        thumb: 'https://github.com/korelideniz/portfolio/blob/main/images/hongkong_poster/poster.gif?raw=true',
-        images: ['https://github.com/korelideniz/portfolio/blob/main/images/hongkong_poster/1.png?raw=true',
-                'https://github.com/korelideniz/portfolio/blob/main/images/hongkong_poster/2.png?raw=true',
-                'https://github.com/korelideniz/portfolio/blob/main/images/hongkong_poster/3.jpg?raw=true',
-                ],
-        desc: 'Dear World, CCP will infiltrate your government. Chinese enterprises $ interferes your political stance. China will harvest your home like Xinjiang. BE AWARE or BE NEXT! - In 2019, in Hong Kong / 2019년 11월 홍콩 이공대 학생들이 반중 자유민주화 시위를 벌이며 교내에 남긴 낙서', year: '2025',
-      },
-      {
-        id: 'proj-16', title: '천안문', categories: ['MOTION'],
-        thumb: 'https://github.com/korelideniz/portfolio/blob/main/images/cheon-anmun/cheon-anmun.gif?raw=true',
-        images: ['https://github.com/korelideniz/portfolio/blob/main/images/cheon-anmun/cheon-anmun.gif?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/cheon-anmun/cheon-anmun-video.gif?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/cheon-anmun/1.png?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/cheon-anmun/2.png?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/cheon-anmun/3.png?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/cheon-anmun/4.png?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/cheon-anmun/5.png?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/cheon-anmun/6.png?raw=true',
-                ],
-        desc: '천안문 모션그래픽', year: '2025',
-      },
-      {
-        id: 'proj-17', title: '오리너구리 기자단', categories: ['CHARACTER'],
-        thumb: 'https://github.com/korelideniz/portfolio/blob/main/images/ori/2.png?raw=true',
-        images: ['https://github.com/korelideniz/portfolio/blob/main/images/ori/2.png?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/ori/1.png?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/ori/3.png?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/ori/4.png?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/ori/5.png?raw=true',
-                ],
-        desc: '오리너구리 기자단을 디자인했습니다.', year: '2021',
-      },
-      {
-        id: 'proj-18', title: 'toothie 브랜딩', categories: ['BRANDIN','CHARACTER'],
-        thumb: 'https://github.com/korelideniz/portfolio/blob/main/images/toothie/1.gif?raw=true',
-        images: ['https://github.com/korelideniz/portfolio/blob/main/images/toothie/1.gif?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/toothie/2.png?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/toothie/4.png?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/toothie/3.png?raw=true',
-                ],
-        desc: 'toothie 브랜딩', year: '2021',
-      },
-      {
-        id: 'proj-19', title: '화산귀환X파워퍼프걸 팬아트', categories: ['CHARACTER'],
-        thumb: 'https://github.com/korelideniz/portfolio/blob/main/images/hwasangwihwan/1.png?raw=true',
-        images: ['https://github.com/korelideniz/portfolio/blob/main/images/hwasangwihwan/1.png?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/hwasangwihwan/2.png?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/hwasangwihwan/3.png?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/hwasangwihwan/4.png?raw=true',
-                 'https://github.com/korelideniz/portfolio/blob/main/images/hwasangwihwan/5.png?raw=true',
-                ],
-        desc: '개인작업으로 화산귀환X파워퍼프걸 팬아트를 작업했습니다.', year: '2024',
       },
     ];
 
