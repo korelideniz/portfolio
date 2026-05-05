@@ -361,30 +361,34 @@
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 8px;
     }
-    /* Info SNS 아이콘 */
-    .info-social {
-      display: flex;
-      gap: 18px;
+    /* Info Connect 섹션 */
+    .info-connect {
       margin-top: 36px;
       padding-top: 28px;
       border-top: 1px solid rgba(255,255,255,0.18);
     }
-    .info-social a {
-      width: 44px; height: 44px;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.2);
-      color: #fff;
-      transition: background 0.2s, transform 0.2s;
+    .info-connect .lang-label { margin-bottom: 14px; }
+    .info-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
-    .info-social a:hover {
-      background: rgba(255,255,255,0.18);
-      transform: translateY(-2px);
+    .info-links a {
+      display: inline-block;
+      font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      letter-spacing: 0.02em;
+      color: rgba(255,255,255,0.95);
+      border-bottom: 1px solid rgba(255,255,255,0.35);
+      padding-bottom: 2px;
+      transition: opacity 0.2s, border-color 0.2s;
     }
-    .info-social svg {
-      width: 20px; height: 20px;
-      fill: #fff;
+    .info-links a:hover {
+      opacity: 0.7;
+      border-color: rgba(255,255,255,0.7);
     }
 
     @media (max-width: 768px) {
@@ -398,6 +402,46 @@
        BLOG — 아코디언 스타일
     ══════════════════════════════ */
     #page-blog { background: #eeeeee; color: #111; padding-top: 116px; min-height: 100vh; }
+    /* 블로그 페이지 내부 이미지 — 자동 흑백 처리 */
+    #page-blog .blog-row-body-inner img,
+    #page-blog .blog-inner img {
+      filter: grayscale(100%);
+      -webkit-filter: grayscale(100%);
+      transition: filter 0.3s ease;
+    }
+    #page-blog .blog-row-body-inner img:hover,
+    #page-blog .blog-inner img:hover {
+      filter: grayscale(70%);
+      -webkit-filter: grayscale(70%);
+    }
+    /* 블로그 페이지네이션 */
+    .blog-pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      padding: 36px 0 8px;
+      flex-wrap: wrap;
+    }
+    .blog-page-btn {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: #777;
+      padding: 8px 14px;
+      min-width: 38px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: color 0.2s, background 0.2s;
+      letter-spacing: 0.04em;
+    }
+    .blog-page-btn:hover:not([disabled]) { color: #111; background: rgba(0,0,0,0.05); }
+    .blog-page-btn.active { color: #fff; background: #111; }
+    .blog-page-btn[disabled] { opacity: 0.3; cursor: not-allowed; }
+    .blog-page-arrow {
+      font-size: 16px;
+      padding: 8px 12px;
+    }
     .blog-inner {
       max-width: 980px;
       margin: 0 auto;
@@ -991,6 +1035,75 @@
     }
     .site-footer.dark { background: #000; color: #333; }
     .site-footer.red  { background: #D93939; color: rgba(255,255,255,0.4); }
+
+    /* ── Connect Bar (모든 페이지 하단) ── */
+    .connect-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 20px 24px;
+      flex-wrap: wrap;
+    }
+    .connect-bar a {
+      height: 42px;
+      width: 42px;
+      border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.85);
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+    /* 텍스트 라벨이 들어가는 알약 모양 (Nostr, Notefolio 등) */
+    .connect-bar a.text {
+      width: auto;
+      border-radius: 22px;
+      padding: 0 18px;
+    }
+    .connect-bar a:hover {
+      background: rgba(255,255,255,0.16);
+      color: #fff;
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,0.4);
+    }
+    .connect-bar svg {
+      width: 18px; height: 18px;
+      fill: currentColor;
+      display: block;
+    }
+    /* 라이트 배경 페이지(blog)용 */
+    .connect-bar.light a {
+      background: rgba(0,0,0,0.04);
+      border-color: rgba(0,0,0,0.18);
+      color: rgba(0,0,0,0.65);
+    }
+    .connect-bar.light a:hover {
+      background: rgba(0,0,0,0.1);
+      color: #111;
+      border-color: rgba(0,0,0,0.35);
+    }
+    /* 컬러 배경(빨강)용 — 흰색 톤 더 강하게 */
+    .connect-bar.on-red a {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.35);
+      color: #fff;
+    }
+    .connect-bar.on-red a:hover {
+      background: rgba(255,255,255,0.22);
+      border-color: rgba(255,255,255,0.6);
+    }
+    @media (max-width: 480px) {
+      .connect-bar { gap: 8px; padding: 6px 16px 20px; }
+      .connect-bar a { width: 38px; height: 38px; font-size: 12px; }
+      .connect-bar a.text { width: auto; padding: 0 14px; }
+      .connect-bar svg { width: 16px; height: 16px; }
+    }
   </style>
 </head>
 <body>
@@ -1007,7 +1120,7 @@
       <a class="nav-link" id="nav-blog"    onclick="navigate('blog')">Blog</a>
       <a class="nav-link" id="nav-assets"  onclick="navigate('assets')">Archive</a>
       <a class="nav-link" id="nav-contact" onclick="navigate('contact')">Contact</a>
-      <a class="nav-link" id="nav-info"    onclick="navigate('info')">Info</a>
+      <a class="nav-link" id="nav-info"    onclick="navigate('info')">About</a>
     </nav>
     <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" onclick="toggleMobileMenu()">
       <span></span>
@@ -1022,7 +1135,7 @@
     <a class="nav-link" onclick="navigate('blog'); closeMobileMenu();">Blog</a>
     <a class="nav-link" onclick="navigate('assets'); closeMobileMenu();">Archive</a>
     <a class="nav-link" onclick="navigate('contact'); closeMobileMenu();">Contact</a>
-    <a class="nav-link" onclick="navigate('info'); closeMobileMenu();">Info</a>
+    <a class="nav-link" onclick="navigate('info'); closeMobileMenu();">About</a>
   </div>
 
   <!-- ══════════ HOME ══════════ -->
@@ -1033,13 +1146,13 @@
     <section>
       <div class="home-grid" id="home-grid"></div>
     </section>
+    <div class="connect-bar"></div>
     <footer class="site-footer dark">© 2019-2026 Koreli Deniz. All rights reserved.</footer>
   </div>
 
   <!-- ══════════ WORKS ══════════ -->
   <div id="page-works" class="page">
     <div class="works-filters reveal">
-      <span class="filter-label">Filter:</span>
       <button class="filter-btn active" data-filter="ALL">All</button>
       <button class="filter-btn" data-filter="BRANDING">Branding</button>
       <button class="filter-btn" data-filter="CHARACTER">Character</button>
@@ -1049,6 +1162,7 @@
       <button class="filter-btn" data-filter="MOTION">Motion</button>
     </div>
     <div class="works-grid" id="works-grid"></div>
+    <div class="connect-bar"></div>
     <footer class="site-footer dark">© 2019-2026 Koreli Deniz. All rights reserved.</footer>
   </div>
 
@@ -1075,27 +1189,21 @@
             <p>Seul ve İstanbul merkezli BX tasarımcısı Koreli Deniz. Karakter markalama ve marka görsel sistemleri uzmanıyım; online ve offline mecralarda yaratıcı tasarım çözümleri sunuyorum.</p>
           </div>
 
-          <!-- SNS 아이콘 -->
-          <div class="info-social reveal delay-4">
-            <a href="https://www.instagram.com/korelideniz.kr/" target="_blank" rel="noopener" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.22.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.37 1.05.42 2.22.06 1.26.07 1.64.07 4.85s0 3.6-.07 4.85c-.05 1.17-.25 1.8-.42 2.22-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.05.37-2.22.42-1.26.06-1.64.07-4.85.07s-3.6 0-4.85-.07c-1.17-.05-1.8-.25-2.22-.42-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.17-.42-.37-1.05-.42-2.22C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.85c.05-1.17.25-1.8.42-2.22.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.05-.37 2.22-.42C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.15 0-3.5 0-4.74.07-1.07.05-1.65.23-2.04.38-.51.2-.88.44-1.26.82-.38.38-.62.75-.82 1.26-.15.39-.33.97-.38 2.04C2.7 8.5 2.7 8.85 2.7 12s0 3.5.07 4.74c.05 1.07.23 1.65.38 2.04.2.51.44.88.82 1.26.38.38.75.62 1.26.82.39.15.97.33 2.04.38 1.24.06 1.59.07 4.74.07s3.5 0 4.74-.07c1.07-.05 1.65-.23 2.04-.38.51-.2.88-.44 1.26-.82.38-.38.62-.75.82-1.26.15-.39.33-.97.38-2.04.06-1.24.07-1.59.07-4.74s0-3.5-.07-4.74c-.05-1.07-.23-1.65-.38-2.04-.2-.51-.44-.88-.82-1.26-.38-.38-.75-.62-1.26-.82-.39-.15-.97-.33-2.04-.38C15.5 4 15.15 4 12 4zm0 3.06A4.94 4.94 0 1 1 7.06 12 4.94 4.94 0 0 1 12 7.06zm0 8.14A3.2 3.2 0 1 0 8.8 12 3.2 3.2 0 0 0 12 15.2zm5.07-8.34a1.15 1.15 0 1 1-1.15-1.15 1.15 1.15 0 0 1 1.15 1.15z"/>
-              </svg>
-            </a>
-            <a href="https://www.youtube.com/@korelideniz" target="_blank" rel="noopener" aria-label="YouTube">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/>
-              </svg>
-            </a>
-            <a href="mailto:koreli_deniz@naver.com" aria-label="Email">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.24l-8 5-8-5V6l8 5 8-5v2.24z"/>
-              </svg>
-            </a>
+          <!-- Connect -->
+          <div class="info-connect reveal delay-4">
+            <p class="lang-label">Connect</p>
+            <ul class="info-links">
+              <li><a href="https://primal.net/p/npub1z0ft6gudp98gjxt3e3yvruckuprhg48nj2jvshy00gv4sa5vv60qg3j3wr" target="_blank" rel="noopener">Nostr</a></li>
+              <li><a href="https://x.com/koreli_deniz" target="_blank" rel="noopener">X</a></li>
+              <li><a href="https://www.youtube.com/@korelideniz" target="_blank" rel="noopener">YouTube</a></li>
+              <li><a href="https://notefolio.net/korelideniz" target="_blank" rel="noopener">Notefolio</a></li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
+    <div class="connect-bar on-red"></div>
+    <footer class="site-footer red">© 2019-2026 Koreli Deniz. All rights reserved.</footer>
   </div>
 
   <!-- ══════════ BLOG ══════════ -->
@@ -1105,7 +1213,6 @@
       <h2 class="blog-title reveal delay-1">Notes & Thoughts</h2>
 
       <div class="blog-filters reveal delay-2">
-        <span class="blog-filter-label">Filter:</span>
         <button class="blog-filter-btn active" data-blog-filter="ALL">All</button>
         <button class="blog-filter-btn" data-blog-filter="Design">Design</button>
         <button class="blog-filter-btn" data-blog-filter="Bitcoin">Bitcoin</button>
@@ -1114,7 +1221,11 @@
       </div>
 
       <div class="blog-list" id="blog-list"></div>
+
+      <!-- 페이지네이션 -->
+      <nav class="blog-pagination" id="blog-pagination" aria-label="Blog pagination"></nav>
     </div>
+    <div class="connect-bar light"></div>
     <footer class="site-footer" style="background:#eeeeee;color:#888;border-top:1px solid #b5b5b5;">© 2019-2026 Koreli Deniz. All rights reserved.</footer>
   </div>
 
@@ -1126,6 +1237,7 @@
       <p class="assets-desc reveal delay-2">PDF, 디지털 자료, 그래픽 리소스 등 무료로 사용할 수 있는 자료를 공유합니다. 자유롭게 다운받아 사용해 주세요.</p>
       <div class="assets-grid" id="assets-grid"></div>
     </div>
+    <div class="connect-bar"></div>
     <footer class="site-footer" style="background:#111111;color:#555;border-top:1px solid #2a2a2a;">© 2019-2026 Koreli Deniz. All rights reserved.</footer>
   </div>
 
@@ -1207,6 +1319,7 @@
         </button>
       </div>
     </div>
+    <div class="connect-bar on-red"></div>
     <footer class="site-footer red">© 2019-2026 Koreli Deniz. All rights reserved.</footer>
   </div>
 
@@ -1528,6 +1641,48 @@
         tags: ['Life'],
         body: '하루의 첫 30분, 노트와 커피와 한 페이지의 글. 작은 습관이 쌓여 만드는 평온.',
       },
+      {
+        id: 'blog-07',
+        title: '타이포그래피의 호흡 — 한글과 영문 사이',
+        date: '2024.07.22',
+        tags: ['Design'],
+        body: '한글과 영문이 한 페이지에 함께 놓일 때 조판은 미묘해집니다. 자간, 행간, 글자 크기의 비율을 조정하며 두 문자가 같은 호흡으로 읽히게 만드는 작은 디테일들.',
+      },
+      {
+        id: 'blog-08',
+        title: '사트시 단위로 시간을 측정한다는 것',
+        date: '2024.06.05',
+        tags: ['Bitcoin', 'Thoughts'],
+        body: '블록의 박자에 맞춰 흐르는 시간. 10분이라는 평균 간격이 만드는 새로운 리듬, 그리고 그 안에서 일과 휴식을 다시 배열하는 일.',
+      },
+      {
+        id: 'blog-09',
+        title: '클라이언트와의 첫 미팅, 가장 중요한 한 시간',
+        date: '2024.04.18',
+        tags: ['Life', 'Thoughts'],
+        body: '브리프보다 먼저 듣는 것은 그들이 원하는 단어가 아니라 표정입니다. 첫 미팅에서 무엇을 묻고 무엇을 메모해야 하는지에 대한 작은 노트.',
+      },
+      {
+        id: 'blog-10',
+        title: '모션그래픽의 첫 12프레임',
+        date: '2024.02.11',
+        tags: ['Design'],
+        body: '시작 12프레임이 전체 영상의 인상을 결정합니다. 정지에서 움직임으로 넘어가는 그 짧은 구간을 어떻게 설계해야 하는지 — easing의 선택과 잔상의 처리에 대한 이야기.',
+      },
+      {
+        id: 'blog-11',
+        title: '스스로에게 묻는 다섯 가지 질문',
+        date: '2023.12.30',
+        tags: ['Thoughts'],
+        body: '한 해를 마무리하며 디자이너로서, 한 사람으로서 스스로에게 던지는 다섯 개의 질문. 답은 매년 조금씩 달라집니다.',
+      },
+      {
+        id: 'blog-12',
+        title: '이스탄불의 빛, 서울의 밤',
+        date: '2023.10.14',
+        tags: ['Life'],
+        body: '보스포루스 해협에 떨어지는 늦은 오후의 햇빛, 그리고 한강을 따라 길게 늘어선 서울의 밤. 같은 사람이 두 빛 아래서 다른 작업을 하게 되는 순간들.',
+      },
     ];
 
     /* ═══════════════════════════════════════════════
@@ -1540,7 +1695,6 @@
         meta: 'JPE · Free',
         thumb: 'https://github.com/korelideniz/portfolio/blob/main/archive/satoshi/satoshi-wallpaper_1.png?raw=true',
         // ZIP 파일은 GitHub raw URL을 쓰면 다운로드가 가장 안정적이에요
-        // 파일명 대소문자 주의: 폴더는 storyboard, 파일은 Storyboard_PDF.zip
         downloadUrl: 'https://github.com/korelideniz/portfolio/raw/main/archive/satoshi/satoshi-wallpaper.zip',
         detailImages: [
           'https://github.com/korelideniz/portfolio/blob/main/archive/satoshi/satoshi-wallpaper_1.png?raw=true',
@@ -1719,11 +1873,26 @@
     }
 
     /* ── Render Blog ── */
-    function renderBlog(filter) {
+    /* 페이지네이션 설정 — 한 페이지당 보일 글 수 */
+    const POSTS_PER_PAGE = 10;
+    let currentBlogPage = 1;
+
+    function renderBlog(filter, page) {
+      // 필터가 바뀌었거나 page 미지정 시 1페이지로
+      if (page === undefined) page = 1;
+      currentBlogPage = page;
+
       const list = document.getElementById('blog-list');
       list.innerHTML = '';
       const filtered = (filter === 'ALL') ? blogPosts : blogPosts.filter(p => p.tags.includes(filter));
-      filtered.forEach((post, i) => {
+
+      const totalPages = Math.max(1, Math.ceil(filtered.length / POSTS_PER_PAGE));
+      if (currentBlogPage > totalPages) currentBlogPage = totalPages;
+
+      const start = (currentBlogPage - 1) * POSTS_PER_PAGE;
+      const pagePosts = filtered.slice(start, start + POSTS_PER_PAGE);
+
+      pagePosts.forEach((post, i) => {
         const row = document.createElement('div');
         row.className = 'blog-row';
         row.dataset.idx = i;
@@ -1748,6 +1917,62 @@
         list.appendChild(row);
         revealObserver.observe(row);
       });
+
+      renderBlogPagination(totalPages, currentBlogPage);
+    }
+
+    function renderBlogPagination(totalPages, page) {
+      const nav = document.getElementById('blog-pagination');
+      if (!nav) return;
+      nav.innerHTML = '';
+      // 글이 한 페이지 이하면 페이지네이션 숨김
+      if (totalPages <= 1) {
+        nav.style.display = 'none';
+        return;
+      }
+      nav.style.display = 'flex';
+
+      const mkBtn = (label, targetPage, opts = {}) => {
+        const btn = document.createElement('button');
+        btn.className = 'blog-page-btn' + (opts.arrow ? ' blog-page-arrow' : '') + (opts.active ? ' active' : '');
+        btn.textContent = label;
+        if (opts.disabled) btn.setAttribute('disabled', 'true');
+        else btn.addEventListener('click', () => {
+          renderBlog(currentBlogFilter, targetPage);
+          // 페이지 상단으로 부드럽게 스크롤
+          const blogTop = document.querySelector('.blog-inner');
+          if (blogTop) blogTop.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        return btn;
+      };
+
+      // ← 이전
+      nav.appendChild(mkBtn('‹', page - 1, { arrow: true, disabled: page === 1 }));
+
+      // 숫자 — 페이지 수가 많아지면 ... 으로 축약 (현재 페이지 전후 1개)
+      const pages = [];
+      const range = 1;
+      for (let i = 1; i <= totalPages; i++) {
+        if (i === 1 || i === totalPages || (i >= page - range && i <= page + range)) {
+          pages.push(i);
+        } else if (pages[pages.length - 1] !== '…') {
+          pages.push('…');
+        }
+      }
+      pages.forEach(p => {
+        if (p === '…') {
+          const span = document.createElement('span');
+          span.className = 'blog-page-btn';
+          span.textContent = '…';
+          span.style.cursor = 'default';
+          nav.appendChild(span);
+        } else {
+          nav.appendChild(mkBtn(String(p), p, { active: p === page }));
+        }
+      });
+
+      // → 다음
+      nav.appendChild(mkBtn('›', page + 1, { arrow: true, disabled: page === totalPages }));
     }
 
     function toggleBlogRow(headEl) {
@@ -2020,9 +2245,49 @@
       document.body.removeChild(ta);
     }
 
+    /* ── Connect Bar — 모든 페이지 하단 아이콘/텍스트 채우기 ── */
+    const connectLinks = [
+      {
+        type: 'text',
+        text: 'Nostr',
+        label: 'Nostr',
+        href: 'https://primal.net/p/npub1z0ft6gudp98gjxt3e3yvruckuprhg48nj2jvshy00gv4sa5vv60qg3j3wr'
+      },
+      {
+        type: 'icon',
+        label: 'X',
+        href: 'https://x.com/koreli_deniz',
+        svg: '<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/>'
+      },
+      {
+        type: 'icon',
+        label: 'YouTube',
+        href: 'https://www.youtube.com/@korelideniz',
+        svg: '<path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/>'
+      },
+      {
+        type: 'text',
+        text: 'Notefolio',
+        label: 'Notefolio',
+        href: 'https://notefolio.net/korelideniz'
+      }
+    ];
+
+    function populateConnectBars() {
+      const bars = document.querySelectorAll('.connect-bar');
+      const html = connectLinks.map(l => {
+        if (l.type === 'text') {
+          return `<a class="text" href="${l.href}" target="_blank" rel="noopener" aria-label="${l.label}">${l.text}</a>`;
+        }
+        return `<a href="${l.href}" target="_blank" rel="noopener" aria-label="${l.label}"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">${l.svg}</svg></a>`;
+      }).join('');
+      bars.forEach(bar => { bar.innerHTML = html; });
+    }
+
     /* ── Init ── */
     renderHomeGrid();
     updateHeader('home');
+    populateConnectBars();
     observeReveals(document.getElementById('page-home'));
   </script>
 </body>
