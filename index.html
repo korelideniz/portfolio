@@ -14,6 +14,8 @@
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
   <!-- Pretendard — 한글 서체 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <!-- Markdown 파서 -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <style>
     /* ── Reset ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -1681,9 +1683,10 @@
         title: '이스탄불의 빛, 서울의 밤',
         date: '2023.10.14',
         tags: ['Life'],
-        body: `보스포루스 해협에 떨어지는 늦은 오후의 햇빛, 그리고 한강을 따라 길게 늘어선 서울의 밤.
-
-같은 사람이 두 빛 아래서 다른 작업을 하게 되는 순간들.`,
+        body: `#보스포루스 해협에 떨어지는 늦은 오후의 햇빛, <br>그리고 한강을 따라 길게 늘어선 서울의 밤. 같은 사람이 두 빛 아래서 다른 작업을 하게 되는 순간들.
+        
+        >나는 행복한 사람이야. ***왜 그렇게 생각해?***
+        왜냐면 나는 행복하니까.`,
       },
     ];
 
@@ -1912,7 +1915,7 @@
           <div class="blog-row-body">
             <div class="blog-row-body-inner">
               <div class="blog-row-date">${post.date}</div>
-              ${post.body}
+              ${marked.parse(post.body)}
             </div>
           </div>
         `;
