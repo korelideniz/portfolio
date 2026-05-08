@@ -1,4 +1,5 @@
 [
+  { "id": "blog-13", "title": "오늘의 디자인 생각", "date": "2026.5.8", "tags": ["Design"], "file": "blog-13.md" },
   { "id": "blog-12", "title": "저번주 대선과 차별금지법에 관하여", "date": "2022.3.14", "tags": ["Thoughts"], "file": "blog-12.md" },
   { "id": "blog-11", "title": "터키에 관하여", "date": "2022.2.13", "tags": ["Thoughts"], "file": "blog-11.md" },
   { "id": "blog-10", "title": "한국입국 후 또 다시 병신패스, 아니 방역패스와 마주하다.", "date": "2022.2.11", "tags": ["Life", "Thoughts"], "file": "blog-10.md" },
