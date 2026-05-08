@@ -1,5 +1,10 @@
 # Deniz portfolio
 
+Hi, I am Deniz, a BX designer based in Seoul and Istanbul.
+My work focuses on character branding and brand visual systems,
+seamlessly navigating across various online and offline media.
 
+---
 
-[Website](https://www.korelideniz.com)
+> [mail](deniz@korelideniz.com)
+> [Website](https://www.korelideniz.com)
