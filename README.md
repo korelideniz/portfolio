@@ -6,5 +6,4 @@ seamlessly navigating across various online and offline media.
 
 ---
 
-> [mail](deniz@korelideniz.com)
 > [Website](https://www.korelideniz.com)
