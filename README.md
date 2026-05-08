@@ -1,3 +1,3 @@
 # Deniz portfolio
 
-[Website](korelideniz.com)
+[Website](https://www.korelideniz.com)
