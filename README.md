@@ -6,4 +6,4 @@ seamlessly navigating across various online and offline media.
 
 ---
 
-> [Website](https://www.korelideniz.com)
+> [Portfolio](https://www.korelideniz.com)
