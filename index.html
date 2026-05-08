@@ -27,14 +27,13 @@
       - 한글: Pretendard (fallback)
     */
     body {
-      font-family: 'Helvetica Neue', 'Pretendard', -apple-system, Helvetica, Arial, sans-serif;a
+      font-family: 'Helvetica Neue', 'Pretendard', -apple-system, Helvetica, Arial, sans-serif;
       background: #fff;
       color: #111;
     }
     a { color: inherit; text-decoration: none; cursor: pointer; }
     img { display: block; max-width: 100%; }
     button { background: none; border: none; cursor: pointer; font-family: inherit; }
-
     /* ══════════════════════════════
        HEADER — 항상 투명
     ══════════════════════════════ */
@@ -57,7 +56,6 @@
     .logo-link { display: flex; align-items: center; }
     /* 로고 크기 키우기 — 색 반전 없음 */
     .logo-img { height: 76px; width: auto; object-fit: contain; }
-
     nav#main-nav { display: flex; gap: 36px; align-items: center; }
     .nav-link {
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -71,7 +69,6 @@
     .nav-link:hover { opacity: 0.5; }
     .nav-link.dark-text { color: #111; }
     .nav-link.active { border-bottom: 1px solid currentColor; padding-bottom: 2px; }
-
     /* 햄버거 버튼 (모바일 전용) */
     .hamburger {
       display: none;
@@ -100,7 +97,6 @@
     .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
     /* 모바일 메뉴 — 헤더 아래에서 드롭다운 (페이지 위에 떠있는 형태) */
     .mobile-menu {
       position: fixed;
@@ -153,7 +149,6 @@
     .mobile-menu.open .nav-link:nth-child(4) { transition-delay: 0.21s; }
     .mobile-menu.open .nav-link:nth-child(5) { transition-delay: 0.26s; }
     body.menu-open { overflow: hidden; }
-
     @media (max-width: 768px) {
       #header { padding: 0 18px; }
       .logo-img { height: 60px; }
@@ -163,11 +158,9 @@
     @media (min-width: 769px) {
       .mobile-menu { display: none; }
     }
-
     /* ── Pages ── */
     .page { display: none; min-height: 100vh; }
     .page.active { display: block; }
-
     /* ── 공통 스크롤 리빌 모션 ── */
     .reveal {
       opacity: 0;
@@ -204,7 +197,6 @@
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
     .reveal-zoom.in-view { opacity: 1; transform: scale(1); }
-
     /* ══════════════════════════════
        HOME — 메인 배너는 풀스크린(100vh)
     ══════════════════════════════ */
@@ -224,7 +216,6 @@
         min-height: 0;
       }
     }
-
     .home-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -259,19 +250,16 @@
     .home-grid-item:hover .item-overlay { opacity: 1; }
     .item-overlay h3 { font-size: 13px; font-weight: 600; color: #fff; }
     .item-overlay p  { font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 3px; letter-spacing: 0.05em; text-transform: uppercase; }
-
     @media (max-width: 900px) { .home-grid { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 480px) {
       .home-grid { grid-template-columns: repeat(3, 1fr); gap: 3px; padding: 3px; }
       .item-overlay h3 { font-size: 10px; }
       .item-overlay { padding: 8px; }
     }
-
     /* ══════════════════════════════
        WORKS — 필터 디자인 (Cargo 스타일)
     ══════════════════════════════ */
     #page-works { background: #000; color: #fff; padding-top: 116px; }
-
     .works-filters {
       display: flex; flex-wrap: wrap; align-items: center;
       gap: 4px;
@@ -299,7 +287,6 @@
       color: #fff;
       background: #2a2a2a;
     }
-
     .works-grid {
       display: grid; grid-template-columns: repeat(4, 1fr);
       gap: 4px; padding: 4px;
@@ -330,7 +317,6 @@
     .works-item:hover .w-overlay { opacity: 1; }
     .w-overlay h3 { font-size: 12px; font-weight: 600; color: #fff; }
     .w-overlay p  { font-size: 10px; color: rgba(255,255,255,0.55); margin-top: 2px; letter-spacing: 0.07em; text-transform: uppercase; }
-
     @media (max-width: 900px) { .works-grid { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 768px) {
       #page-works { padding-top: 92px; }
@@ -342,7 +328,6 @@
       .filter-btn { font-size: 12px; padding: 4px 9px; white-space: nowrap; }
       .works-grid { grid-template-columns: repeat(3, 1fr); gap: 3px; padding: 3px; }
     }
-
     /* ══════════════════════════════
        INFO
     ══════════════════════════════ */
@@ -392,14 +377,12 @@
       opacity: 0.7;
       border-color: rgba(255,255,255,0.7);
     }
-
     @media (max-width: 768px) {
       #page-info { padding-top: 92px; }
       .info-inner { grid-template-columns: 1fr; gap: 32px; padding: 40px 20px 60px; }
       .info-bio p { font-size: 15px; }
       .info-social { justify-content: flex-start; }
     }
-
     /* ══════════════════════════════
        BLOG — 아코디언 스타일
     ══════════════════════════════ */
@@ -425,7 +408,6 @@
   font-size: 14px;
   color: #111;
 }
-
 .blog-row-body-inner pre {
   background: #e8e8e8;
   padding: 16px;
@@ -433,12 +415,10 @@
   overflow-x: auto;
   margin: 12px 0;
 }
-
 .blog-row-body-inner pre code {
   background: none;
   padding: 0;
 }
-
 .blog-row-body-inner blockquote {
   border-left: 3px solid #bbb;
   margin: 12px 0;
@@ -451,11 +431,10 @@
   padding: 4px 16px;
   color: #666;
 }
-
 .blog-row-body-inner p {
   margin-bottom: 1.2em !important;
 }
-    
+
     /* 블로그 페이지네이션 */
     .blog-pagination {
       display: flex;
@@ -500,7 +479,6 @@
       font-size: 36px; font-weight: 700; letter-spacing: 0.01em;
       margin-bottom: 32px;
     }
-
     /* Blog 태그 필터 */
     .blog-filters {
       display: flex; flex-wrap: wrap;
@@ -528,7 +506,6 @@
       color: #fff;
       background: #111;
     }
-
     /* 아코디언 행 */
     .blog-list { display: flex; flex-direction: column; }
     .blog-row {
@@ -538,7 +515,6 @@
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
     .blog-row.in-view { opacity: 1; transform: translateY(0); }
-
     .blog-row-head {
       display: flex; align-items: center; justify-content: space-between;
       gap: 16px;
@@ -575,7 +551,6 @@
     }
     .blog-row-arrow svg { width: 18px; height: 18px; fill: #111; }
     .blog-row.open .blog-row-arrow { transform: rotate(180deg); }
-
     .blog-row-body {
       max-height: 0;
       overflow: hidden;
@@ -601,7 +576,6 @@
       text-transform: uppercase;
       margin-bottom: 10px;
     }
-
     @media (max-width: 768px) {
       #page-blog { padding-top: 92px; }
       .blog-inner { padding: 30px 20px 60px; }
@@ -615,7 +589,6 @@
         padding: 0 4px 12px;
       }
     }
-
     /* ══════════════════════════════
        ASSETS — 무료 PDF / 디지털 상품
     ══════════════════════════════ */
@@ -685,7 +658,6 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
-
     /* Assets 상세 모달 */
     .assets-modal-backdrop {
       position: fixed; inset: 0;
@@ -718,7 +690,6 @@
       z-index: 2;
     }
     .assets-modal-close:hover { background: rgba(0,0,0,0.06); }
-
     .assets-modal-thumb {
       width: 100%;
       aspect-ratio: 1 / 1;
@@ -760,7 +731,6 @@
       margin-bottom: 36px;
     }
     .download-btn:hover { background: #000; transform: translateY(-1px); }
-
     .assets-modal-detail-images {
       display: flex; flex-direction: column; gap: 8px;
     }
@@ -773,7 +743,6 @@
       color: #444;
       margin-top: 24px;
     }
-
     @media (max-width: 900px) { .assets-grid { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 768px) {
       #page-assets { padding-top: 92px; }
@@ -786,17 +755,14 @@
       /* 모바일에서만 에셋 모달이 열렸을 때 플로팅 뒤로가기 버튼 표시 */
       .assets-modal-backdrop.active .assets-modal-back-fab { display: flex; }
     }
-
     /* ══════════════════════════════
        CONTACT
     ══════════════════════════════ */
     #page-contact { background: #D93939; color: #fff; padding-top: 116px; min-height: 100vh; }
-
     .contact-inner {
       max-width: 680px; margin: 0 auto;
       padding: 60px 32px 80px;
     }
-
     /* 상단 텍스트 */
     .contact-heading {
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -823,7 +789,6 @@
       transition: opacity 0.2s;
     }
     .contact-email:hover { opacity: 0.6; }
-
     /* 폼 */
     .contact-form { display: flex; flex-direction: column; gap: 0; }
     .form-group { display: flex; flex-direction: column; margin-bottom: 24px; }
@@ -850,7 +815,6 @@
       background: rgba(255,255,255,0.18);
     }
     .form-textarea { resize: vertical; min-height: 150px; }
-
     .form-submit {
       margin-top: 12px;
       padding: 18px 0;
@@ -867,10 +831,8 @@
       transition: opacity 0.2s;
     }
     .form-submit:hover { opacity: 0.85; }
-
     /* 하단 이미지 */
     .contact-bottom-img { margin-top: 80px; width: 100%; }
-
     /* Lightning 후원 섹션 */
     .support-section {
       margin-top: 40px;
@@ -908,7 +870,6 @@
       flex-shrink: 0;
       fill: #FFD400;
     }
-
     /* Copy 알림 토스트 */
     .toast {
       position: fixed;
@@ -941,7 +902,6 @@
       fill: #4ade80;
       flex-shrink: 0;
     }
-
     @media (max-width: 768px) {
       .support-section { margin-top: 32px; }
       .support-label { font-size: 14px; }
@@ -949,7 +909,6 @@
       .support-bolt { width: 16px; height: 16px; }
       .toast { font-size: 13px; padding: 10px 18px; bottom: 28px; }
     }
-
     @media (max-width: 768px) {
       #page-contact { padding-top: 92px; }
       .contact-inner { padding: 40px 20px 60px; }
@@ -959,7 +918,6 @@
       .form-label    { font-size: 11px; }
       .form-input, .form-textarea { font-size: 16px; } /* iOS zoom 방지 */
     }
-
     /* ══════════════════════════════
        PROJECT MODAL — 오버레이로 표시
     ══════════════════════════════ */
@@ -974,7 +932,6 @@
     }
     .project-modal-backdrop.active { display: block; }
     body.modal-open { overflow: hidden; }
-
     .project-modal {
       max-width: 880px;
       margin: 0 auto;
@@ -997,7 +954,6 @@
       z-index: 2;
     }
     .project-modal-close:hover { background: rgba(255,255,255,0.1); }
-
     /* 모바일 전용 — 모달 우측 하단 플로팅 뒤로가기 버튼 (프로젝트/에셋 공용) */
     .project-modal-back-fab,
     .assets-modal-back-fab {
@@ -1023,7 +979,6 @@
     .assets-modal-back-fab:active { transform: scale(0.94); }
     .project-modal-back-fab svg,
     .assets-modal-back-fab svg { width: 22px; height: 22px; display: block; }
-
     .project-modal .project-title {
       font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif;
       font-size: 20px; font-weight: 600; letter-spacing: 0.01em;
@@ -1060,7 +1015,6 @@
       margin-top: 24px; font-size: 14px; line-height: 1.8;
       color: rgba(255,255,255,0.78);
     }
-
     @media (max-width: 768px) {
       .project-modal-backdrop { padding: 30px 12px; }
       .project-modal { padding: 22px 18px 32px; border-radius: 6px; }
@@ -1068,7 +1022,6 @@
       /* 모바일에서만 모달이 열렸을 때 플로팅 뒤로가기 버튼 표시 */
       .project-modal-backdrop.active .project-modal-back-fab { display: flex; }
     }
-
     /* ── Footer ── */
     .site-footer {
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -1077,7 +1030,6 @@
     }
     .site-footer.dark { background: #000; color: #333; }
     .site-footer.red  { background: #D93939; color: rgba(255,255,255,0.4); }
-
     /* ── Connect Bar (모든 페이지 하단) ── */
     .connect-bar {
       display: flex;
@@ -1149,7 +1101,6 @@
   </style>
 </head>
 <body>
-
   <!-- ══════════ HEADER ══════════ -->
   <header id="header">
     <a class="logo-link" onclick="navigate('home')">
@@ -1170,7 +1121,6 @@
       <span></span>
     </button>
   </header>
-
   <!-- 모바일 메뉴 오버레이 -->
   <div class="mobile-menu" id="mobile-menu">
     <a class="nav-link" onclick="navigate('works'); closeMobileMenu();">Works</a>
@@ -1179,7 +1129,6 @@
     <a class="nav-link" onclick="navigate('contact'); closeMobileMenu();">Contact</a>
     <a class="nav-link" onclick="navigate('info'); closeMobileMenu();">About</a>
   </div>
-
   <!-- ══════════ HOME ══════════ -->
   <div id="page-home" class="page active">
     <section class="hero">
@@ -1191,7 +1140,6 @@
     <div class="connect-bar"></div>
     <footer class="site-footer dark">© 2026 Koreli Deniz. All rights reserved.</footer>
   </div>
-
   <!-- ══════════ WORKS ══════════ -->
   <div id="page-works" class="page">
     <div class="works-filters reveal">
@@ -1207,7 +1155,6 @@
     <div class="connect-bar"></div>
     <footer class="site-footer dark">© 2026 Koreli Deniz. All rights reserved.</footer>
   </div>
-
   <!-- ══════════ INFO ══════════ -->
   <div id="page-info" class="page">
     <div class="info-inner">
@@ -1230,7 +1177,6 @@
             <div class="lang-label">TR</div>
             <p>Seul ve İstanbul merkezli BX tasarımcısı Koreli Deniz. Karakter markalama ve marka görsel sistemleri uzmanıyım; online ve offline mecralarda yaratıcı tasarım çözümleri sunuyorum.</p>
           </div>
-
           <!-- Connect -->
           <div class="info-connect reveal delay-4">
             <p class="lang-label">Connect</p>
@@ -1247,31 +1193,27 @@
     <div class="connect-bar on-red"></div>
     <footer class="site-footer red">© 2026 Koreli Deniz. All rights reserved.</footer>
   </div>
-
   <!-- ══════════ BLOG ══════════ -->
   <div id="page-blog" class="page">
     <div class="blog-inner">
       <p class="blog-heading reveal">Notes & Thoughts</p>
       <h2 class="blog-title reveal delay-1">BLOG</h2>
-
       <div class="blog-filters reveal delay-2">
         <button class="blog-filter-btn active" data-blog-filter="ALL">All</button>
         <button class="blog-filter-btn" data-blog-filter="Design">Design</button>
+        <button class="blog-filter-btn" data-blog-filter="Webtoon">Webtoon</button>
         <button class="blog-filter-btn" data-blog-filter="Life">Life</button>
         <button class="blog-filter-btn" data-blog-filter="Thoughts">Thoughts</button>
         <button class="blog-filter-btn" data-blog-filter="Book">Book</button>
         <button class="blog-filter-btn" data-blog-filter="Bitcoin">Bitcoin</button>
       </div>
-
       <div class="blog-list" id="blog-list"></div>
-
       <!-- 페이지네이션 -->
       <nav class="blog-pagination" id="blog-pagination" aria-label="Blog pagination"></nav>
     </div>
     <div class="connect-bar light"></div>
     <footer class="site-footer" style="background:#eeeeee;color:#888;border-top:1px solid #b5b5b5;">© 2026 Koreli Deniz. All rights reserved.</footer>
   </div>
-
   <!-- ══════════ ASSETS ══════════ -->
   <div id="page-assets" class="page">
     <div class="assets-inner">
@@ -1283,7 +1225,6 @@
     <div class="connect-bar"></div>
     <footer class="site-footer" style="background:#111111;color:#555;border-top:1px solid #2a2a2a;">© 2026 Koreli Deniz. All rights reserved.</footer>
   </div>
-
   <!-- Assets 모달 -->
   <div id="assets-modal-backdrop" class="assets-modal-backdrop" onclick="closeAsset(event)">
     <div class="assets-modal" onclick="event.stopPropagation()">
@@ -1303,17 +1244,14 @@
       </svg>
     </button>
   </div>
-
   <!-- ══════════ CONTACT ══════════ -->
   <div id="page-contact" class="page">
     <div class="contact-inner">
-
       <p class="contact-heading reveal">Contact</p>
       <h2 class="contact-title reveal delay-1">Project Inquiries</h2>
       <p class="contact-desc reveal delay-2">프로젝트 의뢰는 이메일로 받고 있습니다. 아래의 메일 주소로 프로젝트 내용, 일정 등 정보를 알려주시기 바랍니다. 검토 후 회신 드리겠습니다.</p>
       <p class="contact-desc reveal delay-3" style="margin-bottom:20px;">We accept project requests via email. Please send the project details and timeline to the email address below. We will review them and get back to you.</p>
       <a class="contact-email reveal delay-4" href="mailto:deniz@korelideniz.com">deniz@korelideniz.com</a>
-
       <!-- 문의 폼 -->
       <!--
         [배포 후 설정] Formspree를 사용하면 실제 이메일로 전송됩니다:
@@ -1345,12 +1283,10 @@
         </div>
         <button class="form-submit" type="submit">Submit</button>
       </form>
-
       <!-- 하단 이미지 -->
       <img class="contact-bottom-img reveal-zoom"
         src="https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/images/lightning-square.png"
         alt="Lightning Network" loading="lazy" />
-
       <!-- Lightning 후원 섹션 -->
       <div class="support-section reveal delay-1">
         <p class="support-label">Support my work (Value For Value)</p>
@@ -1365,7 +1301,6 @@
     <div class="connect-bar on-red"></div>
     <footer class="site-footer red">© 2026 Koreli Deniz. All rights reserved.</footer>
   </div>
-
   <!-- 토스트 알림 -->
   <div id="toast" class="toast" role="status" aria-live="polite">
     <svg class="toast-check" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -1373,7 +1308,6 @@
     </svg>
     <span id="toast-text">Copied to clipboard</span>
   </div>
-
   <!-- ══════════ PROJECT MODAL ══════════ -->
   <div id="project-modal-backdrop" class="project-modal-backdrop" onclick="closeProject(event)">
     <div class="project-modal" onclick="event.stopPropagation()">
@@ -1391,7 +1325,6 @@
       </svg>
     </button>
   </div>
-
   <script>
     /* ═══════════════════════════════════════════════
        PROJECT DATA  —  아래 배열에 프로젝트를 추가/수정하세요
@@ -1637,28 +1570,95 @@
         desc: '개인작업으로 화산귀환X파워퍼프걸 팬아트를 작업했습니다.', year: '2024',
       },
     ];
-
 /* ═══════════════════════════════════════════════
-   BLOG DATA — GitHub 마크다운 자동 로딩
+   BLOG DATA — GitHub 마크다운 자동 로딩 (이중 안전망)
+   - 1단계: 글 목록은 항상 아래 FALLBACK_BLOG_INDEX 로 즉시 표시 → 제목은 무조건 보임
+   - 2단계: GitHub posts/index.json 이 있으면 그걸로 덮어쓰기 (관리 편의용)
+   - 3단계: 각 .md 파일을 fetch — 없거나 실패하면 본문만 "(작성 중인 글입니다)"
 ═══════════════════════════════════════════════ */
 const GITHUB_RAW = 'https://raw.githubusercontent.com/korelideniz/portfolio/main/posts/';
-let blogPosts = [];
+const BLOG_PLACEHOLDER = '*(작성 중인 글입니다)*';
+
+/* 인라인 fallback — index.json 이 없거나 실패해도 제목은 무조건 보임 */
+const FALLBACK_BLOG_INDEX = [
+  { id: 'blog-40', title: '한달 안에 졸업전시 준비하기', date: '2024.12.13', tags: ['Design'], file: 'blog-40.md' },
+  { id: 'blog-39', title: '계원예술대학교 졸업전시 / 계원조형예술제.', date: '2024.11.16', tags: ['Life','Thoughts'], file: 'blog-39.md' },
+  { id: 'blog-38', title: '연세우유 메론크림빵을 추천합니다.', date: '2024.8.20', tags: ['Life','Thoughts'], file: 'blog-38.md' },
+  { id: 'blog-37', title: '디자인 학원 강의 시작', date: '2024.9.11', tags: ['Design'], file: 'blog-37.md' },
+  { id: 'blog-36', title: '연세우유 메론크림빵을 추천합니다.', date: '2024.8.20', tags: ['Life','Thoughts'], file: 'blog-36.md' },
+  { id: 'blog-35', title: '한국 도착, 앞으로의 계획', date: '2024.8.6', tags: ['Life'], file: 'blog-35.md' },
+  { id: 'blog-34', title: '디자이너에게 꼭 필요한 스트레칭 추천', date: '2024.6.6', tags: ['Life'], file: 'blog-34.md' },
+  { id: 'blog-33', title: '콘텐츠 200개의 가설', date: '2024.6.6', tags: ['Design','Thoughts'], file: 'blog-33.md' },
+  { id: 'blog-32', title: '북한 인민군에게 쫒기다 발각되는', date: '2023.12.5', tags: ['Design'], file: 'blog-32.md' },
+  { id: 'blog-31', title: '신입 디자이너 & 비전공 디자이너들에게 추천하는 디자인 무료 사이트', date: '2023.10.5', tags: ['Design'], file: 'blog-31.md' },
+  { id: 'blog-30', title: '포괄적 차별금지법을 반대하는 이유', date: '2023.7.11', tags: ['Thoughts'], file: 'blog-30.md' },
+  { id: 'blog-29', title: '개인 디자인 포트폴리오 가이드 북 만들기', date: '2023.4.14', tags: ['Design'], file: 'blog-29.md' },
+  { id: 'blog-28', title: '할로윈의 유래 / 할로윈을 즐기면 안되는 이유', date: '2022.10.31', tags: ['Thoughts'], file: 'blog-28.md' },
+  { id: 'blog-27', title: 'Not my vision But his vision.', date: '2022.8.19', tags: ['Thoughts'], file: 'blog-27.md' },
+  { id: 'blog-26', title: '북한 간첩활동 현역 대위, 북한SLBM추정 발사체 발사', date: '2022.5.7', tags: ['Thoughts'], file: 'blog-26.md' },
+  { id: 'blog-13', title: '2017년, 심해생물 비주얼에 빠져 살던 시절', date: '2022.4.19', tags: ['Design'], file: 'blog-13.md' },
+  { id: 'blog-12', title: '저번주 대선과 차별금지법에 관하여', date: '2022.3.14', tags: ['Thoughts'], file: 'blog-12.md' },
+  { id: 'blog-11', title: '터키에 관하여', date: '2022.2.13', tags: ['Thoughts'], file: 'blog-11.md' },
+  { id: 'blog-10', title: '한국입국 후 또 다시 병신패스, 아니 방역패스와 마주하다.', date: '2022.2.11', tags: ['Life','Thoughts'], file: 'blog-10.md' },
+  { id: 'blog-09', title: '백신에 관하여', date: '2022.1.9', tags: ['Thoughts'], file: 'blog-09.md' },
+  { id: 'blog-25', title: '내가 텔레그램을 사용하는 이유', date: '2021.12.12', tags: ['Webtoon'], file: 'blog-25.md' },
+  { id: 'blog-21', title: '[터키야 사랑해!] 8화 / 메리 크리스마스', date: '2021.12.26', tags: ['Webtoon'], file: 'blog-21.md' },
+  { id: 'blog-24', title: '모나미 타이포그래피 디자인 / 한글레터링 디자인', date: '2021.12.21', tags: ['Design'], file: 'blog-24.md' },
+  { id: 'blog-23', title: '사용자 경험 디자인 / 지역 상가 리브랜딩 프로젝트', date: '2021.12.19', tags: ['Design'], file: 'blog-23.md' },
+  { id: 'blog-20', title: '[터키야 사랑해!] 7화 / 터키 아저씨는 왜 탈모 있어요?', date: '2021.11.16', tags: ['Webtoon'], file: 'blog-20.md' },
+  { id: 'blog-08', title: '한국 부동산 시장에 묵묵부답인 언론', date: '2021.10.30', tags: ['Thoughts'], file: 'blog-08.md' },
+  { id: 'blog-22', title: '무엇을 하든지 주께 하듯이 하라', date: '2021.10.9', tags: ['Life','Thoughts'], file: 'blog-22.md' },
+  { id: 'blog-07', title: '천하보다 소중한 생명의 탄생', date: '2021.10.1', tags: ['Life','Thoughts'], file: 'blog-07.md' },
+  { id: 'blog-19', title: '[터키야 사랑해!] 6화 / 미니멀라이프2', date: '2021.9.22', tags: ['Webtoon'], file: 'blog-19.md' },
+  { id: 'blog-06', title: '하나님이 원하시는 것', date: '2021.9.22', tags: ['Thoughts'], file: 'blog-06.md' },
+  { id: 'blog-05', title: '선택과 집중', date: '2021.9.22', tags: ['Thoughts'], file: 'blog-05.md' },
+  { id: 'blog-18', title: '[터키야 사랑해!] 5화 / 미니멀라이프1', date: '2021.9.14', tags: ['Webtoon'], file: 'blog-18.md' },
+  { id: 'blog-17', title: '[터키야 사랑해!] 4화 / 터키어', date: '2021.9.4', tags: ['Webtoon'], file: 'blog-17.md' },
+  { id: 'blog-16', title: '[터키야 사랑해!] 3화 / 터키의 식사대접', date: '2021.08.28', tags: ['Webtoon'], file: 'blog-16.md' },
+  { id: 'blog-15', title: '[터키야 사랑해!] 2화 / 밥풀(Vapur)', date: '2021.08.26', tags: ['Webtoon'], file: 'blog-15.md' },
+  { id: 'blog-14', title: '[터키야 사랑해!] 1화 / 고추장', date: '2021.08.23', tags: ['Webtoon'], file: 'blog-14.md' },
+  { id: 'blog-04', title: 'PICK! 성경책을 고른 기준', date: '2021.8.20', tags: ['Life','Thoughts'], file: 'blog-04.md' },
+  { id: 'blog-03', title: '날로 발전하는 세상과 신앙인의 태도', date: '2021.08.19', tags: ['Thoughts'], file: 'blog-03.md' },
+  { id: 'blog-02', title: '코로나와 코로나 방역에 대해서', date: '2021.08.19', tags: ['Thoughts','Life'], file: 'blog-02.md' },
+  { id: 'blog-01', title: '카카오톡 검열에 대해서', date: '2021.08.19', tags: ['Thoughts'], file: 'blog-01.md' },
+];
+
+/* 시작부터 fallback 으로 채워서 제목은 즉시 보이도록 */
+let blogPosts = FALLBACK_BLOG_INDEX.map(m => ({ ...m, body: BLOG_PLACEHOLDER }));
+let blogIndexLoaded = false;
 
 async function loadBlogPosts() {
+  if (blogIndexLoaded) return; // 중복 호출 방지
+  // 1) index.json 이 있으면 그걸 우선, 없으면 인라인 목록 그대로
+  let index = FALLBACK_BLOG_INDEX;
   try {
-    const res = await fetch(GITHUB_RAW + 'index.json');
-    const index = await res.json();
-    const posts = await Promise.all(index.map(async (meta) => {
-      const mdRes = await fetch(GITHUB_RAW + meta.file);
-      const body = await mdRes.text();
-      return { ...meta, body };
-    }));
-    blogPosts = posts;
+    const res = await fetch(GITHUB_RAW + 'index.json', { cache: 'no-store' });
+    if (res.ok) {
+      const fetched = await res.json();
+      if (Array.isArray(fetched) && fetched.length > 0) index = fetched;
+    } else {
+      console.warn('index.json HTTP', res.status, '— 인라인 fallback 사용');
+    }
   } catch (e) {
-    blogPosts = [];
+    console.warn('index.json 로드 실패 — 인라인 fallback 사용:', e.message);
   }
-}
 
+  // 2) 각 글의 .md 파일 fetch — 실패해도 제목은 살리고 본문만 placeholder
+  const settled = await Promise.allSettled(index.map(async (meta) => {
+    try {
+      const mdRes = await fetch(GITHUB_RAW + meta.file, { cache: 'no-store' });
+      if (!mdRes.ok) return { ...meta, body: BLOG_PLACEHOLDER };
+      const text = await mdRes.text();
+      return { ...meta, body: text.trim() ? text : BLOG_PLACEHOLDER };
+    } catch (e) {
+      return { ...meta, body: BLOG_PLACEHOLDER };
+    }
+  }));
+  blogPosts = settled
+    .filter(r => r.status === 'fulfilled')
+    .map(r => r.value);
+  blogIndexLoaded = true;
+}
     /* ═══════════════════════════════════════════════
        ASSETS DATA — 무료 자료 추가/수정
     ═══════════════════════════════════════════════ */
@@ -1750,12 +1750,10 @@ async function loadBlogPosts() {
         desc: '기도노트 PDF 공유합니다. 기도일기, 중보기도 노트, 자유형식으로 구성되어 있습니다.',
       },
     ];
-
     /* ── State ── */
     let currentPage  = 'home';
     let currentFilter = 'ALL';
     let currentBlogFilter = 'ALL';
-
     /* ── Scroll Reveal Observer (그리드 아이템 + 일반 콘텐츠) ── */
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => {
@@ -1770,7 +1768,6 @@ async function loadBlogPosts() {
         }
       });
     }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-
     /* 페이지 내 모든 reveal* 요소를 관찰 (페이지 이동 시 호출) */
     function observeReveals(root) {
       const scope = root || document;
@@ -1780,7 +1777,6 @@ async function loadBlogPosts() {
         revealObserver.observe(el);
       });
     }
-
     /* 모달 내부 스크롤에 맞춘 별도 관찰자 (열릴 때마다 새로 생성) */
     let modalImgObserver = null;
     function observeModalImages(backdropEl, imgsSelector) {
@@ -1793,7 +1789,6 @@ async function loadBlogPosts() {
           }
         });
       }, { root: backdropEl, threshold: 0.05, rootMargin: '0px 0px -8% 0px' });
-
       const imgs = backdropEl.querySelectorAll(imgsSelector);
       imgs.forEach((img, i) => {
         img.classList.remove('in-view');
@@ -1805,7 +1800,6 @@ async function loadBlogPosts() {
         }
       });
     }
-
     /* ── Render Grids ── */
     function renderHomeGrid() {
       const grid = document.getElementById('home-grid');
@@ -1825,7 +1819,6 @@ async function loadBlogPosts() {
         revealObserver.observe(el);
       });
     }
-
     function renderWorksGrid(filter) {
       const grid = document.getElementById('works-grid');
       grid.innerHTML = '';
@@ -1845,28 +1838,22 @@ async function loadBlogPosts() {
         revealObserver.observe(el);
       });
     }
-
     /* ── Render Blog ── */
     marked.setOptions({ breaks: true });
     /* 페이지네이션 설정 — 한 페이지당 보일 글 수 */
     const POSTS_PER_PAGE = 10;
     let currentBlogPage = 1;
-
     function renderBlog(filter, page) {
       // 필터가 바뀌었거나 page 미지정 시 1페이지로
       if (page === undefined) page = 1;
       currentBlogPage = page;
-
       const list = document.getElementById('blog-list');
       list.innerHTML = '';
       const filtered = (filter === 'ALL') ? blogPosts : blogPosts.filter(p => p.tags.includes(filter));
-
       const totalPages = Math.max(1, Math.ceil(filtered.length / POSTS_PER_PAGE));
       if (currentBlogPage > totalPages) currentBlogPage = totalPages;
-
       const start = (currentBlogPage - 1) * POSTS_PER_PAGE;
       const pagePosts = filtered.slice(start, start + POSTS_PER_PAGE);
-
       pagePosts.forEach((post, i) => {
         const row = document.createElement('div');
         row.className = 'blog-row';
@@ -1892,10 +1879,8 @@ async function loadBlogPosts() {
         list.appendChild(row);
         revealObserver.observe(row);
       });
-
       renderBlogPagination(totalPages, currentBlogPage);
     }
-
     function renderBlogPagination(totalPages, page) {
       const nav = document.getElementById('blog-pagination');
       if (!nav) return;
@@ -1906,7 +1891,6 @@ async function loadBlogPosts() {
         return;
       }
       nav.style.display = 'flex';
-
       const mkBtn = (label, targetPage, opts = {}) => {
         const btn = document.createElement('button');
         btn.className = 'blog-page-btn' + (opts.arrow ? ' blog-page-arrow' : '') + (opts.active ? ' active' : '');
@@ -1920,10 +1904,8 @@ async function loadBlogPosts() {
         });
         return btn;
       };
-
       // ← 이전
       nav.appendChild(mkBtn('‹', page - 1, { arrow: true, disabled: page === 1 }));
-
       // 숫자 — 페이지 수가 많아지면 ... 으로 축약 (현재 페이지 전후 1개)
       const pages = [];
       const range = 1;
@@ -1945,11 +1927,9 @@ async function loadBlogPosts() {
           nav.appendChild(mkBtn(String(p), p, { active: p === page }));
         }
       });
-
       // → 다음
       nav.appendChild(mkBtn('›', page + 1, { arrow: true, disabled: page === totalPages }));
     }
-
     function toggleBlogRow(headEl) {
       const row = headEl.parentElement;
       const body = row.querySelector('.blog-row-body');
@@ -1969,7 +1949,6 @@ async function loadBlogPosts() {
         body.style.maxHeight = body.scrollHeight + 'px';
       }
     }
-
     /* ── Render Assets ── */
     function renderAssets() {
       const grid = document.getElementById('assets-grid');
@@ -1992,7 +1971,6 @@ async function loadBlogPosts() {
         revealObserver.observe(el);
       });
     }
-
     function openAsset(id) {
       const a = assets.find(x => x.id === id);
       if (!a) return;
@@ -2024,7 +2002,6 @@ async function loadBlogPosts() {
       backdrop.classList.remove('active');
       document.body.classList.remove('modal-open');
     }
-
     /* ── Mobile Menu ── */
     function toggleMobileMenu() {
       const menu = document.getElementById('mobile-menu');
@@ -2047,7 +2024,6 @@ async function loadBlogPosts() {
       btn.setAttribute('aria-expanded', 'false');
       document.body.classList.remove('menu-open');
     }
-
     /* ── Hero 높이 고정 — 데스크톱/모바일 모두 풀스크린 ── */
     function setHeroHeight() {
       const hero = document.querySelector('.hero');
@@ -2062,7 +2038,6 @@ async function loadBlogPosts() {
     window.addEventListener('orientationchange', () => {
       setTimeout(setHeroHeight, 200);
     });
-
     /* ── Navigation ── */
     function navigate(page) {
       // 모달이 열려 있으면 먼저 닫기
@@ -2079,13 +2054,20 @@ async function loadBlogPosts() {
       if (an) an.classList.add('active');
       if (page === 'works')  renderWorksGrid(currentFilter);
       if (page === 'blog') {
-  loadBlogPosts().then(() => renderBlog(currentBlogFilter));
-}
+        // 즉시 인라인 fallback으로 제목/날짜/태그 표시 → 화면이 절대 비지 않음
+        renderBlog(currentBlogFilter);
+        // 그 다음 GitHub 에서 .md 파일을 받아와서 본문이 있는 글만 갱신
+        loadBlogPosts().then(() => {
+          // 사용자가 행을 펼쳐놓지 않았을 때만 다시 렌더 (열린 상태면 보존)
+          if (!document.querySelector('.blog-row.open')) {
+            renderBlog(currentBlogFilter);
+          }
+        });
+      }
       if (page === 'assets') renderAssets();
       // 페이지 활성화 직후 reveal 요소 관찰 시작
       requestAnimationFrame(() => observeReveals(pageEl));
     }
-
     /* ── Project Modal — 오버레이로 열기/닫기 ── */
     function openProject(id) {
       const p = projects.find(x => x.id === id);
@@ -2109,7 +2091,6 @@ async function loadBlogPosts() {
         observeModalImages(backdrop, '.project-images img');
       });
     }
-
     function closeProject(e) {
       // backdrop 클릭 이벤트일 때만 e가 들어오는데, 이 함수 자체는 그냥 닫기 처리
       const backdrop = document.getElementById('project-modal-backdrop');
@@ -2117,19 +2098,16 @@ async function loadBlogPosts() {
       backdrop.classList.remove('active');
       document.body.classList.remove('modal-open');
     }
-
     // ESC 키로도 닫기
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') closeProject();
     });
-
     /* ── Header — 페이지 배경에 맞춰 색 반전 ── */
     function updateHeader(page) {
       const header   = document.getElementById('header');
       const navLinks = document.querySelectorAll('#main-nav .nav-link');
       const hamburger = document.getElementById('hamburger');
       header.classList.remove('solid');
-
       // 라이트 배경 페이지 (네비/햄버거를 검정으로)
       const lightPages = ['blog'];
       if (lightPages.includes(page)) {
@@ -2141,7 +2119,6 @@ async function loadBlogPosts() {
         hamburger.classList.remove('dark-icon');
       }
     }
-
     /* ── Works Filter ── */
     document.querySelectorAll('.filter-btn').forEach(btn => {
       btn.addEventListener('click', function() {
@@ -2151,7 +2128,6 @@ async function loadBlogPosts() {
         renderWorksGrid(currentFilter);
       });
     });
-
     /* ── Blog Filter ── */
     document.querySelectorAll('.blog-filter-btn').forEach(btn => {
       btn.addEventListener('click', function() {
@@ -2161,7 +2137,6 @@ async function loadBlogPosts() {
         renderBlog(currentBlogFilter);
       });
     });
-
     /* ── Contact Form — mailto 폴백 ── */
     document.getElementById('contact-form').addEventListener('submit', function(e) {
       e.preventDefault();
@@ -2170,7 +2145,6 @@ async function loadBlogPosts() {
       const phone   = this.phone.value;
       const details = this.details.value;
       const budget  = this.budget.value;
-
       const body = encodeURIComponent(
         `이름 / Name: ${name}\n` +
         `이메일 / Email: ${email}\n` +
@@ -2181,7 +2155,6 @@ async function loadBlogPosts() {
       const subject = encodeURIComponent(`[포트폴리오 문의] ${name}`);
       window.location.href = `mailto:koreli_deniz@naver.com?subject=${subject}&body=${body}`;
     });
-
     /* ── Lightning 주소 복사 + 토스트 ── */
     let toastTimer = null;
     function showToast(message) {
@@ -2221,7 +2194,6 @@ async function loadBlogPosts() {
       }
       document.body.removeChild(ta);
     }
-
     /* ── Connect Bar — 모든 페이지 하단 아이콘/텍스트 채우기 ── */
     const connectLinks = [
       {
@@ -2249,7 +2221,6 @@ async function loadBlogPosts() {
         href: 'https://notefolio.net/korelideniz'
       }
     ];
-
     function populateConnectBars() {
       const bars = document.querySelectorAll('.connect-bar');
       const html = connectLinks.map(l => {
@@ -2260,7 +2231,6 @@ async function loadBlogPosts() {
       }).join('');
       bars.forEach(bar => { bar.innerHTML = html; });
     }
-
     /* ── Init ── */
     renderHomeGrid();
     updateHeader('home');
