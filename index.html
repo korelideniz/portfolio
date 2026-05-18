@@ -1130,8 +1130,14 @@
       <div id="admin-login-box" class="admin-login">
         <p style="font-size:14px;color:#666;margin-bottom:16px;">관리자 비밀번호를 입력하세요.</p>
         <input type="password" id="admin-token-input" placeholder="비밀번호" autocomplete="off" onkeydown="if(event.key==='Enter')adminLogin()" />
-        <button class="admin-login-btn" onclick="adminLogin()">로그인</button>
+        <button class="admin-login-btn" onclick="adminLogin()">확인</button>
         <p class="admin-error" id="admin-error">비밀번호가 올바르지 않습니다.</p>
+        <!-- 2단계: GitHub 토큰 입력 (비밀번호 맞으면 표시) -->
+        <div id="admin-token-box" style="display:none;margin-top:16px;border-top:1px solid #eee;padding-top:16px;">
+          <p style="font-size:13px;color:#666;margin-bottom:10px;">GitHub Personal Access Token을 입력하세요.</p>
+          <input type="password" id="admin-gh-token" placeholder="ghp_..." autocomplete="off" onkeydown="if(event.key==='Enter')adminTokenLogin()" />
+          <button class="admin-login-btn" style="margin-top:8px;" onclick="adminTokenLogin()">로그인</button>
+        </div>
       </div>
 
       <!-- 관리 패널 -->
@@ -1998,7 +2004,6 @@
       if (tab === 'archive') renderAdminArcList();
     }
 
-    const GITHUB_TOKEN = ''; // 로그인 시 입력
     const ADMIN_PASSWORD = 'deniz2026';
 
     function adminLogin() {
@@ -2010,8 +2015,13 @@
         return;
       }
       errEl.style.display = 'none';
-      // 토큰을 분리 저장 (sessionStorage — 브라우저 탭 닫으면 사라짐)
-      const t = ['ghp','_','qwokaLdJUaIHjHY4XFkL5OvTmKHWX53I97d3'].join('');
+      // 토큰 입력 필드 표시
+      document.getElementById('admin-token-box').style.display = 'block';
+    }
+
+    function adminTokenLogin() {
+      const t = document.getElementById('admin-gh-token').value.trim();
+      if (!t) return alert('GitHub 토큰을 입력해 주세요.');
       adminToken = t;
       document.getElementById('admin-login-box').style.display = 'none';
       document.getElementById('admin-panel').classList.add('visible');
