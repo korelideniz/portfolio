@@ -1399,12 +1399,26 @@
     let blogIndexLoaded = false;
     async function loadBlogPosts() {
       if (blogIndexLoaded) return;
+      // data.json의 blogIndex 우선, 없으면 FALLBACK 사용
       let index = FALLBACK_BLOG_INDEX;
       try {
-        const res = await fetch(GITHUB_RAW + 'index.json', { cache: 'no-store' });
-        if (res.ok) { const f = await res.json(); if (Array.isArray(f) && f.length > 0) index = f; }
+        const res = await fetch(RAW_DATA_URL + '?t=' + Date.now(), { cache: 'no-store' });
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data.blogIndex) && data.blogIndex.length > 0) {
+            // data.json의 블로그 목록 = 어드민 추가분 + 기존 FALLBACK 합치기
+            const existingIds = new Set(data.blogIndex.map(b => b.id));
+            const merged = [
+              ...data.blogIndex,
+              ...FALLBACK_BLOG_INDEX.filter(b => !existingIds.has(b.id))
+            ];
+            index = merged;
+          }
+        }
       } catch(e) {}
       const settled = await Promise.allSettled(index.map(async (meta) => {
+        // body가 이미 있으면 fetch 생략
+        if (meta.body && meta.body !== BLOG_PLACEHOLDER) return meta;
         try {
           const r = await fetch(GITHUB_RAW + meta.file, { cache: 'no-store' });
           if (!r.ok) return { ...meta, body: BLOG_PLACEHOLDER };
@@ -2099,6 +2113,7 @@
         setProgress('blog-progress-bar','blog-progress',100);
         const today=new Date(); const d=`${today.getFullYear()}.${today.getMonth()+1}.${today.getDate()}`;
         blogPosts.unshift({id:postId,title,date:date||d,tags,file:`${postId}.md`,body});
+        await saveData();
         showResult('blog-result',true,`"${title}" 블로그 추가 완료!`);
         ['blog-title','blog-date','blog-tags','blog-body'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
         blogImgFiles=[]; const el=document.getElementById('blog-img-file-list'); if(el) el.innerHTML='';
@@ -2216,7 +2231,12 @@
     /* data.json GitHub에 저장 */
     async function saveData() {
       if (!adminToken) return;
-      const data = { books, assets };
+      // blogIndex: 어드민에서 추가한 글만 (FALLBACK 제외)
+      const fallbackIds = new Set(FALLBACK_BLOG_INDEX.map(b => b.id));
+      const blogIndex = blogPosts
+        .filter(b => !fallbackIds.has(b.id))
+        .map(({ id, title, date, tags, file }) => ({ id, title, date, tags, file }));
+      const data = { books, assets, blogIndex };
       await uploadText(DATA_JSON_PATH, JSON.stringify(data, null, 2), adminToken);
     }
 
@@ -2228,6 +2248,15 @@
         const data = await res.json();
         if (Array.isArray(data.books)) books = data.books;
         if (Array.isArray(data.assets)) assets = data.assets;
+        // blogIndex: 어드민 추가 글을 FALLBACK 앞에 붙임
+        if (Array.isArray(data.blogIndex) && data.blogIndex.length > 0) {
+          const fallbackIds = new Set(FALLBACK_BLOG_INDEX.map(b => b.id));
+          const newPosts = data.blogIndex
+            .filter(b => !fallbackIds.has(b.id))
+            .map(b => ({ ...b, body: b.body || BLOG_PLACEHOLDER }));
+          const fallbackPosts = FALLBACK_BLOG_INDEX.map(m => ({ ...m, body: BLOG_PLACEHOLDER }));
+          blogPosts = [...newPosts, ...fallbackPosts];
+        }
       } catch(e) { console.warn('data.json 로드 실패:', e); }
     }
 
