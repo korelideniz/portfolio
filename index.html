@@ -431,11 +431,31 @@
     }
     .book-modal-backdrop.active { display: block; }
 
-    /* 커버 영역 — 상단 topbar 없이 바로 시작 */
+    /* 책 상세 상단 바 (뒤로가기) */
+    .book-detail-topbar {
+      position: sticky;
+      top: 0; z-index: 10;
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      background: rgba(247,245,242,0.92);
+      backdrop-filter: blur(12px);
+    }
+    .book-detail-back {
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      color: #111;
+      border-radius: 50%;
+      transition: background 0.2s;
+    }
+    .book-detail-back:hover { background: rgba(0,0,0,0.06); }
+    .book-detail-back svg { width: 20px; height: 20px; display: block; }
+
+    /* 커버 영역 — topbar 바로 아래 시작 */
     .book-detail-hero {
       display: flex;
       justify-content: center;
-      padding: 52px 20px 24px; /* 상단 여백 살짝 추가 */
+      padding: 32px 20px 24px;
       background: #f7f5f2;
     }
     .book-detail-cover-wrap {
@@ -771,12 +791,12 @@
 
   <!-- 모바일 메뉴 -->
   <div class="mobile-menu" id="mobile-menu">
-    <a class="nav-link" onclick="navigate('works'); closeMobileMenu();">Works</a>
-    <a class="nav-link" onclick="navigate('blog'); closeMobileMenu();">Blog</a>
-    <a class="nav-link" onclick="navigate('book'); closeMobileMenu();">Book</a>
-    <a class="nav-link" onclick="navigate('assets'); closeMobileMenu();">Archive</a>
-    <a class="nav-link" onclick="navigate('contact'); closeMobileMenu();">Contact</a>
-    <a class="nav-link" onclick="navigate('info'); closeMobileMenu();">About</a>
+    <a class="nav-link" onclick="navigate('works'); delayedCloseMenu();">Works</a>
+    <a class="nav-link" onclick="navigate('blog'); delayedCloseMenu();">Blog</a>
+    <a class="nav-link" onclick="navigate('book'); delayedCloseMenu();">Book</a>
+    <a class="nav-link" onclick="navigate('assets'); delayedCloseMenu();">Archive</a>
+    <a class="nav-link" onclick="navigate('contact'); delayedCloseMenu();">Contact</a>
+    <a class="nav-link" onclick="navigate('info'); delayedCloseMenu();">About</a>
   </div>
 
   <!-- HOME -->
@@ -965,9 +985,15 @@
     </button>
   </div>
 
-  <!-- BOOK DETAIL MODAL — topbar 제거, FAB 추가 -->
+  <!-- BOOK DETAIL MODAL -->
   <div id="book-modal-backdrop" class="book-modal-backdrop">
-    <!-- 커버 영역 (topbar 없음) -->
+    <!-- 상단 뒤로가기 바 -->
+    <div class="book-detail-topbar">
+      <button class="book-detail-back" onclick="closeBook()" aria-label="Back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      </button>
+    </div>
+    <!-- 커버 영역 -->
     <div class="book-detail-hero">
       <div class="book-detail-cover-wrap">
         <img id="book-detail-cover" src="" alt="" />
@@ -1018,11 +1044,9 @@
   <!-- BOOK READER -->
   <div id="book-reader-backdrop" class="book-reader-backdrop">
     <div class="book-reader-topbar">
-      <button class="book-reader-back" onclick="closeReader()" aria-label="Back">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
-      </button>
+      <img src="https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/main/deniz_symbol.png" alt="Koreli Deniz" style="height:44px;width:auto;object-fit:contain;opacity:0.85;" />
       <div class="book-reader-title" id="book-reader-title"></div>
-      <div style="width:36px"></div>
+      <div style="width:44px"></div>
     </div>
     <div class="book-reader-pages" id="book-reader-pages"></div>
     <!-- 뒤로가기 FAB -->
@@ -1519,6 +1543,17 @@
       const menu = document.getElementById('mobile-menu');
       const btn = document.getElementById('hamburger');
       menu.classList.remove('open'); btn.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); document.body.classList.remove('menu-open');
+    }
+    function delayedCloseMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const btn = document.getElementById('hamburger');
+      /* 링크에 살짝 눌린 효과 후 메뉴 닫기 */
+      setTimeout(() => {
+        menu.classList.remove('open');
+        btn.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('menu-open');
+      }, 180);
     }
 
     /* ── Hero Height ── */
