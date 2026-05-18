@@ -1142,10 +1142,10 @@
 
       <!-- 로그인 -->
       <div id="admin-login-box" class="admin-login">
-        <p style="font-size:14px;color:#666;margin-bottom:16px;">GitHub Token을 입력해 로그인하세요.</p>
-        <input type="password" id="admin-token-input" placeholder="GitHub Personal Access Token" autocomplete="off" />
+        <p style="font-size:14px;color:#666;margin-bottom:16px;">관리자 비밀번호를 입력하세요.</p>
+        <input type="password" id="admin-token-input" placeholder="비밀번호" autocomplete="off" onkeydown="if(event.key==='Enter')adminLogin()" />
         <button class="admin-login-btn" onclick="adminLogin()">로그인</button>
-        <p class="admin-error" id="admin-error">토큰이 올바르지 않습니다.</p>
+        <p class="admin-error" id="admin-error">비밀번호가 올바르지 않습니다.</p>
       </div>
 
       <!-- 관리 패널 -->
@@ -1525,7 +1525,7 @@
           revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0, rootMargin: '0px 0px 0px 0px' });
 
     function observeReveals(root) {
       const scope = root || document;
@@ -1875,7 +1875,7 @@
       const url = PAGE_URLS[page] || '/';
       history.pushState({ page }, '', url);
 
-      requestAnimationFrame(() => observeReveals(pageEl));
+      requestAnimationFrame(() => requestAnimationFrame(() => observeReveals(pageEl)));
     }
 
     window.addEventListener('popstate', (e) => {
@@ -2012,13 +2012,22 @@
       if (tab === 'archive') renderAdminArcList();
     }
 
+    const GITHUB_TOKEN = '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';
+    const ADMIN_PASSWORD = 'deniz2026'; // 원하시는 비밀번호로 변경 가능
+
     function adminLogin() {
       const val = document.getElementById('admin-token-input').value.trim();
-      if (!val) return;
-      adminToken = val;
+      const errEl = document.getElementById('admin-error');
+      if (val !== ADMIN_PASSWORD) {
+        errEl.style.display = 'block';
+        document.getElementById('admin-token-input').value = '';
+        return;
+      }
+      errEl.style.display = 'none';
+      adminToken = GITHUB_TOKEN;
       document.getElementById('admin-login-box').style.display = 'none';
       document.getElementById('admin-panel').classList.add('visible');
-      document.getElementById('admin-token-display').textContent = '토큰: ' + val.slice(0,12) + '••••••••••••';
+      document.getElementById('admin-token-display').textContent = '✓ 로그인됨';
       renderAdminBookList();
     }
 
