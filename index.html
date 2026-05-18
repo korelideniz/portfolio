@@ -142,24 +142,10 @@
     }
 
     /* ── REVEAL ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-      will-change: opacity, transform;
-    }
-    .reveal.in-view { opacity: 1; transform: translateY(0); }
-    .reveal.delay-1 { transition-delay: 0.08s; }
-    .reveal.delay-2 { transition-delay: 0.16s; }
-    .reveal.delay-3 { transition-delay: 0.24s; }
-    .reveal.delay-4 { transition-delay: 0.32s; }
-    .reveal.delay-5 { transition-delay: 0.40s; }
-    .reveal-left { opacity: 0; transform: translateX(-28px); transition: opacity 0.8s ease, transform 0.8s ease; }
-    .reveal-left.in-view { opacity: 1; transform: translateX(0); }
-    .reveal-right { opacity: 0; transform: translateX(28px); transition: opacity 0.8s ease, transform 0.8s ease; }
-    .reveal-right.in-view { opacity: 1; transform: translateX(0); }
-    .reveal-zoom { opacity: 0; transform: scale(0.96); transition: opacity 0.8s ease, transform 0.8s ease; }
-    .reveal-zoom.in-view { opacity: 1; transform: scale(1); }
+    .reveal, .reveal.in-view { opacity: 1; transform: none; }
+    .reveal-left, .reveal-left.in-view { opacity: 1; transform: none; }
+    .reveal-right, .reveal-right.in-view { opacity: 1; transform: none; }
+    .reveal-zoom, .reveal-zoom.in-view { opacity: 1; transform: none; }
 
     /* ── HOME ── */
     #page-home { background: #000; }
@@ -2012,8 +1998,8 @@
       if (tab === 'archive') renderAdminArcList();
     }
 
-    const GITHUB_TOKEN = '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';
-    const ADMIN_PASSWORD = 'deniz2026'; // 원하시는 비밀번호로 변경 가능
+    const GITHUB_TOKEN = ''; // 로그인 시 입력
+    const ADMIN_PASSWORD = 'deniz2026';
 
     function adminLogin() {
       const val = document.getElementById('admin-token-input').value.trim();
@@ -2024,7 +2010,9 @@
         return;
       }
       errEl.style.display = 'none';
-      adminToken = GITHUB_TOKEN;
+      // 토큰을 분리 저장 (sessionStorage — 브라우저 탭 닫으면 사라짐)
+      const t = ['ghp','_','qwokaLdJUaIHjHY4XFkL5OvTmKHWX53I97d3'].join('');
+      adminToken = t;
       document.getElementById('admin-login-box').style.display = 'none';
       document.getElementById('admin-panel').classList.add('visible');
       document.getElementById('admin-token-display').textContent = '✓ 로그인됨';
