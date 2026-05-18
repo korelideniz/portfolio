@@ -760,6 +760,90 @@
       .connect-bar a.text { width: auto; padding: 0 14px; }
       .connect-bar svg { width: 16px; height: 16px; }
     }
+    .adm-tab { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 500; color: #aaa; padding: 10px 18px; border-bottom: 2px solid transparent; border-radius: 0; transition: color 0.2s, border-color 0.2s; }
+    .adm-tab:hover { color: #111; }
+    .adm-tab.active { color: #111; border-bottom: 2px solid #111; }
+    .adm-tab-panel { display: none; }
+    .adm-tab-panel.active { display: block; }
+
+    /* ── ADMIN PAGE ── */
+    #page-admin { background: #f5f3ef; color: #111; padding-top: 116px; min-height: 100vh; }
+    .admin-inner { max-width: 760px; margin: 0 auto; padding: 40px 32px 80px; }
+    .admin-heading { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #888; margin-bottom: 12px; }
+    .admin-title { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 32px; font-weight: 700; margin-bottom: 32px; }
+
+    /* 로그인 */
+    .admin-login { background: #fff; border-radius: 12px; padding: 32px; box-shadow: 0 2px 16px rgba(0,0,0,0.07); max-width: 400px; }
+    .admin-login input { width: 100%; padding: 13px 16px; border: 1px solid #ddd; border-radius: 8px; font-size: 15px; font-family: inherit; outline: none; margin-bottom: 12px; transition: border-color 0.2s; }
+    .admin-login input:focus { border-color: #111; }
+    .admin-login-btn { width: 100%; padding: 14px; background: #111; color: #fff; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.1em; border-radius: 8px; cursor: pointer; transition: background 0.2s; }
+    .admin-login-btn:hover { background: #333; }
+    .admin-error { color: #D93939; font-size: 13px; margin-top: 8px; display: none; }
+
+    /* 패널 */
+    .admin-panel { display: none; }
+    .admin-panel.visible { display: block; }
+    .admin-section { background: #fff; border-radius: 12px; padding: 28px; margin-bottom: 20px; box-shadow: 0 2px 16px rgba(0,0,0,0.07); }
+    .admin-section-title { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 20px; color: #111; }
+    .admin-field { margin-bottom: 16px; }
+    .admin-label { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #888; margin-bottom: 6px; display: block; }
+    .admin-input { width: 100%; padding: 11px 14px; border: 1px solid #e0e0e0; border-radius: 8px; font-size: 14px; font-family: inherit; outline: none; transition: border-color 0.2s; background: #fafafa; }
+    .admin-input:focus { border-color: #111; background: #fff; }
+    .admin-textarea { width: 100%; padding: 11px 14px; border: 1px solid #e0e0e0; border-radius: 8px; font-size: 14px; font-family: inherit; outline: none; resize: vertical; min-height: 80px; background: #fafafa; }
+    .admin-textarea:focus { border-color: #111; background: #fff; }
+
+    /* 파일 업로드 영역 */
+    .admin-drop { border: 2px dashed #d0d0d0; border-radius: 10px; padding: 32px 20px; text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s; }
+    .admin-drop:hover, .admin-drop.drag { border-color: #111; background: #f0ede8; }
+    .admin-drop-icon { font-size: 32px; margin-bottom: 8px; }
+    .admin-drop-text { font-size: 14px; color: #666; }
+    .admin-drop-sub { font-size: 12px; color: #aaa; margin-top: 4px; }
+    .admin-drop input[type=file] { display: none; }
+
+    /* 업로드된 파일 목록 */
+    .admin-file-list { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+    .admin-file-item { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #f5f3ef; border-radius: 8px; font-size: 13px; }
+    .admin-file-thumb { width: 40px; height: 40px; border-radius: 6px; object-fit: cover; flex-shrink: 0; }
+    .admin-file-name { flex: 1; color: #444; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .admin-file-status { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; flex-shrink: 0; }
+    .admin-file-status.pending { color: #aaa; }
+    .admin-file-status.uploading { color: #f59e0b; }
+    .admin-file-status.done { color: #22c55e; }
+    .admin-file-status.error { color: #D93939; }
+    .admin-file-remove { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; color: #aaa; border-radius: 50%; transition: background 0.2s, color 0.2s; flex-shrink: 0; font-size: 16px; }
+    .admin-file-remove:hover { background: #e5e0d8; color: #111; }
+
+    /* 진행 바 */
+    .admin-progress { height: 4px; background: #e5e0d8; border-radius: 2px; margin-top: 12px; overflow: hidden; display: none; }
+    .admin-progress-bar { height: 100%; background: #111; border-radius: 2px; width: 0%; transition: width 0.3s ease; }
+
+    /* 버튼 */
+    .admin-submit { width: 100%; padding: 16px; background: #111; color: #fff; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.1em; border-radius: 10px; cursor: pointer; transition: background 0.2s, transform 0.15s; margin-top: 8px; }
+    .admin-submit:hover:not(:disabled) { background: #333; transform: translateY(-1px); }
+    .admin-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+    .admin-result { margin-top: 14px; padding: 14px 16px; border-radius: 8px; font-size: 14px; display: none; }
+    .admin-result.success { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+    .admin-result.error { background: #fef2f2; color: #D93939; border: 1px solid #fecaca; }
+
+    /* 책 목록 관리 */
+    .admin-book-list { display: flex; flex-direction: column; gap: 10px; }
+    .admin-book-row { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: #f5f3ef; border-radius: 10px; }
+    .admin-book-cover { width: 36px; height: 48px; border-radius: 4px; object-fit: cover; flex-shrink: 0; }
+    .admin-book-info { flex: 1; }
+    .admin-book-name { font-size: 14px; font-weight: 600; color: #111; }
+    .admin-book-meta { font-size: 11px; color: #888; margin-top: 2px; }
+    .admin-book-del { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: #aaa; border-radius: 50%; transition: background 0.2s, color 0.2s; font-size: 18px; }
+    .admin-book-del:hover { background: #fecaca; color: #D93939; }
+
+    .admin-token-display { font-size: 12px; color: #888; margin-top: 8px; word-break: break-all; }
+    .admin-logout { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #888; cursor: pointer; margin-top: 16px; padding: 6px 0; border-bottom: 1px solid #ccc; transition: color 0.2s; }
+    .admin-logout:hover { color: #111; }
+
+    @media (max-width: 768px) {
+      #page-admin { padding-top: 92px; }
+      .admin-inner { padding: 24px 16px 60px; }
+      .admin-title { font-size: 24px; }
+    }
   </style>
 </head>
 <body>
@@ -777,6 +861,7 @@
       <a class="nav-link" id="nav-assets"  onclick="navigate('assets')">Archive</a>
       <a class="nav-link" id="nav-contact" onclick="navigate('contact')">Contact</a>
       <a class="nav-link" id="nav-info"    onclick="navigate('info')">About</a>
+      <a class="nav-link" id="nav-admin"   onclick="navigate('admin')" style="opacity:0.4;font-size:12px;">⚙</a>
     </nav>
     <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" onclick="toggleMobileMenu()">
       <span></span><span></span><span></span>
@@ -1048,6 +1133,197 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
     </button>
   </div>
+
+  <!-- ADMIN -->
+  <div id="page-admin" class="page">
+    <div class="admin-inner">
+      <p class="admin-heading">관리자</p>
+      <h2 class="admin-title">Book Manager</h2>
+
+      <!-- 로그인 -->
+      <div id="admin-login-box" class="admin-login">
+        <p style="font-size:14px;color:#666;margin-bottom:16px;">GitHub Token을 입력해 로그인하세요.</p>
+        <input type="password" id="admin-token-input" placeholder="GitHub Personal Access Token" autocomplete="off" />
+        <button class="admin-login-btn" onclick="adminLogin()">로그인</button>
+        <p class="admin-error" id="admin-error">토큰이 올바르지 않습니다.</p>
+      </div>
+
+      <!-- 관리 패널 -->
+      <div id="admin-panel" class="admin-panel">
+        <p class="admin-token-display" id="admin-token-display"></p>
+        <button class="admin-logout" onclick="adminLogout()">← 로그아웃</button>
+
+        <!-- 탭 메뉴 -->
+        <div style="display:flex;gap:4px;margin-top:24px;margin-bottom:20px;border-bottom:1px solid #e0ddd8;padding-bottom:0;">
+          <button class="adm-tab active" data-tab="book" onclick="switchAdminTab('book')">Book</button>
+          <button class="adm-tab" data-tab="blog" onclick="switchAdminTab('blog')">Blog</button>
+          <button class="adm-tab" data-tab="works" onclick="switchAdminTab('works')">Works</button>
+          <button class="adm-tab" data-tab="archive" onclick="switchAdminTab('archive')">Archive</button>
+        </div>
+
+        <!-- ── BOOK 탭 ── -->
+        <div class="adm-tab-panel active" id="adm-tab-book">
+          <div class="admin-section">
+            <div class="admin-section-title">새 책 추가</div>
+            <div class="admin-field"><label class="admin-label">책 제목 *</label><input class="admin-input" id="adm-title" type="text" placeholder="예: 북 디자인 탐방기 2" /></div>
+            <div class="admin-field"><label class="admin-label">저자</label><input class="admin-input" id="adm-author" type="text" value="Koreli Deniz" /></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+              <div class="admin-field"><label class="admin-label">연도</label><input class="admin-input" id="adm-year" type="text" placeholder="2025" /></div>
+              <div class="admin-field"><label class="admin-label">형식</label><input class="admin-input" id="adm-format" type="text" placeholder="Essay / Zine / Comic" /></div>
+            </div>
+            <div class="admin-field"><label class="admin-label">카테고리 (쉼표 구분)</label><input class="admin-input" id="adm-categories" type="text" placeholder="디자인, 에세이" /></div>
+            <div class="admin-field"><label class="admin-label">책 소개</label><textarea class="admin-textarea" id="adm-overview" placeholder="책 소개를 입력하세요."></textarea></div>
+            <div class="admin-field">
+              <label class="admin-label">GitHub 저장 경로 (images/ 이하)</label>
+              <input class="admin-input" id="adm-path" type="text" placeholder="예: blog/47" />
+              <p style="font-size:11px;color:#aaa;margin-top:4px;">이미지는 images/blog/47/1.jpeg, 2.jpeg... 순서로 저장됩니다</p>
+            </div>
+            <div class="admin-field">
+              <label class="admin-label">표지 이미지 (1장)</label>
+              <div class="admin-drop" id="cover-drop" onclick="document.getElementById('cover-input').click()" ondragover="dragOver(event,'cover-drop')" ondragleave="dragLeave('cover-drop')" ondrop="dropFiles(event,'cover')">
+                <div class="admin-drop-text">클릭하거나 이미지를 드래그</div><div class="admin-drop-sub">JPG, PNG, WEBP</div>
+                <input type="file" id="cover-input" accept="image/*" onchange="handleFiles(this.files,'cover')" />
+              </div>
+              <div class="admin-file-list" id="cover-file-list"></div>
+            </div>
+            <div class="admin-field">
+              <label class="admin-label">내지 이미지 (순서대로)</label>
+              <div class="admin-drop" id="pages-drop" onclick="document.getElementById('pages-input').click()" ondragover="dragOver(event,'pages-drop')" ondragleave="dragLeave('pages-drop')" ondrop="dropFiles(event,'pages')">
+                <div class="admin-drop-text">클릭하거나 이미지들을 드래그</div><div class="admin-drop-sub">여러 파일 동시 선택 가능</div>
+                <input type="file" id="pages-input" accept="image/*" multiple onchange="handleFiles(this.files,'pages')" />
+              </div>
+              <div class="admin-file-list" id="pages-file-list"></div>
+            </div>
+            <div class="admin-progress" id="adm-progress"><div class="admin-progress-bar" id="adm-progress-bar"></div></div>
+            <button class="admin-submit" id="adm-submit" onclick="submitBook()">GitHub에 업로드 & 책 추가</button>
+            <div class="admin-result" id="adm-result"></div>
+          </div>
+          <div class="admin-section">
+            <div class="admin-section-title">현재 책 목록</div>
+            <div class="admin-book-list" id="admin-book-list"></div>
+          </div>
+        </div>
+
+        <!-- ── BLOG 탭 ── -->
+        <div class="adm-tab-panel" id="adm-tab-blog">
+          <div class="admin-section">
+            <div class="admin-section-title">새 블로그 글 추가</div>
+            <div class="admin-field"><label class="admin-label">제목 *</label><input class="admin-input" id="blog-title" type="text" placeholder="글 제목" /></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+              <div class="admin-field"><label class="admin-label">날짜</label><input class="admin-input" id="blog-date" type="text" placeholder="2025.01.01" /></div>
+              <div class="admin-field"><label class="admin-label">태그 (쉼표 구분)</label><input class="admin-input" id="blog-tags" type="text" placeholder="Design, Life" /></div>
+            </div>
+            <div class="admin-field"><label class="admin-label">내용 (Markdown 지원)</label><textarea class="admin-textarea" id="blog-body" style="min-height:200px;" placeholder="글 내용을 마크다운으로 작성하세요..."></textarea></div>
+            <div class="admin-field">
+              <label class="admin-label">이미지 첨부 (선택)</label>
+              <div class="admin-drop" id="blog-img-drop" onclick="document.getElementById('blog-img-input').click()" ondragover="dragOver(event,'blog-img-drop')" ondragleave="dragLeave('blog-img-drop')" ondrop="dropFiles(event,'blog-img')">
+                <div class="admin-drop-text">클릭하거나 이미지를 드래그</div><div class="admin-drop-sub">업로드 후 URL이 내용에 자동 삽입됩니다</div>
+                <input type="file" id="blog-img-input" accept="image/*" multiple onchange="handleFiles(this.files,'blog-img')" />
+              </div>
+              <div class="admin-file-list" id="blog-img-file-list"></div>
+            </div>
+            <div class="admin-progress" id="blog-progress"><div class="admin-progress-bar" id="blog-progress-bar"></div></div>
+            <button class="admin-submit" id="blog-submit" onclick="submitBlog()">GitHub에 저장 & 블로그 추가</button>
+            <div class="admin-result" id="blog-result"></div>
+          </div>
+          <div class="admin-section">
+            <div class="admin-section-title">현재 블로그 목록 <span style="font-size:12px;color:#aaa;font-weight:400;">(최근 10개)</span></div>
+            <div id="admin-blog-list" style="display:flex;flex-direction:column;gap:8px;"></div>
+          </div>
+        </div>
+
+        <!-- ── WORKS 탭 ── -->
+        <div class="adm-tab-panel" id="adm-tab-works">
+          <div class="admin-section">
+            <div class="admin-section-title">새 프로젝트 추가</div>
+            <div class="admin-field"><label class="admin-label">프로젝트 이름 *</label><input class="admin-input" id="work-title" type="text" placeholder="프로젝트 이름" /></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+              <div class="admin-field"><label class="admin-label">연도</label><input class="admin-input" id="work-year" type="text" placeholder="2025" /></div>
+              <div class="admin-field">
+                <label class="admin-label">카테고리</label>
+                <select class="admin-input" id="work-cat" multiple style="height:90px;">
+                  <option value="BRANDING">Branding</option>
+                  <option value="CHARACTER">Character</option>
+                  <option value="ILLUSTRATION">Illustration</option>
+                  <option value="PRINT">Print</option>
+                  <option value="TYPOGRAPHY">Typography</option>
+                  <option value="MOTION">Motion</option>
+                </select>
+              </div>
+            </div>
+            <div class="admin-field"><label class="admin-label">설명</label><textarea class="admin-textarea" id="work-desc" placeholder="프로젝트 설명"></textarea></div>
+            <div class="admin-field">
+              <label class="admin-label">GitHub 저장 경로 (images/ 이하)</label>
+              <input class="admin-input" id="work-path" type="text" placeholder="예: myproject" />
+            </div>
+            <div class="admin-field">
+              <label class="admin-label">썸네일 이미지 (1장, 첫 번째 이미지가 썸네일)</label>
+              <div class="admin-drop" id="work-drop" onclick="document.getElementById('work-input').click()" ondragover="dragOver(event,'work-drop')" ondragleave="dragLeave('work-drop')" ondrop="dropFiles(event,'work')">
+                <div class="admin-drop-text">클릭하거나 이미지들을 드래그</div><div class="admin-drop-sub">여러 장 업로드 가능 (첫 장 = 썸네일)</div>
+                <input type="file" id="work-input" accept="image/*" multiple onchange="handleFiles(this.files,'work')" />
+              </div>
+              <div class="admin-file-list" id="work-file-list"></div>
+            </div>
+            <div class="admin-progress" id="work-progress"><div class="admin-progress-bar" id="work-progress-bar"></div></div>
+            <button class="admin-submit" id="work-submit" onclick="submitWork()">GitHub에 업로드 & 프로젝트 추가</button>
+            <div class="admin-result" id="work-result"></div>
+          </div>
+          <div class="admin-section">
+            <div class="admin-section-title">현재 프로젝트 목록</div>
+            <div id="admin-work-list" style="display:flex;flex-direction:column;gap:8px;"></div>
+          </div>
+        </div>
+
+        <!-- ── ARCHIVE 탭 ── -->
+        <div class="adm-tab-panel" id="adm-tab-archive">
+          <div class="admin-section">
+            <div class="admin-section-title">새 아카이브 추가</div>
+            <div class="admin-field"><label class="admin-label">이름 *</label><input class="admin-input" id="arc-name" type="text" placeholder="예: 스토리보드 PDF" /></div>
+            <div class="admin-field"><label class="admin-label">메타 정보</label><input class="admin-input" id="arc-meta" type="text" placeholder="예: PDF · Free" value="PDF · Free" /></div>
+            <div class="admin-field"><label class="admin-label">설명</label><textarea class="admin-textarea" id="arc-desc" placeholder="자료 설명"></textarea></div>
+            <div class="admin-field">
+              <label class="admin-label">GitHub 저장 경로 (archive/ 이하)</label>
+              <input class="admin-input" id="arc-path" type="text" placeholder="예: myfile" />
+            </div>
+            <div class="admin-field">
+              <label class="admin-label">썸네일 이미지 (1장)</label>
+              <div class="admin-drop" id="arc-thumb-drop" onclick="document.getElementById('arc-thumb-input').click()" ondragover="dragOver(event,'arc-thumb-drop')" ondragleave="dragLeave('arc-thumb-drop')" ondrop="dropFiles(event,'arc-thumb')">
+                <div class="admin-drop-text">썸네일 이미지 드래그 또는 클릭</div>
+                <input type="file" id="arc-thumb-input" accept="image/*" onchange="handleFiles(this.files,'arc-thumb')" />
+              </div>
+              <div class="admin-file-list" id="arc-thumb-file-list"></div>
+            </div>
+            <div class="admin-field">
+              <label class="admin-label">다운로드 파일</label>
+              <div class="admin-drop" id="arc-file-drop" onclick="document.getElementById('arc-file-input').click()" ondragover="dragOver(event,'arc-file-drop')" ondragleave="dragLeave('arc-file-drop')" ondrop="dropFiles(event,'arc-file')">
+                <div class="admin-drop-text">다운로드용 파일 드래그 또는 클릭</div><div class="admin-drop-sub">PDF, ZIP 등</div>
+                <input type="file" id="arc-file-input" onchange="handleFiles(this.files,'arc-file')" />
+              </div>
+              <div class="admin-file-list" id="arc-file-file-list"></div>
+            </div>
+            <div class="admin-field">
+              <label class="admin-label">상세 이미지 (선택, 여러 장)</label>
+              <div class="admin-drop" id="arc-detail-drop" onclick="document.getElementById('arc-detail-input').click()" ondragover="dragOver(event,'arc-detail-drop')" ondragleave="dragLeave('arc-detail-drop')" ondrop="dropFiles(event,'arc-detail')">
+                <div class="admin-drop-text">상세 이미지 드래그 또는 클릭</div>
+                <input type="file" id="arc-detail-input" accept="image/*" multiple onchange="handleFiles(this.files,'arc-detail')" />
+              </div>
+              <div class="admin-file-list" id="arc-detail-file-list"></div>
+            </div>
+            <div class="admin-progress" id="arc-progress"><div class="admin-progress-bar" id="arc-progress-bar"></div></div>
+            <button class="admin-submit" id="arc-submit" onclick="submitArchive()">GitHub에 업로드 & 아카이브 추가</button>
+            <div class="admin-result" id="arc-result"></div>
+          </div>
+          <div class="admin-section">
+            <div class="admin-section-title">현재 아카이브 목록</div>
+            <div id="admin-arc-list" style="display:flex;flex-direction:column;gap:8px;"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <footer class="site-footer light-gray">© 2026 Koreli Deniz. All rights reserved.</footer>
+  </div>
+
 
   <script>
     /* ═══════════════════════════════════════════════
@@ -1717,6 +1993,294 @@
       ).join('');
       document.querySelectorAll('.connect-bar').forEach(bar => { bar.innerHTML = html; });
     }
+
+    /* ═══════════════════════════════════════════════
+       ADMIN — GitHub API 업로드
+    ═══════════════════════════════════════════════ */
+    const GITHUB_OWNER = 'korelideniz';
+    const GITHUB_REPO  = 'portfolio';
+
+    let adminToken = '';
+    let coverFiles=[], pagesFiles=[], blogImgFiles=[], workFiles=[], arcThumbFiles=[], arcFileFiles=[], arcDetailFiles=[];
+
+    /* ── 탭 전환 ── */
+    function switchAdminTab(tab) {
+      document.querySelectorAll('.adm-tab').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+      document.querySelectorAll('.adm-tab-panel').forEach(p => p.classList.toggle('active', p.id === 'adm-tab-' + tab));
+      if (tab === 'blog') renderAdminBlogList();
+      if (tab === 'works') renderAdminWorkList();
+      if (tab === 'archive') renderAdminArcList();
+    }
+
+    function adminLogin() {
+      const val = document.getElementById('admin-token-input').value.trim();
+      if (!val) return;
+      adminToken = val;
+      document.getElementById('admin-login-box').style.display = 'none';
+      document.getElementById('admin-panel').classList.add('visible');
+      document.getElementById('admin-token-display').textContent = '토큰: ' + val.slice(0,12) + '••••••••••••';
+      renderAdminBookList();
+    }
+
+    function adminLogout() {
+      adminToken = '';
+      coverFiles=[]; pagesFiles=[]; blogImgFiles=[]; workFiles=[]; arcThumbFiles=[]; arcFileFiles=[]; arcDetailFiles=[];
+      document.getElementById('admin-token-input').value = '';
+      document.getElementById('admin-login-box').style.display = 'block';
+      document.getElementById('admin-panel').classList.remove('visible');
+    }
+
+    function dragOver(e, id) { e.preventDefault(); const el=document.getElementById(id); if(el) el.classList.add('drag'); }
+    function dragLeave(id) { const el=document.getElementById(id); if(el) el.classList.remove('drag'); }
+    function dropFiles(e, type) {
+      e.preventDefault();
+      const el=document.getElementById(type+'-drop'); if(el) el.classList.remove('drag');
+      handleFiles(e.dataTransfer.files, type);
+    }
+
+    function handleFiles(files, type) {
+      if (!files || files.length === 0) return;
+      const arr = Array.from(files).map(f => ({ file: f, name: f.name }));
+      arr.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
+      const map = {
+        'cover':['coverFiles','cover-file-list',true],
+        'pages':['pagesFiles','pages-file-list',false],
+        'blog-img':['blogImgFiles','blog-img-file-list',false],
+        'work':['workFiles','work-file-list',false],
+        'arc-thumb':['arcThumbFiles','arc-thumb-file-list',true],
+        'arc-file':['arcFileFiles','arc-file-file-list',true],
+        'arc-detail':['arcDetailFiles','arc-detail-file-list',false],
+      };
+      if (!map[type]) return;
+      const [varName, listId, single] = map[type];
+      const val = single ? [arr[0]] : arr;
+      const varMap = { coverFiles, pagesFiles, blogImgFiles, workFiles, arcThumbFiles, arcFileFiles, arcDetailFiles };
+      if (varName==='coverFiles') coverFiles=val;
+      else if (varName==='pagesFiles') pagesFiles=val;
+      else if (varName==='blogImgFiles') blogImgFiles=val;
+      else if (varName==='workFiles') workFiles=val;
+      else if (varName==='arcThumbFiles') arcThumbFiles=val;
+      else if (varName==='arcFileFiles') arcFileFiles=val;
+      else if (varName==='arcDetailFiles') arcDetailFiles=val;
+      renderFileList(listId, val);
+    }
+
+    function renderFileList(listId, items) {
+      const el = document.getElementById(listId); if (!el) return;
+      el.innerHTML = '';
+      items.forEach((item, i) => {
+        const isImg = item.file.type.startsWith('image/');
+        const url = isImg ? URL.createObjectURL(item.file) : '';
+        const div = document.createElement('div'); div.className='admin-file-item'; div.id=listId+'-item-'+i;
+        div.innerHTML = isImg
+          ? `<img class="admin-file-thumb" src="${url}" /><span class="admin-file-name">${i+1}. ${item.name}</span><span class="admin-file-status pending" id="${listId}-status-${i}">대기</span>`
+          : `<span style="font-size:20px;flex-shrink:0;">📎</span><span class="admin-file-name">${item.name}</span><span class="admin-file-status pending" id="${listId}-status-${i}">대기</span>`;
+        el.appendChild(div);
+      });
+    }
+
+    function setFileStatus(listId, i, status, text) {
+      const el=document.getElementById(listId+'-status-'+i); if(!el) return;
+      el.className='admin-file-status '+status; el.textContent=text;
+    }
+
+    function setProgress(barId, progId, pct) {
+      const p=document.getElementById(progId); const b=document.getElementById(barId);
+      if(p) p.style.display='block'; if(b) b.style.width=pct+'%';
+    }
+
+    function showResult(id, success, msg) {
+      const el=document.getElementById(id); if(!el) return;
+      el.style.display='block'; el.className='admin-result '+(success?'success':'error'); el.textContent=msg;
+    }
+
+    async function uploadToGithub(path, file, token) {
+      const base64 = await new Promise((res,rej) => {
+        const r=new FileReader(); r.onload=()=>res(r.result.split(',')[1]); r.onerror=rej; r.readAsDataURL(file);
+      });
+      let sha;
+      try { const c=await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${path}`,{headers:{Authorization:'Bearer '+token,Accept:'application/vnd.github+json'}}); if(c.ok){const j=await c.json();sha=j.sha;} } catch(e){}
+      const body={message:`Upload ${path}`,content:base64}; if(sha) body.sha=sha;
+      const res=await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${path}`,{method:'PUT',headers:{Authorization:'Bearer '+token,Accept:'application/vnd.github+json','Content-Type':'application/json'},body:JSON.stringify(body)});
+      if(!res.ok){const e=await res.json();throw new Error(e.message||'Upload failed');}
+      return `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/blob/main/${path}?raw=true`;
+    }
+
+    async function uploadText(path, content, token) {
+      const base64 = btoa(unescape(encodeURIComponent(content)));
+      let sha;
+      try { const c=await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${path}`,{headers:{Authorization:'Bearer '+token,Accept:'application/vnd.github+json'}}); if(c.ok){const j=await c.json();sha=j.sha;} } catch(e){}
+      const body={message:`Upload ${path}`,content:base64}; if(sha) body.sha=sha;
+      const res=await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${path}`,{method:'PUT',headers:{Authorization:'Bearer '+token,Accept:'application/vnd.github+json','Content-Type':'application/json'},body:JSON.stringify(body)});
+      if(!res.ok){const e=await res.json();throw new Error(e.message||'Upload failed');}
+    }
+
+    /* ── BOOK ── */
+    async function submitBook() {
+      const title=document.getElementById('adm-title').value.trim(), author=document.getElementById('adm-author').value.trim()||'Koreli Deniz',
+            year=document.getElementById('adm-year').value.trim()||'2025', format=document.getElementById('adm-format').value.trim()||'Book',
+            categories=document.getElementById('adm-categories').value.split(',').map(s=>s.trim()).filter(Boolean),
+            overview=document.getElementById('adm-overview').value.trim(), basePath=document.getElementById('adm-path').value.trim();
+      if(!title) return alert('책 제목을 입력해 주세요.');
+      if(!basePath) return alert('GitHub 저장 경로를 입력해 주세요.');
+      if(!coverFiles.length) return alert('표지 이미지를 선택해 주세요.');
+      if(!adminToken) return alert('로그인이 필요합니다.');
+      const btn=document.getElementById('adm-submit'); btn.disabled=true;
+      setProgress('adm-progress-bar','adm-progress',0);
+      try {
+        setFileStatus('cover-file-list',0,'uploading','업로드 중...');
+        const ext=coverFiles[0].file.name.split('.').pop();
+        const coverUrl=await uploadToGithub(`images/${basePath}/1.${ext}`,coverFiles[0].file,adminToken);
+        setFileStatus('cover-file-list',0,'done','완료 ✓');
+        const pageUrls=[coverUrl]; const total=1+pagesFiles.length; let done=1;
+        setProgress('adm-progress-bar','adm-progress',Math.round(done/total*100));
+        for(let i=0;i<pagesFiles.length;i++){
+          setFileStatus('pages-file-list',i,'uploading','업로드 중...');
+          try{ const pExt=pagesFiles[i].file.name.split('.').pop(); const url=await uploadToGithub(`images/${basePath}/${i+2}.${pExt}`,pagesFiles[i].file,adminToken); pageUrls.push(url); setFileStatus('pages-file-list',i,'done','완료 ✓'); }
+          catch(e){ setFileStatus('pages-file-list',i,'error','실패'); }
+          done++; setProgress('adm-progress-bar','adm-progress',Math.round(done/total*100));
+        }
+        books.push({id:'book-'+Date.now(),title,author,year,format,pageCount:pageUrls.length,categories:categories.length?categories:['Book'],overview:overview||'책 소개를 여기에 입력하세요.',cover:coverUrl,pages:pageUrls});
+        showResult('adm-result',true,`"${title}" 추가 완료!`);
+        ['adm-title','adm-year','adm-format','adm-categories','adm-overview','adm-path'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+        document.getElementById('adm-author').value='Koreli Deniz';
+        coverFiles=[]; pagesFiles=[]; ['cover-file-list','pages-file-list'].forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML='';});
+        renderAdminBookList(); renderBookGrid();
+      } catch(e){ showResult('adm-result',false,'오류: '+e.message); }
+      finally{ btn.disabled=false; }
+    }
+
+    /* ── BLOG ── */
+    async function submitBlog() {
+      const title=document.getElementById('blog-title').value.trim(), date=document.getElementById('blog-date').value.trim(),
+            tags=document.getElementById('blog-tags').value.split(',').map(s=>s.trim()).filter(Boolean);
+      let body=document.getElementById('blog-body').value.trim();
+      if(!title) return alert('제목을 입력해 주세요.');
+      if(!adminToken) return alert('로그인이 필요합니다.');
+      const btn=document.getElementById('blog-submit'); btn.disabled=true;
+      setProgress('blog-progress-bar','blog-progress',0);
+      try {
+        const postId='blog-'+Date.now();
+        for(let i=0;i<blogImgFiles.length;i++){
+          setFileStatus('blog-img-file-list',i,'uploading','업로드 중...');
+          try{ const ext=blogImgFiles[i].file.name.split('.').pop(); const url=await uploadToGithub(`images/posts/${postId}/${i+1}.${ext}`,blogImgFiles[i].file,adminToken); body+=`\n\n![image](${url})`; setFileStatus('blog-img-file-list',i,'done','완료 ✓'); }
+          catch(e){ setFileStatus('blog-img-file-list',i,'error','실패'); }
+          setProgress('blog-progress-bar','blog-progress',Math.round((i+1)/Math.max(blogImgFiles.length,1)*80));
+        }
+        await uploadText(`posts/${postId}.md`, body, adminToken);
+        setProgress('blog-progress-bar','blog-progress',100);
+        const today=new Date(); const d=`${today.getFullYear()}.${today.getMonth()+1}.${today.getDate()}`;
+        blogPosts.unshift({id:postId,title,date:date||d,tags,file:`${postId}.md`,body});
+        showResult('blog-result',true,`"${title}" 블로그 추가 완료!`);
+        ['blog-title','blog-date','blog-tags','blog-body'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+        blogImgFiles=[]; const el=document.getElementById('blog-img-file-list'); if(el) el.innerHTML='';
+        renderAdminBlogList(); renderBlog(currentBlogFilter);
+      } catch(e){ showResult('blog-result',false,'오류: '+e.message); }
+      finally{ btn.disabled=false; }
+    }
+
+    /* ── WORKS ── */
+    async function submitWork() {
+      const title=document.getElementById('work-title').value.trim(), year=document.getElementById('work-year').value.trim()||'2025',
+            desc=document.getElementById('work-desc').value.trim(), path=document.getElementById('work-path').value.trim();
+      const cats=Array.from(document.getElementById('work-cat').selectedOptions).map(o=>o.value);
+      if(!title) return alert('프로젝트 이름을 입력해 주세요.');
+      if(!path) return alert('GitHub 저장 경로를 입력해 주세요.');
+      if(!workFiles.length) return alert('이미지를 선택해 주세요.');
+      if(!adminToken) return alert('로그인이 필요합니다.');
+      const btn=document.getElementById('work-submit'); btn.disabled=true;
+      setProgress('work-progress-bar','work-progress',0);
+      try {
+        const urls=[];
+        for(let i=0;i<workFiles.length;i++){
+          setFileStatus('work-file-list',i,'uploading','업로드 중...');
+          try{ const ext=workFiles[i].file.name.split('.').pop(); const url=await uploadToGithub(`images/${path}/${i+1}.${ext}`,workFiles[i].file,adminToken); urls.push(url); setFileStatus('work-file-list',i,'done','완료 ✓'); }
+          catch(e){ setFileStatus('work-file-list',i,'error','실패'); }
+          setProgress('work-progress-bar','work-progress',Math.round((i+1)/workFiles.length*100));
+        }
+        projects.unshift({id:'proj-'+Date.now(),title,categories:cats.length?cats:['BRANDING'],thumb:urls[0],images:urls.length>1?urls.slice(1):urls,desc,year});
+        showResult('work-result',true,`"${title}" 추가 완료!`);
+        ['work-title','work-year','work-desc','work-path'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+        workFiles=[]; const el=document.getElementById('work-file-list'); if(el) el.innerHTML='';
+        renderAdminWorkList(); renderWorksGrid(currentFilter); renderHomeGrid();
+      } catch(e){ showResult('work-result',false,'오류: '+e.message); }
+      finally{ btn.disabled=false; }
+    }
+
+    /* ── ARCHIVE ── */
+    async function submitArchive() {
+      const name=document.getElementById('arc-name').value.trim(), meta=document.getElementById('arc-meta').value.trim()||'Free',
+            desc=document.getElementById('arc-desc').value.trim(), path=document.getElementById('arc-path').value.trim();
+      if(!name) return alert('이름을 입력해 주세요.');
+      if(!path) return alert('GitHub 저장 경로를 입력해 주세요.');
+      if(!arcThumbFiles.length) return alert('썸네일 이미지를 선택해 주세요.');
+      if(!adminToken) return alert('로그인이 필요합니다.');
+      const btn=document.getElementById('arc-submit'); btn.disabled=true;
+      setProgress('arc-progress-bar','arc-progress',0);
+      try {
+        const tExt=arcThumbFiles[0].file.name.split('.').pop();
+        const thumbUrl=await uploadToGithub(`archive/${path}/thumb.${tExt}`,arcThumbFiles[0].file,adminToken);
+        setFileStatus('arc-thumb-file-list',0,'done','완료 ✓');
+        setProgress('arc-progress-bar','arc-progress',30);
+        let downloadUrl='#';
+        if(arcFileFiles.length>0){ setFileStatus('arc-file-file-list',0,'uploading','업로드 중...'); const fExt=arcFileFiles[0].file.name.split('.').pop(); downloadUrl=await uploadToGithub(`archive/${path}/download.${fExt}`,arcFileFiles[0].file,adminToken); setFileStatus('arc-file-file-list',0,'done','완료 ✓'); }
+        setProgress('arc-progress-bar','arc-progress',60);
+        const detailUrls=[];
+        for(let i=0;i<arcDetailFiles.length;i++){
+          setFileStatus('arc-detail-file-list',i,'uploading','업로드 중...');
+          try{ const ext=arcDetailFiles[i].file.name.split('.').pop(); const url=await uploadToGithub(`archive/${path}/detail_${i+1}.${ext}`,arcDetailFiles[i].file,adminToken); detailUrls.push(url); setFileStatus('arc-detail-file-list',i,'done','완료 ✓'); }
+          catch(e){ setFileStatus('arc-detail-file-list',i,'error','실패'); }
+        }
+        setProgress('arc-progress-bar','arc-progress',100);
+        assets.unshift({id:'asset-'+Date.now(),name,meta,thumb:thumbUrl,downloadUrl,detailImages:detailUrls,desc});
+        showResult('arc-result',true,`"${name}" 아카이브 추가 완료!`);
+        ['arc-name','arc-desc','arc-path'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+        document.getElementById('arc-meta').value='PDF · Free';
+        arcThumbFiles=[]; arcFileFiles=[]; arcDetailFiles=[];
+        ['arc-thumb-file-list','arc-file-file-list','arc-detail-file-list'].forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML='';});
+        renderAdminArcList(); renderAssets();
+      } catch(e){ showResult('arc-result',false,'오류: '+e.message); }
+      finally{ btn.disabled=false; }
+    }
+
+    /* ── 목록 렌더 ── */
+    function renderAdminBookList() {
+      const el=document.getElementById('admin-book-list'); if(!el) return;
+      if(!books.length){el.innerHTML='<p style="color:#aaa;font-size:14px;">등록된 책이 없습니다.</p>';return;}
+      el.innerHTML='';
+      books.forEach((b,i)=>{const div=document.createElement('div');div.className='admin-book-row';div.innerHTML=`<img class="admin-book-cover" src="${b.cover}" alt="${b.title}" /><div class="admin-book-info"><div class="admin-book-name">${b.title}</div><div class="admin-book-meta">${b.year} · ${b.format} · ${b.pageCount}p</div></div><button class="admin-book-del" onclick="deleteItem('books',${i},renderAdminBookList,renderBookGrid)">×</button>`;el.appendChild(div);});
+    }
+    function renderAdminBlogList() {
+      const el=document.getElementById('admin-blog-list'); if(!el) return;
+      const slice=blogPosts.slice(0,10);
+      if(!slice.length){el.innerHTML='<p style="color:#aaa;font-size:14px;">글이 없습니다.</p>';return;}
+      el.innerHTML='';
+      slice.forEach((b,i)=>{const div=document.createElement('div');div.className='admin-book-row';div.innerHTML=`<div class="admin-book-info"><div class="admin-book-name">${b.title}</div><div class="admin-book-meta">${b.date} · ${(b.tags||[]).join(', ')}</div></div><button class="admin-book-del" onclick="deleteItem('blogPosts',${i},renderAdminBlogList,()=>renderBlog(currentBlogFilter))">×</button>`;el.appendChild(div);});
+    }
+    function renderAdminWorkList() {
+      const el=document.getElementById('admin-work-list'); if(!el) return;
+      if(!projects.length){el.innerHTML='<p style="color:#aaa;font-size:14px;">프로젝트가 없습니다.</p>';return;}
+      el.innerHTML='';
+      projects.forEach((p,i)=>{const div=document.createElement('div');div.className='admin-book-row';div.innerHTML=`<img class="admin-book-cover" src="${p.thumb}" alt="${p.title}" style="width:48px;height:36px;object-fit:cover;" /><div class="admin-book-info"><div class="admin-book-name">${p.title}</div><div class="admin-book-meta">${p.year} · ${p.categories.join(', ')}</div></div><button class="admin-book-del" onclick="deleteItem('projects',${i},renderAdminWorkList,()=>{renderWorksGrid(currentFilter);renderHomeGrid();})">×</button>`;el.appendChild(div);});
+    }
+    function renderAdminArcList() {
+      const el=document.getElementById('admin-arc-list'); if(!el) return;
+      if(!assets.length){el.innerHTML='<p style="color:#aaa;font-size:14px;">자료가 없습니다.</p>';return;}
+      el.innerHTML='';
+      assets.forEach((a,i)=>{const div=document.createElement('div');div.className='admin-book-row';div.innerHTML=`<img class="admin-book-cover" src="${a.thumb}" alt="${a.name}" style="width:48px;height:36px;object-fit:cover;" /><div class="admin-book-info"><div class="admin-book-name">${a.name}</div><div class="admin-book-meta">${a.meta}</div></div><button class="admin-book-del" onclick="deleteItem('assets',${i},renderAdminArcList,renderAssets)">×</button>`;el.appendChild(div);});
+    }
+
+    function deleteItem(arrName, i, reRenderAdmin, reRenderPage) {
+      const arrMap={'books':books,'blogPosts':blogPosts,'projects':projects,'assets':assets};
+      const arr=arrMap[arrName]; if(!arr) return;
+      const label=arr[i].title||arr[i].name||arr[i].id;
+      if(!confirm(`"${label}"을 삭제할까요?`)) return;
+      arr.splice(i,1); reRenderAdmin(); reRenderPage();
+    }
+    function deleteBook(i){ deleteItem('books',i,renderAdminBookList,renderBookGrid); }
+
+    /* PAGE_URLS에 admin 추가 */
+    PAGE_URLS['admin'] = '/admin';
 
     /* ── Init ── */
     renderHomeGrid();
