@@ -7,11 +7,7 @@
       "year": "2025",
       "format": "Essay",
       "pageCount": 33,
-      "categories": [
-        "디자인",
-        "에세이",
-        "탐방기"
-      ],
+      "categories": ["디자인", "에세이", "탐방기"],
       "overview": "광화문 교보문고에서 발견한 책 디자인들을 기록한 탐방 에세이. 표지 디자인, 타이포그래피, 레이아웃 등 북 디자인의 다양한 요소들을 사진과 함께 담았습니다.",
       "cover": "https://github.com/korelideniz/portfolio/blob/main/images/blog/41/1.jpeg?raw=true",
       "pages": [
@@ -57,11 +53,7 @@
       "year": "2025",
       "format": "Graphic Novel",
       "pageCount": 25,
-      "categories": [
-        "그래픽노블",
-        "일러스트",
-        "스토리"
-      ],
+      "categories": ["그래픽노블", "일러스트", "스토리"],
       "overview": "책 소개를 여기에 입력하세요.",
       "cover": "https://github.com/korelideniz/portfolio/blob/main/images/blog/42/1.jpeg?raw=true",
       "pages": []
@@ -73,10 +65,7 @@
       "year": "2025",
       "format": "Picture Book",
       "pageCount": 10,
-      "categories": [
-        "동화책",
-        "일러스트"
-      ],
+      "categories": ["동화책", "일러스트"],
       "overview": "책 소개를 여기에 입력하세요.",
       "cover": "https://github.com/korelideniz/portfolio/blob/main/images/blog/43/1.jpeg?raw=true",
       "pages": []
@@ -88,10 +77,7 @@
       "year": "2025",
       "format": "Zine",
       "pageCount": 10,
-      "categories": [
-        "진",
-        "디자인"
-      ],
+      "categories": ["진", "디자인"],
       "overview": "책 소개를 여기에 입력하세요.",
       "cover": "https://github.com/korelideniz/portfolio/blob/main/images/blog/45/1.jpeg?raw=true",
       "pages": []
@@ -103,10 +89,7 @@
       "year": "2025",
       "format": "Comic",
       "pageCount": 10,
-      "categories": [
-        "만화",
-        "스토리"
-      ],
+      "categories": ["만화", "스토리"],
       "overview": "책 소개를 여기에 입력하세요.",
       "cover": "https://github.com/korelideniz/portfolio/blob/main/images/blog/46/1.jpeg?raw=true",
       "pages": []
@@ -193,27 +176,6 @@
         "https://github.com/korelideniz/portfolio/blob/main/archive/prayer-journal/5.jpg?raw=true"
       ],
       "desc": "기도노트 PDF 공유합니다."
-    }
-  ],
-  "blogIndex": [
-    {
-      "id": "blog-1779110733674",
-      "title": "북 디자인 탐방기3",
-      "date": "2026.3.20",
-      "tags": [
-        "Design",
-        "Life"
-      ],
-      "file": "blog-1779110733674.md"
-    },
-    {
-      "id": "blog-1779110529529",
-      "title": "테스트",
-      "date": "2026.02.18",
-      "tags": [
-        "Life"
-      ],
-      "file": "blog-1779110529529.md"
     }
   ]
 }
