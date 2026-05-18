@@ -130,7 +130,6 @@
     @media (min-width: 769px) { .mobile-menu { display: none; } }
 
     /* ── PAGES ── */
-    /* [FIX 1] 버벅임 수정: 페이지 전환 시 visibility + opacity로 부드럽게 */
     .page {
       display: block;
       min-height: 100vh;
@@ -342,7 +341,7 @@
     }
 
     /* ══════════════════════════════
-       BOOK 페이지 — [NEW]
+       BOOK 페이지
     ══════════════════════════════ */
     #page-book { background: #f5f3ef; color: #111; padding-top: 116px; min-height: 100vh; }
     .book-inner { max-width: 1100px; margin: 0 auto; padding: 40px 32px 80px; }
@@ -350,13 +349,14 @@
     .book-title { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 36px; font-weight: 700; letter-spacing: 0.01em; margin-bottom: 8px; }
     .book-desc-text { font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 15px; line-height: 1.7; color: #666; margin-bottom: 40px; }
 
-    /* 책 그리드 */
+    /* ── 책 그리드: 제각각 비율 (masonry-like columns) ── */
     .book-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
+      columns: 3;
+      column-gap: 20px;
     }
     .book-card {
+      break-inside: avoid;
+      margin-bottom: 20px;
       cursor: pointer;
       opacity: 0;
       transform: translateY(32px);
@@ -368,22 +368,21 @@
       border-radius: 12px;
       overflow: hidden;
       background: #e0ddd8;
-      /* 책 느낌: 왼쪽 그림자 */
       box-shadow: -4px 4px 12px rgba(0,0,0,0.12), 4px 8px 24px rgba(0,0,0,0.10);
       transition: transform 0.4s ease, box-shadow 0.4s ease;
-      aspect-ratio: 2 / 3;
+      /* NO aspect-ratio — let the image define the height */
     }
     .book-card:hover .book-card-cover {
       transform: translateY(-6px) rotate(-1deg);
       box-shadow: -6px 12px 32px rgba(0,0,0,0.18), 6px 16px 40px rgba(0,0,0,0.12);
     }
     .book-card-cover img {
-      width: 100%; height: 100%; object-fit: cover;
+      width: 100%;
+      height: auto;        /* natural aspect ratio */
       display: block;
       transition: transform 0.4s ease;
     }
     .book-card:hover .book-card-cover img { transform: scale(1.03); }
-    /* 책 왼쪽 바인딩 느낌 */
     .book-card-cover::before {
       content: '';
       position: absolute;
@@ -403,20 +402,24 @@
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: 12px; color: #888; letter-spacing: 0.04em;
     }
-    @media (max-width: 900px) { .book-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
+    @media (max-width: 900px) { .book-grid { columns: 2; column-gap: 16px; } }
     @media (max-width: 768px) {
       #page-book { padding-top: 92px; }
       .book-inner { padding: 30px 20px 60px; }
       .book-title { font-size: 28px; }
-      .book-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .book-grid { columns: 2; column-gap: 14px; }
+      .book-card { margin-bottom: 14px; }
+      .book-card-title { font-size: 14px; }
     }
     @media (max-width: 480px) {
-      .book-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-      .book-card-title { font-size: 14px; }
+      .book-grid { columns: 2; column-gap: 10px; }
+      .book-card { margin-bottom: 10px; }
+      .book-card-title { font-size: 13px; }
     }
 
     /* ══════════════════════════════
-       BOOK DETAIL MODAL (앱 스타일)
+       BOOK DETAIL MODAL
+       — 상단 topbar 제거, 하단 FAB 뒤로가기 추가
     ══════════════════════════════ */
     .book-modal-backdrop {
       position: fixed; inset: 0;
@@ -428,45 +431,15 @@
     }
     .book-modal-backdrop.active { display: block; }
 
-    /* 상단 닫기 바 */
-    .book-detail-topbar {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 20px;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(0,0,0,0.06);
-    }
-    .book-detail-close {
-      width: 36px; height: 36px;
-      display: flex; align-items: center; justify-content: center;
-      color: #111; font-size: 20px;
-      border-radius: 50%;
-      transition: background 0.2s;
-    }
-    .book-detail-close:hover { background: rgba(0,0,0,0.06); }
-    .book-detail-share {
-      width: 36px; height: 36px;
-      display: flex; align-items: center; justify-content: center;
-      color: #111;
-      border-radius: 50%;
-      transition: background 0.2s;
-    }
-    .book-detail-share:hover { background: rgba(0,0,0,0.06); }
-
-    /* 책 커버 영역 */
+    /* 커버 영역 — 상단 topbar 없이 바로 시작 */
     .book-detail-hero {
       display: flex;
       justify-content: center;
-      padding: 32px 20px 24px;
+      padding: 52px 20px 24px; /* 상단 여백 살짝 추가 */
       background: #f7f5f2;
     }
     .book-detail-cover-wrap {
-      width: 160px;
+      width: 240px;
       flex-shrink: 0;
       border-radius: 10px;
       overflow: hidden;
@@ -485,7 +458,7 @@
 
     /* 책 메타 정보 */
     .book-detail-body {
-      padding: 24px 20px 120px;
+      padding: 24px 20px 140px; /* 하단 FAB 공간 확보 */
       max-width: 600px;
       margin: 0 auto;
     }
@@ -521,52 +494,24 @@
       border-right: 1px solid #eee;
     }
     .book-stat:last-child { border-right: none; }
-    .book-stat-icon {
-      font-size: 16px;
-      margin-bottom: 4px;
-      color: #888;
-    }
-    .book-stat-value {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      font-size: 15px; font-weight: 600; color: #111;
-    }
-    .book-stat-label {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      font-size: 10px; color: #aaa; letter-spacing: 0.06em; text-transform: uppercase;
-      margin-top: 2px;
-    }
+    .book-stat-value { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 600; color: #111; }
+    .book-stat-label { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 10px; color: #aaa; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 2px; }
 
     /* 카테고리 태그 */
     .book-detail-tags {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-bottom: 28px;
+      display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 28px;
     }
     .book-detail-tag {
       font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif;
-      font-size: 13px; font-weight: 500;
-      color: #444;
-      background: #f0ede8;
-      padding: 6px 14px;
-      border-radius: 999px;
-      letter-spacing: 0.02em;
+      font-size: 13px; font-weight: 500; color: #444;
+      background: #f0ede8; padding: 6px 14px; border-radius: 999px; letter-spacing: 0.02em;
     }
 
     /* Overview 섹션 */
-    .book-detail-section-title {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      font-size: 17px; font-weight: 700; color: #111;
-      margin-bottom: 10px;
-    }
-    .book-detail-overview {
-      font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif;
-      font-size: 15px; line-height: 1.8; color: #555;
-      margin-bottom: 28px;
-    }
+    .book-detail-section-title { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 17px; font-weight: 700; color: #111; margin-bottom: 10px; }
+    .book-detail-overview { font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 15px; line-height: 1.8; color: #555; margin-bottom: 28px; }
 
-    /* 하단 고정 Start Reading 바 */
+    /* ── 하단 Start Reading 바 (링크 공유 버튼으로 교체) ── */
     .book-start-bar {
       position: fixed;
       bottom: 0; left: 0; right: 0;
@@ -581,7 +526,9 @@
       align-items: center;
     }
     .book-start-bar.visible { display: flex; }
-    .book-save-btn {
+
+    /* 링크 공유 버튼 (구 저장 버튼 자리) */
+    .book-share-btn {
       width: 44px; height: 44px;
       border-radius: 50%;
       background: #f0ede8;
@@ -590,8 +537,9 @@
       flex-shrink: 0;
       transition: background 0.2s;
     }
-    .book-save-btn:hover { background: #e5e0d8; }
-    .book-save-btn svg { width: 18px; height: 18px; }
+    .book-share-btn:hover { background: #e5e0d8; }
+    .book-share-btn svg { width: 18px; height: 18px; }
+
     .book-read-btn {
       flex: 1;
       height: 44px;
@@ -608,7 +556,9 @@
     .book-read-btn:hover { background: #222; transform: translateY(-1px); }
     .book-read-btn svg { width: 16px; height: 16px; fill: #fff; }
 
-    /* 리더 모드 (이미지 뷰어) */
+    /* book-modal-back-fab 제거됨 */
+
+    /* 리더 모드 */
     .book-reader-backdrop {
       position: fixed; inset: 0;
       background: #000;
@@ -625,25 +575,20 @@
       background: rgba(0,0,0,0.85);
       backdrop-filter: blur(8px);
     }
-    .book-reader-close {
+    /* 뒤로가기 버튼 (화살표) */
+    .book-reader-back {
       width: 36px; height: 36px;
       display: flex; align-items: center; justify-content: center;
-      color: rgba(255,255,255,0.8); font-size: 20px;
+      color: rgba(255,255,255,0.85);
       border-radius: 50%;
       transition: background 0.2s;
     }
-    .book-reader-close:hover { background: rgba(255,255,255,0.1); }
-    .book-reader-title {
-      font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif;
-      font-size: 14px; font-weight: 600; color: #fff;
-    }
+    .book-reader-back:hover { background: rgba(255,255,255,0.1); }
+    .book-reader-back svg { width: 20px; height: 20px; display: block; }
+    .book-reader-title { font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 600; color: #fff; }
     .book-reader-pages {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      max-width: 680px;
-      margin: 0 auto;
-      padding-bottom: 40px;
+      display: flex; flex-direction: column; gap: 2px;
+      max-width: 680px; margin: 0 auto; padding-bottom: 80px;
     }
     .book-reader-pages img {
       width: 100%; height: auto; display: block;
@@ -651,9 +596,28 @@
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
     .book-reader-pages img.in-view { opacity: 1; transform: translateY(0); }
+    /* 리더 뒤로가기 FAB */
+    .book-reader-fab {
+      position: fixed;
+      bottom: 24px; right: 24px;
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: rgba(30,30,30,0.92);
+      color: #fff;
+      display: none;
+      align-items: center; justify-content: center;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+      z-index: 2100;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.12);
+      transition: transform 0.18s ease;
+    }
+    .book-reader-fab:active { transform: scale(0.94); }
+    .book-reader-fab svg { width: 22px; height: 22px; display: block; }
+    .book-reader-backdrop.active .book-reader-fab { display: flex; }
 
     @media (max-width: 768px) {
-      .book-detail-cover-wrap { width: 130px; }
+      .book-detail-cover-wrap { width: 180px; }
       .book-detail-title { font-size: 20px; }
       .book-stat-value { font-size: 14px; }
     }
@@ -900,7 +864,7 @@
     <footer class="site-footer" style="background:#eeeeee;color:#888;border-top:1px solid #b5b5b5;">© 2026 Koreli Deniz. All rights reserved.</footer>
   </div>
 
-  <!-- BOOK [NEW] -->
+  <!-- BOOK -->
   <div id="page-book" class="page">
     <div class="book-inner">
       <p class="book-heading reveal">Reading & Making</p>
@@ -1001,16 +965,9 @@
     </button>
   </div>
 
-  <!-- BOOK DETAIL MODAL -->
+  <!-- BOOK DETAIL MODAL — topbar 제거, FAB 추가 -->
   <div id="book-modal-backdrop" class="book-modal-backdrop">
-    <!-- 상단 바 -->
-    <div class="book-detail-topbar">
-      <button class="book-detail-close" onclick="closeBook()" aria-label="Close">✕</button>
-      <button class="book-detail-share" aria-label="Share">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
-      </button>
-    </div>
-    <!-- 커버 -->
+    <!-- 커버 영역 (topbar 없음) -->
     <div class="book-detail-hero">
       <div class="book-detail-cover-wrap">
         <img id="book-detail-cover" src="" alt="" />
@@ -1023,17 +980,14 @@
       <!-- 통계 -->
       <div class="book-detail-stats">
         <div class="book-stat">
-          <div class="book-stat-icon">📄</div>
           <div class="book-stat-value" id="book-stat-pages">—</div>
           <div class="book-stat-label">Pages</div>
         </div>
         <div class="book-stat">
-          <div class="book-stat-icon">📅</div>
           <div class="book-stat-value" id="book-stat-year">—</div>
           <div class="book-stat-label">Year</div>
         </div>
         <div class="book-stat">
-          <div class="book-stat-icon">📖</div>
           <div class="book-stat-value" id="book-stat-format">—</div>
           <div class="book-stat-label">Format</div>
         </div>
@@ -1044,10 +998,15 @@
       <div class="book-detail-section-title">Book Overview</div>
       <div class="book-detail-overview" id="book-detail-overview"></div>
     </div>
-    <!-- 하단 Start Reading 바 -->
+    <!-- 하단 바: 링크 공유 + Start Reading -->
     <div class="book-start-bar visible" id="book-start-bar">
-      <button class="book-save-btn" aria-label="Save">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+      <!-- 링크 공유 버튼 (구 저장 버튼 교체) -->
+      <button class="book-share-btn" aria-label="링크 공유" onclick="shareBookLink()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+          <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+        </svg>
       </button>
       <button class="book-read-btn" id="book-read-btn" onclick="openReader()">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
@@ -1056,14 +1015,20 @@
     </div>
   </div>
 
-  <!-- BOOK READER (이미지 뷰어) -->
+  <!-- BOOK READER -->
   <div id="book-reader-backdrop" class="book-reader-backdrop">
     <div class="book-reader-topbar">
-      <button class="book-reader-close" onclick="closeReader()" aria-label="Close">✕</button>
+      <button class="book-reader-back" onclick="closeReader()" aria-label="Back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      </button>
       <div class="book-reader-title" id="book-reader-title"></div>
       <div style="width:36px"></div>
     </div>
     <div class="book-reader-pages" id="book-reader-pages"></div>
+    <!-- 뒤로가기 FAB -->
+    <button class="book-reader-fab" onclick="closeReader()" aria-label="Back" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+    </button>
   </div>
 
   <script>
@@ -1093,9 +1058,7 @@
     ];
 
     /* ═══════════════════════════════════════════════
-       BOOK DATA [NEW]
-       — pages 배열에 GitHub raw 이미지 URL을 순서대로 넣으세요
-       — cover: 표지 이미지 URL (그리드에 보일 이미지)
+       BOOK DATA
     ═══════════════════════════════════════════════ */
     const books = [
       {
@@ -1324,7 +1287,7 @@
       });
     }
 
-    /* ── Render Book Grid [NEW] ── */
+    /* ── Render Book Grid — 원본 비율 유지 (columns layout) ── */
     function renderBookGrid() {
       const grid = document.getElementById('book-grid');
       grid.innerHTML = '';
@@ -1338,7 +1301,7 @@
           </div>
           <div class="book-card-info">
             <div class="book-card-title">${b.title}</div>
-            <div class="book-card-meta">${b.meta}</div>
+            <div class="book-card-meta">${b.year} · ${b.format}</div>
           </div>`;
         el.addEventListener('click', () => openBook(b.id));
         grid.appendChild(el);
@@ -1369,12 +1332,39 @@
       backdrop.classList.add('active');
       backdrop.scrollTop = 0;
       document.body.classList.add('modal-open');
+      document.getElementById('header').style.display = 'none';
     }
 
     function closeBook() {
       document.getElementById('book-modal-backdrop').classList.remove('active');
       document.body.classList.remove('modal-open');
+      document.getElementById('header').style.display = '';
       currentBookData = null;
+    }
+
+    /* ── 링크 공유 함수 ── */
+    function shareBookLink() {
+      const url = window.location.href;
+      if (navigator.share) {
+        navigator.share({ title: currentBookData ? currentBookData.title : document.title, url: url })
+          .catch(() => copyToClipboard(url));
+      } else {
+        copyToClipboard(url);
+      }
+    }
+    function copyToClipboard(text) {
+      if (navigator.clipboard?.writeText) {
+        navigator.clipboard.writeText(text).then(() => showToast('링크가 복사되었습니다')).catch(() => fallbackCopyText(text));
+      } else {
+        fallbackCopyText(text);
+      }
+    }
+    function fallbackCopyText(text) {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.left = '-9999px';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); showToast('링크가 복사되었습니다'); } catch(e) { showToast('복사 실패'); }
+      document.body.removeChild(ta);
     }
 
     function openReader() {
@@ -1540,9 +1530,7 @@
     setHeroHeight();
     window.addEventListener('orientationchange', () => setTimeout(setHeroHeight, 200));
 
-    /* ═══════════════════════════════════════════════
-       [FIX 3] URL 라우팅 — navigate 시 URL 업데이트
-    ═══════════════════════════════════════════════ */
+    /* ── URL 라우팅 ── */
     const PAGE_URLS = {
       home: '/',
       works: '/works',
@@ -1559,7 +1547,6 @@
       closeBook();
       currentPage = page;
 
-      /* [FIX 1] 버벅임 수정: display:none 대신 visibility/opacity 전환 */
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       const pageEl = document.getElementById('page-' + page);
       pageEl.classList.add('active');
@@ -1580,19 +1567,16 @@
       }
       if (page === 'assets') renderAssets();
 
-      /* URL 업데이트 */
       const url = PAGE_URLS[page] || '/';
       history.pushState({ page }, '', url);
 
       requestAnimationFrame(() => observeReveals(pageEl));
     }
 
-    /* 브라우저 뒤로가기/앞으로가기 대응 */
     window.addEventListener('popstate', (e) => {
       if (e.state && e.state.page) navigate(e.state.page);
     });
 
-    /* 초기 URL → 페이지 매핑 */
     function getInitialPage() {
       const path = window.location.pathname;
       const found = Object.entries(PAGE_URLS).find(([, url]) => url === path);
@@ -1709,7 +1693,6 @@
     renderHomeGrid();
     populateConnectBars();
     const initialPage = getInitialPage();
-    // 초기 상태를 history에 등록
     history.replaceState({ page: initialPage }, '', PAGE_URLS[initialPage] || '/');
     navigate(initialPage);
   </script>
