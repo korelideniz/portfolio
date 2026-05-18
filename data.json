@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "books": [
     {
       "id": "book-01",
@@ -217,14 +216,4 @@
       "file": "blog-1779110529529.md"
     }
   ]
-  {
-  "books": [],
-  "assets": [],
-  "blogIndex": []
-}
-=======
-  "books": [],
-  "assets": [],
-  "blogIndex": []
->>>>>>> a3216ab6491c2efa634a0c6d9aa1fa945f6c15f7
 }
