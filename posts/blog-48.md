@@ -1,7 +1,0 @@
-![](https://github.com/korelideniz/portfolio/blob/main/images/blog/48/1.jpg?raw=true)
-![](https://github.com/korelideniz/portfolio/blob/main/images/blog/48/2.png?raw=true)
-![](https://github.com/korelideniz/portfolio/blob/main/images/blog/48/3.png?raw=true)
-![](https://github.com/korelideniz/portfolio/blob/main/images/blog/48/4.png?raw=true)
-![](https://github.com/korelideniz/portfolio/blob/main/images/blog/48/5.png?raw=true)
-![](https://github.com/korelideniz/portfolio/blob/main/images/blog/48/6.png?raw=true)
-![](https://github.com/korelideniz/portfolio/blob/main/images/blog/48/7.png?raw=true)
