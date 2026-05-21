@@ -13,10 +13,9 @@
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; overflow-y: scroll; background: #D93939; /* 초기값: home 배경색 */ }
+    html { scroll-behavior: smooth; overflow-y: scroll; }
     body {
       font-family: 'Helvetica Neue', 'Pretendard', -apple-system, Helvetica, Arial, sans-serif;
-      background: transparent;
       color: #111;
     }
     a { color: inherit; text-decoration: none; cursor: pointer; }
@@ -1169,9 +1168,8 @@
     };
     function updateStatusBarColor(page) {
       const color = PAGE_THEME_COLORS[page] || '#000000';
-      /* html 배경색 = 페이지 배경색 → safe-area / status bar 영역이 배경색으로 꽉 참 */
+      /* html 인라인 스타일로 배경색 설정 → CSS 규칙보다 우선, safe-area까지 꽉 참 */
       document.documentElement.style.background = color;
-      document.documentElement.style.backgroundColor = color;
     }
 
     /* ── State ── */
