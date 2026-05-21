@@ -711,6 +711,7 @@
       const metaTheme = document.getElementById('meta-theme-color');
       if (metaTheme) metaTheme.setAttribute('content', color);
       document.documentElement.style.background = color;
+      document.body.style.background = color;
     }
 
     let currentPage = 'home';
