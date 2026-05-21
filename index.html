@@ -969,6 +969,7 @@
     const PAGE_URLS = { home:'/', works:'/works', blog:'/blog', book:'/book', assets:'/archive', contact:'/contact', info:'/about' };
 
     function navigate(page) {
+      updateStatusBarColor(page);
       closeProject(); closeAsset(); closeBook();
       currentPage = page;
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
