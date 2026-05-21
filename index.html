@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Koreli Deniz</title>
   <link rel="icon" type="image/jpeg" href="https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/images/favicon.jpg" />
   <link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/images/favicon.jpg" />
@@ -22,6 +22,17 @@
     a { color: inherit; text-decoration: none; cursor: pointer; }
     img { display: block; max-width: 100%; }
     button { background: none; border: none; cursor: pointer; font-family: inherit; }
+
+    /* ── STATUS BAR FILL (safe-area) ── */
+    #status-bar-fill {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: env(safe-area-inset-top);
+      z-index: 9999;
+      background: #000000;
+      transition: background 0.3s;
+      pointer-events: none;
+    }
 
     /* ── HEADER ── */
     #header {
@@ -763,6 +774,9 @@
   </style>
 </head>
 <body>
+  <!-- STATUS BAR SAFE AREA FILL -->
+  <div id="status-bar-fill"></div>
+
   <!-- HEADER -->
   <header id="header">
     <a class="logo-link" onclick="navigate('home')">
@@ -1075,86 +1089,14 @@
       { id: 'proj-19', title: '화산귀환X파워퍼프걸 팬아트', categories: ['CHARACTER'], thumb: 'https://github.com/korelideniz/portfolio/blob/main/images/hwasangwihwan/1.png?raw=true', images: ['https://github.com/korelideniz/portfolio/blob/main/images/hwasangwihwan/1.png?raw=true','https://github.com/korelideniz/portfolio/blob/main/images/hwasangwihwan/2.png?raw=true','https://github.com/korelideniz/portfolio/blob/main/images/hwasangwihwan/3.png?raw=true','https://github.com/korelideniz/portfolio/blob/main/images/hwasangwihwan/4.png?raw=true','https://github.com/korelideniz/portfolio/blob/main/images/hwasangwihwan/5.png?raw=true'], desc: '개인작업으로 화산귀환X파워퍼프걸 팬아트를 작업했습니다.', year: '2024' },
     ];
 
-    /* ═══════════════════════════════════════════════
-       BOOK DATA
-    ═══════════════════════════════════════════════ */
     const books = [
-      {
-        id: 'book-01',
-        title: '북 디자인 탐방기 1: 광화문 교보문고',
-        author: 'Koreli Deniz',
-        year: '2025',
-        format: 'Essay',
-        pageCount: 33,
-        categories: ['디자인', '에세이', '탐방기'],
-        overview: '광화문 교보문고에서 발견한 책 디자인들을 기록한 탐방 에세이. 표지 디자인, 타이포그래피, 레이아웃 등 북 디자인의 다양한 요소들을 사진과 함께 담았습니다.',
-        cover: 'https://github.com/korelideniz/portfolio/blob/main/images/blog/41/1.jpeg?raw=true',
-        pages: Array.from({length: 33}, (_, i) => {
-          const ext = [3,5].includes(i+1) ? 'jpg' : 'jpeg';
-          return `https://github.com/korelideniz/portfolio/blob/main/images/blog/41/${i+1}.${ext}?raw=true`;
-        }),
-      },
-      {
-        id: 'book-02',
-        title: '책 제목 2',
-        author: 'Koreli Deniz',
-        year: '2025',
-        format: 'Graphic Novel',
-        pageCount: 25,
-        categories: ['그래픽노블', '일러스트', '스토리'],
-        overview: '책 소개를 여기에 입력하세요.',
-        cover: 'https://github.com/korelideniz/portfolio/blob/main/images/blog/42/1.jpeg?raw=true',
-        pages: Array.from({length: 25}, (_, i) =>
-          `https://github.com/korelideniz/portfolio/blob/main/images/blog/42/${i+1}.jpeg?raw=true`
-        ),
-      },
-      {
-        id: 'book-03',
-        title: '책 제목 3',
-        author: 'Koreli Deniz',
-        year: '2025',
-        format: 'Picture Book',
-        pageCount: 10,
-        categories: ['동화책', '일러스트'],
-        overview: '책 소개를 여기에 입력하세요.',
-        cover: 'https://github.com/korelideniz/portfolio/blob/main/images/blog/43/1.jpeg?raw=true',
-        pages: Array.from({length: 10}, (_, i) =>
-          `https://github.com/korelideniz/portfolio/blob/main/images/blog/43/${i+1}.jpeg?raw=true`
-        ),
-      },
-      {
-        id: 'book-04',
-        title: '책 제목 4',
-        author: 'Koreli Deniz',
-        year: '2025',
-        format: 'Zine',
-        pageCount: 10,
-        categories: ['진', '디자인'],
-        overview: '책 소개를 여기에 입력하세요.',
-        cover: 'https://github.com/korelideniz/portfolio/blob/main/images/blog/45/1.jpeg?raw=true',
-        pages: Array.from({length: 10}, (_, i) =>
-          `https://github.com/korelideniz/portfolio/blob/main/images/blog/45/${i+1}.jpeg?raw=true`
-        ),
-      },
-      {
-        id: 'book-05',
-        title: '책 제목 5',
-        author: 'Koreli Deniz',
-        year: '2025',
-        format: 'Comic',
-        pageCount: 10,
-        categories: ['만화', '스토리'],
-        overview: '책 소개를 여기에 입력하세요.',
-        cover: 'https://github.com/korelideniz/portfolio/blob/main/images/blog/46/1.jpeg?raw=true',
-        pages: Array.from({length: 10}, (_, i) =>
-          `https://github.com/korelideniz/portfolio/blob/main/images/blog/46/${i+1}.jpeg?raw=true`
-        ),
-      },
+      { id: 'book-01', title: '북 디자인 탐방기 1: 광화문 교보문고', author: 'Koreli Deniz', year: '2025', format: 'Essay', pageCount: 33, categories: ['디자인', '에세이', '탐방기'], overview: '광화문 교보문고에서 발견한 책 디자인들을 기록한 탐방 에세이. 표지 디자인, 타이포그래피, 레이아웃 등 북 디자인의 다양한 요소들을 사진과 함께 담았습니다.', cover: 'https://github.com/korelideniz/portfolio/blob/main/images/blog/41/1.jpeg?raw=true', pages: Array.from({length: 33}, (_, i) => { const ext = [3,5].includes(i+1) ? 'jpg' : 'jpeg'; return `https://github.com/korelideniz/portfolio/blob/main/images/blog/41/${i+1}.${ext}?raw=true`; }), },
+      { id: 'book-02', title: '책 제목 2', author: 'Koreli Deniz', year: '2025', format: 'Graphic Novel', pageCount: 25, categories: ['그래픽노블', '일러스트', '스토리'], overview: '책 소개를 여기에 입력하세요.', cover: 'https://github.com/korelideniz/portfolio/blob/main/images/blog/42/1.jpeg?raw=true', pages: Array.from({length: 25}, (_, i) => `https://github.com/korelideniz/portfolio/blob/main/images/blog/42/${i+1}.jpeg?raw=true`), },
+      { id: 'book-03', title: '책 제목 3', author: 'Koreli Deniz', year: '2025', format: 'Picture Book', pageCount: 10, categories: ['동화책', '일러스트'], overview: '책 소개를 여기에 입력하세요.', cover: 'https://github.com/korelideniz/portfolio/blob/main/images/blog/43/1.jpeg?raw=true', pages: Array.from({length: 10}, (_, i) => `https://github.com/korelideniz/portfolio/blob/main/images/blog/43/${i+1}.jpeg?raw=true`), },
+      { id: 'book-04', title: '책 제목 4', author: 'Koreli Deniz', year: '2025', format: 'Zine', pageCount: 10, categories: ['진', '디자인'], overview: '책 소개를 여기에 입력하세요.', cover: 'https://github.com/korelideniz/portfolio/blob/main/images/blog/45/1.jpeg?raw=true', pages: Array.from({length: 10}, (_, i) => `https://github.com/korelideniz/portfolio/blob/main/images/blog/45/${i+1}.jpeg?raw=true`), },
+      { id: 'book-05', title: '책 제목 5', author: 'Koreli Deniz', year: '2025', format: 'Comic', pageCount: 10, categories: ['만화', '스토리'], overview: '책 소개를 여기에 입력하세요.', cover: 'https://github.com/korelideniz/portfolio/blob/main/images/blog/46/1.jpeg?raw=true', pages: Array.from({length: 10}, (_, i) => `https://github.com/korelideniz/portfolio/blob/main/images/blog/46/${i+1}.jpeg?raw=true`), },
     ];
 
-    /* ═══════════════════════════════════════════════
-       BLOG DATA
-    ═══════════════════════════════════════════════ */
     const GITHUB_RAW = 'https://raw.githubusercontent.com/korelideniz/portfolio/main/posts/';
     const BLOG_PLACEHOLDER = '*(작성 중인 글입니다)*';
     const FALLBACK_BLOG_INDEX = [
@@ -1220,9 +1162,6 @@
       blogIndexLoaded = true;
     }
 
-    /* ═══════════════════════════════════════════════
-       ASSETS DATA
-    ═══════════════════════════════════════════════ */
     const assets = [
       { id: 'asset-06', name: '사토시 일러스트 배경화면 / Satoshi Wallpaper', meta: 'JPE · Free', thumb: 'https://github.com/korelideniz/portfolio/blob/main/archive/satoshi/satoshi-wallpaper_1.png?raw=true', downloadUrl: 'https://github.com/korelideniz/portfolio/raw/main/archive/satoshi/satoshi-wallpaper.zip', detailImages: ['https://github.com/korelideniz/portfolio/blob/main/archive/satoshi/satoshi-wallpaper_1.png?raw=true','https://github.com/korelideniz/portfolio/blob/main/archive/satoshi/satoshi-wallpaper_2.png?raw=true','https://github.com/korelideniz/portfolio/blob/main/archive/satoshi/1.png?raw=true','https://github.com/korelideniz/portfolio/blob/main/archive/satoshi/2.png?raw=true'], desc: '사토시 일러스트 배경화면 공유합니다. 아이패드 / 아이폰 / 애플워치 배경화면' },
       { id: 'asset-01', name: '스토리보드 PDF / Storyboard', meta: 'PDF · Free', thumb: 'https://github.com/korelideniz/portfolio/blob/main/archive/storyboard/storyboard.jpg?raw=true', downloadUrl: 'https://github.com/korelideniz/portfolio/raw/main/archive/storyboard/Storyboard_PDF.zip', detailImages: ['https://github.com/korelideniz/portfolio/blob/main/archive/storyboard/2.png?raw=true','https://github.com/korelideniz/portfolio/blob/main/archive/storyboard/1.png?raw=true'], desc: '스토리보드 (기본형) / 컷별 설명란 + 메모 공간 / 심플하고 깔끔한 디자인 (블루 / 블랙)' },
@@ -1232,12 +1171,27 @@
       { id: 'asset-05', name: '기도노트 PDF / Prayer Journal', meta: 'PDF · Free', thumb: 'https://github.com/korelideniz/portfolio/blob/main/archive/prayer-journal/prayer-journal.jpg?raw=true', downloadUrl: 'https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/archive/prayer-journal/prayer-journal.pdf', detailImages: ['https://github.com/korelideniz/portfolio/blob/main/archive/prayer-journal/prayer-journal.jpg?raw=true','https://github.com/korelideniz/portfolio/blob/main/archive/prayer-journal/1.jpg?raw=true','https://github.com/korelideniz/portfolio/blob/main/archive/prayer-journal/2.jpg?raw=true','https://github.com/korelideniz/portfolio/blob/main/archive/prayer-journal/3.jpg?raw=true','https://github.com/korelideniz/portfolio/blob/main/archive/prayer-journal/4.jpg?raw=true','https://github.com/korelideniz/portfolio/blob/main/archive/prayer-journal/5.jpg?raw=true'], desc: '기도노트 PDF 공유합니다.' },
     ];
 
+    /* ── 페이지별 Status Bar 색상 ── */
+    const PAGE_THEME_COLORS = {
+      home:    '#000000',
+      works:   '#000000',
+      assets:  '#111111',
+      info:    '#D93939',
+      contact: '#D93939',
+      blog:    '#eeeeee',
+      book:    '#f5f3ef',
+    };
+    function updateStatusBarColor(page) {
+      const color = PAGE_THEME_COLORS[page] || '#000000';
+      const fill = document.getElementById('status-bar-fill');
+      if (fill) fill.style.background = color;
+    }
+
     /* ── State ── */
     let currentPage = 'home';
     let currentFilter = 'ALL';
     let currentBlogFilter = 'ALL';
 
-    /* ── Scroll Reveal Observer ── */
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -1275,7 +1229,6 @@
       });
     }
 
-    /* ── Render Grids ── */
     function renderHomeGrid() {
       const grid = document.getElementById('home-grid');
       grid.innerHTML = '';
@@ -1305,7 +1258,6 @@
       });
     }
 
-    /* ── Render Book Grid — 원본 비율 유지 (columns layout) ── */
     function renderBookGrid() {
       const grid = document.getElementById('book-grid');
       grid.innerHTML = '';
@@ -1313,14 +1265,7 @@
         const el = document.createElement('div');
         el.className = 'book-card';
         el.dataset.idx = i;
-        el.innerHTML = `
-          <div class="book-card-cover">
-            <img src="${b.cover}" alt="${b.title}" loading="lazy" />
-          </div>
-          <div class="book-card-info">
-            <div class="book-card-title">${b.title}</div>
-            <div class="book-card-meta">${b.year} · ${b.format}</div>
-          </div>`;
+        el.innerHTML = `<div class="book-card-cover"><img src="${b.cover}" alt="${b.title}" loading="lazy" /></div><div class="book-card-info"><div class="book-card-title">${b.title}</div><div class="book-card-meta">${b.year} · ${b.format}</div></div>`;
         el.addEventListener('click', () => openBook(b.id));
         grid.appendChild(el);
         revealObserver.observe(el);
@@ -1333,7 +1278,6 @@
       const b = books.find(x => x.id === id);
       if (!b) return;
       currentBookData = b;
-
       document.getElementById('book-detail-cover').src = b.cover;
       document.getElementById('book-detail-cover').alt = b.title;
       document.getElementById('book-detail-title').textContent = b.title;
@@ -1342,10 +1286,8 @@
       document.getElementById('book-stat-year').textContent = b.year;
       document.getElementById('book-stat-format').textContent = b.format;
       document.getElementById('book-detail-overview').textContent = b.overview;
-
       const tagsEl = document.getElementById('book-detail-tags');
       tagsEl.innerHTML = b.categories.map(c => `<span class="book-detail-tag">${c}</span>`).join('');
-
       const backdrop = document.getElementById('book-modal-backdrop');
       backdrop.classList.add('active');
       backdrop.scrollTop = 0;
@@ -1360,12 +1302,10 @@
       currentBookData = null;
     }
 
-    /* ── 링크 공유 함수 ── */
     function shareBookLink() {
       const url = window.location.href;
       if (navigator.share) {
-        navigator.share({ title: currentBookData ? currentBookData.title : document.title, url: url })
-          .catch(() => copyToClipboard(url));
+        navigator.share({ title: currentBookData ? currentBookData.title : document.title, url: url }).catch(() => copyToClipboard(url));
       } else {
         copyToClipboard(url);
       }
@@ -1406,7 +1346,6 @@
       document.getElementById('book-reader-backdrop').classList.remove('active');
     }
 
-    /* ── Render Blog ── */
     marked.setOptions({ breaks: true });
     const POSTS_PER_PAGE = 10;
     let currentBlogPage = 1;
@@ -1425,18 +1364,7 @@
         row.className = 'blog-row';
         row.dataset.idx = i;
         const tagsHTML = post.tags.map(t => `<span class="blog-tag">${t}</span>`).join('');
-        row.innerHTML = `
-          <div class="blog-row-head" onclick="toggleBlogRow(this)">
-            <div class="blog-row-title">${post.title}</div>
-            <div class="blog-row-tags">${tagsHTML}</div>
-            <div class="blog-row-arrow"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg></div>
-          </div>
-          <div class="blog-row-body">
-            <div class="blog-row-body-inner">
-              <div class="blog-row-date">${post.date}</div>
-              ${marked.parse(post.body)}
-            </div>
-          </div>`;
+        row.innerHTML = `<div class="blog-row-head" onclick="toggleBlogRow(this)"><div class="blog-row-title">${post.title}</div><div class="blog-row-tags">${tagsHTML}</div><div class="blog-row-arrow"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg></div></div><div class="blog-row-body"><div class="blog-row-body-inner"><div class="blog-row-date">${post.date}</div>${marked.parse(post.body)}</div></div>`;
         list.appendChild(row);
         revealObserver.observe(row);
       });
@@ -1484,7 +1412,6 @@
       else { row.classList.add('open'); body.style.maxHeight = body.scrollHeight + 'px'; }
     }
 
-    /* ── Render Assets ── */
     function renderAssets() {
       const grid = document.getElementById('assets-grid');
       grid.innerHTML = '';
@@ -1525,7 +1452,6 @@
       document.body.classList.remove('modal-open');
     }
 
-    /* ── Mobile Menu ── */
     function toggleMobileMenu() {
       const menu = document.getElementById('mobile-menu');
       const btn = document.getElementById('hamburger');
@@ -1541,7 +1467,6 @@
     function delayedCloseMenu() {
       const menu = document.getElementById('mobile-menu');
       const btn = document.getElementById('hamburger');
-      /* 링크에 살짝 눌린 효과 후 메뉴 닫기 */
       setTimeout(() => {
         menu.classList.remove('open');
         btn.classList.remove('open');
@@ -1550,7 +1475,6 @@
       }, 180);
     }
 
-    /* ── Hero Height ── */
     function setHeroHeight() {
       const h = window.innerHeight;
       document.documentElement.style.setProperty('--hero-h', h + 'px');
@@ -1559,7 +1483,6 @@
     setHeroHeight();
     window.addEventListener('orientationchange', () => setTimeout(setHeroHeight, 200));
 
-    /* ── URL 라우팅 ── */
     const PAGE_URLS = {
       home: '/',
       works: '/works',
@@ -1582,6 +1505,8 @@
       window.scrollTo(0, 0);
 
       updateHeader(page);
+      updateStatusBarColor(page);  /* ← 페이지 전환 시 status bar 색 업데이트 */
+
       document.querySelectorAll('.nav-link[id^="nav-"]').forEach(a => a.classList.remove('active'));
       const an = document.getElementById('nav-' + page);
       if (an) an.classList.add('active');
@@ -1612,7 +1537,6 @@
       return found ? found[0] : 'home';
     }
 
-    /* ── Project Modal ── */
     function openProject(id) {
       const p = projects.find(x => x.id === id);
       if (!p) return;
@@ -1638,7 +1562,6 @@
 
     document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeProject(); closeAsset(); closeBook(); closeReader(); } });
 
-    /* ── Header ── */
     function updateHeader(page) {
       const navLinks = document.querySelectorAll('#main-nav .nav-link');
       const hamburger = document.getElementById('hamburger');
@@ -1653,7 +1576,6 @@
       }
     }
 
-    /* ── Works Filter ── */
     document.querySelectorAll('.filter-btn').forEach(btn => {
       btn.addEventListener('click', function() {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -1663,7 +1585,6 @@
       });
     });
 
-    /* ── Blog Filter ── */
     document.querySelectorAll('.blog-filter-btn').forEach(btn => {
       btn.addEventListener('click', function() {
         document.querySelectorAll('.blog-filter-btn').forEach(b => b.classList.remove('active'));
@@ -1673,7 +1594,6 @@
       });
     });
 
-    /* ── Contact Form ── */
     document.getElementById('contact-form').addEventListener('submit', function(e) {
       e.preventDefault();
       const body = encodeURIComponent(`이름 / Name: ${this.name.value}\n이메일 / Email: ${this.email.value}\n연락처 / Phone: ${this.phone.value}\n\n프로젝트 상세:\n${this.details.value}\n\n예상 예산: ${this.budget.value}`);
@@ -1681,7 +1601,6 @@
       window.location.href = `mailto:koreli_deniz@naver.com?subject=${subject}&body=${body}`;
     });
 
-    /* ── Toast ── */
     let toastTimer = null;
     function showToast(message) {
       const toast = document.getElementById('toast');
@@ -1703,7 +1622,6 @@
       document.body.removeChild(ta);
     }
 
-    /* ── Connect Bar ── */
     const connectLinks = [
       { type: 'text', text: 'Nostr', label: 'Nostr', href: 'https://primal.net/p/npub1z0ft6gudp98gjxt3e3yvruckuprhg48nj2jvshy00gv4sa5vv60qg3j3wr' },
       { type: 'icon', label: 'X', href: 'https://x.com/koreli_deniz', svg: '<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/>' },
