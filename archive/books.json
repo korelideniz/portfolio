@@ -1,0 +1,64 @@
+[
+  {
+    "id": "book-01",
+    "title": "북 디자인 탐방기 1: 광화문 교보문고",
+    "author": "Koreli Deniz",
+    "year": "2025",
+    "format": "Essay",
+    "pageCount": 33,
+    "categories": ["디자인", "에세이", "탐방기"],
+    "overview": "광화문 교보문고에서 발견한 책 디자인들을 기록한 탐방 에세이. 표지 디자인, 타이포그래피, 레이아웃 등 북 디자인의 다양한 요소들을 사진과 함께 담았습니다.",
+    "cover": "https://github.com/korelideniz/portfolio/blob/main/images/blog/41/1.jpeg?raw=true",
+    "pageImages": "https://github.com/korelideniz/portfolio/blob/main/images/blog/41/{n}.{ext}?raw=true",
+    "pageCount": 33,
+    "pageExts": { "3": "jpg", "5": "jpg" }
+  },
+  {
+    "id": "book-02",
+    "title": "책 제목 2",
+    "author": "Koreli Deniz",
+    "year": "2025",
+    "format": "Graphic Novel",
+    "pageCount": 25,
+    "categories": ["그래픽노블", "일러스트", "스토리"],
+    "overview": "책 소개를 여기에 입력하세요.",
+    "cover": "https://github.com/korelideniz/portfolio/blob/main/images/blog/42/1.jpeg?raw=true",
+    "pageImages": "https://github.com/korelideniz/portfolio/blob/main/images/blog/42/{n}.jpeg?raw=true"
+  },
+  {
+    "id": "book-03",
+    "title": "책 제목 3",
+    "author": "Koreli Deniz",
+    "year": "2025",
+    "format": "Picture Book",
+    "pageCount": 10,
+    "categories": ["동화책", "일러스트"],
+    "overview": "책 소개를 여기에 입력하세요.",
+    "cover": "https://github.com/korelideniz/portfolio/blob/main/images/blog/43/1.jpeg?raw=true",
+    "pageImages": "https://github.com/korelideniz/portfolio/blob/main/images/blog/43/{n}.jpeg?raw=true"
+  },
+  {
+    "id": "book-04",
+    "title": "책 제목 4",
+    "author": "Koreli Deniz",
+    "year": "2025",
+    "format": "Zine",
+    "pageCount": 10,
+    "categories": ["진", "디자인"],
+    "overview": "책 소개를 여기에 입력하세요.",
+    "cover": "https://github.com/korelideniz/portfolio/blob/main/images/blog/45/1.jpeg?raw=true",
+    "pageImages": "https://github.com/korelideniz/portfolio/blob/main/images/blog/45/{n}.jpeg?raw=true"
+  },
+  {
+    "id": "book-05",
+    "title": "책 제목 5",
+    "author": "Koreli Deniz",
+    "year": "2025",
+    "format": "Comic",
+    "pageCount": 10,
+    "categories": ["만화", "스토리"],
+    "overview": "책 소개를 여기에 입력하세요.",
+    "cover": "https://github.com/korelideniz/portfolio/blob/main/images/blog/46/1.jpeg?raw=true",
+    "pageImages": "https://github.com/korelideniz/portfolio/blob/main/images/blog/46/{n}.jpeg?raw=true"
+  }
+]
