@@ -1092,7 +1092,7 @@
       { id: 'book-05', title: '책 제목 5', author: 'Koreli Deniz', year: '2025', format: 'Comic', pageCount: 10, categories: ['만화', '스토리'], overview: '책 소개를 여기에 입력하세요.', cover: 'https://github.com/korelideniz/portfolio/blob/main/images/blog/46/1.jpeg?raw=true', pages: Array.from({length: 10}, (_, i) => `https://github.com/korelideniz/portfolio/blob/main/images/blog/46/${i+1}.jpeg?raw=true`), },
     ];
 
-    const GITHUB_RAW = 'https://raw.githubusercontent.com/korelideniz/portfolio/main/posts/';
+    const GITHUB_RAW = 'https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/posts/';
     const BLOG_PLACEHOLDER = '*(작성 중인 글입니다)*';
     const FALLBACK_BLOG_INDEX = [
       { id: 'blog-40', title: '한달 안에 졸업전시 준비하기', date: '2024.12.13', tags: ['Design'], file: 'blog-40.md' },
@@ -1147,7 +1147,7 @@
       } catch(e) {}
       const settled = await Promise.allSettled(index.map(async (meta) => {
         try {
-          const r = await fetch(GITHUB_RAW + meta.file, { cache: 'no-store' });
+          const r = await fetch(GITHUB_RAW + meta.file + '?v=' + Date.now());
           if (!r.ok) return { ...meta, body: BLOG_PLACEHOLDER };
           const text = await r.text();
           return { ...meta, body: text.trim() ? text : BLOG_PLACEHOLDER };
