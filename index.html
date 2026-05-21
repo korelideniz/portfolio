@@ -3,9 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#D93939" id="meta-theme-color" />
   <title>Koreli Deniz</title>
-  <link rel="icon" type="image/jpeg" href="https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/images/favicon.jpg" />
-  <link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/images/favicon.jpg" />
+  <link rel="icon" type="image/jpeg" href="https://github.com/korelideniz/portfolio/blob/main/info/profile.JPG?raw=true" />
+  <!-- iOS 홈 화면 추가 아이콘 -->
+  <link rel="apple-touch-icon" sizes="180x180" href="https://github.com/korelideniz/portfolio/blob/main/info/profile.JPG?raw=true" />
+  <link rel="apple-touch-icon" sizes="152x152" href="https://github.com/korelideniz/portfolio/blob/main/info/profile.JPG?raw=true" />
+  <link rel="apple-touch-icon" sizes="120x120" href="https://github.com/korelideniz/portfolio/blob/main/info/profile.JPG?raw=true" />
+  <!-- Android / PWA 홈 화면 추가 아이콘 -->
+  <link rel="manifest" href="data:application/json,%7B%22name%22%3A%22Koreli+Deniz%22%2C%22short_name%22%3A%22Koreli%22%2C%22start_url%22%3A%22%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23D93939%22%2C%22theme_color%22%3A%22%23D93939%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22https://github.com/korelideniz/portfolio/blob/main/info/profile.JPG?raw=true%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fjpeg%22%7D%2C%7B%22src%22%3A%22https://github.com/korelideniz/portfolio/blob/main/info/profile.JPG?raw=true%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fjpeg%22%7D%5D%7D" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Koreli Deniz" />
+  <meta name="mobile-web-app-capable" content="yes" />
   <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/main/deniz_main.png" fetchpriority="high" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
@@ -1168,7 +1178,10 @@
     };
     function updateStatusBarColor(page) {
       const color = PAGE_THEME_COLORS[page] || '#000000';
-      /* html 인라인 스타일로 배경색 설정 → CSS 규칙보다 우선, safe-area까지 꽉 참 */
+      /* 1. theme-color meta → Safari/Chrome status bar + safe area 색 변경 */
+      const metaTheme = document.getElementById('meta-theme-color');
+      if (metaTheme) metaTheme.setAttribute('content', color);
+      /* 2. html 배경도 동일하게 */
       document.documentElement.style.background = color;
     }
 
