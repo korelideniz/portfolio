@@ -23,17 +23,6 @@
     img { display: block; max-width: 100%; }
     button { background: none; border: none; cursor: pointer; font-family: inherit; }
 
-    /* ── STATUS BAR FILL (safe-area) ── */
-    #status-bar-fill {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      height: env(safe-area-inset-top);
-      z-index: 9999;
-      background: #000000;
-      transition: background 0.3s;
-      pointer-events: none;
-    }
-
     /* ── HEADER ── */
     #header {
       position: fixed;
@@ -42,8 +31,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 28px;
-      background: transparent;
+      padding: env(safe-area-inset-top) 28px 0;
+      background: var(--page-bg, #000000);
       transition: background 0.3s;
     }
     #header.solid {
@@ -133,7 +122,7 @@
     .mobile-menu.open .nav-link:nth-child(6) { transition-delay: 0.31s; }
     body.menu-open { overflow: hidden; }
     @media (max-width: 768px) {
-      #header { padding: 0 18px; }
+      #header { padding: env(safe-area-inset-top) 18px 0; }
       .logo-img { height: 60px; }
       nav#main-nav { display: none; }
       .hamburger { display: flex; }
@@ -774,9 +763,6 @@
   </style>
 </head>
 <body>
-  <!-- STATUS BAR SAFE AREA FILL -->
-  <div id="status-bar-fill"></div>
-
   <!-- HEADER -->
   <header id="header">
     <a class="logo-link" onclick="navigate('home')">
@@ -1183,8 +1169,7 @@
     };
     function updateStatusBarColor(page) {
       const color = PAGE_THEME_COLORS[page] || '#000000';
-      const fill = document.getElementById('status-bar-fill');
-      if (fill) fill.style.background = color;
+      document.documentElement.style.setProperty('--page-bg', color);
     }
 
     /* ── State ── */
