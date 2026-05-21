@@ -983,9 +983,8 @@
       if (page === 'works') renderWorksGrid(currentFilter);
       if (page === 'book') loadBooks().then(() => renderBookGrid());
       if (page === 'blog') {
-        renderBlog(currentBlogFilter);
         loadBlogPosts().then(() => {
-          if (!document.querySelector('.blog-row.open')) renderBlog(currentBlogFilter);
+          renderBlog(currentBlogFilter);
         });
       }
       if (page === 'assets') renderAssets();
@@ -1090,6 +1089,7 @@
     /* ── Init ── */
     renderHomeGrid();
     populateConnectBars();
+    loadBlogPosts().catch(e => console.error(e));
     const initialPage = getInitialPage();
     history.replaceState({ page: initialPage }, '', PAGE_URLS[initialPage] || '/');
     navigate(initialPage);
