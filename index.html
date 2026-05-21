@@ -13,10 +13,10 @@
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; overflow-y: scroll; }
+    html { scroll-behavior: smooth; overflow-y: scroll; background: #D93939; }
     body {
       font-family: 'Helvetica Neue', 'Pretendard', -apple-system, Helvetica, Arial, sans-serif;
-      background: #fff;
+      background: transparent;
       color: #111;
     }
     a { color: inherit; text-decoration: none; cursor: pointer; }
@@ -32,7 +32,7 @@
       align-items: center;
       justify-content: space-between;
       padding: env(safe-area-inset-top) 28px 0;
-      background: var(--page-bg, #000000);
+      background: transparent;
       transition: background 0.3s;
     }
     #header.solid {
@@ -162,7 +162,7 @@
     .reveal-zoom.in-view { opacity: 1; transform: scale(1); }
 
     /* ── HOME ── */
-    #page-home { background: #000; }
+    #page-home { background: #D93939; }
     .hero {
       width: 100%;
       height: var(--hero-h, 100vh);
@@ -208,7 +208,7 @@
     }
 
     /* ── WORKS ── */
-    #page-works { background: #000; color: #fff; padding-top: 116px; }
+    #page-works { background: #000; color: #fff; padding-top: calc(76px + env(safe-area-inset-top)); }
     .works-filters {
       display: flex; flex-wrap: wrap; align-items: center;
       gap: 4px;
@@ -244,7 +244,7 @@
     .w-overlay p { font-size: 10px; color: rgba(255,255,255,0.55); margin-top: 2px; letter-spacing: 0.07em; text-transform: uppercase; }
     @media (max-width: 900px) { .works-grid { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 768px) {
-      #page-works { padding-top: 92px; }
+      #page-works { padding-top: calc(60px + env(safe-area-inset-top)); }
       .filter-btn { font-size: 13px; padding: 4px 9px; }
     }
     @media (max-width: 480px) {
@@ -254,7 +254,7 @@
     }
 
     /* ── INFO ── */
-    #page-info { background: #D93939; color: #fff; padding-top: 116px; min-height: 100vh; }
+    #page-info { background: #D93939; color: #fff; padding-top: calc(76px + env(safe-area-inset-top)); min-height: 100vh; }
     .info-inner {
       max-width: 960px; margin: 0 auto;
       padding: 60px 32px 80px;
@@ -277,13 +277,13 @@
     }
     .info-links a:hover { opacity: 0.7; border-color: rgba(255,255,255,0.7); }
     @media (max-width: 768px) {
-      #page-info { padding-top: 92px; }
+      #page-info { padding-top: calc(60px + env(safe-area-inset-top)); }
       .info-inner { grid-template-columns: 1fr; gap: 32px; padding: 40px 20px 60px; }
       .info-bio p { font-size: 15px; }
     }
 
     /* ── BLOG ── */
-    #page-blog { background: #eeeeee; color: #111; padding-top: 116px; min-height: 100vh; }
+    #page-blog { background: #eeeeee; color: #111; padding-top: calc(76px + env(safe-area-inset-top)); min-height: 100vh; }
     #page-blog .blog-row-body-inner img, #page-blog .blog-inner img {
       filter: grayscale(100%); -webkit-filter: grayscale(100%); transition: filter 0.3s ease;
     }
@@ -324,7 +324,7 @@
     .blog-row.open .blog-row-body-inner { opacity: 1; transform: translateY(0); }
     .blog-row-date { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; color: #999; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; }
     @media (max-width: 768px) {
-      #page-blog { padding-top: 92px; }
+      #page-blog { padding-top: calc(60px + env(safe-area-inset-top)); }
       .blog-inner { padding: 30px 20px 60px; }
       .blog-title { font-size: 28px; margin-bottom: 24px; }
       .blog-row-head { padding: 20px 2px; gap: 10px; }
@@ -337,7 +337,7 @@
     /* ══════════════════════════════
        BOOK 페이지
     ══════════════════════════════ */
-    #page-book { background: #f5f3ef; color: #111; padding-top: 116px; min-height: 100vh; }
+    #page-book { background: #f5f3ef; color: #111; padding-top: calc(76px + env(safe-area-inset-top)); min-height: 100vh; }
     .book-inner { max-width: 1100px; margin: 0 auto; padding: 40px 32px 80px; }
     .book-heading { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #888; margin-bottom: 12px; }
     .book-title { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 36px; font-weight: 700; letter-spacing: 0.01em; margin-bottom: 8px; }
@@ -398,7 +398,7 @@
     }
     @media (max-width: 900px) { .book-grid { columns: 2; column-gap: 16px; } }
     @media (max-width: 768px) {
-      #page-book { padding-top: 92px; }
+      #page-book { padding-top: calc(60px + env(safe-area-inset-top)); }
       .book-inner { padding: 30px 20px 60px; }
       .book-title { font-size: 28px; }
       .book-grid { columns: 2; column-gap: 14px; }
@@ -637,7 +637,7 @@
     }
 
     /* ── ASSETS ── */
-    #page-assets { background: #111111; color: #fff; padding-top: 116px; min-height: 100vh; }
+    #page-assets { background: #111111; color: #fff; padding-top: calc(76px + env(safe-area-inset-top)); min-height: 100vh; }
     .assets-inner { max-width: 1200px; margin: 0 auto; padding: 40px 28px 80px; }
     .assets-heading { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 12px; }
     .assets-title { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 36px; font-weight: 700; letter-spacing: 0.01em; margin-bottom: 12px; color: #fff; }
@@ -671,7 +671,7 @@
     .assets-modal-back-fab svg { width: 22px; height: 22px; display: block; }
     @media (max-width: 900px) { .assets-grid { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 768px) {
-      #page-assets { padding-top: 92px; }
+      #page-assets { padding-top: calc(60px + env(safe-area-inset-top)); }
       .assets-inner { padding: 30px 16px 60px; }
       .assets-title { font-size: 28px; }
       .assets-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
@@ -682,7 +682,7 @@
     }
 
     /* ── CONTACT ── */
-    #page-contact { background: #D93939; color: #fff; padding-top: 116px; min-height: 100vh; }
+    #page-contact { background: #D93939; color: #fff; padding-top: calc(76px + env(safe-area-inset-top)); min-height: 100vh; }
     .contact-inner { max-width: 680px; margin: 0 auto; padding: 60px 32px 80px; }
     .contact-heading { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 20px; }
     .contact-title { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 36px; font-weight: 700; letter-spacing: 0.01em; margin-bottom: 28px; color: #fff; }
@@ -708,7 +708,7 @@
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
     .toast-check { width: 14px; height: 14px; fill: #4ade80; flex-shrink: 0; }
     @media (max-width: 768px) {
-      #page-contact { padding-top: 92px; }
+      #page-contact { padding-top: calc(60px + env(safe-area-inset-top)); }
       .contact-inner { padding: 40px 20px 60px; }
       .contact-title { font-size: 28px; }
       .support-address { font-size: 18px; }
@@ -1159,7 +1159,7 @@
 
     /* ── 페이지별 Status Bar 색상 ── */
     const PAGE_THEME_COLORS = {
-      home:    '#000000',
+      home:    '#D93939',
       works:   '#000000',
       assets:  '#111111',
       info:    '#D93939',
@@ -1169,7 +1169,9 @@
     };
     function updateStatusBarColor(page) {
       const color = PAGE_THEME_COLORS[page] || '#000000';
-      document.documentElement.style.setProperty('--page-bg', color);
+      /* html 배경색 = 페이지 배경색 → safe-area / status bar 영역이 배경색으로 꽉 참 */
+      document.documentElement.style.setProperty('background', color, 'important');
+      document.documentElement.style.setProperty('background-color', color, 'important');
     }
 
     /* ── State ── */
