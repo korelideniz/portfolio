@@ -6,11 +6,9 @@
   <meta name="theme-color" content="#D93939" id="meta-theme-color" />
   <title>Koreli Deniz</title>
   <link rel="icon" type="image/jpeg" href="https://github.com/korelideniz/portfolio/blob/main/info/profile.JPG?raw=true" />
-  <!-- iOS 홈 화면 추가 아이콘 -->
   <link rel="apple-touch-icon" sizes="180x180" href="https://github.com/korelideniz/portfolio/blob/main/info/profile.JPG?raw=true" />
   <link rel="apple-touch-icon" sizes="152x152" href="https://github.com/korelideniz/portfolio/blob/main/info/profile.JPG?raw=true" />
   <link rel="apple-touch-icon" sizes="120x120" href="https://github.com/korelideniz/portfolio/blob/main/info/profile.JPG?raw=true" />
-  <!-- Android / PWA 홈 화면 추가 아이콘 -->
   <link rel="manifest" href="data:application/json,%7B%22name%22%3A%22Koreli+Deniz%22%2C%22short_name%22%3A%22Koreli%22%2C%22start_url%22%3A%22%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23D93939%22%2C%22theme_color%22%3A%22%23D93939%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22https://github.com/korelideniz/portfolio/blob/main/info/profile.JPG?raw=true%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fjpeg%22%7D%2C%7B%22src%22%3A%22https://github.com/korelideniz/portfolio/blob/main/info/profile.JPG?raw=true%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fjpeg%22%7D%5D%7D" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -24,65 +22,38 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; overflow-y: scroll; }
-    body {
-      font-family: 'Helvetica Neue', 'Pretendard', -apple-system, Helvetica, Arial, sans-serif;
-      color: #111;
-    }
+    body { font-family: 'Helvetica Neue', 'Pretendard', -apple-system, Helvetica, Arial, sans-serif; color: #111; }
     a { color: inherit; text-decoration: none; cursor: pointer; }
     img { display: block; max-width: 100%; }
     button { background: none; border: none; cursor: pointer; font-family: inherit; }
 
     /* ── HEADER ── */
     #header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 2200;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 2200;
+      display: flex; align-items: center; justify-content: space-between;
       padding: env(safe-area-inset-top) 28px 0;
-      background: transparent;
-      transition: background 0.3s;
+      background: transparent; transition: background 0.3s;
     }
-    #header.solid {
-      background: rgba(255,255,255,0.96);
-      backdrop-filter: blur(12px);
-    }
+    #header.solid { background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); }
     .logo-link { display: flex; align-items: center; }
     .logo-img { height: 76px; width: auto; object-fit: contain; }
     nav#main-nav { display: flex; gap: 36px; align-items: center; }
     .nav-link {
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      font-size: 15px;
-      font-weight: 500;
-      letter-spacing: 0.10em;
-      text-transform: uppercase;
-      color: #fff;
-      transition: opacity 0.2s, color 0.3s;
+      font-size: 15px; font-weight: 500; letter-spacing: 0.10em; text-transform: uppercase;
+      color: #fff; transition: opacity 0.2s, color 0.3s;
     }
     .nav-link:hover { opacity: 0.5; }
     .nav-link.dark-text { color: #111; }
     .nav-link.active { border-bottom: 1px solid currentColor; padding-bottom: 2px; }
     .hamburger {
-      display: none;
-      width: 36px; height: 36px;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 6px;
-      padding: 0;
-      background: none;
-      border: none;
-      cursor: pointer;
-      z-index: 2100;
-      position: relative;
+      display: none; width: 36px; height: 36px;
+      flex-direction: column; justify-content: center; align-items: center; gap: 6px;
+      padding: 0; background: none; border: none; cursor: pointer; z-index: 2100; position: relative;
     }
     .hamburger span {
-      display: block;
-      width: 24px; height: 2px;
-      background: #fff;
-      transition: transform 0.3s ease, opacity 0.2s ease, background 0.3s;
-      transform-origin: center;
+      display: block; width: 24px; height: 2px; background: #fff;
+      transition: transform 0.3s ease, opacity 0.2s ease, background 0.3s; transform-origin: center;
     }
     .hamburger.dark-icon span { background: #111; }
     .hamburger.open span { background: #fff !important; }
@@ -90,34 +61,18 @@
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
     .mobile-menu {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 1900;
-      background: rgba(0,0,0,0.95);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      padding: 84px 24px 24px;
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1900;
+      background: rgba(0,0,0,0.95); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      padding: 84px 24px 24px; display: flex; flex-direction: column; align-items: stretch;
       box-shadow: 0 18px 40px rgba(0,0,0,0.35);
-      transform: translateY(-100%);
-      opacity: 0;
-      pointer-events: none;
+      transform: translateY(-100%); opacity: 0; pointer-events: none;
       transition: transform 0.35s ease, opacity 0.3s ease;
     }
     .mobile-menu.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
     .mobile-menu .nav-link {
-      display: block;
-      width: 100%;
-      text-align: left;
-      font-size: 20px;
-      letter-spacing: 0.10em;
-      color: #fff !important;
-      padding: 18px 4px;
-      border-bottom: 1px solid rgba(255,255,255,0.18);
-      opacity: 0;
-      transform: translateY(8px);
+      display: block; width: 100%; text-align: left; font-size: 20px; letter-spacing: 0.10em;
+      color: #fff !important; padding: 18px 4px; border-bottom: 1px solid rgba(255,255,255,0.18);
+      opacity: 0; transform: translateY(8px);
       transition: opacity 0.4s ease, transform 0.4s ease, background 0.2s, padding-left 0.2s;
     }
     .mobile-menu .nav-link:last-child { border-bottom: none; }
@@ -139,24 +94,11 @@
     @media (min-width: 769px) { .mobile-menu { display: none; } }
 
     /* ── PAGES ── */
-    .page {
-      display: none;
-      min-height: 100vh;
-      opacity: 0;
-      transition: opacity 0.25s ease;
-    }
-    .page.active {
-      display: block;
-      opacity: 1;
-    }
+    .page { display: none; min-height: 100vh; opacity: 0; transition: opacity 0.25s ease; }
+    .page.active { display: block; opacity: 1; }
 
     /* ── REVEAL ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-      will-change: opacity, transform;
-    }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s ease, transform 0.8s ease; will-change: opacity, transform; }
     .reveal.in-view { opacity: 1; transform: translateY(0); }
     .reveal.delay-1 { transition-delay: 0.08s; }
     .reveal.delay-2 { transition-delay: 0.16s; }
@@ -172,39 +114,20 @@
 
     /* ── HOME ── */
     #page-home { background: #D93939; }
-    .hero {
-      width: 100%;
-      height: var(--hero-h, 100vh);
-      min-height: 480px;
-      overflow: hidden;
-    }
+    .hero { width: 100%; height: var(--hero-h, 100vh); min-height: 480px; overflow: hidden; }
     .hero img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
-    @media (max-width: 768px) {
-      .hero { height: var(--hero-h-mobile, 100vh); min-height: 0; }
-    }
-    .home-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 4px; padding: 4px;
-      background: #000;
-    }
+    @media (max-width: 768px) { .hero { height: var(--hero-h-mobile, 100vh); min-height: 0; } }
+    .home-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; padding: 4px; background: #000; }
     .home-grid-item {
-      aspect-ratio: 1 / 1;
-      overflow: hidden; cursor: pointer; position: relative;
-      background: #111;
-      border-radius: 10px;
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      aspect-ratio: 1 / 1; overflow: hidden; cursor: pointer; position: relative; background: #111; border-radius: 10px;
+      opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease;
     }
     .home-grid-item.in-view { opacity: 1; transform: translateY(0); }
     .home-grid-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease, opacity 0.3s; }
     .home-grid-item:hover img { transform: scale(1.04); opacity: 0.85; }
     .home-grid-item .item-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.62) 0%, transparent 55%);
-      opacity: 0; transition: opacity 0.3s;
-      display: flex; flex-direction: column; justify-content: flex-end; padding: 14px;
+      position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.62) 0%, transparent 55%);
+      opacity: 0; transition: opacity 0.3s; display: flex; flex-direction: column; justify-content: flex-end; padding: 14px;
     }
     .home-grid-item:hover .item-overlay { opacity: 1; }
     .item-overlay h3 { font-size: 13px; font-weight: 600; color: #fff; }
@@ -218,58 +141,26 @@
 
     /* ── WORKS ── */
     #page-works { background: #000; color: #fff; padding-top: calc(76px + env(safe-area-inset-top)); }
-    .works-filters {
-      display: flex; flex-wrap: wrap; align-items: center;
-      gap: 4px;
-      padding: 14px 28px 16px;
-      border-bottom: 1px solid #1f1f1f;
-    }
-    .filter-btn {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      font-size: 14px; font-weight: 400; letter-spacing: 0; text-transform: none;
-      color: #aaa; padding: 5px 11px; border-radius: 4px;
-      transition: color 0.15s, background 0.15s;
-    }
+    .works-filters { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; padding: 14px 28px 16px; border-bottom: 1px solid #1f1f1f; }
+    .filter-btn { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; letter-spacing: 0; text-transform: none; color: #aaa; padding: 5px 11px; border-radius: 4px; transition: color 0.15s, background 0.15s; }
     .filter-btn:hover { color: #fff; }
     .filter-btn.active { color: #fff; background: #2a2a2a; }
     .works-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; padding: 4px; }
-    .works-item {
-      aspect-ratio: 1 / 1; overflow: hidden; cursor: pointer; position: relative; background: #111;
-      border-radius: 10px;
-      opacity: 0; transform: translateY(24px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
+    .works-item { aspect-ratio: 1 / 1; overflow: hidden; cursor: pointer; position: relative; background: #111; border-radius: 10px; opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .works-item.in-view { opacity: 1; transform: translateY(0); }
     .works-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease, opacity 0.3s; }
     .works-item:hover img { transform: scale(1.04); opacity: 0.7; }
-    .works-item .w-overlay {
-      position: absolute; inset: 0; display: flex; flex-direction: column;
-      justify-content: flex-end; padding: 14px;
-      opacity: 0; transition: opacity 0.3s;
-      background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 60%);
-    }
+    .works-item .w-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 14px; opacity: 0; transition: opacity 0.3s; background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 60%); }
     .works-item:hover .w-overlay { opacity: 1; }
     .w-overlay h3 { font-size: 12px; font-weight: 600; color: #fff; }
     .w-overlay p { font-size: 10px; color: rgba(255,255,255,0.55); margin-top: 2px; letter-spacing: 0.07em; text-transform: uppercase; }
     @media (max-width: 900px) { .works-grid { grid-template-columns: repeat(3, 1fr); } }
-    @media (max-width: 768px) {
-      #page-works { padding-top: calc(60px + env(safe-area-inset-top)); }
-      .filter-btn { font-size: 13px; padding: 4px 9px; }
-    }
-    @media (max-width: 480px) {
-      .works-filters { padding: 12px 14px; overflow-x: auto; flex-wrap: nowrap; }
-      .filter-btn { font-size: 12px; padding: 4px 9px; white-space: nowrap; }
-      .works-grid { grid-template-columns: repeat(3, 1fr); gap: 3px; padding: 3px; }
-    }
+    @media (max-width: 768px) { #page-works { padding-top: calc(60px + env(safe-area-inset-top)); } .filter-btn { font-size: 13px; padding: 4px 9px; } }
+    @media (max-width: 480px) { .works-filters { padding: 12px 14px; overflow-x: auto; flex-wrap: nowrap; } .filter-btn { font-size: 12px; padding: 4px 9px; white-space: nowrap; } .works-grid { grid-template-columns: repeat(3, 1fr); gap: 3px; padding: 3px; } }
 
     /* ── INFO ── */
     #page-info { background: #D93939; color: #fff; padding-top: calc(76px + env(safe-area-inset-top)); min-height: 100vh; }
-    .info-inner {
-      max-width: 960px; margin: 0 auto;
-      padding: 60px 32px 80px;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 60px; align-items: start;
-    }
+    .info-inner { max-width: 960px; margin: 0 auto; padding: 60px 32px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
     .info-photo { width: 100%; object-fit: cover; }
     .info-bio { display: flex; flex-direction: column; gap: 28px; margin-top: 20px; }
     .info-bio p { font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.9; color: rgba(255,255,255,0.92); }
@@ -277,28 +168,14 @@
     .info-connect { margin-top: 36px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.18); }
     .info-connect .lang-label { margin-bottom: 14px; }
     .info-links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
-    .info-links a {
-      display: inline-block;
-      font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif;
-      font-size: 16px; letter-spacing: 0.02em; color: rgba(255,255,255,0.95);
-      border-bottom: 1px solid rgba(255,255,255,0.35); padding-bottom: 2px;
-      transition: opacity 0.2s, border-color 0.2s;
-    }
+    .info-links a { display: inline-block; font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 16px; letter-spacing: 0.02em; color: rgba(255,255,255,0.95); border-bottom: 1px solid rgba(255,255,255,0.35); padding-bottom: 2px; transition: opacity 0.2s, border-color 0.2s; }
     .info-links a:hover { opacity: 0.7; border-color: rgba(255,255,255,0.7); }
-    @media (max-width: 768px) {
-      #page-info { padding-top: calc(60px + env(safe-area-inset-top)); }
-      .info-inner { grid-template-columns: 1fr; gap: 32px; padding: 40px 20px 60px; }
-      .info-bio p { font-size: 15px; }
-    }
+    @media (max-width: 768px) { #page-info { padding-top: calc(60px + env(safe-area-inset-top)); } .info-inner { grid-template-columns: 1fr; gap: 32px; padding: 40px 20px 60px; } .info-bio p { font-size: 15px; } }
 
     /* ── BLOG ── */
     #page-blog { background: #eeeeee; color: #111; padding-top: calc(76px + env(safe-area-inset-top)); min-height: 100vh; }
-    #page-blog .blog-row-body-inner img, #page-blog .blog-inner img {
-      filter: grayscale(100%); -webkit-filter: grayscale(100%); transition: filter 0.3s ease;
-    }
-    #page-blog .blog-row-body-inner img:hover, #page-blog .blog-inner img:hover {
-      filter: grayscale(70%); -webkit-filter: grayscale(70%);
-    }
+    #page-blog .blog-row-body-inner img, #page-blog .blog-inner img { filter: grayscale(100%); -webkit-filter: grayscale(100%); transition: filter 0.3s ease; }
+    #page-blog .blog-row-body-inner img:hover, #page-blog .blog-inner img:hover { filter: grayscale(70%); -webkit-filter: grayscale(70%); }
     .blog-row-body-inner code { background: #e8e8e8; padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 14px; color: #111; }
     .blog-row-body-inner pre { background: #e8e8e8; padding: 16px; border-radius: 6px; overflow-x: auto; margin: 12px 0; }
     .blog-row-body-inner pre code { background: none; padding: 0; }
@@ -343,307 +220,73 @@
       .blog-row.open .blog-row-tags { display: flex; flex-wrap: wrap; padding: 0 4px 12px; }
     }
 
-    /* ══════════════════════════════
-       BOOK 페이지
-    ══════════════════════════════ */
+    /* ── BOOK ── */
     #page-book { background: #f5f3ef; color: #111; padding-top: calc(76px + env(safe-area-inset-top)); min-height: 100vh; }
     .book-inner { max-width: 1100px; margin: 0 auto; padding: 40px 32px 80px; }
     .book-heading { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #888; margin-bottom: 12px; }
     .book-title { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 36px; font-weight: 700; letter-spacing: 0.01em; margin-bottom: 8px; }
     .book-desc-text { font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 15px; line-height: 1.7; color: #666; margin-bottom: 40px; }
-
-    /* ── 책 그리드: 제각각 비율 (masonry-like columns) ── */
-    .book-grid {
-      columns: 3;
-      column-gap: 20px;
-    }
-    .book-card {
-      break-inside: avoid;
-      margin-bottom: 20px;
-      cursor: pointer;
-      opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
+    .book-grid { columns: 3; column-gap: 20px; }
+    .book-card { break-inside: avoid; margin-bottom: 20px; cursor: pointer; opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .book-card.in-view { opacity: 1; transform: translateY(0); }
-    .book-card-cover {
-      position: relative;
-      border-radius: 12px;
-      overflow: hidden;
-      background: #e0ddd8;
-      box-shadow: -4px 4px 12px rgba(0,0,0,0.12), 4px 8px 24px rgba(0,0,0,0.10);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      /* NO aspect-ratio — let the image define the height */
-    }
-    .book-card:hover .book-card-cover {
-      transform: translateY(-6px) rotate(-1deg);
-      box-shadow: -6px 12px 32px rgba(0,0,0,0.18), 6px 16px 40px rgba(0,0,0,0.12);
-    }
-    .book-card-cover img {
-      width: 100%;
-      height: auto;        /* natural aspect ratio */
-      display: block;
-      transition: transform 0.4s ease;
-    }
+    .book-card-cover { position: relative; border-radius: 12px; overflow: hidden; background: #e0ddd8; box-shadow: -4px 4px 12px rgba(0,0,0,0.12), 4px 8px 24px rgba(0,0,0,0.10); transition: transform 0.4s ease, box-shadow 0.4s ease; }
+    .book-card:hover .book-card-cover { transform: translateY(-6px) rotate(-1deg); box-shadow: -6px 12px 32px rgba(0,0,0,0.18), 6px 16px 40px rgba(0,0,0,0.12); }
+    .book-card-cover img { width: 100%; height: auto; display: block; transition: transform 0.4s ease; }
     .book-card:hover .book-card-cover img { transform: scale(1.03); }
-    .book-card-cover::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 6px;
-      background: linear-gradient(to right, rgba(0,0,0,0.18), transparent);
-      z-index: 1;
-    }
+    .book-card-cover::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: linear-gradient(to right, rgba(0,0,0,0.18), transparent); z-index: 1; }
     .book-card-info { padding: 14px 4px 0; }
-    .book-card-title {
-      font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif;
-      font-size: 16px; font-weight: 600; color: #111;
-      margin-bottom: 4px;
-      line-height: 1.4;
-    }
-    .book-card-meta {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      font-size: 12px; color: #888; letter-spacing: 0.04em;
-    }
+    .book-card-title { font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 600; color: #111; margin-bottom: 4px; line-height: 1.4; }
+    .book-card-meta { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; color: #888; letter-spacing: 0.04em; }
     @media (max-width: 900px) { .book-grid { columns: 2; column-gap: 16px; } }
-    @media (max-width: 768px) {
-      #page-book { padding-top: calc(60px + env(safe-area-inset-top)); }
-      .book-inner { padding: 30px 20px 60px; }
-      .book-title { font-size: 28px; }
-      .book-grid { columns: 2; column-gap: 14px; }
-      .book-card { margin-bottom: 14px; }
-      .book-card-title { font-size: 14px; }
-    }
-    @media (max-width: 480px) {
-      .book-grid { columns: 2; column-gap: 10px; }
-      .book-card { margin-bottom: 10px; }
-      .book-card-title { font-size: 13px; }
-    }
+    @media (max-width: 768px) { #page-book { padding-top: calc(60px + env(safe-area-inset-top)); } .book-inner { padding: 30px 20px 60px; } .book-title { font-size: 28px; } .book-grid { columns: 2; column-gap: 14px; } .book-card { margin-bottom: 14px; } .book-card-title { font-size: 14px; } }
+    @media (max-width: 480px) { .book-grid { columns: 2; column-gap: 10px; } .book-card { margin-bottom: 10px; } .book-card-title { font-size: 13px; } }
 
-    /* ══════════════════════════════
-       BOOK DETAIL MODAL
-       — 상단 topbar 제거, 하단 FAB 뒤로가기 추가
-    ══════════════════════════════ */
-    .book-modal-backdrop {
-      position: fixed; inset: 0;
-      background: #fff;
-      z-index: 1500;
-      display: none;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-    }
+    /* ── BOOK DETAIL MODAL ── */
+    .book-modal-backdrop { position: fixed; inset: 0; background: #fff; z-index: 1500; display: none; overflow-y: auto; -webkit-overflow-scrolling: touch; }
     .book-modal-backdrop.active { display: block; }
-
-    /* 책 상세 상단 바 (뒤로가기) */
-    .book-detail-topbar {
-      position: sticky;
-      top: 0; z-index: 10;
-      display: flex;
-      align-items: center;
-      padding: 12px 16px;
-      background: rgba(247,245,242,0.92);
-      backdrop-filter: blur(12px);
-    }
-    .book-detail-back {
-      width: 36px; height: 36px;
-      display: flex; align-items: center; justify-content: center;
-      color: #111;
-      border-radius: 50%;
-      transition: background 0.2s;
-    }
+    .book-detail-topbar { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; padding: 12px 16px; background: rgba(247,245,242,0.92); backdrop-filter: blur(12px); }
+    .book-detail-back { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; color: #111; border-radius: 50%; transition: background 0.2s; }
     .book-detail-back:hover { background: rgba(0,0,0,0.06); }
     .book-detail-back svg { width: 20px; height: 20px; display: block; }
-
-    /* 커버 영역 — topbar 바로 아래 시작 */
-    .book-detail-hero {
-      display: flex;
-      justify-content: center;
-      padding: 32px 20px 24px;
-      background: #f7f5f2;
-    }
-    .book-detail-cover-wrap {
-      width: 240px;
-      flex-shrink: 0;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: -4px 6px 20px rgba(0,0,0,0.18), 4px 8px 28px rgba(0,0,0,0.10);
-      position: relative;
-    }
-    .book-detail-cover-wrap::before {
-      content: '';
-      position: absolute; left: 0; top: 0; bottom: 0; width: 6px;
-      background: linear-gradient(to right, rgba(0,0,0,0.2), transparent);
-      z-index: 1;
-    }
-    .book-detail-cover-wrap img {
-      width: 100%; height: auto; display: block;
-    }
-
-    /* 책 메타 정보 */
-    .book-detail-body {
-      padding: 24px 20px 140px; /* 하단 FAB 공간 확보 */
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    .book-detail-title {
-      font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif;
-      font-size: 24px; font-weight: 700; color: #111;
-      letter-spacing: -0.01em;
-      margin-bottom: 4px;
-      text-align: center;
-    }
-    .book-detail-author {
-      font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif;
-      font-size: 15px; color: #888;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    /* 통계 바 */
-    .book-detail-stats {
-      display: flex;
-      justify-content: center;
-      gap: 0;
-      border-top: 1px solid #eee;
-      border-bottom: 1px solid #eee;
-      margin-bottom: 20px;
-    }
-    .book-stat {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 14px 8px;
-      border-right: 1px solid #eee;
-    }
+    .book-detail-hero { display: flex; justify-content: center; padding: 32px 20px 24px; background: #f7f5f2; }
+    .book-detail-cover-wrap { width: 240px; flex-shrink: 0; border-radius: 10px; overflow: hidden; box-shadow: -4px 6px 20px rgba(0,0,0,0.18), 4px 8px 28px rgba(0,0,0,0.10); position: relative; }
+    .book-detail-cover-wrap::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: linear-gradient(to right, rgba(0,0,0,0.2), transparent); z-index: 1; }
+    .book-detail-cover-wrap img { width: 100%; height: auto; display: block; }
+    .book-detail-body { padding: 24px 20px 140px; max-width: 600px; margin: 0 auto; }
+    .book-detail-title { font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 24px; font-weight: 700; color: #111; letter-spacing: -0.01em; margin-bottom: 4px; text-align: center; }
+    .book-detail-author { font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 15px; color: #888; text-align: center; margin-bottom: 20px; }
+    .book-detail-stats { display: flex; justify-content: center; gap: 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee; margin-bottom: 20px; }
+    .book-stat { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 14px 8px; border-right: 1px solid #eee; }
     .book-stat:last-child { border-right: none; }
     .book-stat-value { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 600; color: #111; }
     .book-stat-label { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 10px; color: #aaa; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 2px; }
-
-    /* 카테고리 태그 */
-    .book-detail-tags {
-      display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 28px;
-    }
-    .book-detail-tag {
-      font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif;
-      font-size: 13px; font-weight: 500; color: #444;
-      background: #f0ede8; padding: 6px 14px; border-radius: 999px; letter-spacing: 0.02em;
-    }
-
-    /* Overview 섹션 */
+    .book-detail-tags { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 28px; }
+    .book-detail-tag { font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 13px; font-weight: 500; color: #444; background: #f0ede8; padding: 6px 14px; border-radius: 999px; letter-spacing: 0.02em; }
     .book-detail-section-title { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 17px; font-weight: 700; color: #111; margin-bottom: 10px; }
     .book-detail-overview { font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 15px; line-height: 1.8; color: #555; margin-bottom: 28px; }
-
-    /* ── 하단 Start Reading 바 (링크 공유 버튼으로 교체) ── */
-    .book-start-bar {
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      z-index: 1600;
-      background: rgba(255,255,255,0.96);
-      backdrop-filter: blur(12px);
-      border-top: 1px solid rgba(0,0,0,0.08);
-      padding: 12px 20px;
-      padding-bottom: calc(12px + env(safe-area-inset-bottom));
-      display: none;
-      gap: 12px;
-      align-items: center;
-    }
+    .book-start-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 1600; background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-top: 1px solid rgba(0,0,0,0.08); padding: 12px 20px; padding-bottom: calc(12px + env(safe-area-inset-bottom)); display: none; gap: 12px; align-items: center; }
     .book-start-bar.visible { display: flex; }
-
-    /* 링크 공유 버튼 (구 저장 버튼 자리) */
-    .book-share-btn {
-      width: 44px; height: 44px;
-      border-radius: 50%;
-      background: #f0ede8;
-      display: flex; align-items: center; justify-content: center;
-      color: #555;
-      flex-shrink: 0;
-      transition: background 0.2s;
-    }
+    .book-share-btn { width: 44px; height: 44px; border-radius: 50%; background: #f0ede8; display: flex; align-items: center; justify-content: center; color: #555; flex-shrink: 0; transition: background 0.2s; }
     .book-share-btn:hover { background: #e5e0d8; }
     .book-share-btn svg { width: 18px; height: 18px; }
-
-    .book-read-btn {
-      flex: 1;
-      height: 44px;
-      background: #111;
-      color: #fff;
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      font-size: 15px; font-weight: 700;
-      letter-spacing: 0.06em;
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      gap: 8px;
-      transition: background 0.2s, transform 0.15s;
-    }
+    .book-read-btn { flex: 1; height: 44px; background: #111; color: #fff; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 0.06em; border-radius: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s, transform 0.15s; }
     .book-read-btn:hover { background: #222; transform: translateY(-1px); }
     .book-read-btn svg { width: 16px; height: 16px; fill: #fff; }
-
-    /* book-modal-back-fab 제거됨 */
-
-    /* 리더 모드 */
-    .book-reader-backdrop {
-      position: fixed; inset: 0;
-      background: #000;
-      z-index: 2000;
-      display: none;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-    }
+    .book-reader-backdrop { position: fixed; inset: 0; background: #000; z-index: 2000; display: none; overflow-y: auto; -webkit-overflow-scrolling: touch; }
     .book-reader-backdrop.active { display: block; }
-    .book-reader-topbar {
-      position: sticky; top: 0; z-index: 10;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 14px 16px;
-      background: rgba(0,0,0,0.85);
-      backdrop-filter: blur(8px);
-    }
-    /* 뒤로가기 버튼 (화살표) */
-    .book-reader-back {
-      width: 36px; height: 36px;
-      display: flex; align-items: center; justify-content: center;
-      color: rgba(255,255,255,0.85);
-      border-radius: 50%;
-      transition: background 0.2s;
-    }
+    .book-reader-topbar { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); }
+    .book-reader-back { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.85); border-radius: 50%; transition: background 0.2s; }
     .book-reader-back:hover { background: rgba(255,255,255,0.1); }
     .book-reader-back svg { width: 20px; height: 20px; display: block; }
     .book-reader-title { font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 600; color: #fff; }
-    .book-reader-pages {
-      display: flex; flex-direction: column; gap: 2px;
-      max-width: 680px; margin: 0 auto; padding-bottom: 80px;
-    }
-    .book-reader-pages img {
-      width: 100%; height: auto; display: block;
-      opacity: 0; transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
+    .book-reader-pages { display: flex; flex-direction: column; gap: 2px; max-width: 680px; margin: 0 auto; padding-bottom: 80px; }
+    .book-reader-pages img { width: 100%; height: auto; display: block; opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .book-reader-pages img.in-view { opacity: 1; transform: translateY(0); }
-    /* 리더 뒤로가기 FAB */
-    .book-reader-fab {
-      position: fixed;
-      bottom: 24px; right: 24px;
-      width: 52px; height: 52px;
-      border-radius: 50%;
-      background: rgba(30,30,30,0.92);
-      color: #fff;
-      display: none;
-      align-items: center; justify-content: center;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.5);
-      z-index: 2100;
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,0.12);
-      transition: transform 0.18s ease;
-    }
+    .book-reader-fab { position: fixed; bottom: 24px; right: 24px; width: 52px; height: 52px; border-radius: 50%; background: rgba(30,30,30,0.92); color: #fff; display: none; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(0,0,0,0.5); z-index: 2100; backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.12); transition: transform 0.18s ease; }
     .book-reader-fab:active { transform: scale(0.94); }
     .book-reader-fab svg { width: 22px; height: 22px; display: block; }
     .book-reader-backdrop.active .book-reader-fab { display: flex; }
-
-    @media (max-width: 768px) {
-      .book-detail-cover-wrap { width: 180px; }
-      .book-detail-title { font-size: 20px; }
-      .book-stat-value { font-size: 14px; }
-    }
+    @media (max-width: 768px) { .book-detail-cover-wrap { width: 180px; } .book-detail-title { font-size: 20px; } .book-stat-value { font-size: 14px; } }
 
     /* ── ASSETS ── */
     #page-assets { background: #111111; color: #fff; padding-top: calc(76px + env(safe-area-inset-top)); min-height: 100vh; }
@@ -679,16 +322,7 @@
     .assets-modal-back-fab:active { transform: scale(0.94); }
     .assets-modal-back-fab svg { width: 22px; height: 22px; display: block; }
     @media (max-width: 900px) { .assets-grid { grid-template-columns: repeat(3, 1fr); } }
-    @media (max-width: 768px) {
-      #page-assets { padding-top: calc(60px + env(safe-area-inset-top)); }
-      .assets-inner { padding: 30px 16px 60px; }
-      .assets-title { font-size: 28px; }
-      .assets-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-      .assets-modal { padding: 30px 20px 36px; }
-      .assets-modal-name { font-size: 20px; }
-      .download-btn { font-size: 14px; padding: 18px 0; }
-      .assets-modal-backdrop.active .assets-modal-back-fab { display: flex; }
-    }
+    @media (max-width: 768px) { #page-assets { padding-top: calc(60px + env(safe-area-inset-top)); } .assets-inner { padding: 30px 16px 60px; } .assets-title { font-size: 28px; } .assets-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; } .assets-modal { padding: 30px 20px 36px; } .assets-modal-name { font-size: 20px; } .download-btn { font-size: 14px; padding: 18px 0; } .assets-modal-backdrop.active .assets-modal-back-fab { display: flex; } }
 
     /* ── CONTACT ── */
     #page-contact { background: #D93939; color: #fff; padding-top: calc(76px + env(safe-area-inset-top)); min-height: 100vh; }
@@ -716,13 +350,7 @@
     .toast { position: fixed; left: 50%; bottom: 40px; transform: translateX(-50%) translateY(20px); background: rgba(0,0,0,0.92); color: #fff; font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 500; letter-spacing: 0.04em; padding: 12px 22px; border-radius: 999px; box-shadow: 0 6px 24px rgba(0,0,0,0.3); opacity: 0; pointer-events: none; z-index: 3000; transition: opacity 0.25s ease, transform 0.25s ease; display: inline-flex; align-items: center; gap: 8px; }
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
     .toast-check { width: 14px; height: 14px; fill: #4ade80; flex-shrink: 0; }
-    @media (max-width: 768px) {
-      #page-contact { padding-top: calc(60px + env(safe-area-inset-top)); }
-      .contact-inner { padding: 40px 20px 60px; }
-      .contact-title { font-size: 28px; }
-      .support-address { font-size: 18px; }
-      .toast { font-size: 13px; padding: 10px 18px; bottom: 28px; }
-    }
+    @media (max-width: 768px) { #page-contact { padding-top: calc(60px + env(safe-area-inset-top)); } .contact-inner { padding: 40px 20px 60px; } .contact-title { font-size: 28px; } .support-address { font-size: 18px; } .toast { font-size: 13px; padding: 10px 18px; bottom: 28px; } }
 
     /* ── PROJECT MODAL ── */
     .project-modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.78); z-index: 1500; display: none; overflow-y: auto; padding: 60px 20px; -webkit-overflow-scrolling: touch; }
@@ -740,12 +368,7 @@
     .project-modal .project-images img { width: 100%; height: auto; display: block; border-radius: 2px; opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .project-modal .project-images img.in-view { opacity: 1; transform: translateY(0); }
     .project-modal .project-desc { font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; margin-top: 24px; font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.78); }
-    @media (max-width: 768px) {
-      .project-modal-backdrop { padding: 30px 12px; }
-      .project-modal { padding: 22px 18px 32px; border-radius: 6px; }
-      .project-modal .project-title { font-size: 17px; }
-      .project-modal-backdrop.active .project-modal-back-fab { display: flex; }
-    }
+    @media (max-width: 768px) { .project-modal-backdrop { padding: 30px 12px; } .project-modal { padding: 22px 18px 32px; border-radius: 6px; } .project-modal .project-title { font-size: 17px; } .project-modal-backdrop.active .project-modal-back-fab { display: flex; } }
 
     /* ── FOOTER ── */
     .site-footer { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: center; padding: 28px; font-size: 10px; letter-spacing: 0.08em; color: #aaa; text-transform: uppercase; }
@@ -763,21 +386,13 @@
     .connect-bar.light a:hover { background: rgba(0,0,0,0.1); color: #111; border-color: rgba(0,0,0,0.35); }
     .connect-bar.on-red a { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.35); color: #fff; }
     .connect-bar.on-red a:hover { background: rgba(255,255,255,0.22); border-color: rgba(255,255,255,0.6); }
-    @media (max-width: 480px) {
-      .connect-bar { gap: 8px; padding: 6px 16px 20px; }
-      .connect-bar a { width: 38px; height: 38px; font-size: 12px; }
-      .connect-bar a.text { width: auto; padding: 0 14px; }
-      .connect-bar svg { width: 16px; height: 16px; }
-    }
+    @media (max-width: 480px) { .connect-bar { gap: 8px; padding: 6px 16px 20px; } .connect-bar a { width: 38px; height: 38px; font-size: 12px; } .connect-bar a.text { width: auto; padding: 0 14px; } .connect-bar svg { width: 16px; height: 16px; } }
   </style>
 </head>
 <body>
-  <!-- HEADER -->
   <header id="header">
     <a class="logo-link" onclick="navigate('home')">
-      <img class="logo-img" id="logo-img"
-        src="https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/main/deniz_symbol.png"
-        alt="Koreli Deniz" />
+      <img class="logo-img" id="logo-img" src="https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/main/deniz_symbol.png" alt="Koreli Deniz" />
     </a>
     <nav id="main-nav">
       <a class="nav-link" id="nav-works"   onclick="navigate('works')">Works</a>
@@ -792,7 +407,6 @@
     </button>
   </header>
 
-  <!-- 모바일 메뉴 -->
   <div class="mobile-menu" id="mobile-menu">
     <a class="nav-link" onclick="navigate('works'); delayedCloseMenu();">Works</a>
     <a class="nav-link" onclick="navigate('blog'); delayedCloseMenu();">Blog</a>
@@ -807,9 +421,7 @@
     <section class="hero">
       <img src="https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/main/deniz_main.png" alt="Koreli Deniz" loading="eager" fetchpriority="high" />
     </section>
-    <section>
-      <div class="home-grid" id="home-grid"></div>
-    </section>
+    <section><div class="home-grid" id="home-grid"></div></section>
     <div class="connect-bar" style="background:#000"></div>
     <footer class="site-footer dark">© 2026 Koreli Deniz. All rights reserved.</footer>
   </div>
@@ -838,18 +450,9 @@
       </div>
       <div>
         <div class="info-bio">
-          <div class="reveal delay-1">
-            <div class="lang-label">KR</div>
-            <p>대한민국에 거주하며 서울, 이스탄불에 기반을 둔 BX 디자이너 데니즈입니다. 캐릭터 브랜딩과 브랜드 비주얼 시스템, 다양한 온•오프라인 미디어를 넘나드는 디자인에 집중하고 있습니다.</p>
-          </div>
-          <div class="reveal delay-2">
-            <div class="lang-label">EN</div>
-            <p>I am Deniz, a BX designer based in Seoul and Istanbul. My work focuses on character branding and brand visual systems, seamlessly navigating across various online and offline media.</p>
-          </div>
-          <div class="reveal delay-3">
-            <div class="lang-label">TR</div>
-            <p>Seul ve İstanbul merkezli BX tasarımcısı Koreli Deniz. Karakter markalama ve marka görsel sistemleri uzmanıyım; online ve offline mecralarda yaratıcı tasarım çözümleri sunuyorum.</p>
-          </div>
+          <div class="reveal delay-1"><div class="lang-label">KR</div><p>대한민국에 거주하며 서울, 이스탄불에 기반을 둔 BX 디자이너 데니즈입니다. 캐릭터 브랜딩과 브랜드 비주얼 시스템, 다양한 온•오프라인 미디어를 넘나드는 디자인에 집중하고 있습니다.</p></div>
+          <div class="reveal delay-2"><div class="lang-label">EN</div><p>I am Deniz, a BX designer based in Seoul and Istanbul. My work focuses on character branding and brand visual systems, seamlessly navigating across various online and offline media.</p></div>
+          <div class="reveal delay-3"><div class="lang-label">TR</div><p>Seul ve İstanbul merkezli BX tasarımcısı Koreli Deniz. Karakter markalama ve marka görsel sistemleri uzmanıyım; online ve offline mecralarda yaratıcı tasarım çözümleri sunuyorum.</p></div>
           <div class="info-connect reveal delay-4">
             <p class="lang-label">Connect</p>
             <ul class="info-links">
@@ -934,26 +537,11 @@
       <p class="contact-desc reveal delay-3" style="margin-bottom:20px;">We accept project requests via email. Please send the project details and timeline to the email address below. We will review them and get back to you.</p>
       <a class="contact-email reveal delay-4" href="mailto:deniz@korelideniz.com">deniz@korelideniz.com</a>
       <form class="contact-form reveal delay-5" id="contact-form">
-        <div class="form-group">
-          <label class="form-label">성함 / 회사명 &nbsp; Name / Company *</label>
-          <input class="form-input" type="text" name="name" placeholder="Your Name..." required />
-        </div>
-        <div class="form-group">
-          <label class="form-label">이메일 &nbsp; Email *</label>
-          <input class="form-input" type="email" name="email" placeholder="Your Email Address..." required />
-        </div>
-        <div class="form-group">
-          <label class="form-label">연락처 &nbsp; Phone</label>
-          <input class="form-input" type="tel" name="phone" placeholder="Your Phone Number..." />
-        </div>
-        <div class="form-group">
-          <label class="form-label">프로젝트 상세 &nbsp; Project Details *</label>
-          <textarea class="form-textarea" name="details" placeholder="프로젝트 내용, 일정 등을 알려주세요..." required></textarea>
-        </div>
-        <div class="form-group">
-          <label class="form-label">예상 예산 &nbsp; Budget Range</label>
-          <input class="form-input" type="text" name="budget" placeholder="예: 300만원 이상 / e.g. 3,000,000 KRW+" />
-        </div>
+        <div class="form-group"><label class="form-label">성함 / 회사명 &nbsp; Name / Company *</label><input class="form-input" type="text" name="name" placeholder="Your Name..." required /></div>
+        <div class="form-group"><label class="form-label">이메일 &nbsp; Email *</label><input class="form-input" type="email" name="email" placeholder="Your Email Address..." required /></div>
+        <div class="form-group"><label class="form-label">연락처 &nbsp; Phone</label><input class="form-input" type="tel" name="phone" placeholder="Your Phone Number..." /></div>
+        <div class="form-group"><label class="form-label">프로젝트 상세 &nbsp; Project Details *</label><textarea class="form-textarea" name="details" placeholder="프로젝트 내용, 일정 등을 알려주세요..." required></textarea></div>
+        <div class="form-group"><label class="form-label">예상 예산 &nbsp; Budget Range</label><input class="form-input" type="text" name="budget" placeholder="예: 300만원 이상 / e.g. 3,000,000 KRW+" /></div>
         <button class="form-submit" type="submit">Submit</button>
       </form>
       <img class="contact-bottom-img reveal" src="https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/info/lightning_3.png" alt="Lightning Network" loading="lazy" />
@@ -990,52 +578,29 @@
 
   <!-- BOOK DETAIL MODAL -->
   <div id="book-modal-backdrop" class="book-modal-backdrop">
-    <!-- 상단 뒤로가기 바 -->
     <div class="book-detail-topbar">
       <button class="book-detail-back" onclick="closeBook()" aria-label="Back">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
       </button>
     </div>
-    <!-- 커버 영역 -->
     <div class="book-detail-hero">
-      <div class="book-detail-cover-wrap">
-        <img id="book-detail-cover" src="" alt="" />
-      </div>
+      <div class="book-detail-cover-wrap"><img id="book-detail-cover" src="" alt="" /></div>
     </div>
-    <!-- 본문 -->
     <div class="book-detail-body">
       <div class="book-detail-title" id="book-detail-title"></div>
       <div class="book-detail-author" id="book-detail-author"></div>
-      <!-- 통계 -->
       <div class="book-detail-stats">
-        <div class="book-stat">
-          <div class="book-stat-value" id="book-stat-pages">—</div>
-          <div class="book-stat-label">Pages</div>
-        </div>
-        <div class="book-stat">
-          <div class="book-stat-value" id="book-stat-year">—</div>
-          <div class="book-stat-label">Year</div>
-        </div>
-        <div class="book-stat">
-          <div class="book-stat-value" id="book-stat-format">—</div>
-          <div class="book-stat-label">Format</div>
-        </div>
+        <div class="book-stat"><div class="book-stat-value" id="book-stat-pages">—</div><div class="book-stat-label">Pages</div></div>
+        <div class="book-stat"><div class="book-stat-value" id="book-stat-year">—</div><div class="book-stat-label">Year</div></div>
+        <div class="book-stat"><div class="book-stat-value" id="book-stat-format">—</div><div class="book-stat-label">Format</div></div>
       </div>
-      <!-- 태그 -->
       <div class="book-detail-tags" id="book-detail-tags"></div>
-      <!-- Overview -->
       <div class="book-detail-section-title">Book Overview</div>
       <div class="book-detail-overview" id="book-detail-overview"></div>
     </div>
-    <!-- 하단 바: 링크 공유 + Start Reading -->
     <div class="book-start-bar visible" id="book-start-bar">
-      <!-- 링크 공유 버튼 (구 저장 버튼 교체) -->
       <button class="book-share-btn" aria-label="링크 공유" onclick="shareBookLink()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
-          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
-          <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
       </button>
       <button class="book-read-btn" id="book-read-btn" onclick="openReader()">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
@@ -1052,7 +617,6 @@
       <div style="width:44px"></div>
     </div>
     <div class="book-reader-pages" id="book-reader-pages"></div>
-    <!-- 뒤로가기 FAB -->
     <button class="book-reader-fab" onclick="closeReader()" aria-label="Back" type="button">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
     </button>
@@ -1084,21 +648,38 @@
       { id: 'proj-19', title: '화산귀환X파워퍼프걸 팬아트', categories: ['CHARACTER'], thumb: 'https://github.com/korelideniz/portfolio/blob/main/images/hwasangwihwan/1.png?raw=true', images: ['https://github.com/korelideniz/portfolio/blob/main/images/hwasangwihwan/1.png?raw=true','https://github.com/korelideniz/portfolio/blob/main/images/hwasangwihwan/2.png?raw=true','https://github.com/korelideniz/portfolio/blob/main/images/hwasangwihwan/3.png?raw=true','https://github.com/korelideniz/portfolio/blob/main/images/hwasangwihwan/4.png?raw=true','https://github.com/korelideniz/portfolio/blob/main/images/hwasangwihwan/5.png?raw=true'], desc: '개인작업으로 화산귀환X파워퍼프걸 팬아트를 작업했습니다.', year: '2024' },
     ];
 
-    const books = [
-      { id: 'book-01', title: '북 디자인 탐방기 1: 광화문 교보문고', author: 'Koreli Deniz', year: '2025', format: 'Essay', pageCount: 33, categories: ['디자인', '에세이', '탐방기'], overview: '광화문 교보문고에서 발견한 책 디자인들을 기록한 탐방 에세이. 표지 디자인, 타이포그래피, 레이아웃 등 북 디자인의 다양한 요소들을 사진과 함께 담았습니다.', cover: 'https://github.com/korelideniz/portfolio/blob/main/images/blog/41/1.jpeg?raw=true', pages: Array.from({length: 33}, (_, i) => { const ext = [3,5].includes(i+1) ? 'jpg' : 'jpeg'; return `https://github.com/korelideniz/portfolio/blob/main/images/blog/41/${i+1}.${ext}?raw=true`; }), },
-      { id: 'book-02', title: '책 제목 2', author: 'Koreli Deniz', year: '2025', format: 'Graphic Novel', pageCount: 25, categories: ['그래픽노블', '일러스트', '스토리'], overview: '책 소개를 여기에 입력하세요.', cover: 'https://github.com/korelideniz/portfolio/blob/main/images/blog/42/1.jpeg?raw=true', pages: Array.from({length: 25}, (_, i) => `https://github.com/korelideniz/portfolio/blob/main/images/blog/42/${i+1}.jpeg?raw=true`), },
-      { id: 'book-03', title: '책 제목 3', author: 'Koreli Deniz', year: '2025', format: 'Picture Book', pageCount: 10, categories: ['동화책', '일러스트'], overview: '책 소개를 여기에 입력하세요.', cover: 'https://github.com/korelideniz/portfolio/blob/main/images/blog/43/1.jpeg?raw=true', pages: Array.from({length: 10}, (_, i) => `https://github.com/korelideniz/portfolio/blob/main/images/blog/43/${i+1}.jpeg?raw=true`), },
-      { id: 'book-04', title: '책 제목 4', author: 'Koreli Deniz', year: '2025', format: 'Zine', pageCount: 10, categories: ['진', '디자인'], overview: '책 소개를 여기에 입력하세요.', cover: 'https://github.com/korelideniz/portfolio/blob/main/images/blog/45/1.jpeg?raw=true', pages: Array.from({length: 10}, (_, i) => `https://github.com/korelideniz/portfolio/blob/main/images/blog/45/${i+1}.jpeg?raw=true`), },
-      { id: 'book-05', title: '책 제목 5', author: 'Koreli Deniz', year: '2025', format: 'Comic', pageCount: 10, categories: ['만화', '스토리'], overview: '책 소개를 여기에 입력하세요.', cover: 'https://github.com/korelideniz/portfolio/blob/main/images/blog/46/1.jpeg?raw=true', pages: Array.from({length: 10}, (_, i) => `https://github.com/korelideniz/portfolio/blob/main/images/blog/46/${i+1}.jpeg?raw=true`), },
-    ];
+    /* ── BOOKS: archive/books.json 에서 fetch ── */
+    const BOOKS_URL = 'https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/archive/books.json';
+    let books = [];
 
+    function buildBookPages(b) {
+      if (b.pages) return b.pages;
+      const tmpl = b.pageImages;
+      if (!tmpl) return [];
+      return Array.from({ length: b.pageCount }, (_, i) => {
+        const n = i + 1;
+        const ext = (b.pageExts && b.pageExts[String(n)]) || (tmpl.match(/\.([a-zA-Z]+)\?/) || [])[1] || 'jpeg';
+        return tmpl.replace('{n}', n).replace(/\.[a-zA-Z]+\?/, '.' + ext + '?');
+      });
+    }
+
+    async function loadBooks() {
+      try {
+        const res = await fetch(BOOKS_URL + '?v=' + Date.now());
+        if (res.ok) {
+          const data = await res.json();
+          books = data.map(b => ({ ...b, pages: buildBookPages(b) }));
+        }
+      } catch(e) {}
+    }
+
+    /* ── BLOG: 매번 최신 index.json 로드 (캐시 없음) ── */
     const GITHUB_RAW = 'https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/posts/';
     const BLOG_PLACEHOLDER = '*(작성 중인 글입니다)*';
     const FALLBACK_BLOG_INDEX = [];
-    let blogPosts = FALLBACK_BLOG_INDEX.map(m => ({ ...m, body: BLOG_PLACEHOLDER }));
-    let blogIndexLoaded = false;
+    let blogPosts = [];
+
     async function loadBlogPosts() {
-      if (blogIndexLoaded) return;
       let index = FALLBACK_BLOG_INDEX;
       try {
         const res = await fetch(GITHUB_RAW + 'index.json?v=' + Date.now());
@@ -1113,7 +694,6 @@
         } catch(e) { return { ...meta, body: BLOG_PLACEHOLDER }; }
       }));
       blogPosts = settled.filter(r => r.status === 'fulfilled').map(r => r.value);
-      blogIndexLoaded = true;
     }
 
     const assets = [
@@ -1125,26 +705,14 @@
       { id: 'asset-05', name: '기도노트 PDF / Prayer Journal', meta: 'PDF · Free', thumb: 'https://github.com/korelideniz/portfolio/blob/main/archive/prayer-journal/prayer-journal.jpg?raw=true', downloadUrl: 'https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/archive/prayer-journal/prayer-journal.pdf', detailImages: ['https://github.com/korelideniz/portfolio/blob/main/archive/prayer-journal/prayer-journal.jpg?raw=true','https://github.com/korelideniz/portfolio/blob/main/archive/prayer-journal/1.jpg?raw=true','https://github.com/korelideniz/portfolio/blob/main/archive/prayer-journal/2.jpg?raw=true','https://github.com/korelideniz/portfolio/blob/main/archive/prayer-journal/3.jpg?raw=true','https://github.com/korelideniz/portfolio/blob/main/archive/prayer-journal/4.jpg?raw=true','https://github.com/korelideniz/portfolio/blob/main/archive/prayer-journal/5.jpg?raw=true'], desc: '기도노트 PDF 공유합니다.' },
     ];
 
-    /* ── 페이지별 Status Bar 색상 ── */
-    const PAGE_THEME_COLORS = {
-      home:    '#D93939',
-      works:   '#000000',
-      assets:  '#111111',
-      info:    '#D93939',
-      contact: '#D93939',
-      blog:    '#eeeeee',
-      book:    '#f5f3ef',
-    };
+    const PAGE_THEME_COLORS = { home:'#D93939', works:'#000000', assets:'#111111', info:'#D93939', contact:'#D93939', blog:'#eeeeee', book:'#f5f3ef' };
     function updateStatusBarColor(page) {
       const color = PAGE_THEME_COLORS[page] || '#000000';
-      /* 1. theme-color meta → Safari/Chrome status bar + safe area 색 변경 */
       const metaTheme = document.getElementById('meta-theme-color');
       if (metaTheme) metaTheme.setAttribute('content', color);
-      /* 2. html 배경도 동일하게 */
       document.documentElement.style.background = color;
     }
 
-    /* ── State ── */
     let currentPage = 'home';
     let currentFilter = 'ALL';
     let currentBlogFilter = 'ALL';
@@ -1191,41 +759,33 @@
       grid.innerHTML = '';
       projects.forEach((p, i) => {
         const el = document.createElement('div');
-        el.className = 'home-grid-item';
-        el.dataset.idx = i;
+        el.className = 'home-grid-item'; el.dataset.idx = i;
         el.innerHTML = `<img src="${p.thumb}" alt="${p.title}" loading="lazy" /><div class="item-overlay"><h3>${p.title}</h3><p>${p.categories[0]}</p></div>`;
         el.addEventListener('click', () => openProject(p.id));
-        grid.appendChild(el);
-        revealObserver.observe(el);
+        grid.appendChild(el); revealObserver.observe(el);
       });
     }
 
     function renderWorksGrid(filter) {
-      const grid = document.getElementById('works-grid');
-      grid.innerHTML = '';
+      const grid = document.getElementById('works-grid'); grid.innerHTML = '';
       const list = filter === 'ALL' ? projects : projects.filter(p => p.categories.includes(filter));
       list.forEach((p, i) => {
         const el = document.createElement('div');
-        el.className = 'works-item';
-        el.dataset.idx = i;
+        el.className = 'works-item'; el.dataset.idx = i;
         el.innerHTML = `<img src="${p.thumb}" alt="${p.title}" loading="lazy" /><div class="w-overlay"><h3>${p.title}</h3><p>${p.year} · ${p.categories.join(', ')}</p></div>`;
         el.addEventListener('click', () => openProject(p.id));
-        grid.appendChild(el);
-        revealObserver.observe(el);
+        grid.appendChild(el); revealObserver.observe(el);
       });
     }
 
     function renderBookGrid() {
-      const grid = document.getElementById('book-grid');
-      grid.innerHTML = '';
+      const grid = document.getElementById('book-grid'); grid.innerHTML = '';
       books.forEach((b, i) => {
         const el = document.createElement('div');
-        el.className = 'book-card';
-        el.dataset.idx = i;
+        el.className = 'book-card'; el.dataset.idx = i;
         el.innerHTML = `<div class="book-card-cover"><img src="${b.cover}" alt="${b.title}" loading="lazy" /></div><div class="book-card-info"><div class="book-card-title">${b.title}</div><div class="book-card-meta">${b.year} · ${b.format}</div></div>`;
         el.addEventListener('click', () => openBook(b.id));
-        grid.appendChild(el);
-        revealObserver.observe(el);
+        grid.appendChild(el); revealObserver.observe(el);
       });
     }
 
@@ -1249,30 +809,26 @@
       backdrop.classList.add('active');
       backdrop.scrollTop = 0;
       document.body.classList.add('modal-open');
-      document.getElementById('header').style.display = 'none';
+      /* ✅ FIX: z-index로 숨겨서 로고 겹침 방지 */
+      document.getElementById('header').style.zIndex = '-1';
     }
 
     function closeBook() {
       document.getElementById('book-modal-backdrop').classList.remove('active');
       document.body.classList.remove('modal-open');
-      document.getElementById('header').style.display = '';
+      /* ✅ FIX: z-index 복원 */
+      document.getElementById('header').style.zIndex = '';
       currentBookData = null;
     }
 
     function shareBookLink() {
       const url = window.location.href;
-      if (navigator.share) {
-        navigator.share({ title: currentBookData ? currentBookData.title : document.title, url: url }).catch(() => copyToClipboard(url));
-      } else {
-        copyToClipboard(url);
-      }
+      if (navigator.share) { navigator.share({ title: currentBookData ? currentBookData.title : document.title, url: url }).catch(() => copyToClipboard(url)); }
+      else { copyToClipboard(url); }
     }
     function copyToClipboard(text) {
-      if (navigator.clipboard?.writeText) {
-        navigator.clipboard.writeText(text).then(() => showToast('링크가 복사되었습니다')).catch(() => fallbackCopyText(text));
-      } else {
-        fallbackCopyText(text);
-      }
+      if (navigator.clipboard?.writeText) { navigator.clipboard.writeText(text).then(() => showToast('링크가 복사되었습니다')).catch(() => fallbackCopyText(text)); }
+      else { fallbackCopyText(text); }
     }
     function fallbackCopyText(text) {
       const ta = document.createElement('textarea');
@@ -1286,22 +842,14 @@
       if (!currentBookData) return;
       const b = currentBookData;
       document.getElementById('book-reader-title').textContent = b.title;
-      const pages = document.getElementById('book-reader-pages');
-      pages.innerHTML = '';
-      b.pages.forEach(src => {
-        const img = document.createElement('img');
-        img.src = src; img.alt = b.title; img.loading = 'lazy';
-        pages.appendChild(img);
-      });
+      const pages = document.getElementById('book-reader-pages'); pages.innerHTML = '';
+      b.pages.forEach(src => { const img = document.createElement('img'); img.src = src; img.alt = b.title; img.loading = 'lazy'; pages.appendChild(img); });
       const readerBackdrop = document.getElementById('book-reader-backdrop');
-      readerBackdrop.classList.add('active');
-      readerBackdrop.scrollTop = 0;
+      readerBackdrop.classList.add('active'); readerBackdrop.scrollTop = 0;
       requestAnimationFrame(() => observeModalImages(readerBackdrop, '.book-reader-pages img'));
     }
 
-    function closeReader() {
-      document.getElementById('book-reader-backdrop').classList.remove('active');
-    }
+    function closeReader() { document.getElementById('book-reader-backdrop').classList.remove('active'); }
 
     marked.setOptions({ breaks: true });
     const POSTS_PER_PAGE = 10;
@@ -1310,27 +858,22 @@
     function renderBlog(filter, page) {
       if (page === undefined) page = 1;
       currentBlogPage = page;
-      const list = document.getElementById('blog-list');
-      list.innerHTML = '';
+      const list = document.getElementById('blog-list'); list.innerHTML = '';
       const filtered = (filter === 'ALL') ? blogPosts : blogPosts.filter(p => p.tags.includes(filter));
       const totalPages = Math.max(1, Math.ceil(filtered.length / POSTS_PER_PAGE));
       if (currentBlogPage > totalPages) currentBlogPage = totalPages;
       const start = (currentBlogPage - 1) * POSTS_PER_PAGE;
       filtered.slice(start, start + POSTS_PER_PAGE).forEach((post, i) => {
-        const row = document.createElement('div');
-        row.className = 'blog-row';
-        row.dataset.idx = i;
+        const row = document.createElement('div'); row.className = 'blog-row'; row.dataset.idx = i;
         const tagsHTML = post.tags.map(t => `<span class="blog-tag">${t}</span>`).join('');
         row.innerHTML = `<div class="blog-row-head" onclick="toggleBlogRow(this)"><div class="blog-row-title">${post.title}</div><div class="blog-row-tags">${tagsHTML}</div><div class="blog-row-arrow"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg></div></div><div class="blog-row-body"><div class="blog-row-body-inner"><div class="blog-row-date">${post.date}</div>${marked.parse(post.body)}</div></div>`;
-        list.appendChild(row);
-        revealObserver.observe(row);
+        list.appendChild(row); revealObserver.observe(row);
       });
       renderBlogPagination(totalPages, currentBlogPage);
     }
 
     function renderBlogPagination(totalPages, page) {
-      const nav = document.getElementById('blog-pagination');
-      if (!nav) return;
+      const nav = document.getElementById('blog-pagination'); if (!nav) return;
       nav.innerHTML = '';
       if (totalPages <= 1) { nav.style.display = 'none'; return; }
       nav.style.display = 'flex';
@@ -1339,10 +882,7 @@
         btn.className = 'blog-page-btn' + (opts.arrow ? ' blog-page-arrow' : '') + (opts.active ? ' active' : '');
         btn.textContent = label;
         if (opts.disabled) btn.setAttribute('disabled', 'true');
-        else btn.addEventListener('click', () => {
-          renderBlog(currentBlogFilter, targetPage);
-          document.querySelector('.blog-inner')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
+        else btn.addEventListener('click', () => { renderBlog(currentBlogFilter, targetPage); document.querySelector('.blog-inner')?.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
         return btn;
       };
       nav.appendChild(mkBtn('‹', page - 1, { arrow: true, disabled: page === 1 }));
@@ -1362,42 +902,33 @@
       const row = headEl.parentElement;
       const body = row.querySelector('.blog-row-body');
       const isOpen = row.classList.contains('open');
-      document.querySelectorAll('.blog-row.open').forEach(r => {
-        if (r !== row) { r.classList.remove('open'); r.querySelector('.blog-row-body').style.maxHeight = '0px'; }
-      });
+      document.querySelectorAll('.blog-row.open').forEach(r => { if (r !== row) { r.classList.remove('open'); r.querySelector('.blog-row-body').style.maxHeight = '0px'; } });
       if (isOpen) { row.classList.remove('open'); body.style.maxHeight = '0px'; }
       else { row.classList.add('open'); body.style.maxHeight = body.scrollHeight + 'px'; }
     }
 
     function renderAssets() {
-      const grid = document.getElementById('assets-grid');
-      grid.innerHTML = '';
+      const grid = document.getElementById('assets-grid'); grid.innerHTML = '';
       assets.forEach((a, i) => {
-        const el = document.createElement('div');
-        el.className = 'assets-item';
-        el.dataset.idx = i;
+        const el = document.createElement('div'); el.className = 'assets-item'; el.dataset.idx = i;
         el.innerHTML = `<div class="assets-thumb"><img src="${a.thumb}" alt="${a.name}" loading="lazy" /></div><div class="assets-info"><div class="assets-name">${a.name}</div><div class="assets-meta">${a.meta}</div></div>`;
         el.addEventListener('click', () => openAsset(a.id));
-        grid.appendChild(el);
-        revealObserver.observe(el);
+        grid.appendChild(el); revealObserver.observe(el);
       });
     }
 
     function openAsset(id) {
-      const a = assets.find(x => x.id === id);
-      if (!a) return;
+      const a = assets.find(x => x.id === id); if (!a) return;
       document.getElementById('asset-thumb').src = a.thumb;
       document.getElementById('asset-thumb').alt = a.name;
       document.getElementById('asset-name').textContent = a.name;
       document.getElementById('asset-meta').textContent = a.meta;
       document.getElementById('asset-download').href = a.downloadUrl;
       document.getElementById('asset-desc').textContent = a.desc || '';
-      const detail = document.getElementById('asset-details');
-      detail.innerHTML = '';
+      const detail = document.getElementById('asset-details'); detail.innerHTML = '';
       (a.detailImages || []).forEach(src => { const img = document.createElement('img'); img.src = src; img.alt = a.name; img.loading = 'lazy'; detail.appendChild(img); });
       const backdrop = document.getElementById('assets-modal-backdrop');
-      backdrop.classList.add('active');
-      backdrop.scrollTop = 0;
+      backdrop.classList.add('active'); backdrop.scrollTop = 0;
       document.body.classList.add('modal-open');
       requestAnimationFrame(() => observeModalImages(backdrop, '.assets-modal-detail-images img'));
     }
@@ -1405,29 +936,24 @@
     function closeAsset(e) {
       const backdrop = document.getElementById('assets-modal-backdrop');
       if (!backdrop.classList.contains('active')) return;
-      backdrop.classList.remove('active');
-      document.body.classList.remove('modal-open');
+      backdrop.classList.remove('active'); document.body.classList.remove('modal-open');
     }
 
     function toggleMobileMenu() {
-      const menu = document.getElementById('mobile-menu');
-      const btn = document.getElementById('hamburger');
+      const menu = document.getElementById('mobile-menu'); const btn = document.getElementById('hamburger');
       const isOpen = menu.classList.contains('open');
       if (isOpen) closeMobileMenu();
       else { menu.classList.add('open'); btn.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); document.body.classList.add('menu-open'); }
     }
     function closeMobileMenu() {
-      const menu = document.getElementById('mobile-menu');
-      const btn = document.getElementById('hamburger');
+      const menu = document.getElementById('mobile-menu'); const btn = document.getElementById('hamburger');
       menu.classList.remove('open'); btn.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); document.body.classList.remove('menu-open');
     }
     function delayedCloseMenu() {
-      const menu = document.getElementById('mobile-menu');
-      const btn = document.getElementById('hamburger');
       setTimeout(() => {
-        menu.classList.remove('open');
-        btn.classList.remove('open');
-        btn.setAttribute('aria-expanded', 'false');
+        document.getElementById('mobile-menu').classList.remove('open');
+        const btn = document.getElementById('hamburger');
+        btn.classList.remove('open'); btn.setAttribute('aria-expanded', 'false');
         document.body.classList.remove('menu-open');
       }, 180);
     }
@@ -1440,36 +966,22 @@
     setHeroHeight();
     window.addEventListener('orientationchange', () => setTimeout(setHeroHeight, 200));
 
-    const PAGE_URLS = {
-      home: '/',
-      works: '/works',
-      blog: '/blog',
-      book: '/book',
-      assets: '/archive',
-      contact: '/contact',
-      info: '/about',
-    };
+    const PAGE_URLS = { home:'/', works:'/works', blog:'/blog', book:'/book', assets:'/archive', contact:'/contact', info:'/about' };
 
     function navigate(page) {
-      closeProject();
-      closeAsset();
-      closeBook();
+      closeProject(); closeAsset(); closeBook();
       currentPage = page;
-
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       const pageEl = document.getElementById('page-' + page);
       pageEl.classList.add('active');
       window.scrollTo(0, 0);
-
       updateHeader(page);
-      updateStatusBarColor(page);  /* ← 페이지 전환 시 status bar 색 업데이트 */
-
+      updateStatusBarColor(page);
       document.querySelectorAll('.nav-link[id^="nav-"]').forEach(a => a.classList.remove('active'));
       const an = document.getElementById('nav-' + page);
       if (an) an.classList.add('active');
-
       if (page === 'works') renderWorksGrid(currentFilter);
-      if (page === 'book') renderBookGrid();
+      if (page === 'book') loadBooks().then(() => renderBookGrid());
       if (page === 'blog') {
         renderBlog(currentBlogFilter);
         loadBlogPosts().then(() => {
@@ -1477,16 +989,12 @@
         });
       }
       if (page === 'assets') renderAssets();
-
       const url = PAGE_URLS[page] || '/';
       history.pushState({ page }, '', url);
-
       requestAnimationFrame(() => observeReveals(pageEl));
     }
 
-    window.addEventListener('popstate', (e) => {
-      if (e.state && e.state.page) navigate(e.state.page);
-    });
+    window.addEventListener('popstate', (e) => { if (e.state && e.state.page) navigate(e.state.page); });
 
     function getInitialPage() {
       const path = window.location.pathname;
@@ -1495,17 +1003,14 @@
     }
 
     function openProject(id) {
-      const p = projects.find(x => x.id === id);
-      if (!p) return;
+      const p = projects.find(x => x.id === id); if (!p) return;
       document.getElementById('project-title').textContent = p.title;
       document.getElementById('project-meta').textContent = p.year + ' · ' + p.categories.join(', ');
       document.getElementById('project-desc').textContent = p.desc;
-      const imgC = document.getElementById('project-images');
-      imgC.innerHTML = '';
+      const imgC = document.getElementById('project-images'); imgC.innerHTML = '';
       p.images.forEach(src => { const img = document.createElement('img'); img.src = src; img.alt = p.title; imgC.appendChild(img); });
       const backdrop = document.getElementById('project-modal-backdrop');
-      backdrop.classList.add('active');
-      backdrop.scrollTop = 0;
+      backdrop.classList.add('active'); backdrop.scrollTop = 0;
       document.body.classList.add('modal-open');
       requestAnimationFrame(() => observeModalImages(backdrop, '.project-images img'));
     }
@@ -1513,8 +1018,7 @@
     function closeProject(e) {
       const backdrop = document.getElementById('project-modal-backdrop');
       if (!backdrop.classList.contains('active')) return;
-      backdrop.classList.remove('active');
-      document.body.classList.remove('modal-open');
+      backdrop.classList.remove('active'); document.body.classList.remove('modal-open');
     }
 
     document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeProject(); closeAsset(); closeBook(); closeReader(); } });
@@ -1524,30 +1028,21 @@
       const hamburger = document.getElementById('hamburger');
       document.getElementById('header').classList.remove('solid');
       const lightPages = ['blog', 'book'];
-      if (lightPages.includes(page)) {
-        navLinks.forEach(l => l.classList.add('dark-text'));
-        hamburger.classList.add('dark-icon');
-      } else {
-        navLinks.forEach(l => l.classList.remove('dark-text'));
-        hamburger.classList.remove('dark-icon');
-      }
+      if (lightPages.includes(page)) { navLinks.forEach(l => l.classList.add('dark-text')); hamburger.classList.add('dark-icon'); }
+      else { navLinks.forEach(l => l.classList.remove('dark-text')); hamburger.classList.remove('dark-icon'); }
     }
 
     document.querySelectorAll('.filter-btn').forEach(btn => {
       btn.addEventListener('click', function() {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-        currentFilter = this.dataset.filter;
-        renderWorksGrid(currentFilter);
+        this.classList.add('active'); currentFilter = this.dataset.filter; renderWorksGrid(currentFilter);
       });
     });
 
     document.querySelectorAll('.blog-filter-btn').forEach(btn => {
       btn.addEventListener('click', function() {
         document.querySelectorAll('.blog-filter-btn').forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-        currentBlogFilter = this.dataset.blogFilter;
-        renderBlog(currentBlogFilter);
+        this.classList.add('active'); currentBlogFilter = this.dataset.blogFilter; renderBlog(currentBlogFilter);
       });
     });
 
@@ -1562,8 +1057,7 @@
     function showToast(message) {
       const toast = document.getElementById('toast');
       document.getElementById('toast-text').textContent = message || 'Copied';
-      clearTimeout(toastTimer);
-      toast.classList.add('show');
+      clearTimeout(toastTimer); toast.classList.add('show');
       toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
     }
     function copyLightningAddress() {
