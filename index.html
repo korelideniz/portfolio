@@ -1142,7 +1142,7 @@
       if (blogIndexLoaded) return;
       let index = FALLBACK_BLOG_INDEX;
       try {
-        const res = await fetch(GITHUB_RAW + 'index.json', { cache: 'no-store' });
+        const res = await fetch(GITHUB_RAW + 'index.json?v=' + Date.now());
         if (res.ok) { const f = await res.json(); if (Array.isArray(f) && f.length > 0) index = f; }
       } catch(e) {}
       const settled = await Promise.allSettled(index.map(async (meta) => {
