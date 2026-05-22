@@ -1,29 +1,5 @@
 [
   {
-    "id": "book-05",
-    "title": "책 제목 2",
-    "author": "Koreli Deniz",
-    "year": "2025",
-    "format": "Graphic Novel",
-    "pageCount": 25,
-    "categories": ["그래픽노블", "일러스트", "스토리"],
-    "overview": "책 소개를 여기에 입력하세요.",
-    "cover": "https://raw.githubusercontent.com/korelideniz/portfolio/main/images/blog/42/1.jpeg",
-    "pageImages": "https://raw.githubusercontent.com/korelideniz/portfolio/main/images/blog/42/{n}.jpeg"
-  },
-  {
-    "id": "book-04",
-    "title": "책 제목 3",
-    "author": "Koreli Deniz",
-    "year": "2025",
-    "format": "Picture Book",
-    "pageCount": 10,
-    "categories": ["동화책", "일러스트"],
-    "overview": "책 소개를 여기에 입력하세요.",
-    "cover": "https://raw.githubusercontent.com/korelideniz/portfolio/main/images/blog/43/1.jpeg",
-    "pageImages": "https://raw.githubusercontent.com/korelideniz/portfolio/main/images/blog/43/{n}.jpeg"
-  },
-  {
     "id": "book-03",
     "title": "데니즈의 모험",
     "author": "Koreli Deniz",
@@ -34,18 +10,6 @@
     "overview": "책 소개를 여기에 입력하세요.",
     "cover": "https://raw.githubusercontent.com/korelideniz/portfolio/main/archive/books/deniz-book/1.jpg",
     "pageImages": "https://raw.githubusercontent.com/korelideniz/portfolio/main/archive/books/deniz-book/{n}.jpg"
-  },
-  {
-    "id": "book-02",
-    "title": "인생의 맛을 더해줄 23가지의 방법",
-    "author": "Koreli Deniz",
-    "year": "2022",
-    "format": "illust Book",
-    "pageCount": 10,
-    "categories": ["에세이", "일러스트"],
-    "overview": "책 소개를 여기에 입력하세요.",
-    "cover": "https://raw.githubusercontent.com/korelideniz/portfolio/main/images/blog/43/1.jpeg",
-    "pageImages": "https://raw.githubusercontent.com/korelideniz/portfolio/main/images/blog/43/{n}.jpeg"
   },
   {
     "id": "book-01",
