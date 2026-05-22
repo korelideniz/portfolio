@@ -1,20 +1,6 @@
 [
   {
     "id": "book-05",
-    "title": "북 디자인 탐방기 1: 광화문 교보문고",
-    "author": "Koreli Deniz",
-    "year": "2025",
-    "format": "Essay",
-    "pageCount": 33,
-    "categories": ["디자인", "에세이", "탐방기"],
-    "overview": "광화문 교보문고에서 발견한 책 디자인들을 기록한 탐방 에세이. 표지 디자인, 타이포그래피, 레이아웃 등 북 디자인의 다양한 요소들을 사진과 함께 담았습니다.",
-    "cover": "https://raw.githubusercontent.com/korelideniz/portfolio/main/images/blog/41/1.jpeg",
-    "pageImages": "https://raw.githubusercontent.com/korelideniz/portfolio/main/images/blog/41/{n}.{ext}",
-    "pageCount": 33,
-    "pageExts": { "3": "jpg", "5": "jpg" }
-  },
-  {
-    "id": "book-04",
     "title": "책 제목 2",
     "author": "Koreli Deniz",
     "year": "2025",
@@ -26,7 +12,7 @@
     "pageImages": "https://raw.githubusercontent.com/korelideniz/portfolio/main/images/blog/42/{n}.jpeg"
   },
   {
-    "id": "book-03",
+    "id": "book-04",
     "title": "책 제목 3",
     "author": "Koreli Deniz",
     "year": "2025",
@@ -38,16 +24,28 @@
     "pageImages": "https://raw.githubusercontent.com/korelideniz/portfolio/main/images/blog/43/{n}.jpeg"
   },
   {
-    "id": "book-02",
-    "title": "책 제목 4",
+    "id": "book-03",
+    "title": "데니즈의 모험",
     "author": "Koreli Deniz",
-    "year": "2025",
+    "year": "2024",
     "format": "Zine",
     "pageCount": 10,
     "categories": ["진", "디자인"],
     "overview": "책 소개를 여기에 입력하세요.",
-    "cover": "https://raw.githubusercontent.com/korelideniz/portfolio/main/images/blog/45/1.jpeg",
-    "pageImages": "https://raw.githubusercontent.com/korelideniz/portfolio/main/images/blog/45/{n}.jpeg"
+    "cover": "https://raw.githubusercontent.com/korelideniz/portfolio/main/archive/books/deniz-book/1.jpg",
+    "pageImages": "https://raw.githubusercontent.com/korelideniz/portfolio/main/archive/books/deniz-book/{n}.jpg"
+  },
+  {
+    "id": "book-02",
+    "title": "인생의 맛을 더해줄 23가지의 방법",
+    "author": "Koreli Deniz",
+    "year": "2022",
+    "format": "illust Book",
+    "pageCount": 10,
+    "categories": ["에세이", "일러스트"],
+    "overview": "책 소개를 여기에 입력하세요.",
+    "cover": "https://raw.githubusercontent.com/korelideniz/portfolio/main/images/blog/43/1.jpeg",
+    "pageImages": "https://raw.githubusercontent.com/korelideniz/portfolio/main/images/blog/43/{n}.jpeg"
   },
   {
     "id": "book-01",
