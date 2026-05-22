@@ -1,6 +1,6 @@
 [
   {
-    "id": "book-01",
+    "id": "book-05",
     "title": "북 디자인 탐방기 1: 광화문 교보문고",
     "author": "Koreli Deniz",
     "year": "2025",
@@ -14,7 +14,7 @@
     "pageExts": { "3": "jpg", "5": "jpg" }
   },
   {
-    "id": "book-02",
+    "id": "book-04",
     "title": "책 제목 2",
     "author": "Koreli Deniz",
     "year": "2025",
@@ -38,7 +38,7 @@
     "pageImages": "https://raw.githubusercontent.com/korelideniz/portfolio/main/images/blog/43/{n}.jpeg"
   },
   {
-    "id": "book-04",
+    "id": "book-02",
     "title": "책 제목 4",
     "author": "Koreli Deniz",
     "year": "2025",
@@ -50,15 +50,15 @@
     "pageImages": "https://raw.githubusercontent.com/korelideniz/portfolio/main/images/blog/45/{n}.jpeg"
   },
   {
-    "id": "book-05",
-    "title": "책 제목 5",
+    "id": "book-01",
+    "title": "말랑말랑 마음",
     "author": "Koreli Deniz",
-    "year": "2025",
-    "format": "Comic",
-    "pageCount": 10,
-    "categories": ["만화", "스토리"],
+    "year": "2019",
+    "format": "children's book",
+    "pageCount": 30,
+    "categories": ["동화", "스토리"],
     "overview": "책 소개를 여기에 입력하세요.",
-    "cover": "https://raw.githubusercontent.com/korelideniz/portfolio/main/images/blog/46/1.jpeg",
-    "pageImages": "https://raw.githubusercontent.com/korelideniz/portfolio/main/images/blog/46/{n}.jpeg"
+    "cover": "https://raw.githubusercontent.com/korelideniz/portfolio/main/archive/books/malangmalang/1.jpg",
+    "pageImages": "https://raw.githubusercontent.com/korelideniz/portfolio/main/archive/books/malangmalang/{n}.jpg"
   }
 ]
