@@ -1,0 +1,6 @@
+![](https://raw.githubusercontent.com/korelideniz/portfolio/main/images/blog/02/1.JPG)
+![](https://raw.githubusercontent.com/korelideniz/portfolio/main/images/blog/02/2.JPG)
+![](https://raw.githubusercontent.com/korelideniz/portfolio/main/images/blog/02/3.JPG)
+![](https://raw.githubusercontent.com/korelideniz/portfolio/main/images/blog/02/4.JPG)
+![](https://raw.githubusercontent.com/korelideniz/portfolio/main/images/blog/02/5.JPG)
+![](https://raw.githubusercontent.com/korelideniz/portfolio/main/images/blog/02/6.JPG)
