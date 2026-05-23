@@ -4,10 +4,10 @@
     "title": "데니즈의 모험",
     "author": "Koreli Deniz",
     "year": "2024",
-    "format": "Zine",
-    "pageCount": 10,
-    "categories": ["진", "디자인"],
-    "overview": "책 소개를 여기에 입력하세요.",
+    "format": "comics",
+    "pageCount": 40,
+    "categories": ["스토리","모험"],
+    "overview": "데니즈의 모험을 소개합니다. 아빠의 부탁으로 여러 나라를 모험하며 다양한 사람들을 만나고 경험하는 이야기입니다. 이 책은 어린이부터 어른까지 모두가 즐길 수 있는 모험 이야기로, 각 페이지마다 생생한 일러스트와 함께 데니즈의 여정을 따라가며 새로운 세계를 탐험할 수 있습니다.",
     "cover": "https://raw.githubusercontent.com/korelideniz/portfolio/main/archive/books/deniz-book/1.jpg",
     "pageImages": "https://raw.githubusercontent.com/korelideniz/portfolio/main/archive/books/deniz-book/{n}.jpg"
   },
@@ -17,9 +17,9 @@
     "author": "Koreli Deniz",
     "year": "2019",
     "format": "children's book",
-    "pageCount": 30,
+    "pageCount": 26,
     "categories": ["동화", "스토리"],
-    "overview": "책 소개를 여기에 입력하세요.",
+    "overview": "그런 가치를 담은 동화책이 말랑말랑 마음입니다. 작은 돌멩이로서는 자신감이 없어 아무것도 할 수 없는 딱딱한 마음이지만, 큰 돌멩이라는 친구와 함께 대화하고 생각하며 더 넓을 것을 보고 소망하게끔 합니다.\n성경말씀인 에스겔 36장 26절 말씀, '내가 너희에게 새로운 마음을 주고 너희 안에 새로운 영을 줄 것이다. 내가 너희 육신으로부터 돌과 같이 굳은 마음을 없애고 너희에게 살처럼 부드러운 마음을 줄것이다.' 처럼,\n또 한명수 디자이너의 '말랑말랑 이론', 짱구는 못말려 극판 26기에 나왔던 '말랑말랑 권법'처럼 우리 각자의 마음에 있던 딱딱하고 굳은 마음이 아닌 살처럼 부드럽고 말랑말랑한 마음이 있기를 바랍니다.",
     "cover": "https://raw.githubusercontent.com/korelideniz/portfolio/main/archive/books/malangmalang/1.jpg",
     "pageImages": "https://raw.githubusercontent.com/korelideniz/portfolio/main/archive/books/malangmalang/{n}.jpg"
   }
