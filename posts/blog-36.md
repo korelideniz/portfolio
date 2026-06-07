@@ -1,5 +1,4 @@
 ![](https://raw.githubusercontent.com/korelideniz/portfolio/main/images/blog/36/1.png)
-![](https://raw.githubusercontent.com/korelideniz/portfolio/main/images/blog/36/2.jpg)
 ![](https://raw.githubusercontent.com/korelideniz/portfolio/main/images/blog/36/3.jpeg)
 ![](https://raw.githubusercontent.com/korelideniz/portfolio/main/images/blog/36/4.jpeg)
 ![](https://raw.githubusercontent.com/korelideniz/portfolio/main/images/blog/36/5.jpeg)
