@@ -1,4 +1,16 @@
 [
+    {
+    "id": "book-04",
+    "title": "용감한 땅",
+    "author": "Koreli Deniz",
+    "year": "2024",
+    "format": "Graphic Novel",
+    "pageCount": 1,
+    "categories": ["스토리","모험"],
+    "overview": "데니즈가 튀르키예 여행중 만난 용감한 사람들에 대한 이야기.",
+    "cover": "https://raw.githubusercontent.com/korelideniz/portfolio/main/archive/books/yonggamhanddang/1.png",
+    "pageImages": "https://raw.githubusercontent.com/korelideniz/portfolio/main/archive/books/yonggamhanddang/{n}.png"
+  },
   {
     "id": "book-03",
     "title": "데니즈의 모험",
