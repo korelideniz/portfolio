@@ -1,22 +1,13 @@
 [
-    {
+  {
     "id": "book-04",
     "title": "용감한 땅",
     "author": "Koreli Deniz",
     "year": "2024",
     "format": "Graphic Novel",
     "pageCount": 1,
-    "categories": ["스토리","모험"],
-    "overview": "데니즈가 튀르키예 여행중 만난 용감한 사람들에 대한 이야기를 그래픽노블로 담았습니다.
-    ***[책 제목] PDF본 신청 안내***
-본 도서의 PDF 파일은 무단 배포 및 보안상의 이유로 웹사이트에 직접 공개하지 않고 있습니다.
-도서가 필요하신 분들은 아래 양식에 맞춰 이메일로 신청해 주시기 바랍니다. 확인 후 순차적으로 파일을 발송해 드리겠습니다.
-
-신청 방법: [deniz@korelideniz.com]로 아래 내용을 적어 보내주세요.
-
-필수 기재 항목: 성함 / 연락처 (선택)
-
-유의 사항: 본 자료는 개인 소장용 및 학습 목적으로만 사용 가능하며, 무단 복제 및 상업적 재배포는 엄격히 금지됩니다.",
+    "categories": ["스토리", "모험"],
+    "overview": "데니즈가 튀르키예 여행중 만난 용감한 사람들에 대한 이야기를 그래픽노블로 담았습니다.\n***[책 제목] PDF본 신청 안내*** 본 도서의 PDF 파일은 무단 배포 및 보안상의 이유로 웹사이트에 직접 공개하지 않고 있습니다.\n도서가 필요하신 분들은 아래 양식에 맞춰 이메일로 신청해 주시기 바랍니다. 확인 후 순차적으로 파일을 발송해 드리겠습니다.\n신청 방법: [deniz@korelideniz.com]로 아래 내용을 적어 보내주세요. 필수 기재 항목: 성함 / 연락처 (선택)\n유의 사항: 본 자료는 개인 소장용 및 학습 목적으로만 사용 가능하며, 무단 복제 및 상업적 재배포는 엄격히 금지됩니다.",
     "cover": "https://raw.githubusercontent.com/korelideniz/portfolio/main/archive/books/yonggamhanddang/1.png",
     "pageImages": "https://raw.githubusercontent.com/korelideniz/portfolio/main/archive/books/yonggamhanddang/{n}.png"
   },
@@ -27,7 +18,7 @@
     "year": "2024",
     "format": "Comics",
     "pageCount": 40,
-    "categories": ["스토리","모험"],
+    "categories": ["스토리", "모험"],
     "overview": "데니즈의 모험을 소개합니다. 아빠의 부탁으로 여러 나라를 모험하며 다양한 사람들을 만나고 경험하는 이야기입니다. 이 책은 어린이부터 어른까지 모두가 즐길 수 있는 모험 이야기로, 각 페이지마다 생생한 일러스트와 함께 데니즈의 여정을 따라가며 새로운 세계를 탐험할 수 있습니다.",
     "cover": "https://raw.githubusercontent.com/korelideniz/portfolio/main/archive/books/deniz-book/1.jpg",
     "pageImages": "https://raw.githubusercontent.com/korelideniz/portfolio/main/archive/books/deniz-book/{n}.jpg"
