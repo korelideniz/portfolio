@@ -147,6 +147,16 @@
     .reveal-right.in-view { opacity: 1; transform: translateX(0); }
     .reveal-zoom { opacity: 0; transform: scale(0.96); transition: opacity 0.8s ease, transform 0.8s ease; }
     .reveal-zoom.in-view { opacity: 1; transform: scale(1); }
+    /* 안전장치: 페이지가 active인데 in-view가 안 붙으면 300ms 후 강제 표시 */
+    .page.active .reveal { animation: revealFallback 0s 0.3s forwards; }
+    .page.active .reveal-left { animation: revealFallback 0s 0.3s forwards; }
+    .page.active .reveal-right { animation: revealFallback 0s 0.3s forwards; }
+    .page.active .reveal-zoom { animation: revealFallback 0s 0.3s forwards; }
+    .page.active .reveal.in-view,
+    .page.active .reveal-left.in-view,
+    .page.active .reveal-right.in-view,
+    .page.active .reveal-zoom.in-view { animation: none; }
+    @keyframes revealFallback { to { opacity: 1; transform: none; } }
 
     /* ── HOME ── */
     #page-home { background: #D93939; }
@@ -200,13 +210,25 @@
     .info-photo { width: 100%; object-fit: cover; }
     .info-bio { display: flex; flex-direction: column; gap: 28px; margin-top: 20px; }
     .info-bio p { font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.9; color: rgba(255,255,255,0.92); }
-    .lang-label { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 8px; }
+    .lang-label { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 8px; }
     .info-connect { margin-top: 36px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.18); }
     .info-connect .lang-label { margin-bottom: 14px; }
     .info-links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
     .info-links a { display: inline-block; font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 16px; letter-spacing: 0.02em; color: rgba(255,255,255,0.95); border-bottom: 1px solid rgba(255,255,255,0.35); padding-bottom: 2px; transition: opacity 0.2s, border-color 0.2s; }
     .info-links a:hover { opacity: 0.7; border-color: rgba(255,255,255,0.7); }
-    @media (max-width: 768px) { #page-info { padding-top: calc(60px + env(safe-area-inset-top)); } .info-inner { grid-template-columns: 1fr; gap: 32px; padding: 40px 20px 60px; } .info-bio p { font-size: 15px; } }
+    /* ── INFO: Support section (moved from contact) ── */
+    .info-support-section { max-width: 960px; margin: 0 auto; padding: 40px 32px 60px; text-align: center; border-top: 1px solid rgba(255,255,255,0.18); }
+    .info-support-section .support-label { font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 18px; }
+    .info-support-section .support-address { display: inline-flex; align-items: center; gap: 10px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 22px; font-weight: 500; letter-spacing: 0.02em; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.4); padding-bottom: 4px; cursor: pointer; background: none; border-top: none; border-left: none; border-right: none; transition: opacity 0.2s; }
+    .info-support-section .support-address:hover { opacity: 0.7; }
+    .info-support-section .support-bolt { width: 20px; height: 20px; flex-shrink: 0; fill: #FFD400; }
+    @media (max-width: 768px) {
+      #page-info { padding-top: calc(60px + env(safe-area-inset-top)); }
+      .info-inner { grid-template-columns: 1fr; gap: 32px; padding: 40px 20px 40px; }
+      .info-bio p { font-size: 15px; }
+      .info-support-section { padding: 30px 20px 50px; }
+      .info-support-section .support-address { font-size: 18px; }
+    }
 
     /* ── BLOG ── */
     #page-blog { background: #eeeeee; color: #111; padding-top: calc(76px + env(safe-area-inset-top)); min-height: 100vh; }
@@ -224,10 +246,16 @@
     .blog-page-btn[disabled] { opacity: 0.3; cursor: not-allowed; }
     .blog-page-arrow { font-size: 16px; padding: 8px 12px; }
     .blog-inner { max-width: 980px; margin: 0 auto; padding: 40px 32px 80px; }
-    .blog-heading { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #888; margin-bottom: 12px; }
+    .blog-heading { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #888; margin-bottom: 12px; }
     .blog-title { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 36px; font-weight: 700; letter-spacing: 0.01em; margin-bottom: 32px; }
-    .blog-filters { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; padding-bottom: 18px; border-bottom: 1px solid #b5b5b5; }
-    .blog-filter-btn { font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; color: #777; padding: 5px 11px; border-radius: 4px; transition: color 0.15s, background 0.15s; }
+    /* ── BLOG FILTERS: 한줄 가로 스크롤 (works 스타일) ── */
+    .blog-filters {
+      display: flex; flex-wrap: nowrap; gap: 4px; margin-bottom: 8px;
+      padding-bottom: 18px; border-bottom: 1px solid #b5b5b5;
+      overflow-x: auto; -webkit-overflow-scrolling: touch;
+    }
+    .blog-filters::-webkit-scrollbar { display: none; }
+    .blog-filter-btn { font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; color: #777; padding: 5px 11px; border-radius: 4px; transition: color 0.15s, background 0.15s; white-space: nowrap; flex-shrink: 0; }
     .blog-filter-btn:hover { color: #111; }
     .blog-filter-btn.active { color: #fff; background: #111; }
     .blog-list { display: flex; flex-direction: column; }
@@ -238,13 +266,8 @@
     .blog-row-title { font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 22px; font-weight: 500; color: #111; flex: 1; letter-spacing: -0.005em; }
     .blog-row-tags { display: flex; gap: 6px; flex-wrap: nowrap; }
     .blog-tag { font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 500; color: #555; background: #dcdcdc; padding: 4px 10px; border-radius: 999px; letter-spacing: 0.02em; }
-    .blog-row-arrow { width: 24px; height: 24px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: transform 0.35s ease; }
+    .blog-row-arrow { width: 24px; height: 24px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
     .blog-row-arrow svg { width: 18px; height: 18px; fill: #111; }
-    .blog-row.open .blog-row-arrow { transform: rotate(180deg); }
-    .blog-row-body { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; }
-    .blog-row-body-inner { padding: 0 4px 32px; font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.85; color: #444; opacity: 0; transform: translateY(8px); transition: opacity 0.4s ease 0.05s, transform 0.4s ease 0.05s; }
-    .blog-row.open .blog-row-body-inner { opacity: 1; transform: translateY(0); }
-    .blog-row-date { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; color: #999; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; }
     @media (max-width: 768px) {
       #page-blog { padding-top: calc(60px + env(safe-area-inset-top)); }
       .blog-inner { padding: 30px 20px 60px; }
@@ -252,14 +275,89 @@
       .blog-row-head { padding: 20px 2px; gap: 10px; }
       .blog-row-title { font-size: 17px; }
       .blog-row-tags { display: none; }
-      .blog-row-body-inner { font-size: 15px; padding-bottom: 24px; }
-      .blog-row.open .blog-row-tags { display: flex; flex-wrap: wrap; padding: 0 4px 12px; }
     }
+    @media (max-width: 480px) {
+      .blog-filters { padding-bottom: 14px; }
+      .blog-filter-btn { font-size: 12px; padding: 4px 9px; }
+    }
+
+    /* ── BLOG POST MODAL (팝업) ── */
+    .blog-modal-backdrop {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.78); z-index: 1500;
+      display: none; overflow-y: auto; padding: 60px 20px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .blog-modal-backdrop.active { display: block; }
+    .blog-modal {
+      max-width: 760px; margin: 0 auto; background: #fff; border-radius: 8px;
+      color: #111; position: relative; padding: 36px 40px 48px;
+    }
+    .blog-modal-close {
+      position: absolute; top: 18px; right: 18px; width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; font-weight: 300; color: #111; border-radius: 50%;
+      transition: background 0.2s; z-index: 2;
+    }
+    .blog-modal-close:hover { background: rgba(0,0,0,0.06); }
+    .blog-modal-date { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; color: #999; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; }
+    .blog-modal-title { font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 26px; font-weight: 700; color: #111; margin-bottom: 12px; letter-spacing: -0.01em; padding-right: 40px; }
+    .blog-modal-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 28px; }
+    .blog-modal-divider { border: none; border-top: 1px solid #e0e0e0; margin-bottom: 28px; }
+    .blog-modal-body { font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.85; color: #444; }
+    .blog-modal-body p { margin-bottom: 1.2em; }
+    .blog-modal-body img { filter: grayscale(100%); transition: filter 0.3s ease; max-width: 100%; border-radius: 4px; margin: 16px 0; }
+    .blog-modal-body img:hover { filter: grayscale(70%); }
+    .blog-modal-body code { background: #f0f0f0; padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 14px; }
+    .blog-modal-body pre { background: #f0f0f0; padding: 16px; border-radius: 6px; overflow-x: auto; margin: 12px 0; }
+    .blog-modal-body pre code { background: none; padding: 0; }
+    .blog-modal-body blockquote { border-left: 3px solid #ccc; margin: 12px 0; padding: 4px 16px; color: #666; }
+    .blog-modal-back-fab {
+      display: none; position: fixed; bottom: 24px; right: 24px; width: 52px; height: 52px;
+      border-radius: 50%; background: rgba(0,0,0,0.78); color: #fff;
+      align-items: center; justify-content: center;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.35); z-index: 1600;
+      backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.12);
+      transition: transform 0.18s ease;
+    }
+    .blog-modal-back-fab:active { transform: scale(0.94); }
+    .blog-modal-back-fab svg { width: 22px; height: 22px; display: block; }
+    .blog-modal-backdrop.active .blog-modal-back-fab { display: flex; }
+    @media (max-width: 768px) {
+      .blog-modal-backdrop { padding: 30px 12px; }
+      .blog-modal { padding: 22px 20px 36px; border-radius: 6px; }
+      .blog-modal-title { font-size: 20px; }
+      .blog-modal-body { font-size: 15px; }
+    }
+
+
+    /* ── BLOG POST MODAL ── */
+    .blog-modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.78); z-index: 1500; display: none; overflow-y: auto; padding: 60px 20px; -webkit-overflow-scrolling: touch; }
+    .blog-modal-backdrop.active { display: block; }
+    .blog-modal { max-width: 760px; margin: 0 auto; background: #fff; border-radius: 8px; color: #111; position: relative; padding: 36px 40px 48px; }
+    .blog-modal-close { position: absolute; top: 18px; right: 18px; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 300; color: #111; border-radius: 50%; transition: background 0.2s; z-index: 2; }
+    .blog-modal-close:hover { background: rgba(0,0,0,0.06); }
+    .blog-modal-date { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; color: #999; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; }
+    .blog-modal-title { font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 26px; font-weight: 700; color: #111; margin-bottom: 12px; letter-spacing: -0.01em; padding-right: 40px; }
+    .blog-modal-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 28px; }
+    .blog-modal-divider { border: none; border-top: 1px solid #e0e0e0; margin-bottom: 28px; }
+    .blog-modal-body { font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.85; color: #444; }
+    .blog-modal-body p { margin-bottom: 1.2em; }
+    .blog-modal-body img { filter: grayscale(100%); transition: filter 0.3s ease; max-width: 100%; border-radius: 4px; margin: 16px 0; }
+    .blog-modal-body img:hover { filter: grayscale(70%); }
+    .blog-modal-body code { background: #f0f0f0; padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 14px; }
+    .blog-modal-body pre { background: #f0f0f0; padding: 16px; border-radius: 6px; overflow-x: auto; margin: 12px 0; }
+    .blog-modal-body pre code { background: none; padding: 0; }
+    .blog-modal-body blockquote { border-left: 3px solid #ccc; margin: 12px 0; padding: 4px 16px; color: #666; }
+    .blog-modal-back-fab { display: none; position: fixed; bottom: 24px; right: 24px; width: 52px; height: 52px; border-radius: 50%; background: rgba(0,0,0,0.78); color: #fff; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(0,0,0,0.35); z-index: 1600; backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.12); transition: transform 0.18s ease; }
+    .blog-modal-back-fab:active { transform: scale(0.94); }
+    .blog-modal-back-fab svg { width: 22px; height: 22px; display: block; }
+    .blog-modal-backdrop.active .blog-modal-back-fab { display: flex; }
+    @media (max-width: 768px) { .blog-modal-backdrop { padding: 30px 12px; } .blog-modal { padding: 22px 20px 36px; border-radius: 6px; } .blog-modal-title { font-size: 20px; } .blog-modal-body { font-size: 15px; } }
 
     /* ── BOOK ── */
     #page-book { background: #f5f3ef; color: #111; padding-top: calc(76px + env(safe-area-inset-top)); min-height: 100vh; }
     .book-inner { max-width: 1100px; margin: 0 auto; padding: 40px 32px 80px; }
-    .book-heading { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #888; margin-bottom: 12px; }
+    .book-heading { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #888; margin-bottom: 12px; }
     .book-title { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 36px; font-weight: 700; letter-spacing: 0.01em; margin-bottom: 8px; }
     .book-desc-text { font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 15px; line-height: 1.7; color: #666; margin-bottom: 40px; }
     .book-grid { columns: 3; column-gap: 20px; }
@@ -327,7 +425,7 @@
     /* ── ASSETS ── */
     #page-assets { background: #111111; color: #fff; padding-top: calc(76px + env(safe-area-inset-top)); min-height: 100vh; }
     .assets-inner { max-width: 1200px; margin: 0 auto; padding: 40px 28px 80px; }
-    .assets-heading { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 12px; }
+    .assets-heading { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 12px; }
     .assets-title { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 36px; font-weight: 700; letter-spacing: 0.01em; margin-bottom: 12px; color: #fff; }
     .assets-desc { font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 15px; line-height: 1.85; color: rgba(255,255,255,0.7); margin-bottom: 36px; max-width: 680px; }
     .assets-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
@@ -348,7 +446,7 @@
     .assets-modal-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .assets-modal-name { font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 24px; font-weight: 600; text-align: center; margin-bottom: 6px; }
     .assets-modal-meta { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #888; text-align: center; margin-bottom: 24px; }
-    .download-btn { display: block; width: 100%; padding: 22px 0; background: #111; color: #fff; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; text-align: center; border: none; border-radius: 6px; cursor: pointer; transition: background 0.2s, transform 0.2s; margin-bottom: 36px; }
+    .download-btn { display: block; width: 100%; padding: 22px 0; background: #111; color: #fff; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; text-align: center; border: none; border-radius: 6px; cursor: pointer; transition: background 0.2s, transform 0.2s; margin-bottom: 36px; }
     .download-btn:hover { background: #000; transform: translateY(-1px); }
     .assets-modal-detail-images { display: flex; flex-direction: column; gap: 8px; }
     .assets-modal-detail-images img { width: 100%; height: auto; border-radius: 4px; display: block; opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
@@ -363,30 +461,25 @@
     /* ── CONTACT ── */
     #page-contact { background: #D93939; color: #fff; padding-top: calc(76px + env(safe-area-inset-top)); min-height: 100vh; }
     .contact-inner { max-width: 680px; margin: 0 auto; padding: 60px 32px 80px; }
-    .contact-heading { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 20px; }
+    .contact-heading { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 20px; }
     .contact-title { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 36px; font-weight: 700; letter-spacing: 0.01em; margin-bottom: 28px; color: #fff; }
     .contact-desc { font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 15px; line-height: 1.85; color: rgba(255,255,255,0.85); margin-bottom: 10px; }
     .contact-email { display: inline-block; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 17px; font-weight: 500; letter-spacing: 0.04em; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.4); padding-bottom: 2px; margin-bottom: 52px; transition: opacity 0.2s; }
     .contact-email:hover { opacity: 0.6; }
     .contact-form { display: flex; flex-direction: column; gap: 0; }
     .form-group { display: flex; flex-direction: column; margin-bottom: 24px; }
-    .form-label { font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 10px; }
+    .form-label { font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 10px; }
     .form-input, .form-textarea { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); border-radius: 0; padding: 15px 16px; font-size: 15px; color: #fff; font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; outline: none; transition: border-color 0.2s, background 0.2s; width: 100%; }
     .form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,0.35); }
     .form-input:focus, .form-textarea:focus { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.18); }
     .form-textarea { resize: vertical; min-height: 150px; }
-    .form-submit { margin-top: 12px; padding: 18px 0; width: 100%; background: #fff; color: #D93939; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer; border: none; transition: opacity 0.2s; }
+    .form-submit { margin-top: 12px; padding: 18px 0; width: 100%; background: #fff; color: #D93939; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border: none; transition: opacity 0.2s; }
     .form-submit:hover { opacity: 0.85; }
     .contact-bottom-img { margin-top: 80px; width: 100%; }
-    .support-section { margin-top: 40px; text-align: center; padding-bottom: 8px; }
-    .support-label { font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 18px; }
-    .support-address { display: inline-flex; align-items: center; gap: 10px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 22px; font-weight: 500; letter-spacing: 0.02em; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.4); padding-bottom: 4px; cursor: pointer; background: none; border-top: none; border-left: none; border-right: none; transition: opacity 0.2s; }
-    .support-address:hover { opacity: 0.7; }
-    .support-bolt { width: 20px; height: 20px; flex-shrink: 0; fill: #FFD400; }
     .toast { position: fixed; left: 50%; bottom: 40px; transform: translateX(-50%) translateY(20px); background: rgba(0,0,0,0.92); color: #fff; font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 500; letter-spacing: 0.04em; padding: 12px 22px; border-radius: 999px; box-shadow: 0 6px 24px rgba(0,0,0,0.3); opacity: 0; pointer-events: none; z-index: 3000; transition: opacity 0.25s ease, transform 0.25s ease; display: inline-flex; align-items: center; gap: 8px; }
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
     .toast-check { width: 14px; height: 14px; fill: #4ade80; flex-shrink: 0; }
-    @media (max-width: 768px) { #page-contact { padding-top: calc(60px + env(safe-area-inset-top)); } .contact-inner { padding: 40px 20px 60px; } .contact-title { font-size: 28px; } .support-address { font-size: 18px; } .toast { font-size: 13px; padding: 10px 18px; bottom: 28px; } }
+    @media (max-width: 768px) { #page-contact { padding-top: calc(60px + env(safe-area-inset-top)); } .contact-inner { padding: 40px 20px 60px; } .contact-title { font-size: 28px; } .toast { font-size: 13px; padding: 10px 18px; bottom: 28px; } }
 
     /* ── PROJECT MODAL ── */
     .project-modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.78); z-index: 1500; display: none; overflow-y: auto; padding: 60px 20px; -webkit-overflow-scrolling: touch; }
@@ -501,6 +594,15 @@
         </div>
       </div>
     </div>
+
+        <div style="max-width:960px;margin:0 auto;padding:0 32px 60px;text-align:center;">
+      <img src="https://github.com/korelideniz/portfolio/blob/main/info/lightning_3.png?raw=true" alt="Lightning Network QR" style="width:100%;max-width:320px;margin:0 auto 28px;display:block;" loading="lazy" />
+      <p style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:14px;">Support my work (Value For Value)</p>
+      <button type="button" onclick="copyLightningAddress()" style="display:inline-flex;align-items:center;gap:8px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:20px;font-weight:500;letter-spacing:0.01em;color:#fff;border-bottom:1px solid rgba(255,255,255,0.4);padding-bottom:4px;background:none;border-top:none;border-left:none;border-right:none;cursor:pointer;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
+        <svg style="width:18px;height:18px;flex-shrink:0;fill:#FFD400;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 2L3 14h7l-1 8 11-12h-7l1-8z"/></svg>
+        deniz@walletofsatoshi.com
+      </button>
+    </div>
     <div class="connect-bar on-red"></div>
     <footer class="site-footer red">© 2026 Koreli Deniz. All rights reserved.</footer>
   </div>
@@ -510,14 +612,14 @@
     <div class="blog-inner">
       <p class="blog-heading reveal">Notes & Thoughts</p>
       <h2 class="blog-title reveal delay-1">BLOG</h2>
-      <div class="blog-filters reveal delay-2">
+      <div class="blog-filters">
         <button class="blog-filter-btn active" data-blog-filter="ALL">All</button>
         <button class="blog-filter-btn" data-blog-filter="Design">Design</button>
         <button class="blog-filter-btn" data-blog-filter="Webtoon">Webtoon</button>
         <button class="blog-filter-btn" data-blog-filter="Life">Life</button>
         <button class="blog-filter-btn" data-blog-filter="Thoughts">Thoughts</button>
         <button class="blog-filter-btn" data-blog-filter="Book">Book</button>
-        <button class="blog-filter-btn" data-blog-filter="Bitcoin">Bitcoin</button>
+        <button class="blog-filter-btn" data-blog-filter="Liberty">Liberty</button>
       </div>
       <div class="blog-list" id="blog-list"></div>
       <nav class="blog-pagination" id="blog-pagination" aria-label="Blog pagination"></nav>
@@ -580,13 +682,17 @@
         <div class="form-group"><label class="form-label">예상 예산 &nbsp; Budget Range</label><input class="form-input" type="text" name="budget" placeholder="예: 300만원 이상 / e.g. 3,000,000 KRW+" /></div>
         <button class="form-submit" type="submit">Submit</button>
       </form>
-      <img class="contact-bottom-img reveal" src="https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/info/lightning_3.png" alt="Lightning Network" loading="lazy" />
-      <div class="support-section reveal delay-1">
-        <p class="support-label">Support my work (Value For Value)</p>
-        <button type="button" class="support-address" onclick="copyLightningAddress()">
-          <svg class="support-bolt" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 2L3 14h7l-1 8 11-12h-7l1-8z"/></svg>
-          deniz@walletofsatoshi.com
-        </button>
+      <div style="margin-top:80px;text-align:center;">
+        <p style="font-family:'Helvetica Neue','Pretendard',Helvetica,Arial,sans-serif;font-size:15px;line-height:1.7;color:rgba(255,255,255,0.85);margin-bottom:6px;">프로젝트 비용은 비트코인 라이트닝으로도 결제 가능합니다.</p>
+        <p style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:rgba(255,255,255,0.55);margin-bottom:28px;">You can also pay in Bitcoin via Lightning Network.</p>
+        <img class="contact-bottom-img" src="https://github.com/korelideniz/portfolio/blob/main/info/lightning_3.png?raw=true" alt="Lightning Network QR" loading="lazy" style="max-width:320px;margin:0 auto 28px;" />
+        <div style="text-align:center;">
+          <p style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:12px;">Lightning Address</p>
+          <button type="button" onclick="copyLightningAddress()" style="display:inline-flex;align-items:center;gap:8px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:20px;font-weight:500;letter-spacing:0.01em;color:#fff;border-bottom:1px solid rgba(255,255,255,0.4);padding-bottom:4px;background:none;border-top:none;border-left:none;border-right:none;cursor:pointer;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
+            <svg style="width:18px;height:18px;flex-shrink:0;fill:#FFD400;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 2L3 14h7l-1 8 11-12h-7l1-8z"/></svg>
+            deniz@walletofsatoshi.com
+          </button>
+        </div>
       </div>
     </div>
     <div class="connect-bar on-red"></div>
@@ -596,6 +702,22 @@
   <div id="toast" class="toast" role="status" aria-live="polite">
     <svg class="toast-check" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
     <span id="toast-text">Copied to clipboard</span>
+  </div>
+
+
+  <!-- BLOG POST MODAL -->
+  <div id="blog-modal-backdrop" class="blog-modal-backdrop" onclick="closeBlogPost(event)">
+    <div class="blog-modal" onclick="event.stopPropagation()">
+      <button class="blog-modal-close" onclick="closeBlogPost()" aria-label="Close">&times;</button>
+      <div class="blog-modal-date" id="blog-modal-date"></div>
+      <div class="blog-modal-title" id="blog-modal-title"></div>
+      <div class="blog-modal-tags" id="blog-modal-tags"></div>
+      <hr class="blog-modal-divider" />
+      <div class="blog-modal-body" id="blog-modal-body"></div>
+    </div>
+    <button class="blog-modal-back-fab" onclick="closeBlogPost()" aria-label="Back" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+    </button>
   </div>
 
   <!-- PROJECT MODAL -->
@@ -654,6 +776,21 @@
     </div>
     <div class="book-reader-pages" id="book-reader-pages"></div>
     <button class="book-reader-fab" onclick="closeReader()" aria-label="Back" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+    </button>
+  </div>
+
+  <!-- BLOG POST MODAL -->
+  <div id="blog-modal-backdrop" class="blog-modal-backdrop" onclick="closeBlogPost(event)">
+    <div class="blog-modal" onclick="event.stopPropagation()">
+      <button class="blog-modal-close" onclick="closeBlogPost()" aria-label="Close">&times;</button>
+      <div class="blog-modal-date" id="blog-modal-date"></div>
+      <div class="blog-modal-title" id="blog-modal-title"></div>
+      <div class="blog-modal-tags" id="blog-modal-tags"></div>
+      <hr class="blog-modal-divider" />
+      <div class="blog-modal-body" id="blog-modal-body"></div>
+    </div>
+    <button class="blog-modal-back-fab" onclick="closeBlogPost()" aria-label="Back" type="button">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
     </button>
   </div>
@@ -775,10 +912,25 @@
 
     function observeReveals(root) {
       const scope = root || document;
-      scope.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-zoom').forEach(el => {
-        el.classList.remove('in-view');
-        revealObserver.observe(el);
-      });
+      const els = Array.from(scope.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-zoom'));
+      els.forEach(el => { el.classList.remove('in-view'); revealObserver.unobserve(el); });
+      // 페이지가 display:block으로 전환된 뒤 실행
+      setTimeout(() => {
+        els.forEach(el => {
+          const rect = el.getBoundingClientRect();
+          // rect가 모두 0이면 아직 렌더 전 → 강제로 in-view
+          const notRendered = rect.width === 0 && rect.height === 0 && rect.top === 0;
+          const inViewport = rect.top < window.innerHeight && rect.bottom > 0;
+          if (notRendered || inViewport) {
+            if (el.dataset.idx !== undefined) {
+              el.style.transitionDelay = (parseInt(el.dataset.idx) % 8 * 60) + 'ms';
+            }
+            el.classList.add('in-view');
+          } else {
+            revealObserver.observe(el);
+          }
+        });
+      }, 50);
     }
 
     let modalImgObserver = null;
@@ -852,14 +1004,12 @@
       backdrop.classList.add('active');
       backdrop.scrollTop = 0;
       document.body.classList.add('modal-open');
-      /* ✅ FIX: z-index로 숨겨서 로고 겹침 방지 */
       document.getElementById('header').style.zIndex = '-1';
     }
 
     function closeBook() {
       document.getElementById('book-modal-backdrop').classList.remove('active');
       document.body.classList.remove('modal-open');
-      /* ✅ FIX: z-index 복원 */
       document.getElementById('header').style.zIndex = '';
       currentBookData = null;
     }
@@ -898,6 +1048,26 @@
     const POSTS_PER_PAGE = 10;
     let currentBlogPage = 1;
 
+    /* ── BLOG POST MODAL ── */
+    function openBlogPost(post) {
+      document.getElementById('blog-modal-date').textContent = post.date;
+      document.getElementById('blog-modal-title').textContent = post.title;
+      const tagsEl = document.getElementById('blog-modal-tags');
+      tagsEl.innerHTML = post.tags.map(t => `<span class="blog-tag">${t}</span>`).join('');
+      document.getElementById('blog-modal-body').innerHTML = marked.parse(post.body);
+      const backdrop = document.getElementById('blog-modal-backdrop');
+      backdrop.classList.add('active');
+      backdrop.scrollTop = 0;
+      document.body.classList.add('modal-open');
+    }
+
+    function closeBlogPost(e) {
+      const backdrop = document.getElementById('blog-modal-backdrop');
+      if (!backdrop.classList.contains('active')) return;
+      backdrop.classList.remove('active');
+      document.body.classList.remove('modal-open');
+    }
+
     function renderBlog(filter, page) {
       if (page === undefined) page = 1;
       currentBlogPage = page;
@@ -909,7 +1079,15 @@
       filtered.slice(start, start + POSTS_PER_PAGE).forEach((post, i) => {
         const row = document.createElement('div'); row.className = 'blog-row'; row.dataset.idx = i;
         const tagsHTML = post.tags.map(t => `<span class="blog-tag">${t}</span>`).join('');
-        row.innerHTML = `<div class="blog-row-head" onclick="toggleBlogRow(this)"><div class="blog-row-title">${post.title}</div><div class="blog-row-tags">${tagsHTML}</div><div class="blog-row-arrow"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg></div></div><div class="blog-row-body"><div class="blog-row-body-inner"><div class="blog-row-date">${post.date}</div>${marked.parse(post.body)}</div></div>`;
+        row.innerHTML = `
+          <div class="blog-row-head">
+            <div class="blog-row-title">${post.title}</div>
+            <div class="blog-row-tags">${tagsHTML}</div>
+            <div class="blog-row-arrow">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+            </div>
+          </div>`;
+        row.querySelector('.blog-row-head').addEventListener('click', () => openBlogPost(post));
         list.appendChild(row); revealObserver.observe(row);
       });
       renderBlogPagination(totalPages, currentBlogPage);
@@ -939,15 +1117,6 @@
         else nav.appendChild(mkBtn(String(p), p, { active: p === page }));
       });
       nav.appendChild(mkBtn('›', page + 1, { arrow: true, disabled: page === totalPages }));
-    }
-
-    function toggleBlogRow(headEl) {
-      const row = headEl.parentElement;
-      const body = row.querySelector('.blog-row-body');
-      const isOpen = row.classList.contains('open');
-      document.querySelectorAll('.blog-row.open').forEach(r => { if (r !== row) { r.classList.remove('open'); r.querySelector('.blog-row-body').style.maxHeight = '0px'; } });
-      if (isOpen) { row.classList.remove('open'); body.style.maxHeight = '0px'; }
-      else { row.classList.add('open'); body.style.maxHeight = body.scrollHeight + 'px'; }
     }
 
     function renderAssets() {
@@ -1012,18 +1181,19 @@
     const PAGE_URLS = { home:'/', works:'/works', blog:'/blog', book:'/book', assets:'/archive', contact:'/contact', info:'/about' };
 
     function navigate(page) {
-    const PAGE_TITLES = {
-    home: '데니즈 | Koreli Deniz',
-    works: 'Works | 데니즈 Koreli Deniz',
-    blog: 'Blog | 데니즈 Koreli Deniz',
-    book: 'Book | 데니즈 Koreli Deniz',
-    assets: 'Archive | 데니즈 Koreli Deniz',
-    contact: 'Contact | 데니즈 Koreli Deniz',
-    info: 'About | 데니즈 Koreli Deniz'
-  };
-  document.title = PAGE_TITLES[page] || '데니즈 | Koreli Deniz';
-  updateStatusBarColor(page);
-  closeProject(); closeAsset(); closeBook();
+      closeMobileMenu();
+      const PAGE_TITLES = {
+        home: '데니즈 | Koreli Deniz',
+        works: 'Works | 데니즈 Koreli Deniz',
+        blog: 'Blog | 데니즈 Koreli Deniz',
+        book: 'Book | 데니즈 Koreli Deniz',
+        assets: 'Archive | 데니즈 Koreli Deniz',
+        contact: 'Contact | 데니즈 Koreli Deniz',
+        info: 'About | 데니즈 Koreli Deniz'
+      };
+      document.title = PAGE_TITLES[page] || '데니즈 | Koreli Deniz';
+      updateStatusBarColor(page);
+      closeMobileMenu(); closeProject(); closeAsset(); closeBook(); closeBlogPost(); closeBlogPost();
       currentPage = page;
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       const pageEl = document.getElementById('page-' + page);
@@ -1044,7 +1214,7 @@
       if (page === 'assets') renderAssets();
       const url = PAGE_URLS[page] || '/';
       history.pushState({ page }, '', url);
-      requestAnimationFrame(() => observeReveals(pageEl));
+      observeReveals(pageEl);
     }
 
     window.addEventListener('popstate', (e) => { if (e.state && e.state.page) navigate(e.state.page); });
@@ -1074,7 +1244,7 @@
       backdrop.classList.remove('active'); document.body.classList.remove('modal-open');
     }
 
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeProject(); closeAsset(); closeBook(); closeReader(); } });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeProject(); closeAsset(); closeBook(); closeReader(); closeBlogPost(); } });
 
     function updateHeader(page) {
       const navLinks = document.querySelectorAll('#main-nav .nav-link');
