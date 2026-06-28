@@ -18,10 +18,10 @@
   { "id": "blog-22", "title": "계원예술대학교 졸업전시 / 계원조형예술제.", "date": "2024.11.16", "tags": ["Life","Thoughts"], "file": "blog-22.md" },
   { "id": "blog-21", "title": "한국 도착, 앞으로의 계획", "date": "2024.8.6", "tags": ["Life"], "file": "blog-21.md" },
   { "id": "blog-20", "title": "콘텐츠 200개의 가설", "date": "2024.6.6", "tags": ["Design","Thoughts"], "file": "blog-20.md" },
-  { "id": "blog-19", "title": "비영리 단체의 재정이슈 / 비트코인에 대한 생각 전환", "date": "2024.4.16", "tags": ["Life","Thoughts","Bitcoin"], "file": "blog-19.md" },
+  { "id": "blog-19", "title": "비영리 단체의 재정이슈 / 비트코인에 대한 생각 전환", "date": "2024.4.16", "tags": ["Life","Thoughts","Liberty"], "file": "blog-19.md" },
   { "id": "blog-18", "title": "신입 디자이너 & 비전공 디자이너들에게 추천하는 디자인 무료 사이트", "date": "2023.10.5", "tags": ["Design"], "file": "blog-18.md" },
   { "id": "blog-17", "title": "개인 디자인 포트폴리오 가이드 만들기 / 컨셉 정하기", "date": "2023.4.14", "tags": ["Design"], "file": "blog-17.md" },
-  { "id": "blog-41", "title": "비트코인의 재발견", "date": "2023.3.5", "tags": ["Bitcoin","Thoughts"], "file": "blog-41.md" },
+  { "id": "blog-41", "title": "비트코인의 재발견", "date": "2023.3.5", "tags": ["Liberty","Thoughts"], "file": "blog-41.md" },
   { "id": "blog-16", "title": "2017년, 심해생물 비주얼에 매력을 느끼다.", "date": "2022.4.19", "tags": ["Design"], "file": "blog-16.md" },
   { "id": "blog-15", "title": "터키에 관하여", "date": "2022.2.13", "tags": ["Thoughts"], "file": "blog-15.md" },
   { "id": "blog-14", "title": "내가 텔레그램을 사용하는 이유", "date": "2021.12.12", "tags": ["Thoughts"], "file": "blog-14.md" },
@@ -37,5 +37,5 @@
   { "id": "blog-04", "title": "[터키야 사랑해!] 3화: 터키의 식사대접", "date": "2021.08.28", "tags": ["Webtoon"], "file": "blog-04.md" },
   { "id": "blog-03", "title": "[터키야 사랑해!] 2화: 밥풀(Vapur)", "date": "2021.08.26", "tags": ["Webtoon"], "file": "blog-03.md" },
   { "id": "blog-02", "title": "[터키야 사랑해!] 1화: 고추장", "date": "2021.08.23", "tags": ["Webtoon"], "file": "blog-02.md" },
-  { "id": "blog-01", "title": "국가의 해부: 국가는 무엇이고 무엇이 아닌가", "date": "2021.8.20", "tags": ["Life", "Thoughts"], "file": "blog-01.md" }
+  { "id": "blog-01", "title": "국가의 해부: 국가는 무엇이고 무엇이 아닌가", "date": "2021.8.20", "tags": ["Liberty", "Thoughts"], "file": "blog-01.md" }
 ]
