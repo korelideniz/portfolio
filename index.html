@@ -585,7 +585,10 @@
           <div class="info-connect reveal delay-4">
             <p class="lang-label">Connect</p>
             <ul class="info-links">
-              <li><a href="https://primal.net/p/npub1z0ft6gudp98gjxt3e3yvruckuprhg48nj2jvshy00gv4sa5vv60qg3j3wr" target="_blank" rel="noopener">Nostr</a></li>
+              <li>
+                <a href="https://primal.net/p/npub1z0ft6gudp98gjxt3e3yvruckuprhg48nj2jvshy00gv4sa5vv60qg3j3wr" target="_blank" rel="noopener">Nostr</a>
+                <button onclick="copyNostrKey()" style="display:block;margin-top:6px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:10px;color:rgba(255,255,255,0.45);letter-spacing:0.02em;background:none;border:none;cursor:pointer;padding:0;text-align:left;word-break:break-all;max-width:100%;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">npub1z0ft6gudp98gjxt3e3yvruckuprhg48nj2jvshy00gv4sa5vv60qg3j3wr</button>
+              </li>
               <li><a href="https://www.instagram.com/korelideniz.tr/" target="_blank" rel="noopener">Instagram</a></li>
               <li><a href="https://www.youtube.com/@korelideniz" target="_blank" rel="noopener">YouTube</a></li>
               <li><a href="https://notefolio.net/korelideniz" target="_blank" rel="noopener">Notefolio</a></li>
@@ -1287,6 +1290,11 @@
       const addr = 'deniz@walletofsatoshi.com';
       if (navigator.clipboard?.writeText) navigator.clipboard.writeText(addr).then(() => showToast('주소가 복사되었습니다'), () => fallbackCopy(addr));
       else fallbackCopy(addr);
+    }
+    function copyNostrKey() {
+      const key = 'npub1z0ft6gudp98gjxt3e3yvruckuprhg48nj2jvshy00gv4sa5vv60qg3j3wr';
+      if (navigator.clipboard?.writeText) navigator.clipboard.writeText(key).then(() => showToast('공개키가 복사되었습니다'), () => fallbackCopy(key));
+      else fallbackCopy(key);
     }
     function fallbackCopy(text) {
       const ta = document.createElement('textarea');
