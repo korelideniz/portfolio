@@ -174,9 +174,10 @@
       position: relative; z-index: 1; background: #000; color: #fff;
       margin-top: -1px;
     }
+    .home-works { padding-top: calc(76px + env(safe-area-inset-top)); } /* 투명 헤더 아래로 카테고리 위치 */
+    @media (max-width: 768px) { .home-works { padding-top: calc(60px + env(safe-area-inset-top)); } }
     .home-works .filter-btn { border-radius: 0; }
     .home-works .connect-bar { padding-top: 32px; }
-    #header.solid-dark { background: #000; }
 
     .home-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; padding: 4px; background: #000; }
     .home-grid-item {
@@ -1282,7 +1283,7 @@
     function updateHeader(page) {
       const navLinks = document.querySelectorAll('#main-nav .nav-link');
       const hamburger = document.getElementById('hamburger');
-      document.getElementById('header').classList.remove('solid', 'solid-dark');
+      document.getElementById('header').classList.remove('solid');
       const lightPages = ['blog', 'book'];
       if (lightPages.includes(page)) { navLinks.forEach(l => l.classList.add('dark-text')); hamburger.classList.add('dark-icon'); }
       else { navLinks.forEach(l => l.classList.remove('dark-text')); hamburger.classList.remove('dark-icon'); }
@@ -1368,11 +1369,9 @@
     function jumpTo(y) { window.scrollTo({ top: y, behavior: 'instant' }); }
     function stopSnap() { if (snapRaf) cancelAnimationFrame(snapRaf); snapRaf = null; snapping = false; }
 
-    // 배너 아래 콘텐츠의 시작 지점 (카테고리 바가 헤더 바로 밑에 오도록)
+    // 배너 아래 콘텐츠의 시작 지점 (검은 패널이 화면 전체를 덮는 위치)
     function snapTarget() {
-      const hero = document.getElementById('hero');
-      const headerH = document.getElementById('header').offsetHeight;
-      return Math.max(0, hero.offsetHeight - headerH);
+      return document.getElementById('hero').offsetHeight;
     }
 
     function snapTo(y) {
@@ -1426,8 +1425,7 @@
       if (snapping || trySnap(down ? 1 : -1)) e.preventDefault();
     }
     function onHomeScroll() {
-      const header = document.getElementById('header');
-      header.classList.toggle('solid-dark', window.scrollY >= snapTarget() - 1);
+      // 헤더는 항상 투명 유지
     }
 
     function setupHomeScroll(on) {
