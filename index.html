@@ -167,6 +167,10 @@
       background: #D93939;
     }
     .hero img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+    /* 홈 화면 넘김: 브라우저 기본 스크롤 스냅 (JS로 스크롤을 붙잡지 않아 버벅임 없음) */
+    html.home-snap { scroll-snap-type: y mandatory; }
+    html.home-snap #page-home { scroll-snap-align: start; } /* 배너는 sticky라 스냅 기준을 페이지 맨 위로 둠 */
+    html.home-snap .home-works { scroll-snap-align: start; }
     @media (max-width: 768px) { .hero { height: var(--hero-h-mobile, 100vh); min-height: 0; } }
 
     /* 배너 위로 올라오는 작업물 패널 */
@@ -491,7 +495,7 @@
     .form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,0.35); }
     .form-input:focus, .form-textarea:focus { background: rgba(255,255,255,0.22); }
     .form-textarea { resize: vertical; min-height: 150px; }
-    .form-submit { margin-top: 12px; padding: 18px 0; width: 100%; background: #fff; color: #D93939; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border: none; transition: opacity 0.2s; }
+    .form-submit { margin-top: 12px; padding: 18px 0; width: 100%; background: #fff; color: #D93939; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border: none; border-radius: 12px; transition: opacity 0.2s; }
     .form-submit:hover { opacity: 0.85; }
     .contact-bottom-img { margin-top: 80px; width: 100%; }
     .toast { position: fixed; left: 50%; bottom: 40px; transform: translateX(-50%) translateY(20px); background: rgba(0,0,0,0.92); color: #fff; font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 500; letter-spacing: 0.04em; padding: 12px 22px; border-radius: 999px; box-shadow: 0 6px 24px rgba(0,0,0,0.3); opacity: 0; pointer-events: none; z-index: 3000; transition: opacity 0.25s ease, transform 0.25s ease; display: inline-flex; align-items: center; gap: 8px; }
@@ -544,6 +548,11 @@
       padding-top: calc(var(--popup-top) + env(safe-area-inset-top));
       padding-bottom: calc(var(--popup-bottom) + env(safe-area-inset-bottom));
     }
+
+    /* ── 블로그 본문 이미지 상하 간격 = Works 팝업 이미지 간격(6px) ── */
+    .blog-modal-body img { margin: 0 0 6px; }
+    .blog-modal-body img + br { display: none; } /* 이미지 사이 줄바꿈이 만들던 빈 줄 제거 */
+    .blog-modal-body p:has(> img:last-child) { margin-bottom: 0; } /* 이미지로 끝나는 문단 아래 추가 여백 제거 */
   </style>
 </head>
 <body>
@@ -1384,83 +1393,13 @@
        HOME: 고정 배너 + 쫀득한 스크롤
     ═══════════════════════════════════════════════ */
     let homeScrollOn = false;
-    let snapping = false;
-    let snapRaf = null;
-    let touchStartY = null;
-    const SNAP_MS = 480;
-
-    function jumpTo(y) { window.scrollTo({ top: y, behavior: 'instant' }); }
-    function stopSnap() { if (snapRaf) cancelAnimationFrame(snapRaf); snapRaf = null; snapping = false; }
-
-    // 배너 아래 콘텐츠의 시작 지점 (검은 패널이 화면 전체를 덮는 위치)
-    function snapTarget() {
-      return document.getElementById('hero').offsetHeight;
-    }
-
-    function snapTo(y) {
-      stopSnap();
-      const from = window.scrollY, dist = y - from;
-      if (Math.abs(dist) < 1) return;
-      snapping = true;
-      const t0 = performance.now();
-      const step = (now) => {
-        const t = Math.min((now - t0) / SNAP_MS, 1);
-        const e = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; // easeInOutCubic
-        jumpTo(from + dist * e);
-        if (t < 1) snapRaf = requestAnimationFrame(step);
-        else { snapRaf = null; setTimeout(() => { snapping = false; }, 120); }
-      };
-      snapRaf = requestAnimationFrame(step);
-    }
-
-    // 배너 구간에서 방향만 판단해 한 번에 넘김. 그 아래는 일반 스크롤.
-    function trySnap(dir) {
-      const target = snapTarget(), y = window.scrollY;
-      if (dir > 0 && y < target - 1) { snapTo(target); return true; }
-      if (dir < 0 && y > 0 && y <= target + 1) { snapTo(0); return true; }
-      return false;
-    }
-    function isLocked() {
-      return document.body.classList.contains('modal-open') || document.body.classList.contains('menu-open');
-    }
-
-    function onHomeWheel(e) {
-      if (isLocked()) return;
-      if (snapping) { e.preventDefault(); return; }
-      if (Math.abs(e.deltaY) < 2) return;
-      if (trySnap(Math.sign(e.deltaY))) e.preventDefault();
-    }
-    function onHomeTouchStart(e) { touchStartY = e.touches[0].clientY; }
-    function onHomeTouchMove(e) {
-      if (isLocked() || touchStartY === null) return;
-      if (snapping) { e.preventDefault(); return; }
-      const dy = touchStartY - e.touches[0].clientY;
-      const target = snapTarget(), y = window.scrollY;
-      const inZone = (dy > 0 && y < target - 1) || (dy < 0 && y > 0 && y <= target + 1);
-      if (!inZone) return;
-      e.preventDefault();
-      if (Math.abs(dy) > 24) { trySnap(Math.sign(dy)); touchStartY = null; }
-    }
-    function onHomeKey(e) {
-      if (isLocked() || /INPUT|TEXTAREA/.test(document.activeElement?.tagName || '')) return;
-      const down = ['ArrowDown','PageDown',' '].includes(e.key), up = ['ArrowUp','PageUp'].includes(e.key);
-      if (!down && !up) return;
-      if (snapping || trySnap(down ? 1 : -1)) e.preventDefault();
-    }
-    function onHomeScroll() {
-      // 헤더는 항상 투명 유지
-    }
-
+    function stopSnap() {}
+    function snapTarget() { return document.getElementById('hero').offsetHeight; }
+    function snapTo(y) { window.scrollTo({ top: y, behavior: 'smooth' }); }
+    function onHomeScroll() {}
     function setupHomeScroll(on) {
-      if (on === homeScrollOn) { if (on) onHomeScroll(); return; }
       homeScrollOn = on;
-      const m = on ? 'addEventListener' : 'removeEventListener';
-      window[m]('wheel', onHomeWheel, { passive: false });
-      window[m]('touchstart', onHomeTouchStart, { passive: true });
-      window[m]('touchmove', onHomeTouchMove, { passive: false });
-      window[m]('keydown', onHomeKey);
-      window[m]('scroll', onHomeScroll, { passive: true });
-      if (on) onHomeScroll(); else stopSnap();
+      document.documentElement.classList.toggle('home-snap', on);
     }
 
     let lastW = window.innerWidth;
