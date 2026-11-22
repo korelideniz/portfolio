@@ -279,8 +279,8 @@
     .blog-row.in-view { opacity: 1; transform: translateY(0); }
     .blog-row-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 24px 4px; cursor: pointer; transition: background 0.2s; }
     .blog-row-head:hover { background: rgba(0,0,0,0.02); }
-    .blog-row-title { font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 22px; font-weight: 500; color: #111; flex: 1; letter-spacing: -0.005em; }
-    .blog-row-date { font-weight: 400; color: #999; white-space: nowrap; }
+    .blog-row-title { font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 20px; word-break: keep-all; font-weight: 500; color: #111; flex: 1; letter-spacing: -0.005em; }
+    .blog-row-date { font-size: 0.8em; font-weight: 400; color: #999; white-space: nowrap; }
     .blog-row-date::before { content: '|'; margin: 0 0.5em; color: #bbb; }
     .blog-row-tags { display: flex; gap: 6px; flex-wrap: nowrap; }
     .blog-tag { font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 500; color: #555; background: #dcdcdc; padding: 4px 10px; border-radius: 999px; letter-spacing: 0.02em; }
@@ -291,7 +291,8 @@
       .blog-inner { padding: 30px 20px 60px; }
       .blog-title { font-size: 28px; margin-bottom: 24px; }
       .blog-row-head { padding: 20px 2px; gap: 10px; }
-      .blog-row-title { font-size: 17px; }
+      .blog-row-title { font-size: 15px; }
+      .blog-row-date { font-size: 13px; }
       .blog-row-tags { display: none; }
     }
     @media (max-width: 480px) {
@@ -534,6 +535,16 @@
     .connect-bar.on-red a { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.35); color: #fff; }
     .connect-bar.on-red a:hover { background: rgba(255,255,255,0.22); border-color: rgba(255,255,255,0.6); }
     @media (max-width: 480px) { .connect-bar { gap: 8px; padding: 6px 16px 20px; } .connect-bar a { width: 38px; height: 38px; font-size: 12px; } .connect-bar a.text { width: auto; padding: 0 14px; } .connect-bar svg { width: 16px; height: 16px; } }
+
+    /* ── 모든 팝업(블로그 · 작업물 · 아카이브) 시작 위치 통일 ── */
+    :root { --popup-top: 120px; --popup-bottom: 60px; }
+    @media (max-width: 768px) { :root { --popup-top: 90px; --popup-bottom: 40px; } }
+    .blog-modal-backdrop,
+    .project-modal-backdrop,
+    .assets-modal-backdrop {
+      padding-top: calc(var(--popup-top) + env(safe-area-inset-top));
+      padding-bottom: calc(var(--popup-bottom) + env(safe-area-inset-bottom));
+    }
   </style>
 </head>
 <body>
