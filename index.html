@@ -280,6 +280,8 @@
     .blog-row-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 24px 4px; cursor: pointer; transition: background 0.2s; }
     .blog-row-head:hover { background: rgba(0,0,0,0.02); }
     .blog-row-title { font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 22px; font-weight: 500; color: #111; flex: 1; letter-spacing: -0.005em; }
+    .blog-row-date { font-weight: 400; color: #999; white-space: nowrap; }
+    .blog-row-date::before { content: '|'; margin: 0 0.5em; color: #bbb; }
     .blog-row-tags { display: flex; gap: 6px; flex-wrap: nowrap; }
     .blog-tag { font-family: 'Helvetica Neue', 'Pretendard', Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 500; color: #555; background: #dcdcdc; padding: 4px 10px; border-radius: 999px; letter-spacing: 0.02em; }
     .blog-row-arrow { width: 24px; height: 24px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
@@ -919,8 +921,10 @@
       const color = PAGE_THEME_COLORS[page] || '#000000';
       const metaTheme = document.getElementById('meta-theme-color');
       if (metaTheme) metaTheme.setAttribute('content', color);
-      document.documentElement.style.background = color;
-      document.body.style.background = color;
+      // 홈은 배너 아래가 검은 작업물 영역이라, 끝까지 당겼을 때(오버스크롤) 보이는 바탕도 검정으로
+      const bg = page === 'home' ? '#000000' : color;
+      document.documentElement.style.background = bg;
+      document.body.style.background = bg;
     }
 
     let currentPage = 'home';
@@ -1094,6 +1098,16 @@
       document.getElementById('header').style.zIndex = '';
     }
 
+    // '2024-06-19', '2024.06.19', '2024/6/19' → 'Jun 19, 2024' (형식이 다르면 원문 그대로)
+    const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    function formatBlogDate(d) {
+      if (!d) return '';
+      const m = String(d).trim().match(/^(\d{4})[-.\/\s]+(\d{1,2})[-.\/\s]+(\d{1,2})/);
+      if (!m) return String(d);
+      const mon = MONTHS[parseInt(m[2], 10) - 1];
+      return mon ? `${mon} ${parseInt(m[3], 10)}, ${m[1]}` : String(d);
+    }
+
     function renderBlog(filter, page) {
       if (page === undefined) page = 1;
       currentBlogPage = page;
@@ -1107,7 +1121,7 @@
         const tagsHTML = post.tags.map(t => `<span class="blog-tag">${t}</span>`).join('');
         row.innerHTML = `
           <div class="blog-row-head">
-            <div class="blog-row-title">${post.title}</div>
+            <div class="blog-row-title">${post.title}${post.date ? `<span class="blog-row-date">${formatBlogDate(post.date)}</span>` : ''}</div>
             <div class="blog-row-tags">${tagsHTML}</div>
             <div class="blog-row-arrow">
               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
