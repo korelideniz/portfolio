@@ -159,10 +159,25 @@
     @keyframes revealFallback { to { opacity: 1; transform: none; } }
 
     /* ── HOME ── */
-    #page-home { background: #D93939; }
-    .hero { width: 100%; height: var(--hero-h, 100vh); min-height: 480px; overflow: hidden; }
+    #page-home { background: #000; }
+    /* 메인 배너: 화면 전체에 고정(sticky) → 아래 콘텐츠가 위로 덮으며 올라옴 */
+    .hero {
+      position: sticky; top: 0; z-index: 0;
+      width: 100%; height: var(--hero-h, 100vh); min-height: 480px; overflow: hidden;
+      background: #D93939;
+    }
     .hero img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
     @media (max-width: 768px) { .hero { height: var(--hero-h-mobile, 100vh); min-height: 0; } }
+
+    /* 배너 위로 올라오는 작업물 패널 */
+    .home-works {
+      position: relative; z-index: 1; background: #000; color: #fff;
+      margin-top: -1px;
+    }
+    .home-works .filter-btn { border-radius: 0; }
+    .home-works .connect-bar { padding-top: 32px; }
+    #header.solid-dark { background: #000; }
+
     .home-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; padding: 4px; background: #000; }
     .home-grid-item {
       aspect-ratio: 1 / 1; overflow: hidden; cursor: pointer; position: relative; background: #111; border-radius: 10px;
@@ -547,12 +562,23 @@
 
   <!-- HOME -->
   <div id="page-home" class="page active">
-    <section class="hero">
+    <section class="hero" id="hero">
       <img src="https://cdn.jsdelivr.net/gh/korelideniz/portfolio@main/main/deniz_main.png" alt="Koreli Deniz" loading="eager" fetchpriority="high" />
     </section>
-    <section><div class="home-grid" id="home-grid"></div></section>
-    <div class="connect-bar" style="background:#000;padding-top:32px;"></div>
-    <footer class="site-footer dark">© 2026 Koreli Deniz. All rights reserved.</footer>
+    <section class="home-works" id="home-works">
+      <div class="works-filters">
+        <button class="filter-btn active" data-filter="ALL">All</button>
+        <button class="filter-btn" data-filter="BRANDING">Branding</button>
+        <button class="filter-btn" data-filter="CHARACTER">Character</button>
+        <button class="filter-btn" data-filter="ILLUSTRATION">Illustration</button>
+        <button class="filter-btn" data-filter="PRINT">Print</button>
+        <button class="filter-btn" data-filter="TYPOGRAPHY">Typography</button>
+        <button class="filter-btn" data-filter="MOTION">Motion</button>
+      </div>
+      <div class="works-grid" id="home-grid"></div>
+      <div class="connect-bar"></div>
+      <footer class="site-footer dark">© 2026 Koreli Deniz. All rights reserved.</footer>
+    </section>
   </div>
 
   <!-- WORKS -->
@@ -952,20 +978,13 @@
       });
     }
 
-    function renderHomeGrid() {
-      const grid = document.getElementById('home-grid');
-      grid.innerHTML = '';
-      projects.forEach((p, i) => {
-        const el = document.createElement('div');
-        el.className = 'home-grid-item'; el.dataset.idx = i;
-        el.innerHTML = `<img src="${p.thumb}" alt="${p.title}" loading="lazy" /><div class="item-overlay"><h3>${p.title}</h3><p>${p.categories[0]}</p></div>`;
-        el.addEventListener('click', () => openProject(p.id));
-        grid.appendChild(el); revealObserver.observe(el);
-      });
+    function renderHomeGrid(filter) {
+      renderGridInto('home-grid', filter || currentFilter);
     }
 
-    function renderWorksGrid(filter) {
-      const grid = document.getElementById('works-grid'); grid.innerHTML = '';
+    function renderGridInto(gridId, filter) {
+      const grid = document.getElementById(gridId); if (!grid) return;
+      grid.innerHTML = '';
       const list = filter === 'ALL' ? projects : projects.filter(p => p.categories.includes(filter));
       list.forEach((p, i) => {
         const el = document.createElement('div');
@@ -975,6 +994,7 @@
         grid.appendChild(el); revealObserver.observe(el);
       });
     }
+    function renderWorksGrid(filter) { renderGridInto('works-grid', filter); }
 
     function renderBookGrid() {
       const grid = document.getElementById('book-grid'); grid.innerHTML = '';
@@ -1205,13 +1225,17 @@
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       const pageEl = document.getElementById('page-' + page);
       pageEl.classList.add('active');
+      stopSnap();
       window.scrollTo(0, 0);
       updateHeader(page);
+      setupHomeScroll(page === 'home');
       updateStatusBarColor(page);
       document.querySelectorAll('.nav-link[id^="nav-"]').forEach(a => a.classList.remove('active'));
       const an = document.getElementById('nav-' + page);
       if (an) an.classList.add('active');
       if (page === 'works') renderWorksGrid(currentFilter);
+      if (page === 'home') renderHomeGrid(currentFilter);
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.filter === currentFilter));
       if (page === 'book') loadBooks().then(() => renderBookGrid());
       if (page === 'blog') {
         loadBlogPosts().then(() => {
@@ -1258,7 +1282,7 @@
     function updateHeader(page) {
       const navLinks = document.querySelectorAll('#main-nav .nav-link');
       const hamburger = document.getElementById('hamburger');
-      document.getElementById('header').classList.remove('solid');
+      document.getElementById('header').classList.remove('solid', 'solid-dark');
       const lightPages = ['blog', 'book'];
       if (lightPages.includes(page)) { navLinks.forEach(l => l.classList.add('dark-text')); hamburger.classList.add('dark-icon'); }
       else { navLinks.forEach(l => l.classList.remove('dark-text')); hamburger.classList.remove('dark-icon'); }
@@ -1266,8 +1290,16 @@
 
     document.querySelectorAll('.filter-btn').forEach(btn => {
       btn.addEventListener('click', function() {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        this.classList.add('active'); currentFilter = this.dataset.filter; renderWorksGrid(currentFilter);
+        currentFilter = this.dataset.filter;
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.filter === currentFilter));
+        if (currentPage === 'home') {
+          renderHomeGrid(currentFilter);
+          // 필터 바꾸면 그리드 시작점으로 부드럽게
+          const target = snapTarget();
+          if (window.scrollY > target) snapTo(target);
+        } else {
+          renderWorksGrid(currentFilter);
+        }
       });
     });
 
@@ -1323,6 +1355,98 @@
       ).join('');
       document.querySelectorAll('.connect-bar').forEach(bar => { bar.innerHTML = html; });
     }
+
+    /* ═══════════════════════════════════════════════
+       HOME: 고정 배너 + 쫀득한 스크롤
+    ═══════════════════════════════════════════════ */
+    let homeScrollOn = false;
+    let snapping = false;
+    let snapRaf = null;
+    let touchStartY = null;
+    const SNAP_MS = 480;
+
+    function jumpTo(y) { window.scrollTo({ top: y, behavior: 'instant' }); }
+    function stopSnap() { if (snapRaf) cancelAnimationFrame(snapRaf); snapRaf = null; snapping = false; }
+
+    // 배너 아래 콘텐츠의 시작 지점 (카테고리 바가 헤더 바로 밑에 오도록)
+    function snapTarget() {
+      const hero = document.getElementById('hero');
+      const headerH = document.getElementById('header').offsetHeight;
+      return Math.max(0, hero.offsetHeight - headerH);
+    }
+
+    function snapTo(y) {
+      stopSnap();
+      const from = window.scrollY, dist = y - from;
+      if (Math.abs(dist) < 1) return;
+      snapping = true;
+      const t0 = performance.now();
+      const step = (now) => {
+        const t = Math.min((now - t0) / SNAP_MS, 1);
+        const e = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; // easeInOutCubic
+        jumpTo(from + dist * e);
+        if (t < 1) snapRaf = requestAnimationFrame(step);
+        else { snapRaf = null; setTimeout(() => { snapping = false; }, 120); }
+      };
+      snapRaf = requestAnimationFrame(step);
+    }
+
+    // 배너 구간에서 방향만 판단해 한 번에 넘김. 그 아래는 일반 스크롤.
+    function trySnap(dir) {
+      const target = snapTarget(), y = window.scrollY;
+      if (dir > 0 && y < target - 1) { snapTo(target); return true; }
+      if (dir < 0 && y > 0 && y <= target + 1) { snapTo(0); return true; }
+      return false;
+    }
+    function isLocked() {
+      return document.body.classList.contains('modal-open') || document.body.classList.contains('menu-open');
+    }
+
+    function onHomeWheel(e) {
+      if (isLocked()) return;
+      if (snapping) { e.preventDefault(); return; }
+      if (Math.abs(e.deltaY) < 2) return;
+      if (trySnap(Math.sign(e.deltaY))) e.preventDefault();
+    }
+    function onHomeTouchStart(e) { touchStartY = e.touches[0].clientY; }
+    function onHomeTouchMove(e) {
+      if (isLocked() || touchStartY === null) return;
+      if (snapping) { e.preventDefault(); return; }
+      const dy = touchStartY - e.touches[0].clientY;
+      const target = snapTarget(), y = window.scrollY;
+      const inZone = (dy > 0 && y < target - 1) || (dy < 0 && y > 0 && y <= target + 1);
+      if (!inZone) return;
+      e.preventDefault();
+      if (Math.abs(dy) > 24) { trySnap(Math.sign(dy)); touchStartY = null; }
+    }
+    function onHomeKey(e) {
+      if (isLocked() || /INPUT|TEXTAREA/.test(document.activeElement?.tagName || '')) return;
+      const down = ['ArrowDown','PageDown',' '].includes(e.key), up = ['ArrowUp','PageUp'].includes(e.key);
+      if (!down && !up) return;
+      if (snapping || trySnap(down ? 1 : -1)) e.preventDefault();
+    }
+    function onHomeScroll() {
+      const header = document.getElementById('header');
+      header.classList.toggle('solid-dark', window.scrollY >= snapTarget() - 1);
+    }
+
+    function setupHomeScroll(on) {
+      if (on === homeScrollOn) { if (on) onHomeScroll(); return; }
+      homeScrollOn = on;
+      const m = on ? 'addEventListener' : 'removeEventListener';
+      window[m]('wheel', onHomeWheel, { passive: false });
+      window[m]('touchstart', onHomeTouchStart, { passive: true });
+      window[m]('touchmove', onHomeTouchMove, { passive: false });
+      window[m]('keydown', onHomeKey);
+      window[m]('scroll', onHomeScroll, { passive: true });
+      if (on) onHomeScroll(); else stopSnap();
+    }
+
+    let lastW = window.innerWidth;
+    window.addEventListener('resize', () => {
+      if (window.innerWidth !== lastW) { lastW = window.innerWidth; setHeroHeight(); }
+      if (homeScrollOn) onHomeScroll();
+    });
 
     /* ── Init ── */
     renderHomeGrid();
