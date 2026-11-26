@@ -181,17 +181,21 @@
         object-fit: contain; object-position: center;
       }
     }
-    @media (max-width: 768px) { .home-works { min-height: var(--hero-h-mobile, 100vh); } }
 
     /* 배너 위로 올라오는 작업물 패널 */
     .home-works {
       position: relative; z-index: 1; background: #000; color: #fff;
       margin-top: -1px;
       /* 작업물이 적거나 없는 카테고리에서도 패널이 최소 한 화면 높이를 유지 → 배너가 위에 잘려 보이지 않음 */
-      min-height: var(--hero-h, 100vh);
+      min-height: calc(100vh + 2px);
+      min-height: calc(max(var(--hero-h, 100vh), 100lvh) + 2px);
     }
-    .home-works { padding-top: calc(76px + env(safe-area-inset-top)); } /* 투명 헤더 아래로 카테고리 위치 */
-    @media (max-width: 768px) { .home-works { padding-top: calc(60px + env(safe-area-inset-top)); } }
+    /* 카테고리 바: 헤더 높이만큼 검은 여백을 포함해 화면 맨 위에 고정 */
+    .home-works .works-filters {
+      position: sticky; top: 0; z-index: 5; background: #000;
+      padding-top: calc(76px + env(safe-area-inset-top));
+    }
+    @media (max-width: 768px) { .home-works .works-filters { padding-top: calc(60px + env(safe-area-inset-top)); } }
     .home-works .filter-btn { border-radius: 0; }
     .home-works .connect-bar { padding-top: 32px; }
 
@@ -1340,8 +1344,7 @@
         if (currentPage === 'home') {
           renderHomeGrid(currentFilter);
           // 필터 바꾸면 항상 카테고리 바가 화면 맨 위에 오도록 (배너는 안 보이게)
-          const target = snapTarget();
-          if (Math.abs(window.scrollY - target) > 1) window.scrollTo({ top: target, behavior: 'auto' });
+          lockToWorks();
         } else {
           renderWorksGrid(currentFilter);
         }
@@ -1409,6 +1412,11 @@
     function snapTarget() { return document.getElementById('hero').offsetHeight; }
     function snapTo(y) { window.scrollTo({ top: y, behavior: 'smooth' }); }
     function onHomeScroll() {}
+    // 홈 작업물 영역 맨 위로 고정 (배너가 전혀 보이지 않게)
+    function lockToWorks() {
+      const go = () => window.scrollTo({ top: snapTarget(), behavior: 'instant' });
+      go(); requestAnimationFrame(() => { go(); setTimeout(go, 120); });
+    }
     function setupHomeScroll(on) {
       homeScrollOn = on;
       document.documentElement.classList.toggle('home-snap', on);
