@@ -71,7 +71,7 @@
       background: transparent; transition: background 0.3s;
     }
     #header.solid { background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); }
-    .logo-link { display: flex; align-items: center; }
+    .logo-link { display: flex; align-items: center; margin-left: -10px; } /* 로고 PNG 여백만큼 왼쪽으로 → 메뉴 버튼과 같은 간격 */
     .logo-img { height: 76px; width: auto; object-fit: contain; }
     nav#main-nav { display: flex; gap: 36px; align-items: center; }
     .nav-link {
@@ -124,6 +124,7 @@
     @media (max-width: 768px) {
       #header { padding: env(safe-area-inset-top) 18px 0; }
       .logo-img { height: 60px; }
+      .logo-link { margin-left: -8px; }
       nav#main-nav { display: none; }
       .hamburger { display: flex; }
     }
@@ -175,9 +176,9 @@
       .hero { height: var(--hero-h-mobile, 100vh); min-height: 0; }
       /* 모바일: 캐릭터를 작게, 아래쪽 가운데에 붙여서 얼굴이 잘리지 않게 (크기는 --hero-img-h로 조절) */
       .hero img {
-        position: absolute; left: 50%; bottom: 0; transform: translateX(-50%);
-        width: auto; height: var(--hero-img-h, 62%); max-width: none;
-        object-fit: contain; object-position: center bottom;
+        position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+        width: auto; height: var(--hero-img-h, 76%); max-width: none;
+        object-fit: contain; object-position: center;
       }
     }
     @media (max-width: 768px) { .home-works { min-height: var(--hero-h-mobile, 100vh); } }
